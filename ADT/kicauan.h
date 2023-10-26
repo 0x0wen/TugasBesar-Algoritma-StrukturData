@@ -4,16 +4,25 @@
 #include "sentenceMachine.h"
 #include "wordmachine.h"
 #include "charmachine.h"
-#include "datetime.h"
+#include "time.h"
+#include "utas.h"
 
 typedef struct {  
   int id;
   Sentence pesan[280];
   int jumlahDisukai;
   Sentence author;
-  Time dateTime;
+  TIME dateTime;
   Balasan TabBalasan[];
-  Utas TabUTas[];
+
+  /*** Utas ***/
+  int IDUtas; 
+  KicauanSambungan Sambungan[100]; 
+  int NSambungan; 
+  /* IDUtas = 0 jika kicauan bukan utas, IDUtas akan auto-increment dimulai dari 1*/
+  /* Sambungan tidak bisa diakses jika IDUtas = 0*/
+  /* NSambungan = 0 jika kicauan bukan utas*/
+
 } Kicauan;
 
 #define Id(P) (P).id;
