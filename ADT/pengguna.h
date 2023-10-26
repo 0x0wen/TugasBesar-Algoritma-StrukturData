@@ -7,6 +7,12 @@
 
 #include "boolean.h"
 #include "sentenceMachine.h"
+#include "kicauan.h"
+#include "balasan.h"
+#include "utas.h"
+#include "matrix.h"
+#include "listDinamis.h"
+#include "prioqueue.h"
 
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
@@ -25,10 +31,12 @@ typedef struct
     Word weton;
     int noHP;
     boolean jenisAkun;
-    Matriks foto;
-    Kicauan TabKicauan[];
-    Balasan TabBalasan[];
-    Utas TabUtas[];
+    Matrix foto;
+    ListDinKicauan kicauan;
+    ListDinBalasan balasan;
+    ListDinUtas utas;
+    ListDinPengguna teman;
+    PrioQueuePengguna permintaan_teman;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
@@ -45,9 +53,9 @@ typedef struct
 #define NoHP(P) (P).NoHP;
 #define JenisAkun(P) (P).JenisAkun;
 #define Foto(P) (P).Foto;
-#define Kicauan(P, i) (P).TabKicauan[i];
-#define Balasan(P, i) (P).TabBalasan[i];
-#define Utas(P, i) (P).TabUtas[i];
+#define Kicauan(P, i) (P).kicauan[i];
+#define Balasan(P, i) (P).balasan[i];
+#define Utas(P, i) (P).utas[i];
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */

@@ -8,6 +8,10 @@
 #define LISTDIN_H
 
 #include "boolean.h"
+#include "kicauan.h"
+#include "balasan.h"
+#include "utas.h"
+#include "pengguna.h"
 
 /*  Kamus Umum */
 #define IDX_MIN 0
@@ -20,10 +24,34 @@ typedef int ElType; /* type elemen list */
 typedef int IdxType;
 typedef struct
 {
-    ElType *buffer; /* memori tempat penyimpan elemen (container) */
-    int nEff;       /* >=0, banyaknya elemen efektif */
-    int capacity;   /* ukuran elemen */
+   ElType *buffer; /* memori tempat penyimpan elemen (container) */
+   int nEff;       /* >=0, banyaknya elemen efektif */
+   int capacity;   /* ukuran elemen */
 } ListDin;
+typedef struct
+{
+   Kicauan *buffer; /* memori tempat penyimpan elemen (container) */
+   int nEff;        /* >=0, banyaknya elemen efektif */
+   int capacity;    /* ukuran elemen */
+} ListDinKicauan;
+typedef struct
+{
+   Balasan *buffer; /* memori tempat penyimpan elemen (container) */
+   int nEff;        /* >=0, banyaknya elemen efektif */
+   int capacity;    /* ukuran elemen */
+} ListDinBalasan;
+typedef struct
+{
+   Utas *buffer; /* memori tempat penyimpan elemen (container) */
+   int nEff;     /* >=0, banyaknya elemen efektif */
+   int capacity; /* ukuran elemen */
+} ListDinUtas;
+typedef struct
+{
+   Pengguna *buffer; /* memori tempat penyimpan elemen (container) */
+   int nEff;         /* >=0, banyaknya elemen efektif */
+   int capacity;     /* ukuran elemen */
+} ListDinPengguna;
 /* Indeks yang digunakan [0..capacity-1] */
 /* Jika l adalah : ListDin, cara deklarasi dan akses: */
 /* Deklarasi : l : ListDin */

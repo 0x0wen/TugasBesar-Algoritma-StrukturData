@@ -28,6 +28,6 @@ typedef struct {
     Utas Buffer[100];
     int Neff;
 } TabUtas;
-/* Tab untuk menyimpan utas, memiiki Neff*/'
+/* Tab untuk menyimpan utas, memiiki Neff*/
 
 #endif

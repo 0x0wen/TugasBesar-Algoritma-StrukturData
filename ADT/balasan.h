@@ -13,7 +13,7 @@ typedef struct
     Sentence penulis;
     DATETIME dateTime;
     Sentence daftarBalasan[];
-} BALASAN;
+} Balasan;
 
 #define Id(P) (P).id;
 #define Teks(P) (P).teks;
