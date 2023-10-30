@@ -12,8 +12,8 @@
 
 typedef struct
 {
-    char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-    int Length;
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
 } Word;
 
 /* State Mesin Word */
@@ -46,4 +46,6 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+void printWord();
+// printword
 #endif

@@ -59,3 +59,11 @@ void CopyWord()
     }
     currentWord.Length = i;
 }
+void printWord(Word w)
+{
+    int i;
+    for (i = 0; i < w.Length; i++)
+    {
+        printf("%c", w.TabWord[i]);
+    }
+}

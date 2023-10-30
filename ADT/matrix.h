@@ -13,9 +13,9 @@ typedef int IdxType; /* Index baris, kolom */
 typedef int ElType;
 typedef struct
 {
-    ElType mem[ROW_CAP][COL_CAP];
-    int rowEff; /* banyaknya/ukuran baris yg terdefinisi */
-    int colEff; /* banyaknya/ukuran kolom yg terdefinisi */
+   ElType mem[ROW_CAP][COL_CAP];
+   int rowEff; /* banyaknya/ukuran baris yg terdefinisi */
+   int colEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } Matrix;
 /* rowEff >= 1 dan colEff >= 1 */
 /* Indeks matriks yang digunakan: [0..ROW_CAP-1][0..COL_CAP-1] */
@@ -31,7 +31,7 @@ void createMatrix(int nRows, int nCols, Matrix *m);
 /* *** Selektor *** */
 #define ROW_EFF(M) (M).rowEff
 #define COL_EFF(M) (M).colEff
-#define ELMT(M, i, j) (M).mem[(i)][(j)]
+#define MatELMT(M, i, j) (M).mem[(i)][(j)]
 
 /* *** Selektor "Dunia Matrix" *** */
 boolean isMatrixIdxValid(int i, int j);
