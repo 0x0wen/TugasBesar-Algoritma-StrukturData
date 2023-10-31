@@ -25,7 +25,7 @@ void AcquireBlanks()
 
 void AcquireSentence()
 {
-    currentWord.Length = 0;
+    sentence.Length = 0;
     int i = 0;
     while (currentChar != MARK)
     {
@@ -38,6 +38,7 @@ void AcquireSentence()
             CopyWord();
         }
         sentence.TabSentence[i] = currentWord;
+        sentence.Length++;
         ADV();
         i++;
     }
@@ -47,3 +48,13 @@ void AcquireSentence()
    F.S. : sentence berisi kalimat yang sudah diakuisisi dengan format array of words.
           Contoh: "Saya suka     babi" akan disimpan dengan format ["Saya", " ", "suka", "     ", "babi"]
           currentChar = MARK; */
+
+void PrintSentence()
+{
+    int i = 0;
+    for (i = 0; i < sentence.Length; i++)
+    {
+        printWord(sentence.TabSentence[i]);
+    }
+}
+

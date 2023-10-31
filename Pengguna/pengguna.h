@@ -60,4 +60,5 @@ typedef struct
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 
+
 #endif

@@ -52,6 +52,13 @@ typedef struct
    int nEff;         /* >=0, banyaknya elemen efektif */
    int capacity;     /* ukuran elemen */
 } ListDinPengguna;
+
+typedef struct
+{
+   KicauanSambungan *buffer; /* memori tempat penyimpan elemen (container) */
+   int nEff;                 /* >=0, banyaknya elemen efektif */
+   int capacity;             /* ukuran elemen */
+} ListDinKicauanSambungan;
 /* Indeks yang digunakan [0..capacity-1] */
 /* Jika l adalah : ListDin, cara deklarasi dan akses: */
 /* Deklarasi : l : ListDin */

@@ -4,15 +4,15 @@
 #include "sentenceMachine.h"
 #include "wordmachine.h"
 #include "charmachine.h"
+#include "sentenceMachine.h"
 #include "datetime.h"
+#include "pengguna.h"
+#include "kicauan.h"
 
 typedef struct
 {
-    int id;
-    Sentence teks[280];
-    Sentence penulis;
-    DATETIME dateTime;
-    Sentence daftarBalasan[];
+    int idBalasan;
+    Kicauan konten;
 } Balasan;
 
 #define Id(P) (P).id;
@@ -20,5 +20,11 @@ typedef struct
 #define Writer(P) (P).penulis;
 #define Time(P) (P).dateTime;
 #define DaftarBalasan(P) (P).daftarBalasan;
+
+void Balas(int IDKicau, int IDBalasan);
+
+void Show_Balasan(int IDKicau);
+
+void Hapus_Balasan(int IDKicau, int IDBalasan);
 
 #endif
