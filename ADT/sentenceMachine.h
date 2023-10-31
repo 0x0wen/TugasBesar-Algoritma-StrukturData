@@ -13,7 +13,7 @@
 
 typedef struct
 {
-   Word TabSentence[280]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   Word TabWord[280]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Sentence;
 

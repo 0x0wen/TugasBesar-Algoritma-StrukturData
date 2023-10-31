@@ -22,7 +22,7 @@ typedef int address; /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct
-{
+{ 
     infotype *T;  /* tabel penyimpan elemen */
     address HEAD; /* alamat penghapusan */
     address TAIL; /* alamat penambahan */
@@ -32,8 +32,8 @@ typedef struct
 {
     Pengguna *T;  /* tabel penyimpan elemen */
     address HEAD; /* alamat penghapusan */
-    address TAIL; /* alamat penambahan */
-    int MaxEl;    /* Max elemen queue */
+    address TAIL; 
+    int MaxEl;/* alamat penambahan */    /* Max elemen queue */
 } PrioQueuePengguna;
 /* Definisi PrioQueueChar kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
