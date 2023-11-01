@@ -31,7 +31,7 @@ void addKicauanToTab(TabKicauan *t, Kicauan k){
     if(NEFF(*t) < CAPACITY(*t)){
         // do nothing
     } else {
-        // expand dulu list nya by 1
+        // expand dulu list nya by 1P
         expandList(t, 1);
     }
     // assign k ke indeks ke-neff di t
@@ -46,11 +46,11 @@ void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
     for (i = 0; i < NEFF(*t); i++){
 
         if (found){ // geser elemen ke-i mundur ke-(i-1)
-            ELMT(*t, i-1) = ELMT(*t, i)
+            ELMT(*t, i-1) = ELMT(*t, i);
         }
-        if (ID(ELMT(*t, i)) == id){
+        if ((ELMT(*t, i)).IDKicau == id){
             *k = ELMT(*t, i);
-            found = true
+            found = true;
         }
     }
     if (found){
@@ -74,10 +74,11 @@ void createKicauan(TabKicauan *t){
     // id kicauan baru adalah id kicauan terakhir pada list ditambah 1
     int newID = ID(ELMT(*t, NEFF(*t)-1)) + 1; 
 
-    ID(newKicau) = newID
-    TEXT(newKicau) = "kicauan baru";
-    LIKE(newKicau) = 0;
-    AUTHOR(newKicau) = "rafi";
+    // ini gtw napa kalo make selektor
+    // ID(newKicau) = newID;
+    // TEXT(newKicau) = "kicauan baru";
+    // LIKE(newKicau) = 0;
+    // AUTHOR(newKicau) = "rafi";
     // TIME(newKicau) = "otw";
 
     addKicauanToTab(t, newKicau);
