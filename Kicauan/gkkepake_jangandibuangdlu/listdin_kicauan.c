@@ -1,10 +1,10 @@
 #include "listdin_kicauan.h"
-#include "../boolean.h"
+#include "../../General/boolean.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
-void CreateTabKicau(TabKicau *l, int capacity)
+void CreateTabKicauan(TabKicauan *l, int capacity)
 {
     CAPACITY(*l) = capacity;
     NEFF(*l) = 0;
@@ -13,7 +13,7 @@ void CreateTabKicau(TabKicau *l, int capacity)
 /* I.S. l sembarang, capacity > 0 */
 /* F.S. Terbentuk list dinamis l kosong dengan kapasitas capacity */
 
-void dealocateList(TabKicau *l)
+void dealocateList(TabKicauan *l)
 {
     free(BUFFER(*l));
     CAPACITY(*l) = 0;
@@ -24,7 +24,7 @@ void dealocateList(TabKicau *l)
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int listLength(TabKicau l)
+int listLength(TabKicauan l)
 {
     return NEFF(l);
 };
@@ -33,13 +33,13 @@ int listLength(TabKicau l)
 /* *** Daya tampung container *** */
 
 /* *** Selektor INDEKS *** */
-IdxType getFirstIdx(TabKicau l)
+IdxType getFirstIdx(TabKicauan l)
 {
     return IDX_MIN;
 };
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l pertama */
-IdxType getLastIdx(TabKicau l)
+IdxType getLastIdx(TabKicauan l)
 {
     return NEFF(l) - 1;
 };
@@ -47,13 +47,13 @@ IdxType getLastIdx(TabKicau l)
 /* Mengirimkan indeks elemen l terakhir */
 
 /* ********** Test Indeks yang valid ********** */
-boolean isIdxValid(TabKicau l, IdxType i)
+boolean isIdxValid(TabKicauan l, IdxType i)
 {
     return (i < (CAPACITY(l)) && i >= IDX_MIN);
 };
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean isIdxEff(TabKicau l, IdxType i)
+boolean isIdxEff(TabKicauan l, IdxType i)
 {
     return (i < (NEFF(l)) && i >= IDX_MIN);
 };
@@ -62,13 +62,13 @@ boolean isIdxEff(TabKicau l, IdxType i)
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean isEmpty(TabKicau l)
+boolean isEmpty(TabKicauan l)
 {
     return (NEFF(l) == 0);
 };
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
-boolean isFull(TabKicau l)
+boolean isFull(TabKicauan l)
 {
     return (NEFF(l) == CAPACITY(l));
 };
@@ -76,7 +76,7 @@ boolean isFull(TabKicau l)
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
 /* *** Mendefinisikan isi list dari pembacaan *** */
-void readList(TabKicau *l)
+void readList(TabKicauan *l)
 {
     int N, i, a;
     do
@@ -99,7 +99,7 @@ void readList(TabKicau *l)
 /* 2. Jika 0 < N <= CAPACITY(l); Lakukan N kali: Baca elemen mulai dari indeks
       0 satu per satu diakhiri enter */
 /*    Jika N = 0; hanya terbentuk l kosong */
-void printList(TabKicau l)
+void printList(TabKicauan l)
 {
     int i;
     printf("[");
@@ -126,10 +126,10 @@ void printList(TabKicau l)
 
 /* ********** OPERATOR ARITMATIKA ********** */
 /* *** Aritmatika list : Penjumlahan, pengurangan, perkalian, ... *** */
-TabKicau plusMinusList(TabKicau l1, TabKicau l2, boolean plus)
+TabKicauan plusMinusList(TabKicauan l1, TabKicauan l2, boolean plus)
 {
-    TabKicau L;
-    CreateTabKicau(&L, NEFF(l1));
+    TabKicauan L;
+    CreateTabKicauan(&L, NEFF(l1));
     int i;
     for (i = IDX_MIN; i < NEFF(l1); i++)
     {
@@ -151,7 +151,7 @@ TabKicau plusMinusList(TabKicau l1, TabKicau l2, boolean plus)
 
 /* ********** OPERATOR RELASIONAL ********** */
 /* *** Operasi pembandingan list : < =, > *** */
-boolean isListEqual(TabKicau l1, TabKicau l2)
+boolean isListEqual(TabKicauan l1, TabKicauan l2)
 {
     int i;
     if (NEFF(l1) != NEFF(l2))
@@ -174,7 +174,7 @@ boolean isListEqual(TabKicau l1, TabKicau l2)
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : list boleh kosong!! *** */
-IdxType indexOf(TabKicau l, ElType val)
+IdxType indexOf(TabKicauan l, ElType val)
 {
     int i;
     for (i = IDX_MIN; i < NEFF(l); i++)
@@ -193,7 +193,7 @@ IdxType indexOf(TabKicau l, ElType val)
 /* Skema Searching yang digunakan bebas */
 
 /* ********** NILAI EKSTREM ********** */
-void extremeValues(TabKicau l, ElType *max, ElType *min)
+void extremeValues(TabKicauan l, ElType *max, ElType *min)
 {
     int i;
     *max = ELMT(l, IDX_MIN);
@@ -215,10 +215,10 @@ void extremeValues(TabKicau l, ElType *max, ElType *min)
         min berisi nilai minimum l */
 
 /* ********** OPERASI LAIN ********** */
-void copyList(TabKicau lIn, TabKicau *lOut)
+void copyList(TabKicauan lIn, TabKicauan *lOut)
 {
     int i;
-    CreateTabKicau(lOut, CAPACITY(lIn));
+    CreateTabKicauan(lOut, CAPACITY(lIn));
     for (i = 0; i < NEFF(lIn); i++)
     {
         ELMT(*lOut, i) = ELMT(lIn, i);
@@ -228,7 +228,7 @@ void copyList(TabKicau lIn, TabKicau *lOut)
 /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
 /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
 /* Proses : Menyalin isi lIn ke lOut */
-ElType sumList(TabKicau l)
+ElType sumList(TabKicauan l)
 {
     int i;
     ElType jumlah = 0;
@@ -240,7 +240,7 @@ ElType sumList(TabKicau l)
 };
 /* Menghasilkan hasil penjumlahan semua elemen l */
 /* Jika l kosong menghasilkan 0 */
-int countVal(TabKicau l, ElType val)
+int countVal(TabKicauan l, ElType val)
 {
     int i, total = 0;
     for (i = 0; i < NEFF(l); i++)
@@ -256,7 +256,7 @@ int countVal(TabKicau l, ElType val)
 /* Jika l kosong menghasilkan 0 */
 
 /* ********** SORTING ********** */
-void sort(TabKicau *l, boolean asc)
+void sort(TabKicauan *l, boolean asc)
 {
     int i, j;
     ElType temp;
@@ -299,7 +299,7 @@ void sort(TabKicau *l, boolean asc)
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /* *** Menambahkan elemen terakhir *** */
-void insertLast(TabKicau *l, ElType val)
+void insertLast(TabKicauan *l, ElType val)
 {
     ELMT(*l, NEFF(*l)) = val;
     NEFF(*l) += 1;
@@ -308,7 +308,7 @@ void insertLast(TabKicau *l, ElType val)
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
 /* ********** MENGHAPUS ELEMEN ********** */
-void deleteLast(TabKicau *l, ElType *val)
+void deleteLast(TabKicauan *l, ElType *val)
 {
     *val = ELMT(*l, NEFF(*l) - 1);
     NEFF(*l) -= 1;
@@ -320,9 +320,9 @@ void deleteLast(TabKicau *l, ElType *val)
 /*      List l mungkin menjadi kosong */
 
 /* ********* MENGUBAH UKURAN ARRAY ********* */
-void expandList(TabKicau *l, int num)
+void expandList(TabKicauan *l, int num)
 {
-    TabKicau l1;
+    TabKicauan l1;
     int cap1, nEff1, i;
 
     copyList(*l, &l1);
@@ -331,7 +331,7 @@ void expandList(TabKicau *l, int num)
 
     dealocateList(l);
 
-    CreateTabKicau(l, cap1);
+    CreateTabKicauan(l, cap1);
     NEFF(*l) = nEff1;
 
     for (i = 0; i < listLength(*l); i++)
@@ -344,9 +344,9 @@ void expandList(TabKicau *l, int num)
 /* I.S. List sudah terdefinisi */
 /* F.S. Ukuran list bertambah sebanyak num */
 
-void shrinkList(TabKicau *l, int num)
+void shrinkList(TabKicauan *l, int num)
 {
-    TabKicau l1;
+    TabKicauan l1;
     int cap1, nEff1, i;
 
     copyList(*l, &l1);
@@ -355,7 +355,7 @@ void shrinkList(TabKicau *l, int num)
 
     dealocateList(l);
 
-    CreateTabKicau(l, cap1);
+    CreateTabKicauan(l, cap1);
     NEFF(*l) = nEff1;
 
     for (i = 0; i < listLength(*l); i++)
@@ -368,9 +368,9 @@ void shrinkList(TabKicau *l, int num)
 /* I.S. List sudah terdefinisi, ukuran capacity > num, dan nEff < capacity - num. */
 /* F.S. Ukuran list berkurang sebanyak num. */
 
-void compressList(TabKicau *l)
+void compressList(TabKicauan *l)
 {
-    TabKicau l1;
+    TabKicauan l1;
     int nEff1, i;
 
     copyList(*l, &l1);
@@ -378,7 +378,7 @@ void compressList(TabKicau *l)
 
     dealocateList(l);
 
-    CreateTabKicau(l, nEff1);
+    CreateTabKicauan(l, nEff1);
     NEFF(*l) = nEff1;
 
     for (i = 0; i < listLength(*l); i++)
