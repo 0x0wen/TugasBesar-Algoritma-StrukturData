@@ -68,3 +68,35 @@ void printTree(tree root, int depth) {
         }
     }
 }
+
+addressTree searchTree(tree root, int val){
+    addressTree p = ADDRESS(root);
+    if(Data(p)==val){
+        return p;
+    }else{
+        p = FirstChild(p);
+        int cek = 0;
+        while(p!=ADDRESS(root) && cek==0){
+            while((p)!=NULL && cek==0){
+                if(Data((p))==val){
+                    cek=1;
+                }else{
+                    p = FirstChild(p);
+                }
+            }
+            if(cek==0){
+                p = Parent(p);
+                if(NextSibling(p)==NULL){
+                    p = Parent(p);
+                }else{
+                    p = NextSibling(p);
+                }
+            }
+        }
+        if(cek==1){
+            return p;
+        }else{
+            return NULL;
+        }
+    }
+}

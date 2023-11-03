@@ -28,4 +28,6 @@ void addChild(tree *parent,tree *child);
 
 void printTree(tree root, int depth);
 
+addressTree searchTree(tree root, int val);
+
 #endif
