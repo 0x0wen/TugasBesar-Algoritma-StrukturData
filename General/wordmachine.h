@@ -9,11 +9,12 @@
 
 #define NMax 50
 #define BLANK ' '
+#define ENTER '\n'
 
 typedef struct
 {
-    char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-    int Length;
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
 } Word;
 
 /* State Mesin Word */
@@ -24,6 +25,9 @@ void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+
+void IgnoreEnters();
+/*Mengabaikan Enter*/
 
 void STARTWORD();
 /* I.S. : currentChar sembarang
@@ -46,7 +50,11 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-
 void printWord();
-/* cetak kata*/
+// printword
+
+boolean IsWordEqual(Word w1, Word w2);
+
+boolean IsWordNotEqual(Word w1, Word w2);
+
 #endif
