@@ -12,7 +12,10 @@
 typedef struct
 {
     int idBalasan;
-    Kicauan konten;
+    Sentence teks;
+    int IDPengguna;
+    DATETIME waktu;
+    address root;
 } Balasan;
 
 #define Id(P) (P).id;
