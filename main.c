@@ -7,6 +7,8 @@ int main() {
   /* ===== INISIALISASI ===== */
   inisialisasi();
 
+  // Setelah inisialisasi, status program akan true
+
   /* ===== MASUK APLIKASI ===== */
   STARTWORD();
   if (IsWordEqual(currentWord, 'DAFTAR')) DAFTAR();
@@ -16,6 +18,7 @@ int main() {
   
   /* ===== APLIKASI =====*/ 
   while (/* ID Pengguna valid, ID != -1 (Pengguna belum keluar), dan login true */) {
+    printf(">> ");
     STARTWORD();
 
     /* ========== KELUAR ========== */
