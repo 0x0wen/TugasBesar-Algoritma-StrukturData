@@ -3,6 +3,28 @@
 #include "pcolor.h"
 #include "matrix.h"
 
+/* ========== PENGGUNA ========== */
+void DAFTAR() {
+
+}
+
+void MASUK() {
+
+}
+
+void KELUAR() {
+
+}
+
+void TUTUP_PROGRAM() {
+
+}
+
+int CURRENT_PENGGUNA() {
+    
+}
+
+/* ========== PROFIL ========== */
 boolean IsFriend()
 {
 }
