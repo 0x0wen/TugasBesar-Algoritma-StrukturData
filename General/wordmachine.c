@@ -27,6 +27,16 @@ void STARTWORD(){
         EndWord=false;
     }
 }
+void STARTWORD_BLANK(){
+    START();//
+
+    if(currentChar==MARK){
+        EndWord=true;
+    }else{
+        CopyWord();
+        EndWord=false;
+    }
+}
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
@@ -81,6 +91,19 @@ void writeWord(Word* writeWord, char input[], int length){
 
 void InputWord(Word *inputWord){
     STARTWORD();
+    if (EOP) {
+        writeWord(inputWord, currentWord.TabWord, currentWord.Length);
+    }
+    else {
+        writeWord(inputWord, "", 0);
+        while (!EOP) {
+            ADVWORD();
+        }
+    }
+}
+
+void InputWordWithBlank(Word *inputWord){
+    STARTWORD_BLANK();
     if (EOP) {
         writeWord(inputWord, currentWord.TabWord, currentWord.Length);
     }

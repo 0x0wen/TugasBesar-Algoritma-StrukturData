@@ -30,6 +30,7 @@ void STARTWORD();
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
+void STARTWORD_BLANK();        
 
 void ADVW0RD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -49,6 +50,10 @@ void CopyWord();
 void writeWord(Word *writeWord, char input[], int length);
 
 void InputWord(Word *inputWord);
+/* InputWord yang mengabaikan blank space di awal*/
+
+void InputWordWithBlank(Word *inputWord);
+/* InputWord yang tidak mengabaikan blank space di awal*/
 
 boolean IsWordEqual(Word w1, Word w2);
 
