@@ -3,22 +3,27 @@
 #include <stdlib.h>
 
 /*** Kreator/Deletor Tab Kicauan ***/
-void createTabKicauan(TabKicauan *t, int capacity){
+void createTabKicauan(TabKicauan *t, int capacity)
+{
 
-    TAB(*t) = (Kicauan *) malloc (capacity * sizeof(Kicauan));
+    TAB(*t) = (Kicauan *)malloc(capacity * sizeof(Kicauan));
 
     /* Kalau malloc berhasil capacity(t) = capacity
        kalau gagal capacity = 0;*/
-    if(TAB(*t) != NULL){
+    if (TAB(*t) != NULL)
+    {
         CAPACITY(*t) = capacity;
-    } else {
+    }
+    else
+    {
         CAPACITY(*t) = 0;
     }
 
     NEFF(*t) = 0;
 }
 
-void deleteTabKicauan(TabKicauan *t){
+void deleteTabKicauan(TabKicauan *t)
+{
 
     free(TAB(*t));
     CAPACITY(*t) = 0;
@@ -26,35 +31,62 @@ void deleteTabKicauan(TabKicauan *t){
 }
 
 /*** Add/Delete Kicauan from Tab ***/
-void addKicauanToTab(TabKicauan *t, Kicauan k){
+void addKicauanToTab(TabKicauan *t, Kicauan k)
+{
 
-    if(NEFF(*t) < CAPACITY(*t)){
+    if (NEFF(*t) < CAPACITY(*t))
+    {
         // do nothing
-    } else {
+    }
+    else
+    {
         // expand dulu list nya by 1P
         expandList(t, 1);
     }
     // assign k ke indeks ke-neff di t
     ELMT(*t, NEFF(*t)) = k;
-    NEFF(*t)++;
+    NEFF(*t)
+    ++;
 }
-void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
+// Owen : nambahin fungsi buat ngecek ada kicauan dengan id tertentu di tab atau tidak
+boolean isKicauanInTab(TabKicauan *t, int id)
+{
+    int i;
+    boolean found;
+    found = false;
+    for (i = 0; i < NEFF(*t); i++)
+    {
+        if ((ELMT(*t, i)).IDKicau == id)
+        {
+            found = true;
+            break;
+        }
+    }
+    return found;
+}
+void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id)
+{
 
     int idxStart, i;
     boolean found = false;
 
-    for (i = 0; i < NEFF(*t); i++){
+    for (i = 0; i < NEFF(*t); i++)
+    {
 
-        if (found){ // geser elemen ke-i mundur ke-(i-1)
-            ELMT(*t, i-1) = ELMT(*t, i);
+        if (found)
+        { // geser elemen ke-i mundur ke-(i-1)
+            ELMT(*t, i - 1) = ELMT(*t, i);
         }
-        if ((ELMT(*t, i)).IDKicau == id){
+        if ((ELMT(*t, i)).IDKicau == id)
+        {
             *k = ELMT(*t, i);
             found = true;
         }
     }
-    if (found){
-        NEFF(*t)--;
+    if (found)
+    {
+        NEFF(*t)
+        --;
     }
 }
 
@@ -66,13 +98,14 @@ void compressList(TabKicauan *t);
 /*** Prosedur Kicauan ***/
 
 /** Membuat kicauan baru kemudian memasukkannya ke list **/
-void createKicauan(TabKicauan *t){
+void createKicauan(TabKicauan *t)
+{
 
     // inisialisasi
     Kicauan newKicau;
 
     // id kicauan baru adalah id kicauan terakhir pada list ditambah 1
-    int newID = ID(ELMT(*t, NEFF(*t)-1)) + 1; 
+    int newID = ID(ELMT(*t, NEFF(*t) - 1)) + 1;
 
     // ini gtw napa kalo make selektor
     // ID(newKicau) = newID;
@@ -84,7 +117,8 @@ void createKicauan(TabKicauan *t){
     addKicauanToTab(t, newKicau);
 }
 
-void printKicauan(Kicauan k){
+void printKicauan(Kicauan k)
+{
 
     // printf();
 }
