@@ -11,14 +11,15 @@
 #define IDX_MIN 0
 
 /*** Struct Kicauan ***/
-typedef struct {  
+typedef struct
+{
   int IDKicau;
   char Text[281]; // 280 char + 1 mark
   int Like;
   Sentence Author;
   DATETIME DateTime;
   Balasan *TabBalasan; /* Pointer ke list dinamis TabBalasan */
- } Kicauan;            /* tiap elemen pada list tsb merupakan root dari tree balasan */ 
+} Kicauan;             /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
 #define ID(K) (K).IDKicau;
@@ -29,7 +30,8 @@ typedef struct {
 #define LIST_BALASAN(P) *((P).TabBalasan); // nge retrieve list dinamis of balasan
 
 /*** Struct TabKicauan berupa List Dinamis ***/
-typedef struct {
+typedef struct
+{
   Kicauan *buffer;
   int nEff;
   int capacity;
@@ -44,6 +46,9 @@ typedef struct {
 /*** Kreator/Deletor Tab Kicauan ***/
 void createTabKicauan(TabKicauan *t, int capacity);
 void deleteTabKicauan(TabKicauan *t);
+
+/*** Cek Kicauan di Tab***/
+boolean isKicauanInTab(TabKicauan *t, int id);
 
 /*** Add/Delete Kicauan from Tab ***/
 void addKicauanToTab(TabKicauan *t, Kicauan k);
