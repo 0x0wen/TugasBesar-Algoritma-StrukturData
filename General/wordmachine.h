@@ -7,9 +7,8 @@
 #include "boolean.h"
 #include "charmachine.h"
 
-#define NMax 50
+#define NMax 280
 #define BLANK ' '
-#define ENTER '\n'
 
 typedef struct
 {
@@ -26,16 +25,13 @@ void IgnoreBlanks();
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void IgnoreEnters();
-/*Mengabaikan Enter*/
-
 void STARTWORD();
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
-void ADVWORD();
+void ADVW0RD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
           currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
@@ -50,8 +46,9 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-void printWord();
-// printword
+void writeWord(Word *writeWord, char input[], int length);
+
+void InputWord(Word *inputWord);
 
 boolean IsWordEqual(Word w1, Word w2);
 
