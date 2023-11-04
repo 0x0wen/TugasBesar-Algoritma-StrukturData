@@ -59,4 +59,6 @@ boolean IsWordEqual(Word w1, Word w2);
 
 boolean IsWordNotEqual(Word w1, Word w2);
 
+boolean isOnlyBlank(Word w);
+
 #endif

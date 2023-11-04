@@ -28,7 +28,7 @@ void STARTWORD(){
     }
 }
 void STARTWORD_BLANK(){
-    START();//
+    START();
 
     if(currentChar==MARK){
         EndWord=true;
@@ -165,4 +165,18 @@ boolean IsWordNotEqual(Word w1, Word w2)
         }
         return IsNotEqual;
     }
+}
+
+boolean isOnlyBlank(Word w){
+
+    boolean onlyBlank = true;
+    int i = 0;
+
+    while (i < w.Length && onlyBlank){
+        if (w.TabWord[i] != BLANK){
+            onlyBlank = false;
+        } i++;
+    }
+
+    return onlyBlank;
 }
