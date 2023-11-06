@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "wordmachine.c"
+#include "wordmachine.h"
 
-void inisialisasi(){
+void inisialisasi() {
     printf(".______    __    __  .______      .______    __  .______\n");
     printf("|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\\n");
     printf("|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  |\n");

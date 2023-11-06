@@ -2,7 +2,82 @@
 #include "pengguna.h"
 #include "pcolor.h"
 #include "matrix.h"
+#include "wordmachine.h"
 
+/* ========== PENGGUNA ========== */
+void DAFTAR() {
+    if (/* Pengguna telah masuk sebelumnya */) {
+        printf("Anda sudah masuk. Keluar terlebih dahulu\nuntuk melakukan daftar.\n");
+    } else {
+        do {
+            printf("Masukkan nama:\n");
+            STARTWORD();
+
+            if (checkUsername(currentWord)) {
+                printf("Wah, sayang sekali nama tersebut telah diambil.\n");
+            }
+        } while (checkUsername(/* Apakah username unik */));
+
+        printf("Masukkan kata sandi:\n");
+        STARTWORD();
+
+        DaftarPengguna(/* Mendaftarkan nama pengguna dan password ke databse */);
+        printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
+    }
+}
+
+void MASUK() {
+    if (/* Pengguna telah masuk sebelumnya */) {
+        printf("Wah Anda sudah masuk. Keluar dulu yuk!\n");
+    } else {
+        do {
+            printf("Masukkan nama:\n");
+            STARTWORD();
+
+            if (!checkUsername(currentWord)) {
+                printf("Wah, nama yang Anda cari tidak ada.\nMasukkan nama lain!\n");
+            }
+        } while (!checkUsername(/* Apakah username ada */));
+
+        do {
+            print("Masukkan kata sandi:\n");
+            STARTWORD();
+
+            if (!checkKatasandi(currentWord)) {
+                printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
+            }
+        } while (!checkKatasandiI(/* Mengecheck kata sandi pengguna*/));
+
+        // Disini ada fungsi yang mengubah status login menjadi true
+        
+    }
+}
+
+void KELUAR() {
+    if (/* Pengguna belum login */) {
+        printf("Anda belum login! Masuk terlebih dahulu\nuntuk menikmati layanan BurBir.\n");
+
+        // Status login tetap true
+
+    } else {
+        printf("Anda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
+
+        // Status login menjadi false
+    }
+}
+
+void TUTUP_PROGRAM() {
+
+    // status program menjadi false
+
+    printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
+}
+
+int CURRENT_PENGGUNA() {
+    
+}
+
+/* ========== PROFIL ========== */
 boolean IsFriend()
 {
 }
