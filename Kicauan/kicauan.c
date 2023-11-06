@@ -16,6 +16,7 @@ void createTabKicauan(TabKicauan *t, int capacity){
     }
 
     NEFF(*t) = 0;
+    MAXID(*t) = 0;
 }
 
 void deleteTabKicauan(TabKicauan *t){
@@ -24,6 +25,21 @@ void deleteTabKicauan(TabKicauan *t){
     CAPACITY(*t) = 0;
     NEFF(*t) = 0;
 }
+
+/*** Copy List ***/
+void copyList(TabKicauan lIn, TabKicauan *lOut){
+
+    int i;
+    CreateTabKicauan(lOut, CAPACITY(lIn));
+
+    for (i = 0; i < NEFF(lIn); i++)
+    {
+        ELMT(*lOut, i) = ELMT(lIn, i);
+    }
+    NEFF(*lOut) = NEFF(lIn);
+    MAXID(*lOut) = MAXID(lIn);
+};
+
 
 /*** Add/Delete Kicauan from Tab ***/
 void addKicauanToTab(TabKicauan *t, Kicauan k){
@@ -38,6 +54,7 @@ void addKicauanToTab(TabKicauan *t, Kicauan k){
     ELMT(*t, NEFF(*t)) = k;
     NEFF(*t)++;
 }
+
 void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
 
     int idxStart, i;
@@ -48,7 +65,7 @@ void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
         if (found){ // geser elemen ke-i mundur ke-(i-1)
             ELMT(*t, i-1) = ELMT(*t, i);
         }
-        if ((ELMT(*t, i)).IDKicau == id){
+        else if ((ELMT(*t, i)).IDKicau == id){
             *k = ELMT(*t, i);
             found = true;
         }
@@ -59,9 +76,72 @@ void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
 }
 
 /*** Mengubah Ukuran Tab ***/
-void expandList(TabKicauan *t, int num);
-void shrinkList(TabKicauan *t, int num);
-void compressList(TabKicauan *t);
+void expandList(TabKicauan *t, int num){
+    TabKicauan temp;
+    int cap, nEff, maxId, i;
+
+    copyList(*t, &temp);
+    cap = CAPACITY(*t) + num;
+    nEff = NEFF(*t);
+    maxId = MAXID(*t);
+
+    dealocateList(t);
+
+    CreateTabKicauan(t, cap);
+    NEFF(*t) = nEff;
+    MAXID(*t) = maxId;
+
+    for (i = 0; i < nEff; i++)
+    {
+        ELMT(*t, i) = ELMT(temp, i);
+    }
+    dealocateList(&temp);
+}
+
+void shrinkList(TabKicauan *t, int num){
+    TabKicauan temp;
+    int cap, nEff, maxId, i;
+
+    copyList(*t, &temp);
+    cap = CAPACITY(*t) - num;
+    nEff = NEFF(*t);
+    maxId = MAXID(*t);
+
+    dealocateList(t);
+
+    CreateTabKicauan(t, cap);
+    NEFF(*t) = nEff;
+    MAXID(*t) = maxId;
+
+    for (i = 0; i < nEff; i++)
+    {
+        ELMT(*t, i) = ELMT(temp, i);
+    }
+    dealocateList(&temp);
+}
+
+void compressList(TabKicauan *t){
+    TabKicauan temp;
+    int cap, nEff, maxId, i;
+
+    copyList(*t, &temp);
+    cap = NEFF(*t);
+    nEff = NEFF(*t);
+    maxId = MAXID(*t);
+
+    dealocateList(t);
+
+    CreateTabKicauan(t, cap);
+    NEFF(*t) = nEff;
+    MAXID(*t) = maxId;
+
+    for (i = 0; i < nEff; i++)
+    {
+        ELMT(*t, i) = ELMT(temp, i);
+    }
+    dealocateList(&temp);
+}
+
 
 /*** Prosedur Kicauan ***/
 

@@ -21,7 +21,7 @@ typedef struct {
  } Kicauan;            /* tiap elemen pada list tsb merupakan root dari tree balasan */ 
 
 /*** Selektor Struct Kicauan***/
-#define ID(K) (K).IDKicau;
+#define ID(P) (P).IDKicau;
 #define TEXT(P) (P).Text;
 #define LIKE(P) (P).Like;
 #define AUTHOR(P) (P).Author;
@@ -33,6 +33,7 @@ typedef struct {
   Kicauan *buffer;
   int nEff;
   int capacity;
+  int maxID;
 } TabKicauan;
 
 /*** Selektor Struct TabKicauan ***/
@@ -40,10 +41,14 @@ typedef struct {
 #define TAB(P) (P).buffer
 #define ELMT(P, i) (P).buffer[i]
 #define CAPACITY(P) (P).capacity
+#define MAXID(P) (P).maxID
 
 /*** Kreator/Deletor Tab Kicauan ***/
 void createTabKicauan(TabKicauan *t, int capacity);
 void deleteTabKicauan(TabKicauan *t);
+
+/*** Copy List ***/
+void copyList(TabKicauan lIn, TabKicauan *lOut);
 
 /*** Add/Delete Kicauan from Tab ***/
 void addKicauanToTab(TabKicauan *t, Kicauan k);

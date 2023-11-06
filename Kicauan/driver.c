@@ -1,10 +1,12 @@
 #include <stdio.h>
-#include "kicauan.c"
-#include "listdin_kicauan.c"
+// #include "kicauan.c"
+// #include "listdin_kicauan.c"
+#include "../General/wordmachine.c"
+#include "../General/charmachine.c"
 
 int main(){
 
-    TabKicauan TK;
+    // TabKicauan TK;
 
     /*
     Alur program:
@@ -50,6 +52,22 @@ int main(){
     6. TERBIT : ngepop kicauan dari stack dan dimasukkan ke TK
     */
 
+    Word tes;
+    printf("Masukkan kata: ");
+    InputWordWithBlank (&tes);
+
+    printf("Hasil input: ");
+    for (int i = 0; i < tes.Length; i++){
+    printf("%c", tes.TabWord[i]);
+    }
+
+    printf("\nLen: %d", tes.Length);
+
+    if (isOnlyBlank(tes)){
+        printf("\nOnly blank");
+    } else {
+        printf("\nNot only blank");
+    }
 
     return 0;
 }
