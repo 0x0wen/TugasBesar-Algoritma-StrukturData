@@ -61,8 +61,8 @@ void addKicauanToTab(TabKicauan *t, Kicauan k)
     }
     // assign k ke indeks ke-neff di t
     ELMT(*t, NEFF(*t)) = k;
-    NEFF(*t)
-    ++;
+    NEFF(*t)++;
+    MAXID(*t)++;
 }
 // Owen : nambahin fungsi buat ngecek ada kicauan dengan id tertentu di tab atau tidak
 boolean isKicauanInTab(TabKicauan *t, int id)
@@ -99,8 +99,7 @@ void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
     }
     if (found)
     {
-        NEFF(*t)
-        --;
+        NEFF(*t)--;
     }
 }
 
@@ -175,27 +174,76 @@ void compressList(TabKicauan *t){
 /*** Prosedur Kicauan ***/
 
 /** Membuat kicauan baru kemudian memasukkannya ke list **/
-void createKicauan(TabKicauan *t)
-{
-
-    // inisialisasi
+void createKicauan(TabKicauan *t){
     Kicauan newKicau;
 
-    // id kicauan baru adalah id kicauan terakhir pada list ditambah 1
-    int newID = ID(ELMT(*t, NEFF(*t) - 1)) + 1;
+    // id 
+    int newID = MAXID(*t) + 1;
+    newKicau.IDKicau = newID;
 
-    // ini gtw napa kalo make selektor
-    // ID(newKicau) = newID;
-    // TEXT(newKicau) = "kicauan baru";
-    // LIKE(newKicau) = 0;
-    // AUTHOR(newKicau) = "rafi";
-    // TIME(newKicau) = "otw";
+    // text 
+    printf("Masukkan kicauan:\n");
+    Word text; InputWordWithBlank(&text);
+    newKicau.Text = text;
 
+    // like 
+    newKicau.Like = 0;
+
+    // author
+    Sentence author = penggunaSekarang.nama;
+    newKicau.Author = author;
+
+    // time 
+    DATETIME time;
+    newKicau.DateTime = time;
+    
+    // add newKicau ke tab
     addKicauanToTab(t, newKicau);
+
+    printf("Selamat! kicauan telah diterbitkan!\n");
+    printf("Detil kicauan:");
+
+    printKicauan(newKicau);
 }
 
-void printKicauan(Kicauan k)
-{
+void printKicauan(Kicauan k){   
+    printf("\n");
+    printf("| ID = %d\n", k.IDKicau;);
+    printf("| "); printSentence(k.Author); printf("\n");
+    printf("| "); printTime(k.DateTime); printf("\n");
+    printf("| "); printWord(k.Text); printf("\n");
+    printf("| ID = %d\n", k.Like);
+}
 
-    // printf();
+/*** Prosedur Kicauan yang berkaitan dengan spek ***/
+void KICAU(){
+    createKicauan(&dataKicauan);
+}
+
+void KICAUAN(){
+
+    int i;
+    for (i = 0; i < NEFF(dataKicauan); i++){
+        if (ELMT(dataKicauan, i).Author == penggunaSekarang.nama){
+            printKicauan(ELMT(dataKicauan, i));
+        } 
+    }
+}
+
+void SUKA_KICAUAN(id){
+
+    // belum di cek kalau akun private atau kalau temenan ato gk
+
+    if (isKicauanInTab(&dataKicauan, id)){
+
+        int i;
+        for (i = 0; i < NEFF(dataKicauan); i++){
+            if (dataKicauan[i].IDKicau == id){
+                dataKicauan[i].Likes++;
+            }
+        }
+
+    } else {
+        printf("Tidak ditemukan kicauan dengan ID = %d;", id);
+    }
 }

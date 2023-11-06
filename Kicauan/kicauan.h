@@ -3,9 +3,13 @@
 #ifndef kicauan_H
 #define kicauan_H
 
+#include "../General/wordmachine.h"
+#include "../General/charmachine.h"
 #include "../General/sentenceMachine.h"
 #include "../General/datetime.h"
+#include "../General/time.h"
 #include "../General/boolean.h"
+#include "../global.h"
 #include "balasan.h"
 
 #define IDX_MIN 0
@@ -14,7 +18,7 @@
 typedef struct
 {
   int IDKicau;
-  char Text[281]; // 280 char + 1 mark
+  Word Text; // 280 char + 1 mark
   int Like;
   Sentence Author;
   DATETIME DateTime;
@@ -22,12 +26,12 @@ typedef struct
 } Kicauan;             /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
-#define ID(P) (P).IDKicau;
-#define TEXT(P) (P).Text;
-#define LIKE(P) (P).Like;
-#define AUTHOR(P) (P).Author;
-#define TIME(P) (P).DateTime;
-#define LIST_BALASAN(P) *((P).TabBalasan); // nge retrieve list dinamis of balasan
+#define ID(K) (K).IDKicau;
+#define TEXT(K) (K).Text;
+#define LIKE(K) (K).Like;
+#define AUTHOR(K) (K).Author;
+#define TIME(K) (K).DateTime;
+#define LIST_BALASAN(K) *((K).TabBalasan); // nge retrieve list dinamis of balasan
 
 /*** Struct TabKicauan berupa List Dinamis ***/
 typedef struct
@@ -39,11 +43,11 @@ typedef struct
 } TabKicauan;
 
 /*** Selektor Struct TabKicauan ***/
-#define NEFF(P) (P).nEff
-#define TAB(P) (P).buffer
-#define ELMT(P, i) (P).buffer[i]
-#define CAPACITY(P) (P).capacity
-#define MAXID(P) (P).maxID
+#define NEFF(T) (T).nEff
+#define TAB(T) (T).buffer
+#define ELMT(T, i) (T).buffer[i]
+#define CAPACITY(T) (T).capacity
+#define MAXID(T) (T).maxID
 
 /*** Kreator/Deletor Tab Kicauan ***/
 void createTabKicauan(TabKicauan *t, int capacity);
@@ -68,4 +72,9 @@ void compressList(TabKicauan *t);
 void createKicauan(TabKicauan *t);
 void printKicauan(Kicauan k);
 
+/*** Prosedur Kicauan yang berkaitan dengan spek ***/
+void KICAU();
+void KICAUAN();
+void SUKA_KICAUAN(int id);
+void UBAH_KICAUAN(int id);
 #endif

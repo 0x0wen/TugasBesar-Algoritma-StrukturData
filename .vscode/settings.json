@@ -1,6 +1,9 @@
 {
     "files.associations": {
-        "listdin_kicauan.h": "c"
+        "listdin_kicauan.h": "c",
+        "datetime.h": "c",
+        "boolean.h": "c",
+        "balasan.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
