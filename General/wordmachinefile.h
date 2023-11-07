@@ -2,9 +2,8 @@
 #define __WORDMACHINEFILE_H__
 
 #include "boolean.h"
-#include "charmachinefile.c"
-#include "wordmachine.c"
-//#include "charmachine.c"
+#include "charmachinefile.h"
+#include "wordmachine.h"
 
 extern boolean endWordFile;
 extern Word currentWordFile;
@@ -34,6 +33,8 @@ void CopyWordFile();
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
+
+Word CopyWordFile2();
 
 void StopWordFile();
 /* Memberhentikan pembacaan Mesin Kata. Pita tidak bisa lagi dibaca

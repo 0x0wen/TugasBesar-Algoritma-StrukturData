@@ -5,8 +5,10 @@ boolean endWordFile;
 Word currentWordFile;
 
 void IgnoreBlanksFile(){
-    while (currentCharFile == BLANK && currentCharFile != MARK_FILE) {
-        ADVFILE();
+    if(currentCharFile == BLANK && currentCharFile!=MARK_FILE){    
+        while (currentCharFile == BLANK && currentCharFile != MARK_FILE) {
+            ADVFILE();
+        }
     }
 }
 
@@ -14,8 +16,10 @@ void STARWORDFILE(char namaFile[]){
     STARFILE(namaFile);
     IgnoreBlanksFile();
 
-    if (currentCharFile == MARK_FILE) {
+    if (currentCharFile == MARK_FILE || atoi(&currentCharFile)==0) {
+        currentWordFile.TabWord[0] = currentCharFile;
         endWordFile = true;
+        ADVFILE();
     } else {
         endWordFile = false;
         CopyWordFile();
@@ -35,8 +39,8 @@ void ADVWORDFILE(){
 void CopyWordFile(){
     int i;
     i = 0;
-
-    while (currentCharFile != MARK_FILE && currentCharFile != BLANK) {
+    
+    while (currentCharFile != MARK_FILE) {
         if (i < NMax) {
             currentWordFile.TabWord[i] = currentCharFile;
         }
@@ -49,6 +53,29 @@ void CopyWordFile(){
     } else {
         currentWordFile.Length = NMax;
     }
+}
+
+Word CopyWordFile2(){
+    int i;
+    i = 0;
+    Word string;
+    while (currentCharFile != MARK_FILE) {
+        if (i < NMax) {
+            currentWordFile.TabWord[i] = currentCharFile;
+            string.TabWord[i]=currentCharFile;
+        }
+        ADVFILE();
+        i++;
+    }
+    if (i < NMax) {
+        currentWordFile.Length = i;
+        string.Length = i;
+        
+    } else {
+        currentWordFile.Length = NMax;
+        string.Length=NMax;
+    }
+    return string;
 }
 
 void StopWordFile(){
