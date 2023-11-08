@@ -6,11 +6,18 @@
 #define pengguna_H
 
 #include "boolean.h"
+#include "global.h"
+#include "matrix.h"
+
 #include "sentenceMachine.h"
 #include "kicauan.h"
+
 #include "balasan.h"
+#include "tabBalasan.h"
+
 #include "utas.h"
-#include "matrix.h"
+#include "tabUtas.h"
+
 #include "listDinamis.h"
 #include "prioqueue.h"
 
@@ -32,10 +39,10 @@ typedef struct
     int noHP;
     boolean jenisAkun;
     Matrix foto;
-    ListDinKicauan kicauan;
-    ListDinBalasan balasan;
-    ListDinUtas utas;
-    ListDinPengguna teman;
+    TabKicauan kicauan;
+    TabBalasan balasan;
+    TabUtas utas;
+    TabTeman teman;
     PrioQueuePengguna permintaan_teman;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */
@@ -45,20 +52,19 @@ typedef struct
 /* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define Id(P) (P).id;
-#define Nama(P) (P).nama;
-#define KataSandi(P) (P).KataSandi;
-#define Bio(P) (P).Bio;
-#define Weton(P) (P).Weton;
-#define NoHP(P) (P).NoHP;
-#define JenisAkun(P) (P).JenisAkun;
-#define Foto(P) (P).Foto;
-#define Kicauan(P, i) (P).kicauan[i];
-#define Balasan(P, i) (P).balasan[i];
-#define Utas(P, i) (P).utas[i];
+#define IdPengguna(P) (P).id
+#define NamaPengguna(P) (P).nama
+#define KataSandiPengguna(P) (P).KataSandi
+#define BioPengguna(P) (P).Bio
+#define WetonPengguna(P) (P).Weton
+#define NoHPPengguna(P) (P).NoHP
+#define JenisAkunPengguna(P) (P).JenisAkun
+#define FotoPengguna(P) (P).Foto
+#define KicauanPengguna(P, i) (P).kicauan[i]
+#define BalasanPengguna(P, i) (P).balasan[i]
+#define UtasPengguna(P, i) (P).utas[i]
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-
 
 #endif

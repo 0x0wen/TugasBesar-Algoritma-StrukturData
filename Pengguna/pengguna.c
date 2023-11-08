@@ -1,22 +1,25 @@
 #include <stdio.h>
 #include "pengguna.h"
-#include "pcolor.h"
-#include "matrix.h"
-#include "wordmachine.h"
 
 /* ========== PENGGUNA ========== */
-void DAFTAR() {
-    if (/* Pengguna telah masuk sebelumnya */) {
+void DAFTAR()
+{
+    if (true /* Pengguna telah masuk sebelumnya */)
+    {
         printf("Anda sudah masuk. Keluar terlebih dahulu\nuntuk melakukan daftar.\n");
-    } else {
-        do {
+    }
+    else
+    {
+        do
+        {
             printf("Masukkan nama:\n");
             STARTWORD();
 
-            if (checkUsername(currentWord)) {
+            if (checkpenggunaSekarangname(currentWord))
+            {
                 printf("Wah, sayang sekali nama tersebut telah diambil.\n");
             }
-        } while (checkUsername(/* Apakah username unik */));
+        } while (checkpenggunaSekarangname(/* Apakah penggunaSekarangname unik */));
 
         printf("Masukkan kata sandi:\n");
         STARTWORD();
@@ -26,55 +29,66 @@ void DAFTAR() {
     }
 }
 
-void MASUK() {
-    if (/* Pengguna telah masuk sebelumnya */) {
+void MASUK()
+{
+    if (true /* Pengguna telah masuk sebelumnya */)
+    {
         printf("Wah Anda sudah masuk. Keluar dulu yuk!\n");
-    } else {
-        do {
+    }
+    else
+    {
+        do
+        {
             printf("Masukkan nama:\n");
             STARTWORD();
 
-            if (!checkUsername(currentWord)) {
+            if (!checkpenggunaSekarangname(currentWord))
+            {
                 printf("Wah, nama yang Anda cari tidak ada.\nMasukkan nama lain!\n");
             }
-        } while (!checkUsername(/* Apakah username ada */));
+        } while (!checkpenggunaSekarangname(/* Apakah penggunaSekarangname ada */));
 
-        do {
+        do
+        {
             print("Masukkan kata sandi:\n");
             STARTWORD();
 
-            if (!checkKatasandi(currentWord)) {
+            if (!checkKatasandi(currentWord))
+            {
                 printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             }
-        } while (!checkKatasandiI(/* Mengecheck kata sandi pengguna*/));
+        } while (!checkKatasandiI(true /* Mengecheck kata sandi pengguna*/));
 
         // Disini ada fungsi yang mengubah status login menjadi true
-        
     }
 }
 
-void KELUAR() {
-    if (/* Pengguna belum login */) {
+void KELUAR()
+{
+    if (true /* Pengguna belum login */)
+    {
         printf("Anda belum login! Masuk terlebih dahulu\nuntuk menikmati layanan BurBir.\n");
 
         // Status login tetap true
-
-    } else {
+    }
+    else
+    {
         printf("Anda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
 
         // Status login menjadi false
     }
 }
 
-void TUTUP_PROGRAM() {
+void TUTUP_PROGRAM()
+{
 
     // status program menjadi false
 
     printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }
 
-int CURRENT_PENGGUNA() {
-    
+int CURRENT_PENGGUNA()
+{
 }
 
 /* ========== PROFIL ========== */
@@ -84,31 +98,31 @@ boolean IsFriend()
 
 void GANTI_PROFIL()
 {
-    for (int i = 0; i < len(liststatikpengguna); i++)
+    for (int i = 0; i < len(dataPengguna); i++)
     {
-        if (ID(liststatikpengguna[i]) == CurrentPengguna)
+        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang))
         {
-            Pengguna user = liststatikpengguna[i];
+            Pengguna penggunaSekarang = SelectPengguna(dataPengguna, i);
         }
     }
 
-    if (CurrentPengguna == -1)
+    if (IdPengguna(penggunaSekarang) == -1)
     {
         printf("Anda Belum Login! Masuk terlebih dahulu untuk mengganti profil.\n");
     }
     else
     {
         printf("|  Nama: ");
-        printWord(user.nama);
+        printWord(penggunaSekarang.nama);
         printf("\n");
         printf("|  Bio Akun: ");
-        printWord(user.bio);
+        printWord(penggunaSekarang.bio);
         printf("\n");
         printf("|  No HP: ");
-        printWord(user.noHP);
+        printWord(penggunaSekarang.noHP);
         printf("\n");
         printf("|  Weton: ");
-        printWord(user.weton);
+        printWord(penggunaSekarang.weton);
         printf("\n");
 
         Word empty = {';', 1};
@@ -132,7 +146,7 @@ void GANTI_PROFIL()
                 printf("\n");
             }
         }
-        user.Bio = Bio;
+        penggunaSekarang.Bio = Bio;
         printf("\n");
 
         boolean IsValidNoHP = false;
@@ -155,7 +169,7 @@ void GANTI_PROFIL()
                 printf("\n");
             }
         }
-        user.NoHP = currentWord;
+        penggunaSekarang.NoHP = currentWord;
         printf("\n");
 
         Word weton[] = {{"Pahing", 6}, {"Kliwon", 6}, {"Wage", 6}, {"Legi", 4}, {"Pon", 3}}; // deklarasi Weton
@@ -184,22 +198,22 @@ void GANTI_PROFIL()
                 printf("\n");
             }
         }
-        user.Weton = currentWord;
+        penggunaSekarang.Weton = currentWord;
         printf("Profil anda sudah berhasil diperbarui!\n\n");
     }
 }
 
 void LIHAT_PROFIL()
 {
-    for (int i = 0; i < len(liststatikpengguna); i++)
+    for (int i = 0; i < len(dataPengguna); i++)
     {
-        if (ID(liststatikpengguna[i]) == CurrentPengguna)
+        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang))
         {
-            Pengguna user = liststatikpengguna[i];
+            Pengguna penggunaSekarang = SelectPengguna(dataPengguna, i);
         }
     }
 
-    if (CurrentPengguna == -1)
+    if (IdPengguna(penggunaSekarang) == -1)
     {
         printf("Anda Belum Login!\n");
     }
@@ -207,25 +221,25 @@ void LIHAT_PROFIL()
     {
         STARTWORD();
         Word name = currentWord;
-        int idPengguna = CurrentPengguna;
+        int idPengguna = IdPengguna(penggunaSekarang);
         Word Privat = {"Privat", 6};
         Word Publik = {"Publik", 6};
-        Word TipeAkun = user.jenisAkun;
+        Word TipeAkun = penggunaSekarang.jenisAkun;
 
-        if (IsWordEqual(name, user.nama))
+        if (IsWordEqual(name, penggunaSekarang.nama))
         {
-            Display_PROFIL(user);
+            Display_PROFIL(penggunaSekarang);
         }
         else
         {
-            for (int i = 0; i < len(liststatikpengguna); i++)
+            Pengguna penggunaSekarang1;
+            for (int i = 0; i < len(dataPengguna); i++)
             {
-                if (IsWordEqual(name, liststatikpengguna[i]))
+                if (IsWordEqual(name, NamaPengguna(SelectPengguna(dataPengguna, i))))
                 {
-                    Pengguna user1 = liststatikpengguna[i];
+                    Pengguna penggunaSekarang1 = SelectPengguna(dataPengguna, i);
                 }
             }
-
             if (IsWordEqual(TipeAkun, Privat) && !IsFriend)
             {
                 printf("Wah, akun ");
@@ -235,7 +249,7 @@ void LIHAT_PROFIL()
             }
             else
             {
-                Display_PROFIL(user1);
+                Display_PROFIL(penggunaSekarang1);
             }
         }
     }
@@ -243,21 +257,21 @@ void LIHAT_PROFIL()
 
 void ATUR_JENIS_AKUN()
 {
-    for (int i = 0; i < len(liststatikpengguna); i++)
+    for (int i = 0; i < len(dataPengguna); i++)
     {
-        if (ID(liststatikpengguna[i]) == CurrentPengguna)
+        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang))
         {
-            Pengguna user = liststatikpengguna[i];
+            Pengguna penggunaSekarang = SelectPengguna(dataPengguna, i);
         }
     }
 
-    if (CurrentPengguna == -1)
+    if (IdPengguna(penggunaSekarang) == -1)
     {
         printf("Anda Belum Login!\n");
     }
     else
     {
-        Word TipeAkun = user.jenisAkun;
+        Word TipeAkun = penggunaSekarang.jenisAkun;
         Word Privat = {"Privat", 6};
         Word Publik = {"Publik", 6};
         Word YA = {"YA", 2};
@@ -277,7 +291,7 @@ void ATUR_JENIS_AKUN()
             }
             else
             {
-                user.jenisAkun = Publik;
+                penggunaSekarang.jenisAkun = Publik;
                 printf("Akun anda sudah diubah menjadi akun Publik.");
             }
         }
@@ -293,7 +307,7 @@ void ATUR_JENIS_AKUN()
             }
             else
             {
-                user.jenisAkun = Privat;
+                penggunaSekarang.jenisAkun = Privat;
                 printf("Akun anda sudah diubah menjadi akun Privat.\n");
             }
         }
@@ -302,22 +316,22 @@ void ATUR_JENIS_AKUN()
 
 void UBAH_FOTO_PROFIL()
 {
-    for (int i = 0; i < len(liststatikpengguna); i++)
+    for (int i = 0; i < len(dataPengguna); i++)
     {
-        if (ID(liststatikpengguna[i]) == CurrentPengguna)
+        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang))
         {
-            Pengguna user = liststatikpengguna[i];
+            Pengguna penggunaSekarang = SelectPengguna(dataPengguna, i);
         }
     }
 
-    if (CurrentPengguna == -1)
+    if (IdPengguna(penggunaSekarang) == -1)
     {
         printf("Anda Belum Login! Masuk terlebih dahulu untuk mengganti foto profil.\n");
     }
     else
     {
         printf("Foto profil Anda saat ini adalah\n");
-        DISPLAY_FOTO_PROFIL(user);
+        DISPLAY_FOTO_PROFIL(penggunaSekarang);
         printf("\n");
         printf("Masukkan foto profil yang baru\n");
         Matrix fp;
@@ -330,17 +344,17 @@ void UBAH_FOTO_PROFIL()
         {
             for (j = 0; j < COL_EFF(fp); j++)
             {
-                MatELMT(fp, i, j) = currentChar;
+                ELMT(fp, i, j) = currentChar;
                 ADV();
                 IgnoreBlanks();
                 IgnoreEnters();
             }
             IgnoreEnters();
         }
-        currentPengguna.foto = fp;
+        IdPengguna(penggunaSekarang).foto = fp;
         printf("\n");
         printf("Foto profil anda sudah berhasil diganti!\n\n");
-        PrintFoto(currentPengguna);
+        PrintFoto(IdPengguna(penggunaSekarang));
     }
 }
 
