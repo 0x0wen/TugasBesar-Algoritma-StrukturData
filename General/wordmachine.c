@@ -7,8 +7,10 @@
 boolean EndWord;
 Word currentWord;
 
-void IgnoreBlanks(){
-    while(currentChar==BLANK && currentChar!=MARK){
+void IgnoreBlanks()
+{
+    while (currentChar == BLANK && currentChar != MARK)
+    {
         ADV();
     }
 }
@@ -16,25 +18,33 @@ void IgnoreBlanks(){
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void STARTWORD(){
-    START();//
+void STARTWORD()
+{
+    START(); //
     IgnoreBlanks();
 
-    if(currentChar==MARK){
-        EndWord=true;
-    }else{
+    if (currentChar == MARK)
+    {
+        EndWord = true;
+    }
+    else
+    {
         CopyWord();
-        EndWord=false;
+        EndWord = false;
     }
 }
-void STARTWORD_BLANK(){
+void STARTWORD_BLANK()
+{
     START();
 
-    if(currentChar==MARK){
-        EndWord=true;
-    }else{
+    if (currentChar == MARK)
+    {
+        EndWord = true;
+    }
+    else
+    {
         CopyWord();
-        EndWord=false;
+        EndWord = false;
     }
 }
 /* I.S. : currentChar sembarang
@@ -42,11 +52,15 @@ void STARTWORD_BLANK(){
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
-void ADVWORD(){
+void ADVWORD()
+{
     IgnoreBlanks();
-    if(currentChar==MARK){
-        EndWord=true;
-    }else{
+    if (currentChar == MARK)
+    {
+        EndWord = true;
+    }
+    else
+    {
         CopyWord();
         IgnoreBlanks();
     }
@@ -57,20 +71,24 @@ void ADVWORD(){
           Jika currentChar = MARK, EndWord = true.
    Proses : Akuisisi kata menggunakan procedure SalinWord */
 
-void CopyWord(){
-    int i=0;
-    
-    while(currentChar!=MARK){
-        if(i<NMax){
-            currentWord.TabWord[i]=currentChar;
+void CopyWord()
+{
+    int i = 0;
+
+    while (currentChar != MARK)
+    {
+        if (i < NMax)
+        {
+            currentWord.TabWord[i] = currentChar;
         }
         i++;
-        currentWord.Length=i;
+        currentWord.Length = i;
         ADV();
     }
 
-    if(i>NMax){
-        currentWord.Length=NMax;
+    if (i > NMax)
+    {
+        currentWord.Length = NMax;
     }
 }
 /* Mengakuisisi kata, menyimpan dalam currentWord
@@ -80,36 +98,46 @@ void CopyWord(){
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-void writeWord(Word* writeWord, char input[], int length){
+void writeWord(Word *writeWord, char input[], int length)
+{
     int i;
-    for (i = 0; i < length; i++) {
+    for (i = 0; i < length; i++)
+    {
         writeWord->TabWord[i] = input[i];
     }
     writeWord->TabWord[length] = '\0';
     writeWord->Length = length;
 }
 
-void InputWord(Word *inputWord){
+void InputWord(Word *inputWord)
+{
     STARTWORD();
-    if (EOP) {
+    if (EOP)
+    {
         writeWord(inputWord, currentWord.TabWord, currentWord.Length);
     }
-    else {
+    else
+    {
         writeWord(inputWord, "", 0);
-        while (!EOP) {
+        while (!EOP)
+        {
             ADVWORD();
         }
     }
 }
 
-void InputWordWithBlank(Word *inputWord){
+void InputWordWithBlank(Word *inputWord)
+{
     STARTWORD_BLANK();
-    if (EOP) {
+    if (EOP)
+    {
         writeWord(inputWord, currentWord.TabWord, currentWord.Length);
     }
-    else {
+    else
+    {
         writeWord(inputWord, "", 0);
-        while (!EOP) {
+        while (!EOP)
+        {
             ADVWORD();
         }
     }
@@ -167,15 +195,19 @@ boolean IsWordNotEqual(Word w1, Word w2)
     }
 }
 
-boolean isOnlyBlank(Word w){
+boolean isOnlyBlank(Word w)
+{
 
     boolean onlyBlank = true;
     int i = 0;
 
-    while (i < w.Length && onlyBlank){
-        if (w.TabWord[i] != BLANK){
+    while (i < w.Length && onlyBlank)
+    {
+        if (w.TabWord[i] != BLANK)
+        {
             onlyBlank = false;
-        } i++;
+        }
+        i++;
     }
 
     return onlyBlank;
