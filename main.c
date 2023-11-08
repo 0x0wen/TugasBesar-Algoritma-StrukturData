@@ -6,6 +6,7 @@
 #include "kicauan.h"
 #include "utas.h"
 #include "balasan.h"
+#include "global.h"
 
 Pengguna penggunaSekarang;
 TabPengguna dataPengguna;
