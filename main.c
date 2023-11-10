@@ -12,6 +12,7 @@ Pengguna penggunaSekarang;
 TabPengguna dataPengguna;
 TabKicauan dataKicauan;
 TabUtas dataUtas;
+TabTeman dataTeman;
 
 int main()
 {
