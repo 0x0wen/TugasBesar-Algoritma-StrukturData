@@ -6,7 +6,8 @@
 #define DATETIME_H
 
 #include "boolean.h"
-#include "time.h"
+#include "time_adt.h"
+#include <time.h>
 
 /* *** Definisi TYPE DATETIME <DD/MM/YY HH:MM:SS> *** */
 typedef struct
@@ -28,7 +29,7 @@ typedef struct
 /* ***************************************************************** */
 /* KELOMPOK VALIDASI TERHADAP TYPE                                   */
 /* ***************************************************************** */
-int GetMaxDay(int M, int Y);
+// int GetMaxDay(int M, int Y);
 /* Mengirimkan jumlah hari maksimum pada bulan M dan tahun Y */
 /* Prekondisi: 1 <= M <= 12*/
 /* Hint: Perhatikan Leap Year. Leap Year adalah tahun dengan 29 hari pada bulan Februari */
@@ -38,7 +39,7 @@ int GetMaxDay(int M, int Y);
 /* 3. Jika angka tahun itu tidak habis dibagi 400, tidak habis dibagi 100 akan tetapi habis dibagi 4, maka tahun itu merupakan tahun kabisat. */
 /* 4. Jika angka tahun tidak habis dibagi 400, tidak habis dibagi 100, dan tidak habis dibagi 4, maka tahun tersebut bukan merupakan tahun kabisat. */
 
-boolean IsDATETIMEValid(int D, int M, int Y, int h, int m, int s);
+// boolean IsDATETIMEValid(int D, int M, int Y, int h, int m, int s);
 /* Mengirim true jika D,M,Y,h,m,s dapat membentuk D yang valid */
 /* dipakai untuk mentest SEBELUM membentuk sebuah DATETIME */
 
@@ -50,7 +51,7 @@ void CreateDATETIME(DATETIME *D, int DD, int MM, int YYYY, int hh, int mm, int s
 /* ***************************************************************** */
 /* KELOMPOK BACA/TULIS                                               */
 /* ***************************************************************** */
-void BacaDATETIME(DATETIME *D);
+// void BacaDATETIME(DATETIME *D);
 /* I.S. : D tidak terdefinisi */
 /* F.S. : D terdefinisi dan merupakan DATETIME yang valid */
 /* Proses : mengulangi membaca komponen DD, MM, YY, h, m, s sehingga membentuk D */
@@ -75,21 +76,23 @@ void TulisDATETIME(DATETIME D);
 /* KELOMPOK OPERASI TERHADAP TYPE                                    */
 /* ***************************************************************** */
 /* *** Kelompok operasi relasional terhadap DATETIME *** */
-boolean DEQ(DATETIME D1, DATETIME D2);
-/* Mengirimkan true jika D1=D2, false jika tidak */
-boolean DNEQ(DATETIME D1, DATETIME D2);
-/* Mengirimkan true jika D1 tidak sama dengan D2 */
-boolean DLT(DATETIME D1, DATETIME D2);
-/* Mengirimkan true jika D1<D2, false jika tidak */
-boolean DGT(DATETIME D1, DATETIME D2);
-/* Mengirimkan true jika D1>D2, false jika tidak */
-DATETIME DATETIMENextNDetik(DATETIME D, int N);
-/* Mengirim salinan D dengan detik ditambah N */
-DATETIME DATETIMEPrevNDetik(DATETIME D, int N);
+// boolean DEQ(DATETIME D1, DATETIME D2);
+// /* Mengirimkan true jika D1=D2, false jika tidak */
+// boolean DNEQ(DATETIME D1, DATETIME D2);
+// /* Mengirimkan true jika D1 tidak sama dengan D2 */
+// boolean DLT(DATETIME D1, DATETIME D2);
+// /* Mengirimkan true jika D1<D2, false jika tidak */
+// boolean DGT(DATETIME D1, DATETIME D2);
+// /* Mengirimkan true jika D1>D2, false jika tidak */
+// DATETIME DATETIMENextNDetik(DATETIME D, int N);
+// /* Mengirim salinan D dengan detik ditambah N */
+// DATETIME DATETIMEPrevNDetik(DATETIME D, int N);
 /* Mengirim salinan D dengan detik dikurang N */
 /* *** Kelompok Operator Aritmetika terhadap DATETIME *** */
-long int DATETIMEDurasi(DATETIME DAw, DATETIME DAkh);
+// long int DATETIMEDurasi(DATETIME DAw, DATETIME DAkh);
 /* Mengirim DAkh-DAw dlm Detik, dengan kalkulasi */
 /* Prekondisi: DAkh > DAw */
+
+DATETIME getDATETIME();
 
 #endif

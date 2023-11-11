@@ -3,7 +3,8 @@
         "listdin_kicauan.h": "c",
         "datetime.h": "c",
         "boolean.h": "c",
-        "balasan.h": "c"
+        "balasan.h": "c",
+        "wordmachine.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

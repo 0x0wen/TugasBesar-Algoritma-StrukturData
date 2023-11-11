@@ -21,6 +21,8 @@
 #include "listDinamis.h"
 #include "prioqueue.h"
 
+#include "../DrafKicauan/draf.h"
+
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 
@@ -44,6 +46,7 @@ typedef struct
     TabUtas utas;
     TabTeman teman;
     PrioQueuePengguna permintaan_teman;
+    Draf drafkicauan;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
@@ -63,6 +66,7 @@ typedef struct
 #define KicauanPengguna(P, i) (P).kicauan[i]
 #define BalasanPengguna(P, i) (P).balasan[i]
 #define UtasPengguna(P, i) (P).utas[i]
+
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */

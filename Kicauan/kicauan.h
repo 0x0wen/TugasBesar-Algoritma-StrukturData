@@ -7,9 +7,10 @@
 #include "../General/charmachine.h"
 #include "../General/sentenceMachine.h"
 #include "../General/datetime.h"
-#include "../General/time.h"
+#include "../General/time_adt.h"
 #include "../General/boolean.h"
 #include "../global.h"
+#include "../Pengguna/pengguna.h"
 #include "balasan.h"
 
 #define IDX_MIN 0
@@ -20,7 +21,7 @@ typedef struct
   int IDKicau;
   Word Text; // 280 char + 1 mark
   int Like;
-  Sentence Author;
+  Pengguna Author;
   DATETIME DateTime;
   Balasan *TabBalasan; /* Pointer ke list dinamis TabBalasan */
 } Kicauan;             /* tiap elemen pada list tsb merupakan root dari tree balasan */
@@ -58,6 +59,7 @@ void copyList(TabKicauan lIn, TabKicauan *lOut);
 
 /*** Cek Kicauan di Tab***/
 boolean isKicauanInTab(TabKicauan *t, int id);
+int getKicauanIdx(TabKicauan t, int id);
 
 /*** Add/Delete Kicauan from Tab ***/
 void addKicauanToTab(TabKicauan *t, Kicauan k);
@@ -69,7 +71,7 @@ void shrinkList(TabKicauan *t, int num);
 void compressList(TabKicauan *t);
 
 /*** Prosedur Kicauan ***/
-void createKicauan(TabKicauan *t);
+Kicauan createKicauan();
 void printKicauan(Kicauan k);
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/

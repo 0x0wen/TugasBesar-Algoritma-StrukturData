@@ -49,6 +49,7 @@ void copyList(TabKicauan lIn, TabKicauan *lOut){
 /*** Add/Delete Kicauan from Tab ***/
 void addKicauanToTab(TabKicauan *t, Kicauan k)
 {
+    k.IDKicau = MAXID(dataKicauan) + 1;
 
     if (NEFF(*t) < CAPACITY(*t))
     {
@@ -79,6 +80,19 @@ boolean isKicauanInTab(TabKicauan *t, int id)
         }
     }
     return found;
+}
+
+int getKicauanIdx(TabKicauan t, int id){
+
+    int idx = -1;
+    int i;
+
+    for (i = 0; i < NEFF(t); i++){
+        if (ELMT(t, i).IDKicau == id){
+            idx = i;
+        }
+    }
+    return idx;
 }
 void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
 
@@ -174,15 +188,14 @@ void compressList(TabKicauan *t){
 /*** Prosedur Kicauan ***/
 
 /** Membuat kicauan baru kemudian memasukkannya ke list **/
-void createKicauan(TabKicauan *t){
+Kicauan createKicauan(){
     Kicauan newKicau;
 
     // id 
-    int newID = MAXID(*t) + 1;
+    int newID = 0;
     newKicau.IDKicau = newID;
 
     // text 
-    printf("Masukkan kicauan:\n");
     Word text; InputWordWithBlank(&text);
     newKicau.Text = text;
 
@@ -190,41 +203,47 @@ void createKicauan(TabKicauan *t){
     newKicau.Like = 0;
 
     // author
-    Sentence author = penggunaSekarang.nama;
+    Pengguna author = penggunaSekarang;
     newKicau.Author = author;
 
     // time 
-    DATETIME time;
+    DATETIME time = getDATETIME();
     newKicau.DateTime = time;
     
-    // add newKicau ke tab
-    addKicauanToTab(t, newKicau);
-
-    printf("Selamat! kicauan telah diterbitkan!\n");
-    printf("Detil kicauan:");
-
-    printKicauan(newKicau);
+    return newKicau;
 }
 
 void printKicauan(Kicauan k){   
     printf("\n");
-    printf("| ID = %d\n", k.IDKicau;);
-    printf("| "); printSentence(k.Author); printf("\n");
+    printf("| ID = %d\n", k.IDKicau);
+    printf("| "); printSentence(k.Author.nama); printf("\n");
     printf("| "); printTime(k.DateTime); printf("\n");
     printf("| "); printWord(k.Text); printf("\n");
-    printf("| ID = %d\n", k.Like);
+    printf("| Disukai = %d\n", k.Like);
 }
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/
 void KICAU(){
-    createKicauan(&dataKicauan);
+
+    printf("\nMasukkan kicauan:\n");
+    Kicauan newKicau = createKicauan();
+
+    // add newKicau ke tab
+    addKicauanToTab(&dataKicauan, newKicau);
+
+    printf("Selamat! kicauan telah diterbitkan!\n");
+    printf("Detil kicauan:");
+    newKicau.IDKicau = MAXID(dataKicauan);
+
+    printKicauan(newKicau);
 }
 
 void KICAUAN(){
 
     int i;
     for (i = 0; i < NEFF(dataKicauan); i++){
-        if (ELMT(dataKicauan, i).Author == penggunaSekarang.nama){
+        if (ELMT(dataKicauan, i).Author == penggunaSekarang){
+            printf("\n");
             printKicauan(ELMT(dataKicauan, i));
         } 
     }
@@ -232,18 +251,49 @@ void KICAUAN(){
 
 void SUKA_KICAUAN(id){
 
-    // belum di cek kalau akun private atau kalau temenan ato gk
 
     if (isKicauanInTab(&dataKicauan, id)){
 
-        int i;
-        for (i = 0; i < NEFF(dataKicauan); i++){
-            if (dataKicauan[i].IDKicau == id){
-                dataKicauan[i].Likes++;
-            }
+        int i, idx = getKicauanIdx(dataKicauan, id);
+
+        Word Publik = {"Publik", 6};
+   
+        if (dataKicauan[idx].Author == penggunaSekarang || 
+            IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) || 
+            isFriend(penggunaSekarang, dataKicauan[idx].Author)){
+            
+            dataKicauan[idx].Likes++;
+            printf("Selamat! kicauan telah disukai!\n");
+            printf("Detil kicauan:");
+
+            printKicauan(dataKicauan[idx]);
+            
+        } else {
+            printf("\nWah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya");
         }
 
     } else {
         printf("Tidak ditemukan kicauan dengan ID = %d;", id);
+    }
+}
+
+void UBAH_KICAUAN(id){
+
+    if (isKicauanInTab(&dataKicauan, id)){
+
+        int i, idx = getKicauanIdx(dataKicauan, id);
+
+        if (dataKicauan[idx].Author != penggunaSekarang){
+            printf("\nKicauan dengan ID = %d bukan milikmu!", id);
+        } else {
+
+            printf("\nMasukkan kicauan baru: \n");
+            Word text; InputWordWithBlank(&text);
+            dataKicauan[idx].Text = text;
+            printf("\nSelamat! kicauan telah diterbitkan!");
+            printKicauan(dataKicauan[idx]);
+        }
+    } else {
+        printf("\nTidak ditemukan kicauan dengan ID = %d!;", id);
     }
 }
