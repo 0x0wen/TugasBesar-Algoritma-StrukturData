@@ -24,7 +24,7 @@ int JUMLAH_TEMAN(Word P)
 void DAFTAR_TEMAN(Pengguna p) {
     for (int i = 0; i < len(dataPengguna); i++)
     {
-        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang))
+        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(p))
         {
             Pengguna penggunaSekarang = SelectPengguna(dataPengguna, i);
         }
@@ -58,7 +58,7 @@ void DAFTAR_TEMAN(Pengguna p) {
 void HAPUS_TEMAN(Pengguna p) {
     for (int i = 0; i < len(dataPengguna); i++)
     {
-        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang))
+        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(p))
         {
             Pengguna penggunaSekarang = SelectPengguna(dataPengguna, i);
         }

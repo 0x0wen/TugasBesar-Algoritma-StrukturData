@@ -16,7 +16,7 @@
 typedef struct
 {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas adalah tertinggi) */
-    char info; /* elemen karakter */
+    Word info; /* elemen karakter */
 } infotype;
 typedef int address; /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
@@ -50,7 +50,7 @@ typedef struct
 #define Elmt(Q, i) (Q).T[(i)]
 
 /* ********* Prototype ********* */
-boolean IsEmpty(PrioQueueChar Q);
+boolean IsEmpty_PrioQueue(PrioQueueChar Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 boolean IsFull(PrioQueueChar Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */

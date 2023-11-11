@@ -10,7 +10,7 @@
 /* ********* Prototype ********* */
 
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsEmpty(PrioQueueChar Q)
+boolean IsEmpty_PrioQueue(PrioQueueChar Q)
 {
     return NBElmt(Q) == 0;
 }

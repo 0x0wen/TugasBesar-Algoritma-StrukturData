@@ -45,7 +45,7 @@ typedef struct
     TabBalasan balasan;
     TabUtas utas;
     TabTeman teman;
-    PrioQueuePengguna permintaan_teman;
+    PrioQueueChar permintaan_teman;
     Draf drafkicauan;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */
