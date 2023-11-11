@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "pengguna.h"
+#include "tabTeman.h"
 
 /* ========== PENGGUNA ========== */
 void DAFTAR()
@@ -92,9 +93,6 @@ int CURRENT_PENGGUNA()
 }
 
 /* ========== PROFIL ========== */
-boolean IsFriend()
-{
-}
 
 void GANTI_PROFIL()
 {
@@ -215,7 +213,7 @@ void LIHAT_PROFIL()
 
     if (IdPengguna(penggunaSekarang) == -1)
     {
-        printf("Anda Belum Login!\n");
+        printf("Anda Belum Login! Masuk terlebih dahulu untuk melihat profil.\n");
     }
     else
     {

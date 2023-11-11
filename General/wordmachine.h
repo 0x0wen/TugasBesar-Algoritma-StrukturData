@@ -52,6 +52,8 @@ void writeWord(Word *writeWord, char input[], int length);
 void InputWord(Word *inputWord);
 /* InputWord yang mengabaikan blank space di awal*/
 
+void printWord(Word w);
+
 void InputWordWithBlank(Word *inputWord);
 /* InputWord yang tidak mengabaikan blank space di awal*/
 

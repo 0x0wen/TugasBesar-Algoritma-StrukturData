@@ -126,6 +126,13 @@ void InputWord(Word *inputWord)
     }
 }
 
+void printWord(Word w) {
+    int i;
+    for (i = 0; i < w.Length; i++) {
+        printf("%c", w.TabWord[i]);
+    }
+}
+
 void InputWordWithBlank(Word *inputWord)
 {
     STARTWORD_BLANK();
@@ -166,32 +173,6 @@ boolean IsWordEqual(Word w1, Word w2)
             }
         }
         return IsEqual;
-    }
-}
-
-boolean IsWordNotEqual(Word w1, Word w2)
-{
-    if (w1.Length == w2.Length)
-    {
-        return false;
-    }
-    else
-    {
-        int n = w1.Length;
-        boolean IsNotEqual = true;
-        int i = 0;
-        while (IsNotEqual && (i < n))
-        {
-            if ((w1.TabWord[i] == w2.TabWord[i]))
-            {
-                IsNotEqual = false;
-            }
-            else
-            {
-                i += 1;
-            }
-        }
-        return IsNotEqual;
     }
 }
 
