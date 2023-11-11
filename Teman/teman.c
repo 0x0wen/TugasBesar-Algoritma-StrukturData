@@ -14,8 +14,7 @@ int JUMLAH_TEMAN(Word P)
 {
     int countTeman = 0;
     for (int i = 0; i < lengthTabPengguna(); i++) {
-        Pengguna x  = SelectPengguna(dataPengguna, i);
-        if (IsFriend(P, x.nama)) {
+        if (IsFriend(P, SelectPengguna(dataPengguna, i).nama)) {
             countTeman++;
         }
     }
