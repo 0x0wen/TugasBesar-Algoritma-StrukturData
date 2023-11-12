@@ -71,4 +71,12 @@ typedef struct
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 
+void DAFTAR();
+void MASUK();
+void KELUAR();
+void TUTUP_PROGRAM();
+boolean checkUsernameExist(Word username);
+boolean checkPassword(Word password);
+void signingUser(Word username, Word password);
+
 #endif

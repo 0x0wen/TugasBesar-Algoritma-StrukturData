@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "global.h"
 #include "wordmachine.c"
 #include "wordmachine.h"
 
@@ -32,4 +33,6 @@ void inisialisasi() {
         fgets(content2,100,fptr);
         printf("%s",content2);
     }
+
+    statusProgram = true;
 }

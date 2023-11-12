@@ -193,3 +193,33 @@ boolean isOnlyBlank(Word w)
 
     return onlyBlank;
 }
+
+int LengthStr(const char *str) {
+    int length = 0;
+
+    // Loop hingga karakter null ditemukan
+    while (str[length] != '\0') {
+        length++;
+    }
+
+    return length;
+}
+
+boolean isWordEqualStr(const Word *w, const char *str) {
+    int n = w->Length;
+    int strLength = LengthStr(str);
+
+    // Jika panjang Word tidak sama dengan panjang String, return false
+    if (n != strLength) {
+        return false;
+    }
+
+    // Bandingkan setiap karakter
+    for (int i = 0; i < n; ++i) {
+        if (w->TabWord[i] != str[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}

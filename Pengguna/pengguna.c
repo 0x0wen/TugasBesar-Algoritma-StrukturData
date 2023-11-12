@@ -2,99 +2,82 @@
 #include "pengguna.h"
 #include "tabTeman.h"
 
-/* ========== PENGGUNA ========== */
-void DAFTAR()
-{
-    if (true /* Pengguna telah masuk sebelumnya */)
-    {
-        printf("Anda sudah masuk. Keluar terlebih dahulu\nuntuk melakukan daftar.\n");
-    }
-    else
-    {
-        do
-        {
+/* PENGGUNA  */
+void DAFTAR() {
+    Word Username, Password;
+
+    if (statusProgram) {
+      printf("Anda sudah masuk. Keluar terlebih dahulu\nuntuk melakukan daftar.\n");
+    } else {
+        do {
             printf("Masukkan nama:\n");
             STARTWORD();
 
-            if (checkpenggunaSekarangname(currentWord))
-            {
-                printf("Wah, sayang sekali nama tersebut telah diambil.\n");
+            if (checkUsernameExist(currentWord)) {
+              printf("Wah, sayang sekali nama tersebut telah diambil.\n");
             }
-        } while (checkpenggunaSekarangname(/* Apakah penggunaSekarangname unik */));
+        } while (checkUsernameExist(currentWord));
+        Username = currentWord;
 
         printf("Masukkan kata sandi:\n");
         STARTWORD();
+        Password = currentWord;
 
-        DaftarPengguna(/* Mendaftarkan nama pengguna dan password ke databse */);
+        signingUser(Username, Password);
         printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
     }
 }
 
-void MASUK()
-{
-    if (true /* Pengguna telah masuk sebelumnya */)
-    {
+void MASUK() {
+    if (statusLogin) {
         printf("Wah Anda sudah masuk. Keluar dulu yuk!\n");
-    }
-    else
-    {
-        do
-        {
+    } else {
+        do {
             printf("Masukkan nama:\n");
             STARTWORD();
 
-            if (!checkpenggunaSekarangname(currentWord))
-            {
+            if (!checkUsernameExist(currentWord)) {
                 printf("Wah, nama yang Anda cari tidak ada.\nMasukkan nama lain!\n");
             }
-        } while (!checkpenggunaSekarangname(/* Apakah penggunaSekarangname ada */));
+        } while (!checkUsernameExist(currentWord));
 
-        do
-        {
+        do {
             print("Masukkan kata sandi:\n");
             STARTWORD();
 
-            if (!checkKatasandi(currentWord))
-            {
+            if (!checkPassword(currentWord)) {
                 printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             }
-        } while (!checkKatasandiI(true /* Mengecheck kata sandi pengguna*/));
+        } while (!checkPassword(currentWord));
 
-        // Disini ada fungsi yang mengubah status login menjadi true
+        statusLogin = true;
     }
 }
 
-void KELUAR()
-{
-    if (true /* Pengguna belum login */)
-    {
+void KELUAR() {
+    if (statusLogin) {
         printf("Anda belum login! Masuk terlebih dahulu\nuntuk menikmati layanan BurBir.\n");
-
-        // Status login tetap true
-    }
-    else
-    {
+    } else {
+        statusLogin = false;
         printf("Anda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
-
-        // Status login menjadi false
     }
 }
 
-void TUTUP_PROGRAM()
-{
-
-    // status program menjadi false
-
+void TUTUP_PROGRAM() {
+    statusProgram = false;
     printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }
+
+boolean checkUsernameExist(Word username);
+boolean checkPassword(Word password);
+void signingUser(Word username, Word password);
 
 int CURRENT_PENGGUNA()
 {
 }
 
 
-/* ========== PROFIL ========== */
-
+/* PROFIL */
 void GANTI_PROFIL()
 {
     for (int i = 0; i < len(dataPengguna); i++)

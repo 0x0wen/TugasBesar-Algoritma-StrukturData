@@ -13,4 +13,7 @@ extern TabKicauan dataKicauan;
 extern TabUtas dataUtas;
 extern TabTeman dataTeman;
 
+extern boolean statusLogin;
+extern boolean statusProgram;
+
 #endif
