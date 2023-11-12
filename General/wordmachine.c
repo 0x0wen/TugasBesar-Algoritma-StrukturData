@@ -223,3 +223,11 @@ boolean isWordEqualStr(const Word *w, const char *str) {
 
     return true;
 }
+
+void FSCANWORD(FILE *file, Word *word) {
+    STARTWORD();
+    while (!EndWord) {
+        CopyWORD(currentWord, word);
+        ADVWORD();
+    }
+}

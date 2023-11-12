@@ -63,4 +63,10 @@ boolean IsWordNotEqual(Word w1, Word w2);
 
 boolean isOnlyBlank(Word w);
 
+int LengthStr(const char *str);
+
+boolean isWordEqualStr(const Word *w, const char *str);
+
+void FSCANWORD(FILE *file, Word *word);
+
 #endif

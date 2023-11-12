@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pengguna.h"
 #include "tabTeman.h"
+#include "wordmachine.h"
 
 /* PENGGUNA  */
 void DAFTAR() {
@@ -68,14 +69,64 @@ void TUTUP_PROGRAM() {
     printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }
 
-boolean checkUsernameExist(Word username);
-boolean checkPassword(Word password);
-void signingUser(Word username, Word password);
+// Fungsi untuk memeriksa apakah username sudah ada atau belum
+boolean checkUsernameExist(Word username) {
+    FILE *file = fopen("config-1/pengguna.config", "r");
+    if (file == NULL) {
+        printf("File tidak ditemukan\n");
+        return false;
+    }
 
-int CURRENT_PENGGUNA()
-{
+    Word temp;
+    boolean found = false;
+
+    while (FSCANWORD(file, &temp)) {
+        if (IsWordEqual(temp, username)) {
+            found = true;
+            break;
+        }
+    }
+
+    fclose(file);
+    return found;
 }
 
+// Fungsi untuk memeriksa apakah password sudah benar atau belum
+boolean checkPassword(Word password) {
+    FILE *file = fopen("config-1/pengguna.config", "r");
+    if (file == NULL) {
+        printf("File tidak ditemukan\n");
+        return false;
+    }
+
+    Word temp, tempUsername, tempPassword;
+    boolean found = false;
+
+    while (FSCANWORD(file, &tempUsername) && FSCANWORD(file, &tempPassword)) {
+        if (IsWordEqual(tempPassword, password)) {
+            found = true;
+            break;
+        }
+    }
+
+    fclose(file);
+    return found;
+}
+
+// Fungsi untuk mendaftarkan pengguna baru
+void signingUser(Word username, Word password) {
+    FILE *file = fopen("config-1/pengguna.config", "a");
+    if (file == NULL) {
+        printf("File tidak ditemukan\n");
+        return;
+    }
+
+    fprintf(file, "%s %s\n", username, password);
+    fclose(file);
+}
+
+
+int CURRENT_PENGGUNA();
 
 /* PROFIL */
 void GANTI_PROFIL()
