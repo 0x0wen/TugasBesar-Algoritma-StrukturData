@@ -1,11 +1,11 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include "TabPengguna.h"
-#include "kicauan.h"
-#include "TabUtas.h"
-#include "TabBalasan.h"
-#include "tabTeman.h"
+#include "./Pengguna/TabPengguna.h"
+#include "./Kicauan/kicauan.h"
+#include "./Utas/TabUtas.h"
+#include "./Balasan/TabBalasan.h"
+#include "./Teman/tabTeman.h"
 
 extern Pengguna penggunaSekarang;
 extern TabPengguna dataPengguna;

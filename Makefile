@@ -44,14 +44,11 @@ TEMAN_OBJ = $(patsubst $(TEMAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(TEMAN_SOURCES))
 UTAS_OBJ = $(patsubst $(UTAS_DIR)/%.c,$(BUILD_DIR)/%.o, $(UTAS_SOURCES))
 
 # Target utama
-all: main
+all: $(BUILD_DIR) main
 	./main
 
 # Aturan untuk membuat objek files dari source files
 $(BUILD_DIR)/main.o: $(MAIN_SOURCES)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Aturan untuk membuat executable

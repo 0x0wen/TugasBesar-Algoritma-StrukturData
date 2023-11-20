@@ -5,22 +5,17 @@
 #ifndef pengguna_H
 #define pengguna_H
 
-#include "boolean.h"
-#include "global.h"
-#include "matrix.h"
-
-#include "sentenceMachine.h"
-#include "kicauan.h"
-
-#include "balasan.h"
-#include "tabBalasan.h"
-
-#include "utas.h"
-#include "tabUtas.h"
-
-#include "listDinamis.h"
-#include "prioqueue.h"
-
+#include "../General/boolean.h"
+#include "../global.h"
+#include "../General/matrix.h"
+#include "../General/sentenceMachine.h"
+#include "../Kicauan/kicauan.h"
+#include "../Balasan/balasan.h"
+#include "../Balasan/tabBalasan.h"
+#include "../Utas/utas.h"
+#include "../Utas/tabUtas.h"
+#include "../General/listDinamis.h"
+#include "../General/prioqueue.h"
 #include "../DrafKicauan/draf.h"
 
 #define MaxEl 100

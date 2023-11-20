@@ -1,11 +1,10 @@
 #include <stdio.h>
-#include "boolean.h"
-#include "wordmachine.h"
-#include "wordmachine.c"
-#include "pengguna.h"
-#include "kicauan.h"
-#include "utas.h"
-#include "balasan.h"
+#include "./General/wordmachine.h"
+#include "./General/wordmachine.c"
+#include "./Pengguna/pengguna.h"
+#include "./Kicauan/kicauan.h"
+#include "./Utas/utas.h"
+#include "./Balasan/balasan.h"
 #include "global.h"
 
 Pengguna penggunaSekarang;

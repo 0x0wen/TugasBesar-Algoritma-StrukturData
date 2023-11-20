@@ -1,7 +1,7 @@
 #ifndef TAB_PENGGUNA_H
 #define TAB_PENGGUNA_H
 
-#include "boolean.h"
+#include "../General/boolean.h"
 #include "pengguna.h"
 
 /*  Kamus Umum */
