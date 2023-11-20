@@ -2,7 +2,7 @@
 #include "utas.h"
 #include "sentenceMachine.h"
 
-Address newNode(ElType val)
+Address newKicauanSambungan(KicauanSambungan val)
 {
 
     Address NODE = (Address)malloc(sizeof(Node));
@@ -16,22 +16,21 @@ Address newNode(ElType val)
     return NODE;
 }
 
-void CreateList(TabKicauanSambungan *T)
+void createTabKicauanSambungan(TabKicauanSambungan *T)
 {
     FIRST(*T) = NULL;
 }
 
-boolean isEmpty(TabKicauanSambungan T)
+boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T)
 {
 
     return FIRST(T) == NULL;
 }
 
-int indexOf(TabKicauanSambungan T, ElType val)
+int indexOfTabKicauanSambungan(TabKicauanSambungan T, KicauanSambungan val)
 {
 
     Address NODE = FIRST(T);
-
     int IDX = 0;
     boolean FOUND = false;
 
@@ -58,7 +57,7 @@ int indexOf(TabKicauanSambungan T, ElType val)
     }
 }
 
-void insertFirst(TabKicauanSambungan *T, ElType val)
+void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
 {
 
     Address NEWNODE = newNode(val);
@@ -70,12 +69,12 @@ void insertFirst(TabKicauanSambungan *T, ElType val)
     }
 }
 
-void insertLast(TabKicauanSambungan *T, ElType val)
+void insertLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
 {
 
-    if (isEmpty(*T))
+    if (isKicauanSambunganEmpty(*T))
     {
-        insertFirst(l, val);
+        insertFirstTabKicauanSambungan(T, val);
     }
     else
     {
@@ -96,12 +95,12 @@ void insertLast(TabKicauanSambungan *T, ElType val)
     }
 }
 
-void insertAt(TabKicauanSambungan *T, ElType val, int idx)
+void insertAtTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val, int idx)
 {
 
     if (idx == 0)
     {
-        insertFirst(l, val);
+        insertFirstTabicauanSambungan(T, val);
     }
     else
     {
@@ -122,7 +121,7 @@ void insertAt(TabKicauanSambungan *T, ElType val, int idx)
         }
     }
 }
-void deleteFirst(TabKicauanSambungan *T, ElType *val)
+void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val)
 {
 
     Address NODE = FIRST(*T);
@@ -131,7 +130,7 @@ void deleteFirst(TabKicauanSambungan *T, ElType *val)
     FIRST(*T) = NEXT(NODE);
     free(NODE);
 }
-void deleteLast(TabKicauanSambungan *T, ElType *val)
+void deleteLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val)
 {
 
     Address NODE = NULL;
@@ -155,12 +154,12 @@ void deleteLast(TabKicauanSambungan *T, ElType *val)
     *val = INFO(LAST);
     free(LAST);
 }
-void deleteAt(TabKicauanSambungan *T, int idx, ElType *val)
+void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx, KicauanSambungan *val)
 {
 
     if (idx == 0)
     {
-        deleteFirst(l, val);
+        deleteFirstTabKicauanSambungan(T, val);
     }
     else
     {
@@ -181,12 +180,12 @@ void deleteAt(TabKicauanSambungan *T, int idx, ElType *val)
         free(DELETE);
     }
 }
-void displayList(TabKicauanSambungan T)
+void displayTabKicauanSambungan(TabKicauanSambungan T)
 {
 
     printf("[");
 
-    if (!isEmpty(T))
+    if (!isTabKicauanSambunganEmpty(T))
     {
         Address NODE = FIRST(T);
 
@@ -201,10 +200,10 @@ void displayList(TabKicauanSambungan T)
     printf("]");
 }
 
-int length(TabKicauanSambungan T)
+int lengthTabKicauanSambungan(TabKicauanSambungan T)
 {
 
-    if (isEmpty(T))
+    if (isTabKicauanSambunganEmpty(T))
     {
         return 0;
     }
@@ -220,98 +219,3 @@ int length(TabKicauanSambungan T)
 
     return len;
 }
-
-void Create_Utas(int IDKicau)
-{
-    if (IDKicau bukan punya user)
-    {
-        printf("Utas ini bukan milik anda!");
-    }
-    else if (Kicauan sudah menjadi kicauan utama utas lain)
-    {
-    }
-    else if (IDKicau not found)
-    {
-        printf("Kicauan tidak ditemukan\n");
-    }
-    else
-    {
-
-        printf("Utas berhasil dibuat!\n");
-        do
-        {
-            printf("Masukkan kicauan: \n");
-            printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
-        } while (kata == "YA");
-        printf("Utas selesai!\n");
-    }
-}
-void Sambung_Utas(int IDUtas, int index)
-{
-    if (index lewat batas)
-    {
-        printf("Index terlalu tinggi!\n");
-    }
-    else if (IDUtas not found)
-    {
-        printf("Utas tidak ditemukan!\n");
-    }
-    else if (Utas not owned by user)
-    {
-        printf("Anda tidak bisa menyambung utas ini!");
-    }
-};
-void Hapus_Utas(int IDUtas, int index)
-{
-    if (utas not found)
-    {
-        printf("Utas tidak ditemukan!");
-    }
-    else if (index not found)
-    {
-        printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!", index);
-    }
-    else if (index == 0)
-    {
-        printf("Anda tidak bisa menghapus kicauan utama!");
-    }
-    else if (utas is not owned by user)
-    {
-        printf("Anda tidak bisa menghapus kicauan dalam utas ini!");
-    }
-    else
-    {
-        printf("Kicauan sambungan berhasil dihapus!");
-        // algoritma hapus
-        // ...
-    }
-}
-void Cetak_Utas(int IDUtas)
-{
-    if (utas not found)
-    {
-        printf("Utas tidak ditemukan!");
-    }
-    else if (utas owner is private)
-    {
-        printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!");
-    }
-    else
-    {
-        int i;
-        printf("| ID = %d", IDUtas);
-        printf("| %s");
-        printf("| %s");
-        printf("| ");
-        PrintSentence();
-        for (i = 0; i < length; i++)
-        {
-            printf("\t| INDEX = %d");
-            printf("\t| %s");
-            printf("\t| %s");
-            printf("\t| ");
-            PrintSentence();
-            printf("\n");
-        }
-    }
-};

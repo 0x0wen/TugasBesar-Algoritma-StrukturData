@@ -7,21 +7,23 @@
 
 typedef struct
 {
+  int Index;
   Sentence pesan[280];
-  Sentence author;
-  int jumlahSuka;
-  TIME dateTime;
+  int IDPengguna;
+  TIME waktu;
 } KicauanSambungan;
 
+#define PESAN(k) (k).IDUtas
+#define ID_PENGGUNA(k) (k).IDPengguna
+#define SUKA(k) (k).jumlahSuka
+#define WAKTU(k) (k).waktu
 /* Definisi elemen dan koleksi objek */
-typedef KicauanSambungan ElType; /* type elemen list */
-typedef int IdxType;
 
 /* Definisi Node : */
 typedef struct node *Address;
 typedef struct node
 {
-  ElType info;
+  KicauanSambungan info;
   Address next;
 } Node;
 /* Definisi List : */
@@ -32,7 +34,7 @@ typedef struct node
 #define INFO(p) (p)->info
 #define NEXT(p) (p)->next
 
-Address newNode(ElType val);
+Address newKicauanSambungan(KicauanSambungan val);
 typedef Address TabKicauanSambungan;
 
 #define IDX_UNDEF (-1)
@@ -40,33 +42,32 @@ typedef Address TabKicauanSambungan;
 
 typedef struct
 {
-  int id;
+  int IDUtas;
   int IDKicau;
   TabKicauanSambungan dataKicauanSambungan;
 } Utas;
+
+#define ID_UTAS(p) (p).IDUtas
+#define ID_KICAU_UTAS(p) (p).IDKicau
+#define KICAUAN_SAMBUNGAN(p) (p).dataKicauanSambungan
 
 void createTabKicauanSambungan(TabKicauanSambungan *T);
 
 boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T);
 
-int indexOfTabKicauanSambungan(TabKicauanSambungan T, ElType val);
+int indexOfTabKicauanSambungan(TabKicauanSambungan T, KicauanSambungan val);
 
 /*** Penambahan ***/
-void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, ElType val);
-void insertLastTabKicauanSambungan(TabKicauanSambungan *T, ElType val);
-void insertAtTabKicauanSambungan(TabKicauanSambungan *T, ElType val, int idx);
+void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val);
+void insertLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val);
+void insertAtTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val, int idx);
 
 /*** Penghapusan ***/
-void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T, ElType *val);
-void deleteLastTabKicauanSambungan(TabKicauanSambungan *T, ElType *val);
-void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx, ElType *val);
+void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val);
+void deleteLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val);
+void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx, KicauanSambungan *val);
 
 void displayTabKicauanSambungan(TabKicauanSambungan T);
 int lengthTabKicauanSambungan(TabKicauanSambungan T);
-
-void Create_Utas(int IDKicau);
-void Sambung_Utas(int IDUtas, int index);
-void Hapus_Utas(int IDUtas, int index);
-void Cetak_Utas(int IDUtas);
 
 #endif
