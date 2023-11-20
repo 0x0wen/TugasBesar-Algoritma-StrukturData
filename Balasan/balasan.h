@@ -40,8 +40,10 @@ addressTree searchBalasan(tree root, int val);
 
 typedef struct
 {
+    int IDParent;
     int IDBalasan;
     Sentence konten;
+    Sentence author;
     int IDPengguna;
     DATETIME waktu;
 } Balasan;
