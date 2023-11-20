@@ -8,6 +8,7 @@
 typedef struct
 {
   int Index;
+  Sentence author;
   Sentence pesan[280];
   int IDPengguna;
   DATETIME waktu;

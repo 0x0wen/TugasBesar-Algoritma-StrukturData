@@ -19,6 +19,11 @@ Word writefilename(Word input1, Word input2){
     return output;
 }
 
+int compareCharArrays(const char *array1, const char *array2) {
+    int result = strcmp(array1, array2);
+    return result;
+}
+
 void inisialisasi(){
     printf(".______    __    __  .______      .______    __  .______\n");
     printf("|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\\n");
@@ -256,13 +261,13 @@ void inisialisasi(){
                     if(currentCharFile=='-'){
                         ADVFILE();
                         int idparent = atoi(currentCharFile);
-                        balas.root=&kicau;
+                        balas.IDParent=kicau.IDKicau;
                     }else{
                         int idparent = atoi(currentCharFile);
                         for(int b = 0; b < jumlahBalasan; b++){
                             Balasan temp = tabbalasan.buffer[b];
                             if(idparent==temp.IDBalasan){
-                                balas.root = &temp;
+                                balas.IDParent = kicau.IDKicau;
                             }
                         }
                     }
@@ -279,15 +284,9 @@ void inisialisasi(){
                     balas.konten=text;
                     ADVFILE();
                     Word nama = CopyWordFile2();
-                    for(int c = 0; c<jumlahUser;c++){
-                        Pengguna temp = dataPengguna.contents[i];
-                        Sentence tempnama;
-                        tempnama = temp.nama;
-                        Word temppp = tempnama.TabWord[0];
-                        if(temppp==nama){
-                            balas.IDPengguna=temp.id;
-                        }
-                    }
+                    text.TabWord[0] = temptext;
+                    text.Length=1;
+                    balas.author=text;
                     ADVFILE();
                     int day= atoi(currentCharFile);
                     ADVFILE();
@@ -387,7 +386,7 @@ void inisialisasi(){
                     Sentence tempnama;
                     tempnama = temp.nama;
                     Word temppp = tempnama.TabWord[0];
-                    if(temppp==username){
+                    if(compareCharArrays(&temppp.TabWord,&username.TabWord)){
                         temp.drafkicauan=draf;
                     }
                 }
