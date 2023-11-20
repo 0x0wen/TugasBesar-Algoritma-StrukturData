@@ -3,12 +3,13 @@
 
 #define CAPACITY 100
 /* Kapasitas penyimpanan */
+#include "kicauan.h"
 
 /* Definisi Type Data */
 typedef struct treeNode *addressTree;
 typedef struct treeNode
 {
-    int data;
+    Kicauan data;
     addressTree firstChild;
     addressTree nextSibling;
     addressTree parent;
@@ -22,13 +23,12 @@ typedef struct treeNode
 
 typedef addressTree tree;
 
-addressTree createNode(int data);
+addressTree createBalasan(Kicauan data);
 
-void addChild(tree *parent, tree *child);
-
-void printTree(tree root, int depth);
-
-addressTree searchTree(tree root, int val);
+void addBalasan(tree *parent, tree *child);
+void removeBalasan(tree *parent, tree *child);
+void displayAllBalasan(tree root, int depth);
+addressTree searchBalasan(tree root, int val);
 
 #include "sentenceMachine.h"
 #include "wordmachine.h"
@@ -40,23 +40,17 @@ addressTree searchTree(tree root, int val);
 
 typedef struct
 {
-    int idBalasan;
-    Sentence teks;
+    int IDBalasan;
+    Sentence konten;
     int IDPengguna;
     DATETIME waktu;
-    address root;
 } Balasan;
 
-#define Id(P) (P).id;
-#define Teks(P) (P).teks;
-#define Writer(P) (P).penulis;
-#define Time(P) (P).dateTime;
-#define DaftarBalasan(P) (P).daftarBalasan;
+#define ID_BALASAN(P) (P).IDBalasan;
+#define KONTEN_BALASAN(P) (P).konten;
+#define PENULIS_BALASAN(P) (P).IDPengguna;
+#define WAKTU_BALASAN(P) (P).waktu;
 
-void Balas(int IDKicau, int IDBalasan);
 
-void Show_Balasan(int IDKicau);
-
-void Hapus_Balasan(int IDKicau, int IDBalasan);
 
 #endif
