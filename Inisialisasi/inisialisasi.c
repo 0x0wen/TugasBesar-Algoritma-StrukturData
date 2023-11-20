@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../General/wordmachinefile.c"
 #include "../Pengguna/pengguna.h"
-#include "../General/sentenceMachine.h"
+#include "Alstrukdat\Tubes\Alstrokedat\ADT\sentenceMachine.h"
 
 Word writefilename(Word input1, Word input2){
     Word output;
@@ -18,7 +18,7 @@ Word writefilename(Word input1, Word input2){
     return output;
 }
 
-void inisialisasi(ListDinPengguna* listpengguna){
+void inisialisasi(TabPengguna* dataPengguna){
     printf(".______    __    __  .______      .______    __  .______\n");
     printf("|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\\n");
     printf("|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  |\n");
@@ -54,18 +54,18 @@ void inisialisasi(ListDinPengguna* listpengguna){
                 ADVFILE();
                 Word temp = CopyWordFile2();
                 Sentence temp2;
-                temp2.TabSentence[0] = temp;
+                temp2.TabWord[0] = temp;
                 pengguna.nama = temp2;
                 ADVFILE();
                 Word temp = CopyWordFile2();
                 Sentence temp2;
-                temp2.TabSentence[0] = temp;
+                temp2.TabWord[0] = temp;
                 temp2.Length = 1;
                 pengguna.kataSandi = temp2;
                 ADVFILE();
                 Word temp = CopyWordFile2();
                 Sentence temp2;
-                temp2.TabSentence[0] = temp;
+                temp2.TabWord[0] = temp;
                 temp2.Length = 1;
                 pengguna.bio = temp2;
                 ADVFILE();
@@ -88,6 +88,8 @@ void inisialisasi(ListDinPengguna* listpengguna){
                     }
                     ADVFILE();
                 }
+                pengguna.foto=tempM;
+                insertLastTabPengguna(pengguna);
             }
             ADVFILE();
             //Baca pertemanan
