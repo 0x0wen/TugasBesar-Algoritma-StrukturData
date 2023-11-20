@@ -9,10 +9,9 @@
 #define IDX_UNDEF -1
 /* Indeks tak terdefinisi*/
 
-typedef Balasan ElType; /* type elemen list */
 typedef struct
 {
-    ElType *buffer; /* memori tempat penyimpan elemen (container) */
+    Balasan *buffer; /* memori tempat penyimpan elemen (container) */
     int nEff;       /* >=0, banyaknya elemen efektif */
     int capacity;   /* ukuran elemen */
 } TabBalasan;
@@ -59,10 +58,10 @@ boolean isTabBalasanEmpty();
 
 boolean isTabBalasanFull();
 
-IdxType indexOfTabBalasan(ElType val);
+IdxType indexOfTabBalasan(Balasan val);
 
-void insertLastTabBalasan(ElType val);
-void deleteLastTabBalasan(ElType *val);
+void insertLastTabBalasan(Balasan val);
+void deleteLastTabBalasan(Balasan *val);
 
 /* ********* MENGUBAH UKURAN ARRAY ********* */
 void expandTabBalasan(int num);
