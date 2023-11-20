@@ -2,7 +2,7 @@
 #include "tabTeman.h"
 #include "global.h"
 // membuat graf dengan n simpul
-TabTeman *createTabTeman(int simpul)
+TabTeman createTabTeman(int simpul)
 {
     TabTeman *tab = (TabTeman *)malloc(sizeof(TabTeman));
     DIMENSI(*tab) = simpul;
@@ -13,7 +13,7 @@ TabTeman *createTabTeman(int simpul)
             HUBUNGAN(*tab, i, j) = 0;
         }
     }
-    return tab;
+    return *tab;
 }
 
 // untuk menambah sisi antar dua simpul

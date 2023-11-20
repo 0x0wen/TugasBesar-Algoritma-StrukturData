@@ -14,7 +14,7 @@ typedef struct
 #define HUBUNGAN(p, i, j) (p).matrix[i][j]
 
 // membuat graf dengan n simpul
-TabTeman *createTabTeman(int simpul);
+TabTeman createTabTeman(int simpul);
 
 // untuk menambah teman
 void addFriend(int simpul1, int simpul2);

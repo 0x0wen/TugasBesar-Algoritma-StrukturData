@@ -2,6 +2,7 @@
 #include "../General/wordmachinefile.c"
 #include "../Pengguna/pengguna.h"
 #include "Alstrukdat\Tubes\Alstrokedat\ADT\sentenceMachine.h"
+#include "Alstrukdat\Tubes\Alstrokedat\global.h"
 
 Word writefilename(Word input1, Word input2){
     Word output;
@@ -18,7 +19,7 @@ Word writefilename(Word input1, Word input2){
     return output;
 }
 
-void inisialisasi(TabPengguna* dataPengguna){
+void inisialisasi(){
     printf(".______    __    __  .______      .______    __  .______\n");
     printf("|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\\n");
     printf("|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  |\n");
@@ -93,13 +94,21 @@ void inisialisasi(TabPengguna* dataPengguna){
             }
             ADVFILE();
             //Baca pertemanan
+            dataTeman=createTabTeman(jumlahUser);
             for(int i = 0; i < jumlahUser; i++){
+                int j = 0;
+                int z = 0;
                 while (currentCharFile != MARK_FILE) {
                     if(currentCharFile!=BLANK){
                         int temp = atoi(&currentCharFile);
-                        printf("%d",temp);
+                        if(temp==1){
+                            addFriend(j,z);
+                        }
+                        // printf("%d",temp);
+                        z++;
                     }
                     ADVFILE();
+                    j++;
                 }
                 ADVFILE();
                 printf("\n");
@@ -107,21 +116,111 @@ void inisialisasi(TabPengguna* dataPengguna){
             CopyWordFile();
             int reqPertemanan = atoi(currentWordFile.TabWord);
             printf("%d\n",reqPertemanan);
-
             ADVFILE();
+            PrioQueueChar (reqTeman);
+            MakeEmpty(&reqTeman,jumlahUser);
             for(int i = 0; i < reqPertemanan; i++){
                 int temp = atoi(&currentCharFile);
-                printf("id minta %d ",temp);
+                for(int j = 0; j < jumlahUser; j++){
+                    printf("id minta %d ",temp);
+                    Pengguna pengguna = dataPengguna.contents[j];
+                    if(pengguna.id==temp){
+                        ADVFILE();
+                        ADVFILE();
+                        temp = atoi(&currentCharFile);
+                        printf("id diminta %d ",temp);
+                        ADVFILE();
+                        ADVFILE();
+                        Enque(pengguna.permintaan_teman,temp);
+                        temp = atoi(&currentCharFile);
+                        printf("teman %d \n",temp);
+                        ADVFILE();
+                        ADVFILE();
+                    }
+                }
+            }
+        }
+        StopWordFile(inputFile.TabWord);
+
+        //Baca konfig kicauan
+        writeWord(&locFile,"/kicauan.config", 15);
+        inputFile = writefilename(config,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        STARWORDFILE(inputFile.TabWord);
+        int jumlahKicauan= atoi(currentWordFile.TabWord);
+        createTabKicauan(&dataKicauan,jumlahKicauan);
+        if(jumlahKicauan!=0){
+            for(int i = 0; i < jumlahKicauan; i++){
+                Kicauan temp;
+                for(int j = 0; j < 3; j++){
+                    ADVFILE();
+                    CopyWordFile();
+                    for(int i = 0; i<currentWordFile.Length;i++){
+                        printf("%c",currentWordFile.TabWord[i]);
+                    }
+                    printf("\n");
+                }
                 ADVFILE();
+                CopyWordFile();
+                int id= atoi(currentWordFile.TabWord);
+                temp.IDKicau=id;
                 ADVFILE();
-                temp = atoi(&currentCharFile);
-                printf("id diminta %d ",temp);
+                Word tempp = CopyWordFile2();
+                temp.Text=tempp;
                 ADVFILE();
+                CopyWordFile();
+                int like= atoi(currentWordFile.TabWord);
+                temp.Like = like;
                 ADVFILE();
-                temp = atoi(&currentCharFile);
-                printf("teman %d \n",temp);
+                CopyWordFile();
+                tempp = CopyWordFile2();
+                Sentence author;
+                author.TabWord[0] = tempp;
+                author.Length=1;
+                temp.Author= author;
                 ADVFILE();
+                int day= atoi(currentCharFile);
                 ADVFILE();
+                day= atoi(currentCharFile)+(10*day);
+                ADVFILE();
+                printf("%c",currentCharFile);
+                ADVFILE();
+                int month=atoi(currentCharFile);
+                ADVFILE();
+                month=atoi(currentCharFile)+(10*month);
+                ADVFILE();
+                printf("%c",currentCharFile);
+                ADVFILE();
+                int year = atoi(currentCharFile)*1000;
+                ADVFILE();
+                year = (atoi(currentCharFile)*100)+year;
+                ADVFILE();
+                year = (atoi(currentCharFile)*10)+year;
+                ADVFILE();
+                year = (atoi(currentCharFile))+year;
+                ADVFILE();
+                printf("%c",currentCharFile);
+                ADVFILE();
+                int hh = atoi(currentCharFile)*10;
+                ADVFILE();
+                hh = atoi(currentCharFile)+hh;
+                ADVFILE();
+                printf("%c",currentCharFile);
+                ADVFILE();
+                int mm = atoi(currentCharFile)*10;
+                ADVFILE();
+                mm = atoi(currentCharFile)+mm;
+                ADVFILE();
+                printf("%c",currentCharFile);
+                ADVFILE();
+                int ss = atoi(currentCharFile)*10;
+                ADVFILE();
+                ss = atoi(currentCharFile)+ss;
+                ADVFILE();
+                DATETIME date;
+                CreateDATETIME(&date,day,month,year,hh,mm,ss);
+                temp.DateTime=date;
+                addKicauanToTab(&dataKicauan,temp);
             }
         }
         StopWordFile(inputFile.TabWord);
@@ -131,135 +230,107 @@ void inisialisasi(TabPengguna* dataPengguna){
         inputFile = writefilename(config,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
         STARWORDFILE(inputFile.TabWord);
-        int jumlahKicauan= atoi(currentWordFile.TabWord);
+        jumlahKicauan= atoi(currentWordFile.TabWord);
         printf("%d\n",jumlahKicauan);
         if(jumlahKicauan!=0){
             for(int i = 0; i < jumlahKicauan; i++){
+                TabBalasan tabbalasan;
                 ADVFILE();
                 CopyWordFile();
                 int id= atoi(currentWordFile.TabWord);
-                printf("%d\n",id);
+                Kicauan kicau;
+                for(int a = 0; a < jumlahKicauan;a++){
+                    Kicauan temp = dataPengguna.contents[a];
+                    if(id==temp.IDKicau){
+                        kicau=temp;
+                    }
+                }
                 ADVFILE();
                 CopyWordFile();
                 int jumlahBalasan = atoi(currentWordFile.TabWord);
+                createTabBalasan(jumlahBalasan);
                 for(int j = 0; j < jumlahBalasan; j++){
+                    Balasan balas;
                     ADVFILE();
                     printf("%c",currentCharFile);
-                    ADVFILE();
-                    ADVFILE();
-                    printf("%c\n",currentCharFile);
-                    ADVFILE();
-                    ADVFILE();
-                    CopyWordFile();
-                    for(int i = 0; i<currentWordFile.Length;i++){
-                        printf("%c",currentWordFile.TabWord[i]);
+                    if(currentCharFile=='-'){
+                        ADVFILE();
+                        int idparent = atoi(currentCharFile);
+                        balas.root=&kicau;
+                    }else{
+                        int idparent = atoi(currentCharFile);
+                        for(int b = 0; b < jumlahBalasan; b++){
+                            Balasan temp = tabbalasan.buffer[b];
+                            if(idparent==temp.IDBalasan){
+                                balas.root = &temp;
+                            }
+                        }
                     }
-                    printf("\n");
                     ADVFILE();
-                    CopyWordFile();
-                    for(int i = 0; i<currentWordFile.Length;i++){
-                        printf("%c",currentWordFile.TabWord[i]);
+                    ADVFILE();
+                    int idbalas = atoi(currentCharFile);
+                    balas.IDBalasan=idbalas;
+                    ADVFILE();
+                    ADVFILE();
+                    Word temptext=CopyWordFile2();
+                    Sentence text;
+                    text.TabWord[0] = temptext;
+                    text.Length=1;
+                    balas.konten=text;
+                    ADVFILE();
+                    Word nama = CopyWordFile2();
+                    for(int c = 0; c<jumlahUser;c++){
+                        Pengguna temp = dataPengguna.contents[i];
+                        Sentence tempnama;
+                        tempnama = temp.nama;
+                        Word temppp = tempnama.TabWord[0];
+                        if(temppp==nama){
+                            balas.IDPengguna=temp.id;
+                        }
                     }
-                    printf("\n");
+                    ADVFILE();
+                    int day= atoi(currentCharFile);
+                    ADVFILE();
+                    day= atoi(currentCharFile)+(10*day);
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int month=atoi(currentCharFile);
+                    ADVFILE();
+                    month=atoi(currentCharFile)+(10*month);
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int year = atoi(currentCharFile)*1000;
+                    ADVFILE();
+                    year = (atoi(currentCharFile)*100)+year;
+                    ADVFILE();
+                    year = (atoi(currentCharFile)*10)+year;
+                    ADVFILE();
+                    year = (atoi(currentCharFile))+year;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int hh = atoi(currentCharFile)*10;
+                    ADVFILE();
+                    hh = atoi(currentCharFile)+hh;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int mm = atoi(currentCharFile)*10;
+                    ADVFILE();
+                    mm = atoi(currentCharFile)+mm;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int ss = atoi(currentCharFile)*10;
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    ss = atoi(currentCharFile)+ss;
                     ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("\n");
+                    DATETIME date;
+                    CreateDATETIME(&date,day,month,year,hh,mm,ss);
+                    balas.waktu=date;
                 }
-            }
-        }
-        StopWordFile(inputFile.TabWord);
-        //Baca konfig kicauan
-        writeWord(&locFile,"/kicauan.config", 15);
-        inputFile = writefilename(config,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        STARWORDFILE(inputFile.TabWord);
-        jumlahKicauan= atoi(currentWordFile.TabWord);
-        if(jumlahKicauan!=0){
-            for(int i = 0; i < jumlahKicauan; i++){
-                for(int j = 0; j < 4; j++){
-                    ADVFILE();
-                    CopyWordFile();
-                    for(int i = 0; i<currentWordFile.Length;i++){
-                        printf("%c",currentWordFile.TabWord[i]);
-                    }
-                    printf("\n");
-                }
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
-                printf("%c",currentCharFile);
-                ADVFILE();
             }
         }
         StopWordFile(inputFile.TabWord);
@@ -272,6 +343,8 @@ void inisialisasi(TabPengguna* dataPengguna){
         printf("\n%d\n",jumlahPengguna);
         if(jumlahPengguna!=0){
             for(int i = 0; i < jumlahPengguna; i++){
+                Draf draf;
+                CreateDraf(&draf);
                 ADVFILE();
                 int j,k;
                 j = 0;
@@ -309,51 +382,68 @@ void inisialisasi(TabPengguna* dataPengguna){
                 }
                 int jumlahdraf= atoi(temp[k].TabWord);
                 printf(" %d\n",jumlahdraf);
-                for(int l = 0; l < jumlahdraf; l++){
-                    ADVFILE();
-                    CopyWordFile();
-                    for(int j = 0; j< currentWordFile.Length;j++){
-                        printf("%c",currentWordFile.TabWord[j]);
+                for(int c = 0; c<jumlahUser;c++){
+                    Pengguna temp = dataPengguna.contents[i];
+                    Sentence tempnama;
+                    tempnama = temp.nama;
+                    Word temppp = tempnama.TabWord[0];
+                    if(temppp==username){
+                        temp.drafkicauan=draf;
                     }
+                }
+                Node tempnode;
+                Address addressnode;
+                addressnode=createNode(&tempnode);
+                draf.addrTop = addressnode;
+                for(int l = 0; l < jumlahdraf; l++){
+                    Kicauan kicau;
+                    ADVFILE();
+                    Word temptext=CopyWordFile2();
+                    kicau.Text=temptext;
+                    ADVFILE();
+                    int day= atoi(currentCharFile);
+                    ADVFILE();
+                    day= atoi(currentCharFile)+(10*day);
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int month=atoi(currentCharFile);
+                    ADVFILE();
+                    month=atoi(currentCharFile)+(10*month);
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int year = atoi(currentCharFile)*1000;
+                    ADVFILE();
+                    year = (atoi(currentCharFile)*100)+year;
+                    ADVFILE();
+                    year = (atoi(currentCharFile)*10)+year;
+                    ADVFILE();
+                    year = (atoi(currentCharFile))+year;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int hh = atoi(currentCharFile)*10;
+                    ADVFILE();
+                    hh = atoi(currentCharFile)+hh;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int mm = atoi(currentCharFile)*10;
+                    ADVFILE();
+                    mm = atoi(currentCharFile)+mm;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int ss = atoi(currentCharFile)*10;
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    ss = atoi(currentCharFile)+ss;
                     ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c\n",currentCharFile);
-                    ADVFILE();
+                    DATETIME date;
+                    CreateDATETIME(&date,day,month,year,hh,mm,ss);
+                    kicau.DateTime=date;
+                    tempnode.info=kicau;
+                    addressnode=createNode(&temp);
                 }
             }
         }
@@ -364,69 +454,80 @@ void inisialisasi(TabPengguna* dataPengguna){
         tempFile = fopen(inputFile.TabWord, "r");
         STARWORDFILE(inputFile.TabWord);
         jumlahKicauan= atoi(currentWordFile.TabWord);
-        printf("\n%d\n",jumlahKicauan);
+        createTabUtas(jumlahKicauan);
         if(jumlahKicauan!=0){
             for(int k = 0; k < jumlahKicauan;k++){
+                Utas utas;
                 ADVFILE();
                 CopyWordFile();
                 int id = atoi(currentWordFile.TabWord);
+                Create_Utas(id);
                 printf("%d\n",id);
                 ADVFILE();
                 Word tempS = CopyWordFile2();
                 int banyakUtas = atoi(tempS.TabWord);
+                TabKicauanSambungan tabkicauansambungan;
+                createTabKicauanSambungan(&tabkicauansambungan);
                 printf("%d\n",banyakUtas);
                 for(int j = 0; j < banyakUtas; j++){
+                    KicauanSambungan kicauansambungan;
                     ADVFILE();
-                    CopyWordFile();
-                    for(int i = 0; i < currentWordFile.Length;i++){
-                        printf("%c",currentWordFile.TabWord[i]);
-                    }
+                    Word temptext=CopyWordFile2();
+                    Sentence text;
+                    text.TabWord[0] = temptext;
+                    text.Length=1;
+                    kicauansambungan.pesan[0]=text;
                     printf("\n");
                     ADVFILE();
-                    CopyWordFile();
-                    for(int i = 0; i < currentWordFile.Length;i++){
-                        printf("%c",currentWordFile.TabWord[i]);
-                    }
+                    Word temptext2=CopyWordFile2();
+                    Sentence text2;
+                    text2.TabWord[0] = temptext2;
+                    text2.Length=1;
+                    kicauansambungan.author=text2;
                     printf("\n");
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int day= atoi(currentCharFile);
+                    ADVFILE();
+                    day= atoi(currentCharFile)+(10*day);
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int month=atoi(currentCharFile);
+                    ADVFILE();
+                    month=atoi(currentCharFile)+(10*month);
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int year = atoi(currentCharFile)*1000;
+                    ADVFILE();
+                    year = (atoi(currentCharFile)*100)+year;
+                    ADVFILE();
+                    year = (atoi(currentCharFile)*10)+year;
+                    ADVFILE();
+                    year = (atoi(currentCharFile))+year;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int hh = atoi(currentCharFile)*10;
+                    ADVFILE();
+                    hh = atoi(currentCharFile)+hh;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int mm = atoi(currentCharFile)*10;
+                    ADVFILE();
+                    mm = atoi(currentCharFile)+mm;
                     ADVFILE();
                     printf("%c",currentCharFile);
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    int ss = atoi(currentCharFile)*10;
                     ADVFILE();
-                    printf("%c",currentCharFile);
+                    ss = atoi(currentCharFile)+ss;
                     ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c",currentCharFile);
-                    ADVFILE();
-                    printf("%c\n",currentCharFile);
-                    ADVFILE();
+                    DATETIME date;
+                    CreateDATETIME(&date,day,month,year,hh,mm,ss);
+                    kicauansambungan.waktu=date;
+                    insertLastTabKicauanSambungan(&tabkicauansambungan,kicauansambungan);
                 }
             }
         }
@@ -434,7 +535,6 @@ void inisialisasi(TabPengguna* dataPengguna){
 
         printf("\n");
         printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
-        printf("Aku kangen sama kamu saaaaaaaaa\n");
     }
 
     statusProgram = true;

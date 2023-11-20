@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include "inisialisasi.c"
+#include "global.h"
 #include "../General/listDinamis.c"
 
+Pengguna penggunaSekarang;
+TabPengguna dataPengguna;
+TabKicauan dataKicauan;
+TabUtas dataUtas;
+TabTeman dataTeman;
+
 int main(){
-    ListDinPengguna pengguna;
-    CreateListDin(&pengguna,20);
-    inisialisasi(&pengguna);
+    inisialisasi();
+    printf("tess");
 }

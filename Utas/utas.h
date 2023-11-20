@@ -10,7 +10,7 @@ typedef struct
   int Index;
   Sentence pesan[280];
   int IDPengguna;
-  TIME waktu;
+  DATETIME waktu;
 } KicauanSambungan;
 
 #define PESAN(k) (k).IDUtas
@@ -42,6 +42,7 @@ typedef Address TabKicauanSambungan;
 
 typedef struct
 {
+  Sentence author;
   int IDUtas;
   int IDKicau;
   TabKicauanSambungan dataKicauanSambungan;
