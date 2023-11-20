@@ -1,15 +1,14 @@
 # Direktori untuk source code
-SRC_DIR = src
-ADT_DIR = $(SRC_DIR)/ADT
-BALASAN_DIR = $(SRC_DIR)/Balasan
-DRAF_DIR = $(SRC_DIR)/DrafKicauan
-GENERAL_DIR = $(SRC_DIR)/General
-INISIALISASI_DIR = $(SRC_DIR)/Inisialisasi
-KICAUAN_DIR = $(SRC_DIR)/Kicauan
-PENGGUNA_DIR = $(SRC_DIR)/Pengguna
-PERMINTAAN_DIR = $(SRC_DIR)/Permintaan-pertemanan
-TEMAN_DIR = $(SRC_DIR)/Teman
-UTAS_DIR = $(SRC_DIR)/Utas
+ADT_DIR = ADT
+BALASAN_DIR = Balasan
+DRAF_DIR = DrafKicauan
+GENERAL_DIR = General
+INISIALISASI_DIR = Inisialisasi
+KICAUAN_DIR = Kicauan
+PENGGUNA_DIR = Pengguna
+PERMINTAAN_DIR = Permintaan-pertemanan
+TEMAN_DIR = Teman
+UTAS_DIR = Utas
 
 # Direktori untuk objek files
 BUILD_DIR = build
@@ -19,7 +18,7 @@ CC = gcc
 CFLAGS = -Wall -std=c11
 
 # Source files
-MAIN_SOURCES = $(SRC_DIR)/main.c
+MAIN_SOURCES = main.c
 ADT_SOURCES = $(wildcard $(ADT_DIR)/*.c)
 BALASAN_SOURCES = $(wildcard $(BALASAN_DIR)/*.c)
 DRAF_SOURCES = $(wildcard $(DRAF_DIR)/*.c)
@@ -46,50 +45,27 @@ UTAS_OBJ = $(patsubst $(UTAS_DIR)/%.c,$(BUILD_DIR)/%.o, $(UTAS_SOURCES))
 
 # Target utama
 all: main
-    ./main
+	./main
 
 # Aturan untuk membuat objek files dari source files
 $(BUILD_DIR)/main.o: $(MAIN_SOURCES)
-    $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(ADT_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(BALASAN_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(DRAF_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(GENERAL_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(INISIALISASI_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(KICAUAN_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(PENGGUNA_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(PERMINTAAN_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(TEMAN_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(UTAS_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Aturan untuk membuat executable
-main: $(MAIN_OBJ) $(ADT_OBJ) $(BALASAN_OBJ) $(DRAF_OBJ) $(GENERAL_OBJ) $(INISIALISASI_OBJ) $(KICAUAN_OBJ) $(PENGGUNA_OBJ) $(PERMINTAAN_OBJ) $(TEMAN_OBJ) $(UTAS_OBJ)
-    $(CC) $(CFLAGS) $^ -o $@
+main: $(BUILD_DIR) $(MAIN_OBJ) $(ADT_OBJ) $(BALASAN_OBJ) $(DRAF_OBJ) $(GENERAL_OBJ) $(INISIALISASI_OBJ) $(KICAUAN_OBJ) $(PENGGUNA_OBJ) $(PERMINTAAN_OBJ) $(TEMAN_OBJ) $(UTAS_OBJ)
+	$(CC) $(CFLAGS) $^ -o $@
 
 # Target untuk menjalankan program
 run: main
-    ./main
+	./main
 
 # Target untuk membersihkan objek files dan executable
 clean:
-    rm -rf $(BUILD_DIR)/*.o main
+	rm -rf $(BUILD_DIR)/*.o main
+
+# Membuat direktori build jika belum ada
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
