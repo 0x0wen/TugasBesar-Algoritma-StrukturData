@@ -30,7 +30,7 @@ int main() {
       MASUK();
   }
 
-  while (statusLogin && statusProgram)
+  while (statusLogin && statusProgram && penggunaSekarang != -1)
   {
     printf(">> ");
     STARTWORD();
