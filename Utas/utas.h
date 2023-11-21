@@ -1,9 +1,9 @@
 #ifndef utas_H
 #define utas_H
 
-#include "kicauan.h"
-#include "listDinamis.h"
-#include "sentenceMachine.h"
+#include "../Kicauan/kicauan.h"
+#include "../General/listDinamis.h"
+#include "../General/sentenceMachine.h"
 
 typedef struct
 {
