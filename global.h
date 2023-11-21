@@ -2,6 +2,7 @@
 #define GLOBAL_H
 
 #include "Pengguna/TabPengguna.h"
+#include "Pengguna/pengguna.h"
 #include "Kicauan/kicauan.h"
 #include "Utas/TabUtas.h"
 #include "Balasan/TabBalasan.h"

@@ -11,7 +11,6 @@
 #include "../General/boolean.h"
 #include "../global.h"
 #include "../Pengguna/pengguna.h"
-#include "../Balasan/balasan.h"
 
 /*** Struct Kicauan ***/
 typedef struct

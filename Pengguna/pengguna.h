@@ -16,6 +16,8 @@
 #include "../Utas/utas.h"
 #include "../Utas/tabUtas.h"
 #include "../DrafKicauan/draf.h"
+#include "../PermintaanTeman/permintaanTeman.h"
+#include "../FotoProfil/fotoProfil.h"
 
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
@@ -34,11 +36,11 @@ typedef struct
     Word weton;
     int noHP;
     boolean privat;
-    Matrix foto;
+    FotoProfil foto;
     TabKicauan kicauan;
     TabBalasan balasan;
     TabUtas utas;
-    PrioQueuePengguna permintaan_teman;
+    PermintaanTeman permintaan_teman;
     Draf drafkicauan;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */

@@ -1,8 +1,8 @@
 #ifndef COMMAND_BALASAN_H
 #define COMMAND_BALASAN_H
 
-void Balas(int IDKicau, int IDBalasan);
-void Show_Balasan(int IDKicau);
-void Hapus_Balasan(int IDKicau, int IDBalasan);
+void BALAS(int IDKicau, int IDBalasan);
+void CETAK_BALASAN(int IDKicau);
+void HAPUS_BALASAN(int IDKicau, int IDBalasan);
 
 #endif

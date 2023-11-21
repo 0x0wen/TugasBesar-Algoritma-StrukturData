@@ -1,9 +1,9 @@
 #ifndef COMMAND_UTAS_H
 #define COMMAND_UTAS_H
 
-void Create_Utas(int IDKicau);
-void Sambung_Utas(int IDUtas, int index);
-void Hapus_Utas(int IDUtas, int index);
-void Cetak_Utas(int IDUtas);
+void CREATE_UTAS(int IDKicau);
+void SAMBUNG_UTAS(int IDUtas, int index);
+void HAPUS_UTAS(int IDUtas, int index);
+void CETAK_UTAS(int IDUtas);
 
 #endif

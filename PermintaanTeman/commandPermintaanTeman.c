@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include "prioqueue.h"
-#include "tabTeman.h"
+#include "commandPermintaanTeman.h"
+
 
 void TAMBAH_TEMAN(Pengguna p) {
     if (IsEmpty_PrioQueue(p.permintaan_teman)){
@@ -63,8 +62,4 @@ void SETUJUI_PERTEMANAN(Pengguna p) {
         printf(" telah ditolak.\n") ;
         Dequeue(&p.permintaan_teman, &Z) ;
     }
-
-
-
-
 }
