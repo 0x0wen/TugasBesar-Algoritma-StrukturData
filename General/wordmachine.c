@@ -224,10 +224,22 @@ boolean isWordEqualStr(const Word *w, const char *str) {
     return true;
 }
 
-void FSCANWORD(FILE *file, Word *word) {
-    STARTWORD();
-    while (!EndWord) {
-        CopyWORD(currentWord, word);
-        ADVWORD();
+int wordToInteger(const Word *word) {
+    // Check if the Word is empty
+    if (word->Length == 0) {
+        printf("Error: Empty Word\n");
+        return 0;  // You may want to handle this differently based on your requirements
     }
+
+    // Convert the character array to an integer using strtol function
+    char *endptr;
+    long result = strtol(word->TabWord, &endptr, 10);
+
+    // Check if the conversion was successful
+    if (*endptr != '\0') {
+        printf("Error: Non-integer characters found in Word\n");
+        return 0;  // You may want to handle this differently based on your requirements
+    }
+
+    return (int)result;
 }

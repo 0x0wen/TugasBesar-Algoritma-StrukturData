@@ -16,8 +16,7 @@ TabKicauan dataKicauan;
 TabUtas dataUtas;
 TabTeman dataTeman;
 
-int main()
-{
+int main() {
   inisialisasi();
 
   while (!statusLogin)
@@ -36,68 +35,93 @@ int main()
     printf(">> ");
     STARTWORD();
 
-    if (isWordEqualStr(&currentWord, "KELUAR"))
-      KELUAR();
-
-    if (isWordEqualStr(&currentWord, "GANTI_PROFIL"))
-      GANTI_PROFIL();
-    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
-      LIHAT_PROFIL();
-    if (isWordEqualStr(&currentWord, "ATUR_JENIS_AKUN"))
-      ATUR_JENIS_AKUN();
-    if (isWordEqualStr(&currentWord, "UBAH_FOTO_PROFIL"))
-      UBAH_FOTO_PROFIL();
-
-    if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN"))
-      DAFTAR_TEMAN();
-    if (isWordEqualStr(&currentWord, "HAPUS_TEMAN"))
-      HAPUS_TEMAN();
-
-    if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN"))
-      TAMBAH_TEMAN();
-    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN"))
-      DAFTAR_PERMINTAAN_PERTEMAN();
-    if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN"))
-      SETUJUI_PERTEMANAN();
-
-    if (isWordEqualStr(&currentWord, "KICAU"))
-      KICAU();
-    if (isWordEqualStr(&currentWord, "KICAUAN"))
-      KICAU();
-    if (isWordEqualStr(&currentWord, "SUKA_KICAUAN"))
-      SUKA_KICAU();
-    if (isWordEqualStr(&currentWord, "UBAH_KICAUAN"))
-      UBAH_KICAUAN(NULL);
+    if (isWordEqualStr(&currentWord, "KELUAR")) KELUAR();
+    if (isWordEqualStr(&currentWord, "GANTI_PROFIL")) GANTI_PROFIL();
+    if (isWordEqualStr(&currentWord, "ATUR_JENIS_AKUN")) ATUR_JENIS_AKUN();
+    if (isWordEqualStr(&currentWord, "UBAH_FOTO_PROFIL")) UBAH_FOTO_PROFIL();
+    if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN")) DAFTAR_TEMAN();
+    if (isWordEqualStr(&currentWord, "HAPUS_TEMAN")) HAPUS_TEMAN();
+    if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN")) TAMBAH_TEMAN();
+    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN")) DAFTAR_PERMINTAAN_PERTEMAN();
+    if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN")) SETUJUI_PERTEMANAN();
+    if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
+    if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();
     if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
     if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();
     if (isWordEqualStr(&currentWord, "SUKA_KICAUAN")) SUKA_KICAUAN(NULL);
     if (isWordEqualStr(&currentWord, "UBAH_KICAUAN")) UBAH_KICAUAN(NULL);
+    if (isWordEqualStr(&currentWord, "BUAT_DRAF")) BUAT_DRAF(NULL);
+    if (isWordEqualStr(&currentWord, "LIHAT_DRAF")) LIHAT_DRAF(NULL);
+    if (isWordEqualStr(&currentWord, "SIMPAN")) SIMPAN();
+    if (isWordEqualStr(&currentWord, "MUAT")) MUAT();
 
-    if (isWordEqualStr(&currentWord, "BALAS"))
-      BALAS();
-    if (isWordEqualStr(&currentWord, "BALASAN"))
-      CETAK_BALASAN();
-    if (isWordEqualStr(&currentWord, "HAPUS_BALASAN"))
-      HAPUS_BALASAN();
+    if (&currentWord == 'LIHAT_PROFIL') {
+      ADV();
+      Word NAMA = currentWord;
+      LIHAT_PROFIL(NAMA);
+    }
 
-    if (isWordEqualStr(&currentWord, "BUAT_DRAF"))
-      BUAT_DRAF(NULL);
-    if (isWordEqualStr(&currentWord, "LIHAT_DRAF"))
-      LIHAT_DRAF(NULL);
+    if (&currentWord == 'SUKA_KICAUAN') {
+      ADV();
+      int IDKicau = wordToInteger(&currentWord);
+      SUKA_KICAUAN(IDKicau);
+    }
 
-    if (isWordEqualStr(&currentWord, "UTAS"))
-      CREATE_UTAS();
-    if (isWordEqualStr(&currentWord, "SAMBUNG_UTAS"))
-      SAMBUNG_UTAS();
-    if (isWordEqualStr(&currentWord, "HAPUS_UTAS"))
-      HAPUS_UTAS();
-    if (isWordEqualStr(&currentWord, "CETAK_UTAS"))
-      CETAK_UTAS();
+    if (&currentWord == 'UBAH_KICAUAN') {
+      ADV();
+      int IDKicau = wordToInteger(&currentWord);
+      UBAH_KICAUAN(IDKicau);
+    }
 
-    if (isWordEqualStr(&currentWord, "SIMPAN"))
-      SIMPAN();
-    if (isWordEqualStr(&currentWord, "MUAT"))
-      MUAT();
+    if (&currentWord == 'BALAS') {
+      ADV();
+      int IDKicau = wordToInteger(&currentWord);
+      ADV();
+      int IDBalasan = wordToInteger(&currentWord);
+      BALAS(IDKicau, IDBalasan);
+    }
+
+    if (&currentWord == 'BALASAN') {
+      ADV();
+      int IDKicau = wordToInteger(&currentWord);
+      BALASAN(IDKicau);
+    }
+
+    if (&currentWord == 'HAPUS_BALASAN') {
+      ADV();
+      int IDKicau = wordToInteger(&currentWord);
+      ADV();
+      int IDBalasan = wordToInteger(&currentWord);
+      HAPUS_BALASAN(IDKicau, IDBalasan);
+    }
+
+    if (&currentWord == 'UTAS') {
+      ADV();
+      int IDKicau = wordToInteger(&currentWord);
+      UTAS(IDKicau);
+    }
+
+    if (&currentWord == 'SAMBUNG_UTAS') {
+      ADV();
+      int IDUtas = wordToInteger(&currentWord);
+      ADV();
+      int Index = wordToInteger(&currentWord);
+      SAMBUNG_UTAS(IDUtas, Index);
+    }
+
+    if (&currentWord == 'HAPUS_UTAS') {
+      ADV();
+      int IDUtas = wordToInteger(&currentWord);
+      ADV();
+      int Index = wordToInteger(&currentWord);
+      HAPUS_UTAS(IDUtas, Index);
+    }
+
+    if (&currentWord == 'CETAK_UTAS') {
+      ADV();
+      int IDUtas = wordToInteger(&currentWord);
+      CETAK_UTAS(IDUtas);
+    }
   }
 
   if (statusProgram)

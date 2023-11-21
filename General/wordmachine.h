@@ -67,6 +67,6 @@ int LengthStr(const char *str);
 
 boolean isWordEqualStr(const Word *w, const char *str);
 
-void FSCANWORD(FILE *file, Word *word);
+int wordToInteger(const Word *word);
 
 #endif
