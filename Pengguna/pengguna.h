@@ -1,9 +1,11 @@
+#ifndef PENGGUNA_H
+#define PENGGUNA_H
+
 /* File : stack.h */
 /* deklarasi stack yang diimplementasi dengan tabel kontigu dan ukuran sama */
 /* TOP adalah alamat elemen puncak */
 /* Implementasi dalam bahasa C dengan alokasi statik */
-#ifndef pengguna_H
-#define pengguna_H
+
 
 #include "../General/boolean.h"
 #include "../global.h"
