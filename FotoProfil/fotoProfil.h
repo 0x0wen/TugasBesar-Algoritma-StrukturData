@@ -20,7 +20,6 @@ void print_red(char c);
 void print_green(char c);
 void print_blue(char c);
 
-typedef int IdxType; /* Index baris, kolom */
 typedef int ElType;
 typedef struct
 {
@@ -45,10 +44,10 @@ void createFotoProfil(int nRows, int nCols, FotoProfil *m);
 #define ELMT(M, i, j) (M).mem[(i)][(j)]
 
 boolean isFotoProfilIdxValid(int i, int j);
-IdxType getLastIdxRow(FotoProfil m);
-IdxType getLastIdxCol(FotoProfil m);
-boolean isIdxEff(FotoProfil m, IdxType i, IdxType j);
-ElType getElmtDiagonal(FotoProfil m, IdxType i);
+int getLastIdxRow(FotoProfil m);
+int getLastIdxCol(FotoProfil m);
+boolean isIdxEff(FotoProfil m, int i, int j);
+ElType getElmtDiagonal(FotoProfil m, int i);
 void copyFotoProfil(FotoProfil mIn, FotoProfil *mOut);
 void readFotoProfil(FotoProfil *m, int nRow, int nCol);
 void displayFotoProfil(FotoProfil m);

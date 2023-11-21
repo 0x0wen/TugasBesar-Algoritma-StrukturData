@@ -43,22 +43,22 @@ boolean isFotoProfilIdxValid(int i, int j)
     return (i >= 0 && i < ROW_CAP && j >= 0 && j < COL_CAP);
 }
 
-IdxType getLastIdxRow(FotoProfil m)
+int getLastIdxRow(FotoProfil m)
 {
     return (ROW_EFF(m) - 1);
 }
 
-IdxType getLastIdxCol(FotoProfil m)
+int getLastIdxCol(FotoProfil m)
 {
     return (COL_EFF(m) - 1);
 }
 
-boolean isIdxEff(FotoProfil m, IdxType i, IdxType j)
+boolean isIdxEff(FotoProfil m, int i, int j)
 {
     return (i >= 0 && i <= ROW_EFF(m) - 1 && j >= 0 && j <= COL_EFF(m) - 1);
 }
 
-ElType getElmtDiagonal(FotoProfil m, IdxType i)
+ElType getElmtDiagonal(FotoProfil m, int i)
 {
     return (ELMT(m, i, i));
 }
