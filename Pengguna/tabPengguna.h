@@ -15,11 +15,10 @@
 /* Nilai elemen tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
-typedef Pengguna ElType; /* type elemen List */
 typedef int IdxType;
 typedef struct
 {
-   ElType contents[CAPACITY]; /* memori tempat penyimpan elemen (container) */
+   Pengguna contents[CAPACITY]; /* memori tempat penyimpan elemen (container) */
 } TabPengguna;
 
 /* Indeks yang digunakan [0..CAPACITY-1] */
@@ -52,19 +51,19 @@ boolean isTabPenggunaFull();
 
 void printTabPengguna();
 
-int indexOfTabPengguna(ElType val);
+int indexOfTabPengguna(Pengguna val);
 
-void insertFirstTabPengguna(ElType val);
+void insertFirstTabPengguna(Pengguna val);
 
-void insertAtTabPengguna(ElType val, IdxType idx);
+void insertAtTabPengguna(Pengguna val, IdxType idx);
 
-void insertLastTabPengguna(ElType val);
+void insertLastTabPengguna(Pengguna val);
 
-void deleteFirstTabPengguna(ElType *val);
+void deleteFirstTabPengguna(Pengguna *val);
 
-void deleteAtTabPengguna(ElType *val, IdxType idx);
+void deleteAtTabPengguna(Pengguna *val, IdxType idx);
 
-void deleteLastTabPengguna(ElType *val);
+void deleteLastTabPengguna(Pengguna *val);
 
 void sortTabPengguna(boolean asc);
 

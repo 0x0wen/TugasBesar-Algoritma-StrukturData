@@ -273,7 +273,7 @@ void LIHAT_PROFIL()
                     Pengguna penggunaSekarang1 = SelectPengguna(dataPengguna, i);
                 }
             }
-            if (IsWordEqual(TipeAkun, Privat) && !IsFriend)
+            if (IsWordEqual(TipeAkun, Privat) && !isFriend())
             {
                 printf("Wah, akun ");
                 printWord(name);

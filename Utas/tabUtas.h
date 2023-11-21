@@ -9,10 +9,9 @@
 #define IDX_UNDEF -1
 /* Indeks tak terdefinisi*/
 
-typedef Utas ElType; /* type elemen list */
 typedef struct
 {
-  ElType *buffer; /* memori tempat penyimpan elemen (container) */
+  Utas *buffer; /* memori tempat penyimpan elemen (container) */
   int nEff;       /* >=0, banyaknya elemen efektif */
   int capacity;   /* ukuran elemen */
 } TabUtas;
@@ -32,10 +31,10 @@ typedef struct
 /* TabUtas berisi kicauan yang merupakan utas*/
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define BUFFER(l) (l).buffer
-#define ELMT(l, i) (l).buffer[i]
-#define CAPACITY(l) (l).capacity
+#define NEFF_UTAS(l) (l).nEff
+#define BUFFER_UTAS(l) (l).buffer
+#define SELECT_UTAS(l, i) (l).buffer[i]
+#define CAPACITY_UTAS(l) (l).capacity
 
 /* ********** KONSTRUKTOR & DESTRUKTOR ********** */
 void createTabUtas(int capacity);
@@ -59,10 +58,11 @@ boolean isTabUtasEmpty();
 
 boolean isTabUtasFull();
 
-IdxType indexOfTabUtas(ElType val);
+Utas cariUtas(int IDUtas);
+IdxType indexOfTabUtas(Utas val);
 
-void insertLastTabUtas(ElType val);
-void deleteLastTabUtas(ElType *val);
+void insertLastTabUtas(Utas val);
+void deleteLastTabUtas(Utas *val);
 
 /* ********* MENGUBAH UKURAN ARRAY ********* */
 void expandTabUtas(int num);

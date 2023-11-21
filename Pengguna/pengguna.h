@@ -33,13 +33,12 @@ typedef struct
     Sentence bio;
     Word weton;
     int noHP;
-    boolean jenisAkun;
+    boolean privat;
     Matrix foto;
     TabKicauan kicauan;
     TabBalasan balasan;
     TabUtas utas;
-    TabTeman teman;
-    PrioQueueChar permintaan_teman;
+    PrioQueuePengguna permintaan_teman;
     Draf drafkicauan;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */
@@ -51,12 +50,12 @@ typedef struct
 /* Definisi akses dengan Selektor : Set dan Get */
 #define IdPengguna(P) (P).id
 #define NamaPengguna(P) (P).nama
-#define KataSandiPengguna(P) (P).KataSandi
-#define BioPengguna(P) (P).Bio
-#define WetonPengguna(P) (P).Weton
-#define NoHPPengguna(P) (P).NoHP
-#define JenisAkunPengguna(P) (P).JenisAkun
-#define FotoPengguna(P) (P).Foto
+#define KataSandiPengguna(P) (P).kataSandi
+#define BioPengguna(P) (P).bio
+#define WetonPengguna(P) (P).weton
+#define NoHPPengguna(P) (P).noHP
+#define PrivasiPengguna(P) (P).privat
+#define FotoPengguna(P) (P).foto
 #define KicauanPengguna(P, i) (P).kicauan[i]
 #define BalasanPengguna(P, i) (P).balasan[i]
 #define UtasPengguna(P, i) (P).utas[i]
