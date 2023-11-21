@@ -6,7 +6,6 @@ int main() {
     MASUK();
     KELUAR();
     TUTUP_PROGRAM();
-
     MASUK();
     LIHAT_PROFIL();
     GANTI_PROFIL();
