@@ -264,7 +264,7 @@ void SUKA_KICAUAN(id){
             IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) /*|| 
             isFriend(penggunaSekarang, dataKicauan[idx].Author) */){
             
-            dataKicauan.buffer_TabKicauan[idx].Likes++;
+            dataKicauan.buffer_TabKicauan[idx].Like++;
             printf("Selamat! kicauan telah disukai!\n");
             printf("Detil kicauan:");
 
