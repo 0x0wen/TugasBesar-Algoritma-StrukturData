@@ -1,10 +1,11 @@
 #include <stdio.h>
-#include "./General/wordmachine.h"
-#include "./General/wordmachine.c"
-#include "./Pengguna/pengguna.h"
-#include "./Kicauan/kicauan.h"
-#include "./Utas/utas.h"
-#include "./Balasan/balasan.h"
+#include "General/wordmachine.h"
+#include "General/wordmachine.c"
+#include "Pengguna/pengguna.h"
+#include "Kicauan/kicauan.h"
+#include "Utas/utas.h"
+#include "Balasan/balasan.h"
+#include "Utas/commandUtas.h"
 #include "global.h"
 
 Pengguna penggunaSekarang;
