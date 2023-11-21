@@ -1,7 +1,7 @@
 #ifndef TAB__TEMAN__H
 #define TAB__TEMAN__H
 
-#include "boolean.h"
+#include "../General/boolean.h"
 #define MAX_SIMPUL 20
 
 typedef struct

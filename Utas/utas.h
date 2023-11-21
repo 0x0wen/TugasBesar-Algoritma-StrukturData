@@ -2,7 +2,6 @@
 #define utas_H
 
 #include "../Kicauan/kicauan.h"
-#include "../General/listDinamis.h"
 #include "../General/sentenceMachine.h"
 
 typedef struct
