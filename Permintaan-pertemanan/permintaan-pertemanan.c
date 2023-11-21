@@ -2,7 +2,7 @@
 #include "prioqueue.h"
 #include "tabTeman.h"
 
-void TAMBAH_TEMAN (Pengguna p) {
+void TAMBAH_TEMAN(Pengguna p) {
     if (IsEmpty_PrioQueue(p.permintaan_teman)){
         printf("Masukkan nama pengguna:\n");
         STARTWORD();
