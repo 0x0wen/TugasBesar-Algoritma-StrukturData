@@ -6,43 +6,43 @@
 void createTabKicauan(TabKicauan *t, int capacity)
 {
 
-    TAB(*t) = (Kicauan *)malloc(capacity * sizeof(Kicauan));
+    TAB_TabKicauan(*t) = (Kicauan *)malloc(capacity * sizeof(Kicauan));
 
     /* Kalau malloc berhasil capacity(t) = capacity
        kalau gagal capacity = 0;*/
     if (TAB(*t) != NULL)
     {
-        CAPACITY(*t) = capacity;
+        CAPACITY_TabKicauan(*t) = capacity;
     }
     else
     {
-        CAPACITY(*t) = 0;
+        CAPACITY_TabKicauan(*t) = 0;
     }
 
-    NEFF(*t) = 0;
-    MAXID(*t) = 0;
+    NEFF_TabKicauan(*t) = 0;
+    MAXID_TabKicauan(*t) = 0;
 }
 
 void deleteTabKicauan(TabKicauan *t)
 {
 
     free(TAB(*t));
-    CAPACITY(*t) = 0;
-    NEFF(*t) = 0;
+    CAPACITY_TabKicauan(*t) = 0;
+    NEFF_TabKicauan(*t) = 0;
 }
 
 /*** Copy List ***/
 void copyListKicauan(TabKicauan lIn, TabKicauan *lOut){
 
     int i;
-    CreateTabKicauan(lOut, CAPACITY(lIn));
+    CreateTabKicauan(lOut, CAPACITY_TabKicauan(lIn));
 
-    for (i = 0; i < NEFF(lIn); i++)
+    for (i = 0; i < NEFF_TabKicauan(lIn); i++)
     {
-        ELMT(*lOut, i) = ELMT(lIn, i);
+        ELMT_TabKicauan(*lOut, i) = ELMT_TabKicauan(lIn, i);
     }
-    NEFF(*lOut) = NEFF(lIn);
-    MAXID(*lOut) = MAXID(lIn);
+    NEFF_TabKicauan(*lOut) = NEFF_TabKicauan(lIn);
+    MAXID_TabKicauan(*lOut) = MAXID_TabKicauan(lIn);
 };
 
 
@@ -51,7 +51,7 @@ void addKicauanToTab(TabKicauan *t, Kicauan k)
 {
     k.IDKicau = MAXID(dataKicauan) + 1;
 
-    if (NEFF(*t) < CAPACITY(*t))
+    if (NEFF_TabKicauan(*t) < CAPACITY_TabKicauan(*t))
     {
         // do nothing
     }
@@ -61,9 +61,9 @@ void addKicauanToTab(TabKicauan *t, Kicauan k)
         expandList(t, 1);
     }
     // assign k ke indeks ke-neff di t
-    ELMT(*t, NEFF(*t)) = k;
-    NEFF(*t)++;
-    MAXID(*t)++;
+    ELMT_TabKicauan(*t, NEFF_TabKicauan(*t)) = k;
+    NEFF_TabKicauan(*t)++;
+    MAXID_TabKicauan(*t)++;
 }
 // Owen : nambahin fungsi buat ngecek ada kicauan dengan id tertentu di tab atau tidak
 boolean isKicauanInTab(TabKicauan *t, int id)
@@ -71,9 +71,9 @@ boolean isKicauanInTab(TabKicauan *t, int id)
     int i;
     boolean found;
     found = false;
-    for (i = 0; i < NEFF(*t); i++)
+    for (i = 0; i < NEFF_TabKicauan(*t); i++)
     {
-        if ((ELMT(*t, i)).IDKicau == id)
+        if ((ELMT_TabKicauan(*t, i)).IDKicau == id)
         {
             found = true;
             break;
@@ -87,8 +87,8 @@ int getKicauanIdx(TabKicauan t, int id){
     int idx = -1;
     int i;
 
-    for (i = 0; i < NEFF(t); i++){
-        if (ELMT(t, i).IDKicau == id){
+    for (i = 0; i < NEFF_TabKicauan(t); i++){
+        if (ELMT_TabKicauan(t, i).IDKicau == id){
             idx = i;
         }
     }
@@ -99,21 +99,21 @@ void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
     int idxStart, i;
     boolean found = false;
 
-    for (i = 0; i < NEFF(*t); i++)
+    for (i = 0; i < NEFF_TabKicauan(*t); i++)
     {
 
         if (found)
         { // geser elemen ke-i mundur ke-(i-1)
-            ELMT(*t, i - 1) = ELMT(*t, i);
+            ELMT_TabKicauan(*t, i - 1) = ELMT_TabKicauan(*t, i);
         }
-        if ((ELMT(*t, i)).IDKicau == id){
-            *k = ELMT(*t, i);
+        if ((ELMT_TabKicauan(*t, i)).IDKicau == id){
+            *k = ELMT_TabKicauan(*t, i);
             found = true;
         }
     }
     if (found)
     {
-        NEFF(*t)--;
+        NEFF_TabKicauan(*t)--;
     }
 }
 
@@ -123,19 +123,19 @@ void expandListKicauan(TabKicauan *t, int num){
     int cap, nEff, maxId, i;
 
     copyListKicauan(*t, &temp);
-    cap = CAPACITY(*t) + num;
-    nEff = NEFF(*t);
-    maxId = MAXID(*t);
+    cap = CAPACITY_TabKicauan(*t) + num;
+    nEff = NEFF_TabKicauan(*t);
+    maxId = MAXID_TabKicauan(*t);
 
     dealocateList(t);
 
     CreateTabKicauan(t, cap);
-    NEFF(*t) = nEff;
-    MAXID(*t) = maxId;
+    NEFF_TabKicauan(*t) = nEff;
+    MAXID_TabKicauan(*t) = maxId;
 
     for (i = 0; i < nEff; i++)
     {
-        ELMT(*t, i) = ELMT(temp, i);
+        ELMT_TabKicauan(*t, i) = ELMT_TabKicauan(temp, i);
     }
     dealocateList(&temp);
 }
@@ -145,19 +145,19 @@ void shrinkListKicauan(TabKicauan *t, int num){
     int cap, nEff, maxId, i;
 
     copyListKicauan(*t, &temp);
-    cap = CAPACITY(*t) - num;
-    nEff = NEFF(*t);
-    maxId = MAXID(*t);
+    cap = CAPACITY_TabKicauan(*t) - num;
+    nEff = NEFF_TabKicauan(*t);
+    maxId = MAXID_TabKicauan(*t);
 
     dealocateList(t);
 
     CreateTabKicauan(t, cap);
-    NEFF(*t) = nEff;
-    MAXID(*t) = maxId;
+    NEFF_TabKicauan(*t) = nEff;
+    MAXID_TabKicauan(*t) = maxId;
 
     for (i = 0; i < nEff; i++)
     {
-        ELMT(*t, i) = ELMT(temp, i);
+        ELMT_TabKicauan(*t, i) = ELMT_TabKicauan(temp, i);
     }
     dealocateList(&temp);
 }
@@ -167,19 +167,19 @@ void compressListKicauan(TabKicauan *t){
     int cap, nEff, maxId, i;
 
     copyListKicauan(*t, &temp);
-    cap = NEFF(*t);
-    nEff = NEFF(*t);
-    maxId = MAXID(*t);
+    cap = NEFF_TabKicauan(*t);
+    nEff = NEFF_TabKicauan(*t);
+    maxId = MAXID_TabKicauan(*t);
 
     dealocateList(t);
 
     CreateTabKicauan(t, cap);
-    NEFF(*t) = nEff;
-    MAXID(*t) = maxId;
+    NEFF_TabKicauan(*t) = nEff;
+    MAXID_TabKicauan(*t) = maxId;
 
     for (i = 0; i < nEff; i++)
     {
-        ELMT(*t, i) = ELMT(temp, i);
+        ELMT_TabKicauan(*t, i) = ELMT_TabKicauan(temp, i);
     }
     dealocateList(&temp);
 }
@@ -203,8 +203,10 @@ Kicauan createKicauan(){
     newKicau.Like = 0;
 
     // author
+    Pengguna penggunaSekarang;
     Pengguna author = penggunaSekarang;
     newKicau.Author = author;
+    // 
 
     // time 
     DATETIME time = getDATETIME();
@@ -233,7 +235,7 @@ void KICAU(){
 
     printf("Selamat! kicauan telah diterbitkan!\n");
     printf("Detil kicauan:");
-    newKicau.IDKicau = MAXID(dataKicauan);
+    newKicau.IDKicau = MAXID_TabKicauan(dataKicauan);
 
     printKicauan(newKicau);
 }
@@ -241,10 +243,10 @@ void KICAU(){
 void KICAUAN(){
 
     int i;
-    for (i = 0; i < NEFF(dataKicauan); i++){
-        if (ELMT(dataKicauan, i).Author == penggunaSekarang){
+    for (i = 0; i < NEFF_TabKicauan(dataKicauan); i++){
+        if (ELMT_TabKicauan(dataKicauan, i).Author == penggunaSekarang){
             printf("\n");
-            printKicauan(ELMT(dataKicauan, i));
+            printKicauan(ELMT_TabKicauan(dataKicauan, i));
         } 
     }
 }
@@ -262,11 +264,11 @@ void SUKA_KICAUAN(id){
             IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) /*|| 
             isFriend(penggunaSekarang, dataKicauan[idx].Author) */){
             
-            dataKicauan[idx].Likes++;
+            dataKicauan.buffer_TabKicauan[idx].Likes++;
             printf("Selamat! kicauan telah disukai!\n");
             printf("Detil kicauan:");
 
-            printKicauan(dataKicauan[idx]);
+            printKicauan(dataKicauan.buffer_TabKicauan[idx]);
             
         } else {
             printf("\nWah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya");
@@ -283,15 +285,15 @@ void UBAH_KICAUAN(id){
 
         int i, idx = getKicauanIdx(dataKicauan, id);
 
-        if (dataKicauan[idx].Author != penggunaSekarang){
+        if (dataKicauan.buffer_TabKicauan[idx].Author != penggunaSekarang){
             printf("\nKicauan dengan ID = %d bukan milikmu!", id);
         } else {
 
             printf("\nMasukkan kicauan baru: \n");
             Word text; InputWordWithBlank(&text);
-            dataKicauan[idx].Text = text;
+            dataKicauan.buffer_TabKicauan[idx].Text = text;
             printf("\nSelamat! kicauan telah diterbitkan!");
-            printKicauan(dataKicauan[idx]);
+            printKicauan(dataKicauan.buffer_TabKicauan[idx]);
         }
     } else {
         printf("\nTidak ditemukan kicauan dengan ID = %d!;", id);

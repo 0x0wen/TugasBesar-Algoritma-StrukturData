@@ -1,11 +1,12 @@
 #include <stdio.h>
-// #include "kicauan.c"
-// #include "listdin_kicauan.c"
 #include "../General/wordmachine.c"
 #include "../General/charmachine.c"
+#include "kicauan.h"
 
 int main(){
 
+    TabKicauan dataKicauan;
+    createTabKicauan(&dataKicauan, 100);
     // TabKicauan TK;
 
     /*
@@ -31,7 +32,7 @@ int main(){
     fungsi akan brute force search kicauan dengan idKicau X pada TabKicau dan melakukan penambahan like
     pada kicauan tsb
 
-    4. UBAH_KICAUAN : edit kicauan yang udah ada,
+    4. UBAH_KICAUAN : edit kicauan yang udah ada,   
     fungsi bakal ngecek apakah ada id kicauan yang dicari di dalam TK, kalo ada baru jalanin prosedur ubah
 
     ** DRAF KICAUAN **

@@ -13,8 +13,6 @@
 #include "../Pengguna/pengguna.h"
 #include "../Balasan/balasan.h"
 
-#define IDX_MIN 0
-
 /*** Struct Kicauan ***/
 typedef struct
 {
@@ -37,18 +35,18 @@ typedef struct
 /*** Struct TabKicauan berupa List Dinamis ***/
 typedef struct
 {
-  Kicauan *buffer;
-  int nEff;
-  int capacity;
-  int maxID;
+  Kicauan *buffer_TabKicauan;
+  int nEff_TabKicauan;
+  int capacity_TabKicauan;
+  int maxID_TabKicauan;
 } TabKicauan;
 
 /*** Selektor Struct TabKicauan ***/
-#define NEFF(T) (T).nEff
-#define TAB(T) (T).buffer
-#define ELMT(T, i) (T).buffer[i]
-#define CAPACITY(T) (T).capacity
-#define MAXID(T) (T).maxID
+#define NEFF_TabKicauan(T) (T).nEff_TabKicauan
+#define TAB_TabKicauan(T) (T).buffer_TabKicauan
+#define ELMT_TabKicauan(T, i) (T).buffer_TabKicauan[i]
+#define CAPACITY_TabKicauan(T) (T).capacity_TabKicauan
+#define MAXID_TabKicauan(T) (T).maxID_TabKicauan
 
 /*** Kreator/Deletor Tab Kicauan ***/
 void createTabKicauan(TabKicauan *t, int capacity);

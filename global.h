@@ -11,6 +11,8 @@
 extern Pengguna penggunaSekarang;
 extern TabPengguna dataPengguna;
 extern TabKicauan dataKicauan;
+// TabKicauan dataKicauan;
+// createTabKicauan(&dataKicauan, 100);
 extern TabUtas dataUtas;
 extern TabTeman dataTeman;
 
