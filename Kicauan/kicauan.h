@@ -9,7 +9,6 @@
 #include "../General/datetime.h"
 #include "../General/time_adt.h"
 #include "../General/boolean.h"
-#include "../global.h"
 #include "../Pengguna/pengguna.h"
 
 /*** Struct Kicauan ***/

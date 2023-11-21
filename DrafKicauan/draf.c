@@ -1,5 +1,7 @@
 #include "draf.h"
 #include <stdio.h>
+#include "../global.h"
+
 
 /* Prototype manajemen memori */
 // Address newNode(ElType x){
@@ -165,7 +167,7 @@ void LIHAT_DRAF(Draf *s){
                 addKicauanToTab(&dataKicauan, newdraf);
                 printf("Selamat! draf kicauan telah diterbitkan!\n");
                 printf("Detil kicauan:");
-                newdraf.IDKicau = dataKicauan.maxID;
+                newdraf.IDKicau = dataKicauan.maxID_TabKicauan;
                 printKicauan(newdraf);
             }
         }
@@ -176,7 +178,7 @@ void LIHAT_DRAF(Draf *s){
             addKicauanToTab(&dataKicauan, draf);
             printf("Selamat! draf kicauan telah diterbitkan!\n");
             printf("Detil kicauan:");
-            draf.IDKicau = dataKicauan.maxID;
+            draf.IDKicau = dataKicauan.maxID_TabKicauan;
             printKicauan(draf);
         }
     }

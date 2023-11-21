@@ -68,6 +68,10 @@ int main()
       SUKA_KICAU();
     if (isWordEqualStr(&currentWord, "UBAH_KICAUAN"))
       UBAH_KICAUAN(NULL);
+    if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
+    if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();
+    if (isWordEqualStr(&currentWord, "SUKA_KICAUAN")) SUKA_KICAUAN(NULL);
+    if (isWordEqualStr(&currentWord, "UBAH_KICAUAN")) UBAH_KICAUAN(NULL);
 
     if (isWordEqualStr(&currentWord, "BALAS"))
       BALAS();
