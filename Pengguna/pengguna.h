@@ -9,15 +9,12 @@
 
 #include "../General/boolean.h"
 #include "../global.h"
-#include "../General/matrix.h"
 #include "../General/sentenceMachine.h"
 #include "../Kicauan/kicauan.h"
 #include "../Balasan/balasan.h"
 #include "../Balasan/tabBalasan.h"
 #include "../Utas/utas.h"
 #include "../Utas/tabUtas.h"
-#include "../General/listDinamis.h"
-#include "../General/prioqueue.h"
 #include "../DrafKicauan/draf.h"
 
 #define MaxEl 100

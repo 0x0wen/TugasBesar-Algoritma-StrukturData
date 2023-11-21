@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "utas.h"
-#include "sentenceMachine.h"
+#include "../General/sentenceMachine.h"
 
 Address newKicauanSambungan(KicauanSambungan val)
 {

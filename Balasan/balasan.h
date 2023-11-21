@@ -30,13 +30,13 @@ void removeBalasan(tree *parent, tree *child);
 void displayAllBalasan(tree root, int depth);
 addressTree searchBalasan(tree root, int val);
 
-#include "sentenceMachine.h"
-#include "wordmachine.h"
-#include "charmachine.h"
-#include "sentenceMachine.h"
-#include "datetime.h"
-#include "pengguna.h"
-#include "kicauan.h"
+#include "../General/sentenceMachine.h"
+#include "../General/wordmachine.h"
+#include "../General/charmachine.h"
+#include "../General/sentenceMachine.h"
+#include "../General/datetime.h"
+#include "../Pengguna/pengguna.h"
+#include "../Kicauan/kicauan.h"
 
 typedef struct
 {
