@@ -6,27 +6,27 @@
 
 void CreateListDin(ListDin *l, int capacity)
 {
-    CAPACITY(*l) = capacity;
-    NEFF(*l) = 0;
-    BUFFER(*l) = (int *)malloc(capacity * sizeof(int));
+    CAPACITY_LIST_DIN(*l) = capacity;
+    NEFF_LIST_DIN(*l) = 0;
+    BUFFER_LIST_DIN(*l) = (int *)malloc(capacity * sizeof(int));
 };
 /* I.S. l sembarang, capacity > 0 */
 /* F.S. Terbentuk list dinamis l kosong dengan kapasitas capacity */
 
 void dealocateList(ListDin *l)
 {
-    free(BUFFER(*l));
-    CAPACITY(*l) = 0;
-    NEFF(*l) = 0;
+    free(BUFFER_LIST_DIN(*l));
+    CAPACITY_LIST_DIN(*l) = 0;
+    NEFF_LIST_DIN(*l) = 0;
 };
 /* I.S. l terdefinisi; */
-/* F.S. (l) dikembalikan ke system, CAPACITY(l)=0; NEFF(l)=0 */
+/* F.S. (l) dikembalikan ke system, CAPACITY_LIST_DIN(l)=0; NEFF_LIST_DIN(l)=0 */
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
 int listLength(ListDin l)
 {
-    return NEFF(l);
+    return NEFF_LIST_DIN(l);
 };
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list l kosong */
@@ -35,13 +35,13 @@ int listLength(ListDin l)
 /* *** Selektor INDEKS *** */
 int getFirstIdx(ListDin l)
 {
-    return IDX_MIN;
+    return IDX_MIN_LIST_DIN;
 };
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l pertama */
 int getLastIdx(ListDin l)
 {
-    return NEFF(l) - 1;
+    return NEFF_LIST_DIN(l) - 1;
 };
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l terakhir */
@@ -49,28 +49,28 @@ int getLastIdx(ListDin l)
 /* ********** Test Indeks yang valid ********** */
 boolean isIdxValid(ListDin l, int i)
 {
-    return (i < (CAPACITY(l)) && i >= IDX_MIN);
+    return (i < (CAPACITY_LIST_DIN(l)) && i >= IDX_MIN_LIST_DIN);
 };
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
 boolean isIdxEff(ListDin l, int i)
 {
-    return (i < (NEFF(l)) && i >= IDX_MIN);
+    return (i < (NEFF_LIST_DIN(l)) && i >= IDX_MIN_LIST_DIN);
 };
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
-/* yaitu antara 0..NEFF(l) */
+/* yaitu antara 0..NEFF_LIST_DIN(l) */
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
 boolean isEmpty(ListDin l)
 {
-    return (NEFF(l) == 0);
+    return (NEFF_LIST_DIN(l) == 0);
 };
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
 boolean isFull(ListDin l)
 {
-    return (NEFF(l) == CAPACITY(l));
+    return (NEFF_LIST_DIN(l) == CAPACITY_LIST_DIN(l));
 };
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
 
@@ -82,36 +82,36 @@ void readList(ListDin *l)
     do
     {
         scanf("%d", &N);
-    } while (N < 0 || N > CAPACITY(*l));
-    for (i = IDX_MIN; i < N; i++)
+    } while (N < 0 || N > CAPACITY_LIST_DIN(*l));
+    for (i = IDX_MIN_LIST_DIN; i < N; i++)
     {
         scanf("%d", &a);
-        ELMT(*l, i) = a;
+        ELMT_LIST_DIN(*l, i) = a;
     }
-    NEFF(*l) = N;
+    NEFF_LIST_DIN(*l) = N;
 };
 /* I.S. l sembarang dan sudah dialokasikan sebelumnya */
 /* F.S. List l terdefinisi */
 /* Proses : membaca banyaknya elemen l dan mengisi nilainya */
 /* 1. Baca banyaknya elemen diakhiri enter, misalnya N */
-/*    Pembacaan diulangi sampai didapat N yang benar yaitu 0 <= N <= CAPACITY(l) */
+/*    Pembacaan diulangi sampai didapat N yang benar yaitu 0 <= N <= CAPACITY_LIST_DIN(l) */
 /*    Jika N tidak valid, tidak diberikan pesan kesalahan */
-/* 2. Jika 0 < N <= CAPACITY(l); Lakukan N kali: Baca elemen mulai dari indeks
+/* 2. Jika 0 < N <= CAPACITY_LIST_DIN(l); Lakukan N kali: Baca elemen mulai dari indeks
       0 satu per satu diakhiri enter */
 /*    Jika N = 0; hanya terbentuk l kosong */
 void printList(ListDin l)
 {
     int i;
     printf("[");
-    for (i = IDX_MIN; i < listLength(l); i++)
+    for (i = IDX_MIN_LIST_DIN; i < listLength(l); i++)
     {
         if (i == listLength(l) - 1)
         {
-            printf("%d", ELMT(l, i));
+            printf("%d", ELMT_LIST_DIN(l, i));
         }
         else
         {
-            printf("%d,", ELMT(l, i));
+            printf("%d,", ELMT_LIST_DIN(l, i));
         }
     }
     printf("]");
@@ -129,20 +129,20 @@ void printList(ListDin l)
 ListDin plusMinusList(ListDin l1, ListDin l2, boolean plus)
 {
     ListDin L;
-    CreateListDin(&L, NEFF(l1));
+    CreateListDin(&L, NEFF_LIST_DIN(l1));
     int i;
-    for (i = IDX_MIN; i < NEFF(l1); i++)
+    for (i = IDX_MIN_LIST_DIN; i < NEFF_LIST_DIN(l1); i++)
     {
         if (plus == true)
         {
-            ELMT(L, i) = ELMT(l1, i) + ELMT(l2, i);
+            ELMT_LIST_DIN(L, i) = ELMT_LIST_DIN(l1, i) + ELMT_LIST_DIN(l2, i);
         }
         else
         {
-            ELMT(L, i) = ELMT(l1, i) - ELMT(l2, i);
+            ELMT_LIST_DIN(L, i) = ELMT_LIST_DIN(l1, i) - ELMT_LIST_DIN(l2, i);
         }
     }
-    NEFF(L) = NEFF(l1);
+    NEFF_LIST_DIN(L) = NEFF_LIST_DIN(l1);
     return L;
 };
 /* Prekondisi : l1 dan l2 memiliki Neff sama dan tidak kosong */
@@ -154,15 +154,15 @@ ListDin plusMinusList(ListDin l1, ListDin l2, boolean plus)
 boolean isListEqual(ListDin l1, ListDin l2)
 {
     int i;
-    if (NEFF(l1) != NEFF(l2))
+    if (NEFF_LIST_DIN(l1) != NEFF_LIST_DIN(l2))
     {
         return false;
     }
     else
     {
-        for (i = IDX_MIN; i < NEFF(l1); i++)
+        for (i = IDX_MIN_LIST_DIN; i < NEFF_LIST_DIN(l1); i++)
         {
-            if (ELMT(l1, i) != ELMT(l2, i))
+            if (ELMT_LIST_DIN(l1, i) != ELMT_LIST_DIN(l2, i))
             {
                 return false;
             }
@@ -177,14 +177,14 @@ boolean isListEqual(ListDin l1, ListDin l2)
 int indexOf(ListDin l, int val)
 {
     int i;
-    for (i = IDX_MIN; i < NEFF(l); i++)
+    for (i = IDX_MIN_LIST_DIN; i < NEFF_LIST_DIN(l); i++)
     {
-        if (ELMT(l, i) == val)
+        if (ELMT_LIST_DIN(l, i) == val)
         {
             return i;
         }
     }
-    return IDX_UNDEF;
+    return IDX_UNDEF_LIST_DIN;
 };
 /* Search apakah ada elemen List l yang bernilai val */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = val */
@@ -196,17 +196,17 @@ int indexOf(ListDin l, int val)
 void extremeValues(ListDin l, int *max, int *min)
 {
     int i;
-    *max = ELMT(l, IDX_MIN);
-    *min = ELMT(l, IDX_MIN);
-    for (i = IDX_MIN; i < NEFF(l); i++)
+    *max = ELMT_LIST_DIN(l, IDX_MIN_LIST_DIN);
+    *min = ELMT_LIST_DIN(l, IDX_MIN_LIST_DIN);
+    for (i = IDX_MIN_LIST_DIN; i < NEFF_LIST_DIN(l); i++)
     {
-        if (ELMT(l, i) > *max)
+        if (ELMT_LIST_DIN(l, i) > *max)
         {
-            *max = ELMT(l, i);
+            *max = ELMT_LIST_DIN(l, i);
         }
-        if (ELMT(l, i) < *min)
+        if (ELMT_LIST_DIN(l, i) < *min)
         {
-            *min = ELMT(l, i);
+            *min = ELMT_LIST_DIN(l, i);
         }
     }
 };
@@ -218,12 +218,12 @@ void extremeValues(ListDin l, int *max, int *min)
 void copyList(ListDin lIn, ListDin *lOut)
 {
     int i;
-    CreateListDin(lOut, CAPACITY(lIn));
-    for (i = 0; i < NEFF(lIn); i++)
+    CreateListDin(lOut, CAPACITY_LIST_DIN(lIn));
+    for (i = 0; i < NEFF_LIST_DIN(lIn); i++)
     {
-        ELMT(*lOut, i) = ELMT(lIn, i);
+        ELMT_LIST_DIN(*lOut, i) = ELMT_LIST_DIN(lIn, i);
     }
-    NEFF(*lOut) = NEFF(lIn);
+    NEFF_LIST_DIN(*lOut) = NEFF_LIST_DIN(lIn);
 };
 /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
 /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
@@ -232,9 +232,9 @@ int sumList(ListDin l)
 {
     int i;
     int jumlah = 0;
-    for (i = 0; i < NEFF(l); i++)
+    for (i = 0; i < NEFF_LIST_DIN(l); i++)
     {
-        jumlah += ELMT(l, i);
+        jumlah += ELMT_LIST_DIN(l, i);
     }
     return jumlah;
 };
@@ -243,9 +243,9 @@ int sumList(ListDin l)
 int countVal(ListDin l, int val)
 {
     int i, total = 0;
-    for (i = 0; i < NEFF(l); i++)
+    for (i = 0; i < NEFF_LIST_DIN(l); i++)
     {
-        if (ELMT(l, i) == val)
+        if (ELMT_LIST_DIN(l, i) == val)
         {
             total += 1;
         }
@@ -262,30 +262,30 @@ void sort(ListDin *l, boolean asc)
     int temp;
     if (asc == true)
     {
-        for (i = IDX_MIN; i < listLength(*l); i++)
+        for (i = IDX_MIN_LIST_DIN; i < listLength(*l); i++)
         {
             for (j = i + 1; j < listLength(*l); j++)
             {
-                if (ELMT(*l, j) < ELMT(*l, i))
+                if (ELMT_LIST_DIN(*l, j) < ELMT_LIST_DIN(*l, i))
                 {
-                    temp = ELMT(*l, i);
-                    ELMT(*l, i) = ELMT(*l, j);
-                    ELMT(*l, j) = temp;
+                    temp = ELMT_LIST_DIN(*l, i);
+                    ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(*l, j);
+                    ELMT_LIST_DIN(*l, j) = temp;
                 }
             }
         }
     }
     else
     {
-        for (i = IDX_MIN; i < listLength(*l); i++)
+        for (i = IDX_MIN_LIST_DIN; i < listLength(*l); i++)
         {
             for (j = i + 1; j < listLength(*l); j++)
             {
-                if (ELMT(*l, j) > ELMT(*l, i))
+                if (ELMT_LIST_DIN(*l, j) > ELMT_LIST_DIN(*l, i))
                 {
-                    temp = ELMT(*l, i);
-                    ELMT(*l, i) = ELMT(*l, j);
-                    ELMT(*l, j) = temp;
+                    temp = ELMT_LIST_DIN(*l, i);
+                    ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(*l, j);
+                    ELMT_LIST_DIN(*l, j) = temp;
                 }
             }
         }
@@ -301,8 +301,8 @@ void sort(ListDin *l, boolean asc)
 /* *** Menambahkan elemen terakhir *** */
 void insertLast(ListDin *l, int val)
 {
-    ELMT(*l, NEFF(*l)) = val;
-    NEFF(*l) += 1;
+    ELMT_LIST_DIN(*l, NEFF_LIST_DIN(*l)) = val;
+    NEFF_LIST_DIN(*l) += 1;
 };
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
@@ -310,8 +310,8 @@ void insertLast(ListDin *l, int val)
 /* ********** MENGHAPUS ELEMEN ********** */
 void deleteLast(ListDin *l, int *val)
 {
-    *val = ELMT(*l, NEFF(*l) - 1);
-    NEFF(*l) -= 1;
+    *val = ELMT_LIST_DIN(*l, NEFF_LIST_DIN(*l) - 1);
+    NEFF_LIST_DIN(*l) -= 1;
 };
 /* Proses : Menghapus elemen terakhir list */
 /* I.S. List tidak kosong */
@@ -326,17 +326,17 @@ void expandList(ListDin *l, int num)
     int cap1, nEff1, i;
 
     copyList(*l, &l1);
-    cap1 = CAPACITY(*l) + num;
-    nEff1 = NEFF(*l);
+    cap1 = CAPACITY_LIST_DIN(*l) + num;
+    nEff1 = NEFF_LIST_DIN(*l);
 
     dealocateList(l);
 
     CreateListDin(l, cap1);
-    NEFF(*l) = nEff1;
+    NEFF_LIST_DIN(*l) = nEff1;
 
     for (i = 0; i < listLength(*l); i++)
     {
-        ELMT(*l, i) = ELMT(l1, i);
+        ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(l1, i);
     }
     dealocateList(&l1);
 };
@@ -350,17 +350,17 @@ void shrinkList(ListDin *l, int num)
     int cap1, nEff1, i;
 
     copyList(*l, &l1);
-    cap1 = CAPACITY(*l) - num;
-    nEff1 = NEFF(*l);
+    cap1 = CAPACITY_LIST_DIN(*l) - num;
+    nEff1 = NEFF_LIST_DIN(*l);
 
     dealocateList(l);
 
     CreateListDin(l, cap1);
-    NEFF(*l) = nEff1;
+    NEFF_LIST_DIN(*l) = nEff1;
 
     for (i = 0; i < listLength(*l); i++)
     {
-        ELMT(*l, i) = ELMT(l1, i);
+        ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(l1, i);
     }
     dealocateList(&l1);
 };
@@ -374,16 +374,16 @@ void compressList(ListDin *l)
     int nEff1, i;
 
     copyList(*l, &l1);
-    nEff1 = NEFF(*l);
+    nEff1 = NEFF_LIST_DIN(*l);
 
     dealocateList(l);
 
     CreateListDin(l, nEff1);
-    NEFF(*l) = nEff1;
+    NEFF_LIST_DIN(*l) = nEff1;
 
     for (i = 0; i < listLength(*l); i++)
     {
-        ELMT(*l, i) = ELMT(l1, i);
+        ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(l1, i);
     }
     dealocateList(&l1);
 };

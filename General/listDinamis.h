@@ -10,9 +10,9 @@
 #include "boolean.h"
 
 /*  Kamus Umum */
-#define IDX_MIN 0
+#define IDX_MIN_LIST_DIN 0
 /* Indeks minimum list */
-#define IDX_UNDEF -1
+#define IDX_UNDEF_LIST_DIN -1
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
@@ -35,10 +35,10 @@ typedef struct
   Definisi elemen terakhir yang terdefinisi: l.buffer[i] dengan i=l.capacity */
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define BUFFER(l) (l).buffer
-#define ELMT(l, i) (l).buffer[i]
-#define CAPACITY(l) (l).capacity
+#define NEFF_LIST_DIN(l) (l).nEff
+#define BUFFER_LIST_DIN(l) (l).buffer
+#define ELMT_LIST_DIN(l, i) (l).buffer[i]
+#define CAPACITY_LIST_DIN(l) (l).capacity
 
 void CreateListDin(ListDin *l, int capacity);
 void dealocateList(ListDin *l);
