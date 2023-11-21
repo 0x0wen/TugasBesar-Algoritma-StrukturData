@@ -46,34 +46,30 @@ int main() {
     if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN")) SETUJUI_PERTEMANAN();
     if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
     if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();
-    if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
-    if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();
-    if (isWordEqualStr(&currentWord, "SUKA_KICAUAN")) SUKA_KICAUAN(NULL);
-    if (isWordEqualStr(&currentWord, "UBAH_KICAUAN")) UBAH_KICAUAN(NULL);
     if (isWordEqualStr(&currentWord, "BUAT_DRAF")) BUAT_DRAF(NULL);
     if (isWordEqualStr(&currentWord, "LIHAT_DRAF")) LIHAT_DRAF(NULL);
     if (isWordEqualStr(&currentWord, "SIMPAN")) SIMPAN();
     if (isWordEqualStr(&currentWord, "MUAT")) MUAT();
 
-    if (&currentWord == 'LIHAT_PROFIL') {
+    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL")) {
       ADV();
       Word NAMA = currentWord;
       LIHAT_PROFIL(NAMA);
     }
 
-    if (&currentWord == 'SUKA_KICAUAN') {
+    if (isWordEqualStr(&currentWord, "SUKA_KICAUAN")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
       SUKA_KICAUAN(IDKicau);
     }
 
-    if (&currentWord == 'UBAH_KICAUAN') {
+    if (isWordEqualStr(&currentWord, "UBAH_KICAUAN")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
       UBAH_KICAUAN(IDKicau);
     }
 
-    if (&currentWord == 'BALAS') {
+    if (isWordEqualStr(&currentWord, "BALAS")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
       ADV();
@@ -81,13 +77,13 @@ int main() {
       BALAS(IDKicau, IDBalasan);
     }
 
-    if (&currentWord == 'BALASAN') {
+    if (isWordEqualStr(&currentWord, "BALASAN")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
       BALASAN(IDKicau);
     }
 
-    if (&currentWord == 'HAPUS_BALASAN') {
+    if (isWordEqualStr(&currentWord, "HAPUS_BALASAN")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
       ADV();
@@ -95,13 +91,13 @@ int main() {
       HAPUS_BALASAN(IDKicau, IDBalasan);
     }
 
-    if (&currentWord == 'UTAS') {
+    if (isWordEqualStr(&currentWord, "UTAS")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
       UTAS(IDKicau);
     }
 
-    if (&currentWord == 'SAMBUNG_UTAS') {
+    if (isWordEqualStr(&currentWord, "SAMBUNG_UTAS")) {
       ADV();
       int IDUtas = wordToInteger(&currentWord);
       ADV();
@@ -109,7 +105,7 @@ int main() {
       SAMBUNG_UTAS(IDUtas, Index);
     }
 
-    if (&currentWord == 'HAPUS_UTAS') {
+    if (isWordEqualStr(&currentWord, "HAPUS_UTAS")) {
       ADV();
       int IDUtas = wordToInteger(&currentWord);
       ADV();
@@ -117,7 +113,7 @@ int main() {
       HAPUS_UTAS(IDUtas, Index);
     }
 
-    if (&currentWord == 'CETAK_UTAS') {
+    if (isWordEqualStr(&currentWord, "CETAK_UTAS")) {
       ADV();
       int IDUtas = wordToInteger(&currentWord);
       CETAK_UTAS(IDUtas);
@@ -126,7 +122,7 @@ int main() {
 
   if (statusProgram)
   {
-    if (IsWordEqualStr(&currentWord, 'TUTUP_PROGRAM'))
+    if (IsWordEqualStr(&currentWord, "TUTUP_PROGRAM"))
       TUTUP_PROGRAM();
   }
 
