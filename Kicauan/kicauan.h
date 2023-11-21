@@ -55,7 +55,7 @@ void createTabKicauan(TabKicauan *t, int capacity);
 void deleteTabKicauan(TabKicauan *t);
 
 /*** Copy List ***/
-void copyList(TabKicauan lIn, TabKicauan *lOut);
+void copyListKicauan(TabKicauan lIn, TabKicauan *lOut);
 
 /*** Cek Kicauan di Tab***/
 boolean isKicauanInTab(TabKicauan *t, int id);
@@ -66,9 +66,9 @@ void addKicauanToTab(TabKicauan *t, Kicauan k);
 void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id);
 
 /*** Mengubah Ukuran Tab ***/
-void expandList(TabKicauan *t, int num);
-void shrinkList(TabKicauan *t, int num);
-void compressList(TabKicauan *t);
+void expandListKicauan(TabKicauan *t, int num);
+void shrinkListKicauan(TabKicauan *t, int num);
+void compressListKicauan(TabKicauan *t);
 
 /*** Prosedur Kicauan ***/
 Kicauan createKicauan();

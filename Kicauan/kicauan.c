@@ -32,7 +32,7 @@ void deleteTabKicauan(TabKicauan *t)
 }
 
 /*** Copy List ***/
-void copyList(TabKicauan lIn, TabKicauan *lOut){
+void copyListKicauan(TabKicauan lIn, TabKicauan *lOut){
 
     int i;
     CreateTabKicauan(lOut, CAPACITY(lIn));
@@ -118,11 +118,11 @@ void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id){
 }
 
 /*** Mengubah Ukuran Tab ***/
-void expandList(TabKicauan *t, int num){
+void expandListKicauan(TabKicauan *t, int num){
     TabKicauan temp;
     int cap, nEff, maxId, i;
 
-    copyList(*t, &temp);
+    copyListKicauan(*t, &temp);
     cap = CAPACITY(*t) + num;
     nEff = NEFF(*t);
     maxId = MAXID(*t);
@@ -140,11 +140,11 @@ void expandList(TabKicauan *t, int num){
     dealocateList(&temp);
 }
 
-void shrinkList(TabKicauan *t, int num){
+void shrinkListKicauan(TabKicauan *t, int num){
     TabKicauan temp;
     int cap, nEff, maxId, i;
 
-    copyList(*t, &temp);
+    copyListKicauan(*t, &temp);
     cap = CAPACITY(*t) - num;
     nEff = NEFF(*t);
     maxId = MAXID(*t);
@@ -162,11 +162,11 @@ void shrinkList(TabKicauan *t, int num){
     dealocateList(&temp);
 }
 
-void compressList(TabKicauan *t){
+void compressListKicauan(TabKicauan *t){
     TabKicauan temp;
     int cap, nEff, maxId, i;
 
-    copyList(*t, &temp);
+    copyListKicauan(*t, &temp);
     cap = NEFF(*t);
     nEff = NEFF(*t);
     maxId = MAXID(*t);
@@ -259,8 +259,8 @@ void SUKA_KICAUAN(id){
         Word Publik = {"Publik", 6};
    
         if (dataKicauan[idx].Author == penggunaSekarang || 
-            IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) || 
-            isFriend(penggunaSekarang, dataKicauan[idx].Author)){
+            IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) /*|| 
+            isFriend(penggunaSekarang, dataKicauan[idx].Author) */){
             
             dataKicauan[idx].Likes++;
             printf("Selamat! kicauan telah disukai!\n");
