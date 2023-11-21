@@ -8,7 +8,7 @@
 #include "charmachine.h"
 #include "wordmachine.h"
 
-#define NMax 10
+#define NMaxSentence 10
 #define BLANK ' '
 
 typedef struct

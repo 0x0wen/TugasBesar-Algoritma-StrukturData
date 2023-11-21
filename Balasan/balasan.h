@@ -3,7 +3,7 @@
 
 #define CAPACITY 100
 /* Kapasitas penyimpanan */
-#include "kicauan.h"
+#include "../Kicauan/kicauan.h"
 
 /* Definisi Type Data */
 typedef struct treeNode *addressTree;

@@ -11,7 +11,7 @@
 #include "../General/boolean.h"
 #include "../global.h"
 #include "../Pengguna/pengguna.h"
-#include "balasan.h"
+#include "../Balasan/balasan.h"
 
 #define IDX_MIN 0
 

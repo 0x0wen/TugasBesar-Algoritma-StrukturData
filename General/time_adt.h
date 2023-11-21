@@ -72,7 +72,7 @@ void TulisTIME(TIME T);
    mewakili jumlah detik yang mungkin dalam 1 hari, yaitu dengan rumus:
    N1 = N mod 86400, baru N1 dikonversi menjadi TIME */
 /*
-/* ***************************************************************** */
+/* THIS IS COMMENT ***************************************************************** THIS IS COMMENT */
 /* KELOMPOK OPERASI TERHADAP TYPE                                    */
 /* ***************************************************************** */
 /* *** Kelompok Operator Relational *** */
