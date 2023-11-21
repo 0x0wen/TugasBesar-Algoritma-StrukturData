@@ -6,7 +6,6 @@
 /* TOP adalah alamat elemen puncak */
 /* Implementasi dalam bahasa C dengan alokasi statik */
 
-
 #include "../General/boolean.h"
 #include "../global.h"
 #include "../General/sentenceMachine.h"
@@ -70,8 +69,8 @@ void DAFTAR();
 void MASUK();
 void KELUAR();
 void TUTUP_PROGRAM();
-boolean checkUsernameExist(Word username);
-boolean checkPassword(Word password);
-void signingUser(Word username, Word password);
+boolean checkUsernameExist(TabPengguna *tabPengguna, Word username, int numUsers);
+boolean checkPassword(TabPengguna *tabPengguna, Word password, int numUsers);
+void signingUser(Word username, Word password, TabPengguna *dataPengguna);
 
 #endif

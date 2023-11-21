@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "pengguna.h"
-#include "tabTeman.h"
-#include "wordmachine.h"
+#include "../global.h"
+#include "../Teman/tabTeman.h"
+#include "../General/wordmachine.h"
 
 /* PENGGUNA  */
 void DAFTAR() {
@@ -14,10 +15,10 @@ void DAFTAR() {
             printf("Masukkan nama:\n");
             STARTWORD();
 
-            if (checkUsernameExist(currentWord)) {
+            if (checkUsernameExist(&dataPengguna, currentWord, 20)) {
               printf("Wah, sayang sekali nama tersebut telah diambil.\n");
             }
-        } while (checkUsernameExist(currentWord));
+        } while (checkUsernameExist(&dataPengguna, currentWord, 20));
         Username = currentWord;
 
         printf("Masukkan kata sandi:\n");
@@ -27,9 +28,13 @@ void DAFTAR() {
         signingUser(Username, Password);
         printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
     }
+
+    signingUser(Username, Password, &dataPengguna);
 }
 
 void MASUK() {
+    Word username, password;
+
     if (statusLogin) {
         printf("Wah Anda sudah masuk. Keluar dulu yuk!\n");
     } else {
@@ -37,22 +42,26 @@ void MASUK() {
             printf("Masukkan nama:\n");
             STARTWORD();
 
-            if (!checkUsernameExist(currentWord)) {
+            if (!checkUsernameExist(&dataPengguna, currentWord, 20)) {
                 printf("Wah, nama yang Anda cari tidak ada.\nMasukkan nama lain!\n");
             }
-        } while (!checkUsernameExist(currentWord));
+
+            username = currentWord;
+        } while (!checkUsernameExist(&dataPengguna, currentWord, 20));
 
         do {
             print("Masukkan kata sandi:\n");
             STARTWORD();
 
-            if (!checkPassword(currentWord)) {
+            if (!checkPassword(&dataPengguna, currentWord, 20)) {
                 printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             }
-        } while (!checkPassword(currentWord));
+        } while (!checkPassword(&dataPengguna, currentWord, 20));
 
         statusLogin = true;
     }
+
+    CURRENT_PENGGUNA(username);
 }
 
 void KELUAR() {
@@ -69,65 +78,71 @@ void TUTUP_PROGRAM() {
     printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }
 
-// Fungsi untuk memeriksa apakah username sudah ada atau belum
-boolean checkUsernameExist(Word username) {
-    FILE *file = fopen("config-1/pengguna.config", "r");
-    if (file == NULL) {
-        printf("File tidak ditemukan\n");
-        return false;
-    }
+boolean checkUsernameExist(TabPengguna *tabPengguna, Word username, int numUsers) {
+    // Mengecek apakah pengguna ada dalam array TabPengguna
 
-    Word temp;
     boolean found = false;
 
-    while (FSCANWORD(file, &temp)) {
-        if (IsWordEqual(temp, username)) {
+    for (int i = 0; i < numUsers; ++i) {
+        // Misalnya, anggaplah username disimpan dalam atribut tertentu dari Pengguna
+        // Gantilah dengan atribut sebenarnya yang menyimpan username di dalam Pengguna
+        if (IsWordEqual(tabPengguna->contents[i].usernameAttribute, username)) {
             found = true;
             break;
         }
     }
 
-    fclose(file);
     return found;
 }
+boolean checkPassword(TabPengguna *tabPengguna, Word password, int numUsers) {
+    // Mengecek apakah password ada dalam array contents
 
-// Fungsi untuk memeriksa apakah password sudah benar atau belum
-boolean checkPassword(Word password) {
-    FILE *file = fopen("config-1/pengguna.config", "r");
-    if (file == NULL) {
-        printf("File tidak ditemukan\n");
-        return false;
-    }
-
-    Word temp, tempUsername, tempPassword;
     boolean found = false;
 
-    while (FSCANWORD(file, &tempUsername) && FSCANWORD(file, &tempPassword)) {
-        if (IsWordEqual(tempPassword, password)) {
+    for (int i = 0; i < numUsers; ++i) {
+        // Misalnya, anggaplah password disimpan dalam atribut tertentu dari Pengguna
+        // Gantilah dengan atribut sebenarnya yang menyimpan password di dalam Pengguna
+        if (IsWordEqual(tabPengguna->contents[i].passwordAttribute, password)) {
             found = true;
             break;
         }
     }
 
-    fclose(file);
     return found;
 }
 
-// Fungsi untuk mendaftarkan pengguna baru
-void signingUser(Word username, Word password) {
-    FILE *file = fopen("config-1/pengguna.config", "a");
-    if (file == NULL) {
-        printf("File tidak ditemukan\n");
-        return;
+// Fungsi untuk menyalin string secara manual
+void copyString(char *destination, const char *source, int maxSize) {
+    for (int i = 0; i < maxSize - 1 && source[i] != '\0'; ++i) {
+        destination[i] = source[i];
     }
 
-    fprintf(file, "%s %s\n", username, password);
-    fclose(file);
+    // Pastikan string diakhiri dengan karakter null
+    destination[maxSize - 1] = '\0';
 }
 
+void signingUser(Word username, Word password, TabPengguna *dataPengguna) {
+    if (&dataPengguna.length < 20) {
+        // Assuming Word is an array of characters
+        // Assuming Pengguna is the structure used to store user information
+        Pengguna *currentUser = &dataPengguna->pengguna[dataPengguna->numUsers];
 
-int CURRENT_PENGGUNA();
+        // Copy username and password to the current user
+        copyString(currentUser->usernameAttribute, &username, 20);
+        copyString(currentUser->passwordAttribute, &password, 20);
 
+        // You need to populate other attributes as well according to your structure
+
+        // Increment the user count
+        dataPengguna->numUsers++;
+    } else {
+        printf("DataPengguna is full. Cannot add more users.\n");
+    }
+}
+
+int CURRENT_PENGGUNA(Word penggunaBaru) {
+    penggunaSekarang = penggunaBaru;
+}
 
 
 void Display_PROFIL(Pengguna p)
