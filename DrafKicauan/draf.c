@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /* Prototype manajemen memori */
-Address newNode(ElType x){
+Address newNode(Kicauan x){
     Address p = (Address) malloc (sizeof(Node));
     if (p != NULL){
         INFO(p) = x;
@@ -61,7 +61,7 @@ void DisplayDraf(Draf s){
 /* Contoh : jika ada tiga elemen bernilai 1 (TOP), 20, 30 akan dicetak: [1,20,30] */
 /* Jika Draf kosong : menulis [] */
 
-void push(Draf *s, ElType x){
+void push(Draf *s, Kicauan x){
     Address p = newNode(x);
     if (p != NULL){
         if (isEmpty(*s)){
@@ -78,7 +78,7 @@ void push(Draf *s, ElType x){
 /*      jika tidak, s tetap */
 /* Pada dasarnya adalah operasi insertFirst pada list linier */
 
-void pop(Draf *s, ElType *x){
+void pop(Draf *s, Kicauan *x){
     *x = INFO(ADDR_TOP(*s));
     if (length(*s) == 1){
         ADDR_TOP(*s) = NULL;

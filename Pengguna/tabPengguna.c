@@ -67,7 +67,7 @@ void printTabPengguna()
     printf("]\n");
 }
 
-int indexOfTabPengguna(ElType val)
+int indexOfTabPengguna(Pengguna val)
 {
     IdxType i = getFirstIdx(dataPengguna);
     while (i <= getLastIdx(dataPengguna))
@@ -81,7 +81,7 @@ int indexOfTabPengguna(ElType val)
     return IDX_UNDEF;
 }
 
-void insertFirstTabPengguna(ElType val)
+void insertFirstTabPengguna(Pengguna val)
 {
     if (!isFull(dataPengguna))
     {
@@ -94,7 +94,7 @@ void insertFirstTabPengguna(ElType val)
     }
 }
 
-void insertAtTabPengguna(ElType val, IdxType idx)
+void insertAtTabPengguna(Pengguna val, IdxType idx)
 {
     if (!isFull(dataPengguna) && isIdxEffTabPengguna(idx))
     {
@@ -107,7 +107,7 @@ void insertAtTabPengguna(ElType val, IdxType idx)
     }
 }
 
-void insertLastTabPengguna(ElType val)
+void insertLastTabPengguna(Pengguna val)
 {
     if (!isFull(dataPengguna))
     {
@@ -116,7 +116,7 @@ void insertLastTabPengguna(ElType val)
     }
 }
 
-void deleteFirstTabPengguna(ElType *val)
+void deleteFirstTabPengguna(Pengguna *val)
 {
     if (!isEmpty(dataPengguna))
     {
@@ -130,7 +130,7 @@ void deleteFirstTabPengguna(ElType *val)
     }
 }
 
-void deleteAtTabPengguna(ElType *val, IdxType idx)
+void deleteAtTabPengguna(Pengguna *val, IdxType idx)
 {
     if (!isEmpty(dataPengguna) && isIdxEffTabPengguna(dataPengguna, idx))
     {
@@ -144,7 +144,7 @@ void deleteAtTabPengguna(ElType *val, IdxType idx)
     }
 }
 
-void deleteLastTabPengguna(ElType *val)
+void deleteLastTabPengguna(Pengguna *val)
 {
     if (!isEmpty(dataPengguna))
     {
@@ -159,7 +159,7 @@ void sortTabPengguna(boolean asc)
     if (!isEmpty(dataPengguna))
     {
         IdxType n = listLength(dataPengguna);
-        ElType temp;
+        Pengguna temp;
 
         for (IdxType i = 0; i < n - 1; i++)
         {

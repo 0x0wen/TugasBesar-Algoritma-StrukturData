@@ -15,12 +15,10 @@
 #include <stdlib.h>
 
 #define NIL NULL
-/* Deklarasi infotype */
-typedef Kicauan ElType;
 /* Draf dengan representasi berkait dengan pointer */
 typedef struct node* Address;
 typedef struct node { 
-    ElType info;
+    Kicauan info;
     Address next; 
 } Node; 
 
@@ -36,7 +34,7 @@ typedef struct {
 #define      TOP(s) (s).addrTop->info 
 
 /* Prototype manajemen memori */
-Address newNode(ElType x);
+Address newNode(Kicauan x);
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
    atau 
    NULL jika alokasi gagal */   
@@ -61,14 +59,14 @@ void DisplayDraf(Draf s);
 /* Contoh : jika ada tiga elemen bernilai 1 (TOP), 20, 30 akan dicetak: [1,20,30] */
 /* Jika Draf kosong : menulis [] */
 
-void push(Draf *s, ElType x);
+void push(Draf *s, Kicauan x);
 /* Menambahkan x sebagai elemen Draf s */
 /* I.S. s mungkin kosong, x terdefinisi */
 /* F.S. x menjadi Top yang baru jika alokasi x berhasil, */
 /*      jika tidak, s tetap */
 /* Pada dasarnya adalah operasi insertFirst pada list linier */
 
-void pop(Draf *s, ElType *x);
+void pop(Draf *s, Kicauan *x);
 /* Menghapus Top dari Draf s */
 /* I.S. s tidak kosong */
 /* F.S. x adalah nilai elemen Top yang lama, */
