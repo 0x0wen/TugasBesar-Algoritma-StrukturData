@@ -1,7 +1,7 @@
 #ifndef BALASAN_H
 #define BALASAN_H
 
-#define CAPACITY 100
+#define CAPACITY_BALASAN 100
 /* Kapasitas penyimpanan */
 #include "../Kicauan/kicauan.h"
 

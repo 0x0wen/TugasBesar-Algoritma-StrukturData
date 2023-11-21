@@ -1,7 +1,7 @@
 #include "commandUtas.h"
 #include <stdio.h>
 
-void Create_Utas(int IDKicau)
+void CREATE_UTAS(int IDKicau)
 {
     if (IDKicau bukan punya user)
     {
@@ -26,7 +26,7 @@ void Create_Utas(int IDKicau)
         printf("Utas selesai!\n");
     }
 }
-void Sambung_Utas(int IDUtas, int index)
+void SAMBUNG_UTAS(int IDUtas, int index)
 {
     if (index lewat batas)
     {
@@ -41,7 +41,7 @@ void Sambung_Utas(int IDUtas, int index)
         printf("Anda tidak bisa menyambung utas ini!");
     }
 };
-void Hapus_Utas(int IDUtas, int index)
+void HAPUS_UTAS(int IDUtas, int index)
 {
     if (!adaUtas(IDUtas))
     {
@@ -66,7 +66,7 @@ void Hapus_Utas(int IDUtas, int index)
         // ...
     }
 }
-void Cetak_Utas(int IDUtas)
+void CETAK_UTAS(int IDUtas)
 {
     if (!adaUtas(IDUtas))
     {

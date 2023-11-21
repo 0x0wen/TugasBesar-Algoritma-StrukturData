@@ -1,7 +1,7 @@
 #include "commandBalasan.h"
 
 // Command Balasan
-void Balas(int IDKicau, int IDBalasan)
+void BALAS(int IDKicau, int IDBalasan)
 {
     if (!isKicauanInTab(IDKicau))
     {
@@ -34,7 +34,7 @@ void Balas(int IDKicau, int IDBalasan)
     }
 };
 
-void Show_Balasan(int IDKicau)
+void CETAK_BALASAN(int IDKicau)
 {
     if (jumlahBalasan(IDKicau) == 0)
     {
@@ -54,7 +54,7 @@ void Show_Balasan(int IDKicau)
     }
 };
 
-void Hapus_Balasan(int IDKicau, int IDBalasan)
+void HAPUS_BALASAN(int IDKicau, int IDBalasan)
 {
     if (!isBalasanExistInKicauan(IDKicau, IDBalasan))
     {
