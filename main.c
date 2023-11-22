@@ -65,33 +65,16 @@ int main()
       BUAT_DRAF(NULL);
     if (isWordEqualStr(&currentWord, "LIHAT_DRAF"))
       LIHAT_DRAF(NULL);
-    // if (isWordEqualStr(&currentWord, "SIMPAN")) SIMPAN();
-    // if (isWordEqualStr(&currentWord, "MUAT")) MUAT();
-
     if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN"))
-    {
       DAFTAR_TEMAN();
-    }
-
     if (isWordEqualStr(&currentWord, "HAPUS_TEMAN"))
-    {
       HAPUS_TEMAN();
-    }
-
     if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN"))
-    {
       TAMBAH_TEMAN();
-    }
-
     if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN"))
-    {
       DAFTAR_PERMINTAAN_PERTEMANAN();
-    }
-
     if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN"))
-    {
       SETUJUI_PERTEMANAN();
-    }
 
     if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
     {
@@ -170,6 +153,9 @@ int main()
       int IDUtas = wordToInteger(&currentWord);
       CETAK_UTAS(IDUtas);
     }
+
+    // if (isWordEqualStr(&currentWord, "SIMPAN")) SIMPAN();
+    // if (isWordEqualStr(&currentWord, "MUAT")) MUAT();
   }
 
   if (statusProgram)
