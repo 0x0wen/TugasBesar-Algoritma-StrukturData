@@ -59,7 +59,7 @@ Word CopyWordFile2(){
     int i;
     i = 0;
     Word string;
-    while (currentCharFile != MARK_FILE) {
+    while (currentCharFile != MARK_FILE && currentCharFile!=BLANK) {
         if (i < NMax) {
             currentWordFile.TabWord[i] = currentCharFile;
             string.TabWord[i]=currentCharFile;
@@ -77,6 +77,21 @@ Word CopyWordFile2(){
     }
     return string;
 }
+
+Word *CopyWordFile3(){
+    Word kata[100];
+    int i = 0;
+    while(currentCharFile!=MARK_FILE){
+        if(currentCharFile==BLANK){
+            kata[i].TabWord[0]=BLANK;
+            ADVFILE();
+        }else{
+            kata[i]=CopyWordFile2();
+        }
+        i++;
+    }
+    return kata;
+};
 
 void StopWordFile(){
     ENDFILE();

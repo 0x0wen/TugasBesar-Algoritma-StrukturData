@@ -2,7 +2,7 @@
 #define __WORDMACHINEFILE_H__
 
 #include "boolean.h"
-#include "charmachinefile.h"
+#include "charmachinefile.c"
 #include "wordmachine.h"
 
 extern boolean endWordFile;

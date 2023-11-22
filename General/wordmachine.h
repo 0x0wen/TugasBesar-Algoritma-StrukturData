@@ -5,7 +5,7 @@
 #define __WORDMACHINE_H__
 
 #include "boolean.h"
-#include "charmachine.h"
+#include "charmachine.c"
 
 #define NMax 280
 #define BLANK ' '

@@ -45,7 +45,7 @@ int BanyakPermintaanTeman(PermintaanTeman Q)
 void CreatePermintaanTeman(PermintaanTeman *Q, int Max)
 {
 
-    (*Q).T = (infotype *)malloc((Max) * sizeof(infotype));
+    (*Q).T = (AnggotaTeman *)malloc((Max) * sizeof(AnggotaTeman));
     Head(*Q) = Nil;
     Tail(*Q) = Nil;
 }
@@ -68,7 +68,7 @@ void DealokasiPermintaanTeman(PermintaanTeman *Q)
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
-void EnqueuePermintaanTeman(PermintaanTeman *Q, infotype X)
+void EnqueuePermintaanTeman(PermintaanTeman *Q, AnggotaTeman X)
 {
 
     if (NBElmt(*Q) == 0)
@@ -80,7 +80,7 @@ void EnqueuePermintaanTeman(PermintaanTeman *Q, infotype X)
     }
     else
     {
-        infotype temp[100];
+        AnggotaTeman temp[100];
         int i;
 
         for (i = 0; i < NBElmt(*Q); i++)
@@ -118,7 +118,7 @@ void EnqueuePermintaanTeman(PermintaanTeman *Q, infotype X)
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
-void DequeuePermintaanTeman(PermintaanTeman *Q, infotype *X)
+void DequeuePermintaanTeman(PermintaanTeman *Q, AnggotaTeman *X)
 {
     int len = NBElmt(*Q);
 
@@ -146,7 +146,7 @@ void CetakPermintaanTeman(PermintaanTeman Q)
 {
 
     int i;
-    infotype current;
+    AnggotaTeman current;
 
     for (i = 0; i < NBElmt(Q); i++)
     {
