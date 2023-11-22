@@ -43,7 +43,7 @@ int main() {
       MASUK();
   }
 
-  while (statusLogin && statusProgram && penggunaSekarang != -1)
+  while (statusLogin && statusProgram)
   {
     printf(">> ");
     STARTWORD();
@@ -52,17 +52,93 @@ int main() {
     if (isWordEqualStr(&currentWord, "GANTI_PROFIL")) GANTI_PROFIL();
     if (isWordEqualStr(&currentWord, "ATUR_JENIS_AKUN")) ATUR_JENIS_AKUN();
     if (isWordEqualStr(&currentWord, "UBAH_FOTO_PROFIL")) UBAH_FOTO_PROFIL();
-    if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN")) DAFTAR_TEMAN();
-    if (isWordEqualStr(&currentWord, "HAPUS_TEMAN")) HAPUS_TEMAN();
-    if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN")) TAMBAH_TEMAN();
-    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN")) DAFTAR_PERMINTAAN_PERTEMANAN();
-    if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN")) SETUJUI_PERTEMANAN();
     if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
     if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();
     if (isWordEqualStr(&currentWord, "BUAT_DRAF")) BUAT_DRAF(NULL);
     if (isWordEqualStr(&currentWord, "LIHAT_DRAF")) LIHAT_DRAF(NULL);
     if (isWordEqualStr(&currentWord, "SIMPAN")) SIMPAN();
     if (isWordEqualStr(&currentWord, "MUAT")) MUAT();
+
+    if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN")) {
+      ADV();
+      Word namaPengguna = currentWord;  // Assuming namaPengguna is of type Word
+      Pengguna temanPengguna;
+
+      // Find the Pengguna with the given namaPengguna
+      for (int i = 0; i < len(dataPengguna); i++) {
+          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+              temanPengguna = SelectPengguna(dataPengguna, i);
+              break;  // Assuming each namaPengguna is unique
+          }
+      }
+
+      // Call the function with the selected Pengguna
+      DAFTAR_TEMAN(temanPengguna);
+    }
+
+    if (isWordEqualStr(&currentWord, "HAPUS_TEMAN")) {
+      ADV();
+      Word namaPengguna = currentWord;  // Assuming namaPengguna is of type Word
+      Pengguna temanPengguna;
+
+      // Find the Pengguna with the given namaPengguna
+      for (int i = 0; i < len(dataPengguna); i++) {
+          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+              temanPengguna = SelectPengguna(dataPengguna, i);
+              break;  // Assuming each namaPengguna is unique
+          }
+      }
+
+      HAPUS_TEMAN(temanPengguna);
+    }
+
+    if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN")) {
+      ADV();
+      Word namaPengguna = currentWord;  // Assuming namaPengguna is of type Word
+      Pengguna temanPengguna;
+
+      // Find the Pengguna with the given namaPengguna
+      for (int i = 0; i < len(dataPengguna); i++) {
+          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+              temanPengguna = SelectPengguna(dataPengguna, i);
+              break;  // Assuming each namaPengguna is unique
+          }
+      }
+
+      TAMBAH_TEMAN(temanPengguna);
+    }
+
+    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN")) {
+      ADV();
+      Word namaPengguna = currentWord;  // Assuming namaPengguna is of type Word
+      Pengguna temanPengguna;
+
+      // Find the Pengguna with the given namaPengguna
+      for (int i = 0; i < len(dataPengguna); i++) {
+          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+              temanPengguna = SelectPengguna(dataPengguna, i);
+              break;  // Assuming each namaPengguna is unique
+          }
+      }
+    
+      DAFTAR_PERMINTAAN_PERTEMANAN(temanPengguna);
+    }
+
+    if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN")) {
+      ADV();
+      Word namaPengguna = currentWord;  // Assuming namaPengguna is of type Word
+      Pengguna temanPengguna;
+
+      // Find the Pengguna with the given namaPengguna
+      for (int i = 0; i < len(dataPengguna); i++) {
+          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+              temanPengguna = SelectPengguna(dataPengguna, i);
+              break;  // Assuming each namaPengguna is unique
+          }
+      }
+    
+      SETUJUI_PERTEMANAN(temanPengguna);
+    }
 
     if (isWordEqualStr(&currentWord, "LIHAT_PROFIL")) {
       ADV();
