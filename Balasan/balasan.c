@@ -1,19 +1,16 @@
 #include <stdio.h>
 #include "balasan.h"
-#include "kicauan.h"
-
 #include <stdio.h>
-#include "tree.h"
 
-addressTree createBalasan(int data)
+addressTree createBalasan(Balasan data)
 {
-    addressTree node = (addressTree)malloc(sizeof(Node));
+    addressTree node = (addressTree)malloc(sizeof(NodeBalasan));
     if (node != NULL)
     {
-        Data(node) = data;
-        FirstChild(node) = NULL;
-        NextSibling(node) = NULL;
-        Parent(node) = NULL;
+        DataNodeBalasan(node) = data;
+        FirstChildBalasan(node) = NULL;
+        NextSiblingBalasan(node) = NULL;
+        ParentBalasan(node) = NULL;
     }
     return node;
 }
@@ -23,56 +20,56 @@ void addBalasan(tree *parent, tree *child)
 
     if (*parent != NULL && *child != NULL)
     {
-        if (FirstChild(*parent) == NULL)
+        if (FirstChildBalasan(*parent) == NULL)
         {
-            FirstChild(*parent) = *child;
+            FirstChildBalasan(*parent) = *child;
         }
         else
         {
-            tree sibling = FirstChild(*parent);
+            tree sibling = FirstChildBalasan(*parent);
             int x = 0;
-            while (NextSibling(sibling) != NULL)
+            while (NextSiblingBalasan(sibling) != NULL)
             {
                 x++;
-                sibling = NextSibling(sibling);
+                sibling = NextSiblingBalasan(sibling);
             }
-            NextSibling(sibling) = *child;
+            NextSiblingBalasan(sibling) = *child;
         }
-        Parent(*child) = *parent;
+        ParentBalasan(*child) = *parent;
     }
 }
 
 void removeBalasan(tree *node)
 {
-    if (Parent(*node) == NULL)
+    if (ParentBalasan(*node) == NULL)
     {
         *node = NULL;
         free(*node);
     }
     else
     {
-        tree parent = Parent(*node);
-        tree sibling = FirstChild(parent);
+        tree parent = ParentBalasan(*node);
+        tree sibling = FirstChildBalasan(parent);
         if (sibling == *node)
         {
-            FirstChild(parent) = NextSibling(sibling);
+            FirstChildBalasan(parent) = NextSiblingBalasan(sibling);
             *node = NULL;
             free(*node);
         }
         else
         {
-            while (NextSibling(sibling) != *node)
+            while (NextSiblingBalasan(sibling) != *node)
             {
                 ;
-                sibling = NextSibling(sibling);
+                sibling = NextSiblingBalasan(sibling);
             }
-            if (NextSibling(*node) != NULL)
+            if (NextSiblingBalasan(*node) != NULL)
             {
-                NextSibling(sibling) = NextSibling(*node);
+                NextSiblingBalasan(sibling) = NextSiblingBalasan(*node);
             }
             else
             {
-                NextSibling(sibling) = NULL;
+                NextSiblingBalasan(sibling) = NULL;
             }
             *node = NULL;
             free(*node);
@@ -84,50 +81,50 @@ void displayAllBalasan(tree root, int depth)
 {
     if (root != NULL)
     {
-        printf("%*s%d\n", depth * 2, "", Data(root));
-        tree child = FirstChild(root);
+        printf("%*s%d\n", depth * 2, "", DataNodeBalasan(root));
+        tree child = FirstChildBalasan(root);
         while (child != NULL)
         {
             printTree(child, depth + 1);
-            child = NextSibling(child);
+            child = NextSiblingBalasan(child);
         }
     }
 }
 
-addressTree searchBalasan(tree root, int val)
+addressTree searchBalasan(tree root, int IDBalasan)
 {
     addressTree p = ADDRESS(root);
-    if (Data(p) == val)
+    if (ID_BALASAN(DataNodeBalasan(p)) == IDBalasan)
     {
         return p;
     }
     else
     {
-        p = FirstChild(p);
+        p = FirstChildBalasan(p);
         int cek = 0;
         while (p != ADDRESS(root) && cek == 0)
         {
             while ((p) != NULL && cek == 0)
             {
-                if (Data((p)) == val)
+                if (ID_BALASAN(DataNodeBalasan(p)) == IDBalasan)
                 {
                     cek = 1;
                 }
                 else
                 {
-                    p = FirstChild(p);
+                    p = FirstChildBalasan(p);
                 }
             }
             if (cek == 0)
             {
-                p = Parent(p);
-                if (NextSibling(p) == NULL)
+                p = ParentBalasan(p);
+                if (NextSiblingBalasan(p) == NULL)
                 {
-                    p = Parent(p);
+                    p = ParentBalasan(p);
                 }
                 else
                 {
-                    p = NextSibling(p);
+                    p = NextSiblingBalasan(p);
                 }
             }
         }
