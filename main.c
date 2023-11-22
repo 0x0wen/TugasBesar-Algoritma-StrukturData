@@ -79,7 +79,7 @@ int main()
     if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
     {
       ADV();
-      Word NAMA = currentWord;
+      Sentence NAMA = currentWord;
       LIHAT_PROFIL(NAMA);
     }
 
