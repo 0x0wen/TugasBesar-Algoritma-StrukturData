@@ -46,7 +46,6 @@ int listLength(ListDin l);
 int getFirstIdx(ListDin l);
 int getLastIdx(ListDin l);
 boolean isIdxValid(ListDin l, int i);
-boolean isIdxEff(ListDin l, int i);
 boolean isEmpty(ListDin l);
 boolean isFull(ListDin l);
 void readList(ListDin *l);

@@ -14,7 +14,7 @@ typedef struct
 } KicauanSambungan;
 
 #define PESAN(k) (k).IDUtas
-#define ID_PENGGUNA(k) (k).IDPengguna
+#define ID_PENGGUNA_UTAS(k) (k).IDPengguna
 #define SUKA(k) (k).jumlahSuka
 #define WAKTU(k) (k).waktu
 /* Definisi elemen dan koleksi objek */

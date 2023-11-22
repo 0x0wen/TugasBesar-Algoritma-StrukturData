@@ -51,17 +51,7 @@ boolean isIdxValid(ListDin l, int i)
 {
     return (i < (CAPACITY_LIST_DIN(l)) && i >= IDX_MIN_LIST_DIN);
 };
-/* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
-/* yaitu antara indeks yang terdefinisi utk container*/
-boolean isIdxEff(ListDin l, int i)
-{
-    return (i < (NEFF_LIST_DIN(l)) && i >= IDX_MIN_LIST_DIN);
-};
-/* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
-/* yaitu antara 0..NEFF_LIST_DIN(l) */
 
-/* ********** TEST KOSONG/PENUH ********** */
-/* *** Test list kosong *** */
 boolean isEmpty(ListDin l)
 {
     return (NEFF_LIST_DIN(l) == 0);

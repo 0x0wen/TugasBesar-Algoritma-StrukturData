@@ -1,64 +1,47 @@
 #include "tabPengguna.h"
 #include <stdio.h>
 
-TabPengguna anjay;
 void createTabPengguna(TabPengguna *T)
 {
-    for (IdxType i = IDX_MIN; i < CAPACITY; i++)
+    for (int i = IDX_MIN; i < CAPACITYPENGGUNA; i++)
     {
-        SelectPengguna(dataPengguna, i) = MARK;
+        ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)) = IDX_UNDEF_TAB_PENGGUNA;
     }
 }
 
-int lengthTabPengguna()
+int lengthTabPengguna(TabPengguna T)
 {
-    IdxType i = IDX_MIN;
-    while (i < CAPACITY && SelectPengguna(dataPengguna, i) != MARK)
+    int i = IDX_MIN;
+    while (i < CAPACITYPENGGUNA && ID_PENGGUNA(SELECT_PENGGUNA(T, i)) != IDX_UNDEF_TAB_PENGGUNA)
     {
         i++;
     }
     return i;
 }
 
-IdxType getFirstIdxTabPengguna()
+boolean isIdxEffTabPengguna(int i)
 {
-    return IDX_MIN;
-}
-
-IdxType getLastIdxTabPengguna()
-{
-    IdxType i = listLength(dataPengguna);
-    return (i > 0) ? i - 1 : IDX_UNDEF;
-}
-
-boolean isIdxValidTabPengguna(IdxType i)
-{
-    return (i >= IDX_MIN) && (i < CAPACITY);
-}
-
-boolean isIdxEffTabPengguna(IdxType i)
-{
-    return (i >= IDX_MIN) && (i <= getLastIdx(dataPengguna));
+    return (i >= IDX_MIN) && (i <= getLastIdxTabPengguna(dataPengguna));
 }
 
 boolean isTabPenggunaEmpty()
 {
-    return listLength(dataPengguna) == 0;
+    return lengthTabPengguna(dataPengguna) == 0;
 }
 
 boolean isTabPenggunaFull()
 {
-    return listLength(dataPengguna) == CAPACITY;
+    return lengthTabPengguna(dataPengguna) == CAPACITYPENGGUNA;
 }
 
 void printTabPengguna()
 {
     printf("[");
-    IdxType i = getFirstIdx(dataPengguna);
-    while (i <= getLastIdx(dataPengguna))
+    int i = getFirstIdxTabPengguna(dataPengguna);
+    while (i <= getLastIdxTabPengguna(dataPengguna))
     {
-        printf("%d", SelectPengguna(dataPengguna, i));
-        if (i < getLastIdx(dataPengguna))
+        printf("%d", SELECT_PENGGUNA(dataPengguna, i));
+        if (i < getLastIdxTabPengguna(dataPengguna))
         {
             printf(",");
         }
@@ -69,41 +52,41 @@ void printTabPengguna()
 
 int indexOfTabPengguna(Pengguna val)
 {
-    IdxType i = getFirstIdx(dataPengguna);
-    while (i <= getLastIdx(dataPengguna))
+    int i = getFirstIdxTabPengguna(dataPengguna);
+    while (i <= getLastIdxTabPengguna(dataPengguna))
     {
-        if (SelectPengguna(dataPengguna, i) == val)
+        if (SELECT_PENGGUNA(dataPengguna, i) == val)
         {
             return i;
         }
         i++;
     }
-    return IDX_UNDEF;
+    return IDX_UNDEF_TAB_PENGGUNA;
 }
 
 void insertFirstTabPengguna(Pengguna val)
 {
     if (!isFull(dataPengguna))
     {
-        IdxType last = getLastIdx(dataPengguna);
-        for (IdxType i = last; i >= getFirstIdx(dataPengguna); i--)
+        int last = getLastIdxTabPengguna(dataPengguna);
+        for (int i = last; i >= getFirstIdxTabPengguna(dataPengguna); i--)
         {
-            SelectPengguna(dataPengguna, i + 1) = SelectPengguna(dataPengguna, i);
+            SELECT_PENGGUNA(dataPengguna, i + 1) = SELECT_PENGGUNA(dataPengguna, i);
         }
-        SelectPengguna(dataPengguna, getFirstIdx(dataPengguna)) = val;
+        SELECT_PENGGUNA(dataPengguna, getFirstIdxTabPengguna(dataPengguna)) = val;
     }
 }
 
-void insertAtTabPengguna(Pengguna val, IdxType idx)
+void insertAtTabPengguna(Pengguna val, int idx)
 {
     if (!isFull(dataPengguna) && isIdxEffTabPengguna(idx))
     {
-        IdxType last = getLastIdx(dataPengguna);
-        for (IdxType i = last; i >= idx; i--)
+        int last = getLastIdxTabPengguna(dataPengguna);
+        for (int i = last; i >= idx; i--)
         {
-            SelectPengguna(dataPengguna, i + 1) = SelectPengguna(dataPengguna, i);
+            SELECT_PENGGUNA(dataPengguna, i + 1) = SELECT_PENGGUNA(dataPengguna, i);
         }
-        SelectPengguna(dataPengguna, idx) = val;
+        SELECT_PENGGUNA(dataPengguna, idx) = val;
     }
 }
 
@@ -111,68 +94,84 @@ void insertLastTabPengguna(Pengguna val)
 {
     if (!isFull(dataPengguna))
     {
-        IdxType last = getLastIdx(dataPengguna);
-        SelectPengguna(dataPengguna, last + 1) = val;
+        int last = getLastIdxTabPengguna(dataPengguna);
+        SELECT_PENGGUNA(dataPengguna, last + 1) = val;
     }
 }
 
 void deleteFirstTabPengguna(Pengguna *val)
 {
-    if (!isEmpty(dataPengguna))
+    if (!isTabPenggunaEmpty(dataPengguna))
     {
-        *val = SelectPengguna(dataPengguna, getFirstIdx(dataPengguna));
-        IdxType last = getLastIdx(dataPengguna);
-        for (IdxType i = getFirstIdx(dataPengguna); i < last; i++)
+        *val = SELECT_PENGGUNA(dataPengguna, getFirstIdxTabPengguna(dataPengguna));
+        int last = getLastIdxTabPengguna(dataPengguna);
+        for (int i = getFirstIdxTabPengguna(dataPengguna); i < last; i++)
         {
-            SelectPengguna(dataPengguna, i) = SelectPengguna(dataPengguna, i + 1);
+            SELECT_PENGGUNA(dataPengguna, i) = SELECT_PENGGUNA(dataPengguna, i + 1);
         }
-        SelectPengguna(dataPengguna, last) = MARK;
+        SELECT_PENGGUNA(dataPengguna, last) = MARK;
     }
 }
 
-void deleteAtTabPengguna(Pengguna *val, IdxType idx)
+void deleteAtTabPengguna(Pengguna *val, int idx)
 {
-    if (!isEmpty(dataPengguna) && isIdxEffTabPengguna(dataPengguna, idx))
+    if (!isTabPenggunaEmpty(dataPengguna) && isIdxEffTabPengguna(dataPengguna, idx))
     {
-        *val = SelectPengguna(dataPengguna, idx);
-        IdxType last = getLastIdx(dataPengguna);
-        for (IdxType i = idx; i < last; i++)
+        *val = SELECT_PENGGUNA(dataPengguna, idx);
+        int last = getLastIdxTabPengguna(dataPengguna);
+        for (int i = idx; i < last; i++)
         {
-            SelectPengguna(dataPengguna, i) = SelectPengguna(dataPengguna, i + 1);
+            SELECT_PENGGUNA(dataPengguna, i) = SELECT_PENGGUNA(dataPengguna, i + 1);
         }
-        SelectPengguna(dataPengguna, last) = MARK;
+        SELECT_PENGGUNA(dataPengguna, last) = MARK;
     }
 }
 
-void deleteLastTabPengguna(Pengguna *val)
+void deleteLastTabPengguna(TabPengguna *T, Pengguna *val)
 {
-    if (!isEmpty(dataPengguna))
+    if (!isTabPenggunaEmpty(*T))
     {
-        IdxType last = getLastIdx(dataPengguna);
-        *val = SelectPengguna(dataPengguna, last);
-        SelectPengguna(dataPengguna, last) = MARK;
+        int last = getLastIdxTabPengguna(*T);
+        *val = SELECT_PENGGUNA(*T, last);
+        ID_PENGGUNA(SELECT_PENGGUNA(*T, last)) = IDX_UNDEF_TAB_PENGGUNA;
     }
 }
 
-void sortTabPengguna(boolean asc)
+boolean checkUsernameExist(TabPengguna T, Sentence username, int numUsers)
 {
-    if (!isEmpty(dataPengguna))
-    {
-        IdxType n = listLength(dataPengguna);
-        Pengguna temp;
+    // Mengecek apakah pengguna ada dalam array TabPengguna
 
-        for (IdxType i = 0; i < n - 1; i++)
+    boolean found = false;
+
+    for (int i = 0; i < numUsers; ++i)
+    {
+        // Misalnya, anggaplah username disimpan dalam atribut tertentu dari Pengguna
+        // Gantilah dengan atribut sebenarnya yang menyimpan username di dalam Pengguna
+        if (IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(T, i)), username))
         {
-            for (IdxType j = 0; j < n - i - 1; j++)
-            {
-                if ((asc && SelectPengguna(dataPengguna, j) > SelectPengguna(dataPengguna, j + 1)) ||
-                    (!asc && SelectPengguna(dataPengguna, i) < SelectPengguna(dataPengguna, j + 1)))
-                {
-                    temp = SelectPengguna(dataPengguna, j);
-                    SelectPengguna(dataPengguna, j) = SelectPengguna(dataPengguna, j + 1);
-                    SelectPengguna(dataPengguna, j + 1) = temp;
-                }
-            }
+            found = true;
+            break;
         }
     }
+
+    return found;
+}
+boolean checkPassword(TabPengguna T, Sentence password, int numUsers)
+{
+    // Mengecek apakah password ada dalam array contents
+
+    boolean found = false;
+
+    for (int i = 0; i < numUsers; ++i)
+    {
+        // Misalnya, anggaplah password disimpan dalam atribut tertentu dari Pengguna
+        // Gantilah dengan atribut sebenarnya yang menyimpan password di dalam Pengguna
+        if (IsSentenceEqual(PASSWORD_PENGGUNA(SELECT_PENGGUNA(T, i)), password))
+        {
+            found = true;
+            break;
+        }
+    }
+
+    return found;
 }

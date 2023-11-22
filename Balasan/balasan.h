@@ -8,6 +8,21 @@
 #include "../General/sentenceMachine.h"
 #include "../General/datetime.h"
 
+typedef struct
+{
+    int IDParent;
+    int IDBalasan;
+    Sentence konten;
+    Sentence author;
+    int IDPengguna;
+    DATETIME waktu;
+} Balasan;
+
+#define ID_BALASAN(P) (P).IDBalasan
+#define KONTEN_BALASAN(P) (P).konten
+#define PENULIS_BALASAN(P) (P).IDPengguna
+#define WAKTU_BALASAN(P) (P).waktu
+
 typedef struct treeNode *addressTree;
 typedef struct treeNode
 {
@@ -30,20 +45,5 @@ void addBalasan(tree *parent, tree *child);
 void removeBalasan(tree *parent);
 void displayAllBalasan(tree root, int depth);
 addressTree searchBalasan(tree root, int val);
-
-typedef struct
-{
-    int IDParent;
-    int IDBalasan;
-    Sentence konten;
-    Sentence author;
-    int IDPengguna;
-    DATETIME waktu;
-} Balasan;
-
-#define ID_BALASAN(P) (P).IDBalasan
-#define KONTEN_BALASAN(P) (P).konten
-#define PENULIS_BALASAN(P) (P).IDPengguna
-#define WAKTU_BALASAN(P) (P).waktu
 
 #endif

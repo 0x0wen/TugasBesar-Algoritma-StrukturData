@@ -130,7 +130,7 @@ void LIHAT_PROFIL()
         int idPengguna = IdPengguna(penggunaSekarang);
         Word Privat = {"Privat", 6};
         Word Publik = {"Publik", 6};
-        Word TipeAkun = penggunaSekarang.jenisAkun;
+        boolean TipeAkun = penggunaSekarang.privat;
 
         if (IsWordEqual(name, penggunaSekarang.nama))
         {
@@ -146,7 +146,7 @@ void LIHAT_PROFIL()
                     Pengguna penggunaSekarang1 = SelectPengguna(dataPengguna, i);
                 }
             }
-            if (IsWordEqual(TipeAkun, Privat) && !isFriend())
+            if (IsWordEboolean(TipeAkun, Privat) && !isFriend())
             {
                 printf("Wah, akun ");
                 printWord(name);
@@ -177,15 +177,15 @@ void ATUR_JENIS_AKUN()
     }
     else
     {
-        Word TipeAkun = penggunaSekarang.jenisAkun;
+        boolean TipeAkun = penggunaSekarang.privat;
         Word Privat = {"Privat", 6};
         Word Publik = {"Publik", 6};
         Word YA = {"YA", 2};
         Word TIDAK = {"TIDAK", 5};
 
         printf("Saat ini, akun Anda adalah akun");
-        printWord(TipeAkun);
-        if (IsWordEqual(TipeAkun, Privat))
+        printboolean(TipeAkun);
+        if (IsWordEboolean(TipeAkun, Privat))
         {
             printf("Ingin mengubah ke akun Publik?");
             printf("\n");
@@ -197,7 +197,7 @@ void ATUR_JENIS_AKUN()
             }
             else
             {
-                penggunaSekarang.jenisAkun = Publik;
+                penggunaSekarang.privat = Publik;
                 printf("Akun anda sudah diubah menjadi akun Publik.");
             }
         }
@@ -213,7 +213,7 @@ void ATUR_JENIS_AKUN()
             }
             else
             {
-                penggunaSekarang.jenisAkun = Privat;
+                penggunaSekarang.privat = Privat;
                 printf("Akun anda sudah diubah menjadi akun Privat.\n");
             }
         }
@@ -240,11 +240,11 @@ void UBAH_FOTO_PROFIL()
         DISPLAY_FOTO_PROFIL(penggunaSekarang);
         printf("\n");
         printf("Masukkan foto profil yang baru\n");
-        Matrix fp;
+        FotoProfil fp;
         START();
         IgnoreBlanks();
         IgnoreEnters();
-        createMatrix(5, 10, &fp);
+        createFotoProfil(5, 10, &fp);
         int i, j;
         for (i = 0; i < ROW_EFF(fp); i++)
         {
@@ -257,7 +257,7 @@ void UBAH_FOTO_PROFIL()
             }
             IgnoreEnters();
         }
-        IdPengguna(penggunaSekarang).foto = fp;
+        ID_PENGGUNA(penggunaSekarang).foto = fp;
         printf("\n");
         printf("Foto profil anda sudah berhasil diganti!\n\n");
         PrintFoto(IdPengguna(penggunaSekarang));
@@ -266,8 +266,8 @@ void UBAH_FOTO_PROFIL()
 
 void DISPLAY_FOTO_PROFIL(Pengguna p)
 {
-    Matrix m = p.foto;
-    createMatrix(5, 10, &m);
+    FotoProfil m = p.foto;
+    createFotoProfil(5, 10, &m);
     int i, j;
     for (i = 0; i < ROW_EFF(m); i++)
     {

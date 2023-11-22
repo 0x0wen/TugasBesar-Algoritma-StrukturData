@@ -1,9 +1,9 @@
 #include "commandBalasan.h"
-
+#include <stdio.h>
 // Command Balasan
 void BALAS(int IDKicau, int IDBalasan)
 {
-    if (!isKicauanInTab(IDKicau))
+    if (!IsKicauanInTab(IDKicau))
     {
         printf("Wah, tidak terdapat kicauan yang ingin Anda balas!");
     }
@@ -44,7 +44,7 @@ void CETAK_BALASAN(int IDKicau)
     {
         printf("Wah, kicauan tersebut dibuat oleh pengguna dengan akun privat!");
     }
-    else if (isKicauanInTab(IDKicau))
+    else if (IsKicauanInTab(IDKicau))
     {
         printf("Tidak terdapat kicauan dengan id tersebut!");
     }
@@ -52,15 +52,15 @@ void CETAK_BALASAN(int IDKicau)
     {
         // anjay
     }
-};
+}
 
 void HAPUS_BALASAN(int IDKicau, int IDBalasan)
 {
     if (!isBalasanExistInKicauan(IDKicau, IDBalasan))
     {
-        printf("Balasan tidak ditemukan")
+        printf("Balasan tidak ditemukan");
     }
-    else if (PENULIS_BALASAN(cariBalasan(IDBalasan)))
+    else if (PENULIS_BALASAN(searchBalasan(IDBalasan)))
     {
         printf("Hei, ini balasan punya siapa? Jangan dihapus ya!");
     }

@@ -4,7 +4,7 @@
 #include "utas.h"
 
 /*  Kamus Umum */
-#define IDX_MIN 0
+#define IDX_MIN_TAB_UTAS 0
 /* Indeks minimum list */
 #define IDX_UNDEF_TAB_UTAS -1
 /* Indeks tak terdefinisi*/

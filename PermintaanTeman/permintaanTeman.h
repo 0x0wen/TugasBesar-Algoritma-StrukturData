@@ -2,7 +2,6 @@
 #define PERMINTAAN_TEMAN_H
 
 #include "../General/boolean.h"
-#include "../Pengguna/pengguna.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
@@ -10,8 +9,8 @@
 /* Definisi elemen dan address */
 typedef struct
 {
-    int prio;      /* popularitas pengguna */
-    Pengguna info; /* pengguna */
+    int prio;       /* popularitas pengguna */
+    int IDPengguna; /* pengguna */
 } AnggotaTeman;
 typedef int address; /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
@@ -19,9 +18,9 @@ typedef int address; /* indeks tabel */
 
 typedef struct
 {
-    Pengguna *T;  /* tabel penyimpan elemen */
-    address HEAD; /* alamat penghapusan */
-    address TAIL; /* alamat penambahan */
+    AnggotaTeman *T; /* tabel penyimpan elemen */
+    address HEAD;    /* alamat penghapusan */
+    address TAIL;    /* alamat penambahan */
 } PermintaanTeman;
 /* Definisi PrioQueueChar kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */

@@ -9,8 +9,6 @@
 #include "../FotoProfil/fotoProfil.h"
 #include "../General/listDinamis.h"
 
-#define MaxEl 100
-/* Nil adalah stack dengan elemen kosong . */
 
 typedef int infotype;
 typedef int address; /* indeks tabel */
@@ -61,9 +59,6 @@ void DAFTAR();
 void MASUK();
 void KELUAR();
 void TUTUP_PROGRAM();
-boolean checkUsernameExist(TabPengguna *tabPengguna, Word username, int numUsers);
-boolean checkPassword(TabPengguna *tabPengguna, Word password, int numUsers);
-void signingUser(Word username, Word password, TabPengguna *dataPengguna);
-Pengguna CURRENT_PENGGUNA(Word penggunaBaru);
+
 
 #endif

@@ -21,13 +21,9 @@ typedef struct treeNode {
 #define ADDRESS(P) (P)
 
 typedef addressTree tree;
-
 addressTree createNode(int data);
-
 void addChild(tree *parent,tree *child);
-
 void printTree(tree root, int depth);
-
 addressTree searchTree(tree root, int val);
 
 #endif

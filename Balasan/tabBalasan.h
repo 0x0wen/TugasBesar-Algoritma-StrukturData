@@ -6,16 +6,16 @@
 /*  Kamus Umum */
 #define IDX_MIN 0
 /* Indeks minimum list */
-#define IDX_UNDEF -1
+#define IDX_UNDEF_TAB_BALASAN -1
 /* Indeks tak terdefinisi*/
 
 typedef int IdxType; /* type indeks */
 
 typedef struct
 {
-    Balasan *buffer; /* memori tempat penyimpan elemen (container) */
-    int nEff;       /* >=0, banyaknya elemen efektif */
-    int capacity;   /* ukuran elemen */
+  Balasan *buffer; /* memori tempat penyimpan elemen (container) */
+  int nEff;        /* >=0, banyaknya elemen efektif */
+  int capacity;    /* ukuran elemen */
 } TabBalasan;
 /* Indeks yang digunakan [0..capacity-1] */
 /* Jika l adalah : ListDin, cara deklarasi dan akses: */
@@ -33,10 +33,10 @@ typedef struct
 /* TabUtas berisi kicauan yang merupakan utas*/
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define BUFFER(l) (l).buffer
-#define ELMT(l, i) (l).buffer[i]
-#define CAPACITY(l) (l).capacity
+#define NEFF_TAB_BALASAN(l) (l).nEff
+#define BUFFER_TAB_BALASAN(l) (l).buffer
+#define SELECT_BALASAN(l, i) (l).buffer[i]
+#define CAPACITY_TAB_BALASAN(l) (l).capacity
 
 /* ********** KONSTRUKTOR & DESTRUKTOR ********** */
 void createTabBalasan(int capacity);
@@ -49,10 +49,10 @@ int lengthTabBalasan();
 /* Mengirimkan banyaknya elemen efektif list */
 
 /* ********** Test Indeks yang valid ********** */
-boolean isIdxTabBalasanValid(IdxType i);
+boolean isIdxTabBalasanValid(int i);
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean isIdxTabBalasanEff(IdxType i);
+boolean isIdxTabBalasanEff(int i);
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
 /* yaitu antara 0..NEFF(l) */
 
@@ -60,7 +60,7 @@ boolean isTabBalasanEmpty();
 
 boolean isTabBalasanFull();
 
-IdxType indexOfTabBalasan(Balasan val);
+int indexOfTabBalasan(Balasan val);
 
 void insertLastTabBalasan(Balasan val);
 void deleteLastTabBalasan(Balasan *val);

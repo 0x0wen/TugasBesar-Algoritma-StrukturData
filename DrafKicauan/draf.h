@@ -10,35 +10,37 @@
 #include "../General/time_adt.h"
 #include "../General/boolean.h"
 #include "../Kicauan/kicauan.h"
-#include "../global.h"
-#include "../Pengguna/pengguna.h"
 #include <stdlib.h>
 
 #define NIL NULL
 /* Deklarasi infotype */
 /* Draf dengan representasi berkait dengan pointer */
-typedef struct node_draf* Address_draf;
-typedef struct node_draf { 
+typedef struct node_draf *Address_draf;
+typedef struct node *Address;
+
+typedef struct node_draf
+{
     Kicauan info_draf;
-    Address next_draf; 
-} Node_draf; 
+    Address next_draf;
+} Node_draf;
 
 /* Type Draf dengan ciri Top: */
-typedef struct { 
+typedef struct
+{
     Address_draf addrTop_draf; /* alamat Top: elemen puncak */
 } Draf;
 
 /* Selektor */
-#define     NEXT_DRAF(p) (p)->next_draf
-#define     INFO_DRAF(p) (p)->info_draf
+#define NEXT_DRAF(p) (p)->next_draf
+#define INFO_DRAF(p) (p)->info_draf
 #define ADDR_TOP_DRAF(s) (s).addrTop_draf
-#define      TOP_DRAF(s) (s).addrTop_draf->info_draf
+#define TOP_DRAF(s) (s).addrTop_draf->info_draf
 
 /* Prototype manajemen memori */
 // Address newNode(ElType x);
-/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
-   atau 
-   NULL jika alokasi gagal */   
+/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x,
+   atau
+   NULL jika alokasi gagal */
 
 /* ********* PROTOTYPE REPRESENTASI LOJIK Draf ***************/
 boolean isEmptyDraf(Draf s);
@@ -48,11 +50,11 @@ int lengthDraf(Draf s);
 /* Mengirimkan banyaknya elemen Draf. Mengirimkan 0 jika Draf s kosong */
 
 void CreateDraf(Draf *s);
-/* I.S. sembarang */ 
+/* I.S. sembarang */
 /* F.S. Membuat sebuah Draf s yang kosong */
 
-/* Proses : Menuliskan isi Draf, ditulis di antara kurung siku; antara dua elemen 
-    dipisahkan dengan separator "koma", tanpa tambahan karakter di depan, di tengah, 
+/* Proses : Menuliskan isi Draf, ditulis di antara kurung siku; antara dua elemen
+    dipisahkan dengan separator "koma", tanpa tambahan karakter di depan, di tengah,
     atau di belakang, termasuk spasi dan enter */
 /* I.S. s boleh kosong */
 /* F.S. Jika s tidak kosong: [e1,e2,...,en] */

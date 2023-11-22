@@ -78,39 +78,6 @@ void TUTUP_PROGRAM() {
     printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }
 
-boolean checkUsernameExist(TabPengguna *tabPengguna, Word username, int numUsers) {
-    // Mengecek apakah pengguna ada dalam array TabPengguna
-
-    boolean found = false;
-
-    for (int i = 0; i < numUsers; ++i) {
-        // Misalnya, anggaplah username disimpan dalam atribut tertentu dari Pengguna
-        // Gantilah dengan atribut sebenarnya yang menyimpan username di dalam Pengguna
-        if (IsWordEqual(tabPengguna->contents[i].usernameAttribute, username)) {
-            found = true;
-            break;
-        }
-    }
-
-    return found;
-}
-boolean checkPassword(TabPengguna *tabPengguna, Word password, int numUsers) {
-    // Mengecek apakah password ada dalam array contents
-
-    boolean found = false;
-
-    for (int i = 0; i < numUsers; ++i) {
-        // Misalnya, anggaplah password disimpan dalam atribut tertentu dari Pengguna
-        // Gantilah dengan atribut sebenarnya yang menyimpan password di dalam Pengguna
-        if (IsWordEqual(tabPengguna->contents[i].passwordAttribute, password)) {
-            found = true;
-            break;
-        }
-    }
-
-    return found;
-}
-
 // Fungsi untuk menyalin string secara manual
 void copyString(char *destination, const char *source, int maxSize) {
     for (int i = 0; i < maxSize - 1 && source[i] != '\0'; ++i) {
@@ -119,29 +86,6 @@ void copyString(char *destination, const char *source, int maxSize) {
 
     // Pastikan string diakhiri dengan karakter null
     destination[maxSize - 1] = '\0';
-}
-
-void signingUser(Word username, Word password, TabPengguna *dataPengguna) {
-    if (&dataPengguna.length < 20) {
-        // Assuming Word is an array of characters
-        // Assuming Pengguna is the structure used to store user information
-        Pengguna *currentUser = &dataPengguna->pengguna[dataPengguna->numUsers];
-
-        // Copy username and password to the current user
-        copyString(currentUser->usernameAttribute, &username, 20);
-        copyString(currentUser->passwordAttribute, &password, 20);
-
-        // You need to populate other attributes as well according to your structure
-
-        // Increment the user count
-        dataPengguna->numUsers++;
-    } else {
-        printf("DataPengguna is full. Cannot add more users.\n");
-    }
-}
-
-Pengguna CURRENT_PENGGUNA(Word penggunaBaru) {
-    penggunaSekarang = penggunaBaru;
 }
 
 

@@ -3,6 +3,10 @@
 
 #include "kicauan.h"
 
+#define IDX_MIN_TAB_KICAUAN 0
+/* Indeks minimum list */
+#define IDX_UNDEF_TAB_KICAUAN -1
+/* Indeks tak terdefinisi*/
 /*** Struct TabKicauan berupa List Dinamis ***/
 typedef struct
 {
@@ -13,11 +17,11 @@ typedef struct
 } TabKicauan;
 
 /*** Selektor Struct TabKicauan ***/
-#define NEFF(T) (T).nEff
-#define TAB(T) (T).buffer
-#define ELMT(T, i) (T).buffer[i]
-#define CAPACITY(T) (T).capacity
-#define MAXID(T) (T).maxID
+#define NEFF_TAB_KICAUAN(T) (T).nEff
+#define SELECT_TAB_KICAUAN(T) (T).buffer
+#define SELECT_KICAUAN(T, i) (T).buffer[i]
+#define CAPACITY_TAB_KICAUAN(T) (T).capacity
+#define MAXID_TAB_KICAUAN(T) (T).maxID
 
 /*** Kreator/Deletor Tab Kicauan ***/
 void createTabKicauan(TabKicauan *t, int capacity);
@@ -44,6 +48,5 @@ Kicauan createKicauan();
 void printKicauan(Kicauan k);
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/
-
 
 #endif
