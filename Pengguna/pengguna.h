@@ -68,5 +68,6 @@ void TUTUP_PROGRAM();
 boolean checkUsernameExist(TabPengguna *tabPengguna, Word username, int numUsers);
 boolean checkPassword(TabPengguna *tabPengguna, Word password, int numUsers);
 void signingUser(Word username, Word password, TabPengguna *dataPengguna);
+Pengguna CURRENT_PENGGUNA(Word penggunaBaru);
 
 #endif

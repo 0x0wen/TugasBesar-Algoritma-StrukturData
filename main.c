@@ -37,9 +37,9 @@ int main() {
     printf(">> ");
     STARTWORD();
 
-    if (IsWordEqualStr(&currentWord, 'DAFTAR'))
+    if (isWordEqualStr(&currentWord, "DAFTAR"))
       DAFTAR();
-    if (IsWordEqualStr(&currentWord, 'MASUK'))
+    if (isWordEqualStr(&currentWord, "MASUK"))
       MASUK();
   }
 
@@ -55,7 +55,7 @@ int main() {
     if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN")) DAFTAR_TEMAN();
     if (isWordEqualStr(&currentWord, "HAPUS_TEMAN")) HAPUS_TEMAN();
     if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN")) TAMBAH_TEMAN();
-    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN")) DAFTAR_PERMINTAAN_PERTEMAN();
+    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN")) DAFTAR_PERMINTAAN_PERTEMANAN();
     if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN")) SETUJUI_PERTEMANAN();
     if (isWordEqualStr(&currentWord, "KICAU")) KICAU();
     if (isWordEqualStr(&currentWord, "KICAUAN")) KICAU();

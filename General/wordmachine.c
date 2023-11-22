@@ -205,7 +205,7 @@ int LengthStr(const char *str) {
     return length;
 }
 
-boolean isWordEqualStr(const Word *w, const char *str) {
+boolean isWordEqualStr(Word *w, char *str) {
     int n = w->Length;
     int strLength = LengthStr(str);
 
@@ -224,7 +224,7 @@ boolean isWordEqualStr(const Word *w, const char *str) {
     return true;
 }
 
-int wordToInteger(const Word *word) {
+int wordToInteger(Word *word) {
     // Check if the Word is empty
     if (word->Length == 0) {
         printf("Error: Empty Word\n");

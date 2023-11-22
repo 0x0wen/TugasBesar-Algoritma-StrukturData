@@ -140,7 +140,7 @@ void signingUser(Word username, Word password, TabPengguna *dataPengguna) {
     }
 }
 
-int CURRENT_PENGGUNA(Word penggunaBaru) {
+Pengguna CURRENT_PENGGUNA(Word penggunaBaru) {
     penggunaSekarang = penggunaBaru;
 }
 
