@@ -15,7 +15,7 @@ BUILD_DIR = build
 
 # Compiler dan flags
 CC = gcc
-CFLAGS = -Wall -std=c11
+CFLAGS = -Wall -std=c11 -MMD
 
 # Source files
 MAIN_SOURCES = main.c
@@ -51,6 +51,33 @@ all: $(BUILD_DIR) main
 $(BUILD_DIR)/main.o: $(MAIN_SOURCES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BUILD_DIR)/%.o: $(ADT_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(BALASAN_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(DRAF_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(GENERAL_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(INISIALISASI_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(KICAUAN_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(PERMINTAAN_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(TEMAN_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(UTAS_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 # Aturan untuk membuat executable
 main: $(BUILD_DIR) $(MAIN_OBJ) $(ADT_OBJ) $(BALASAN_OBJ) $(DRAF_OBJ) $(GENERAL_OBJ) $(INISIALISASI_OBJ) $(KICAUAN_OBJ) $(PENGGUNA_OBJ) $(PERMINTAAN_OBJ) $(TEMAN_OBJ) $(UTAS_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
@@ -66,3 +93,5 @@ clean:
 # Membuat direktori build jika belum ada
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
+
+-include $(BUILD_DIR)/*.d

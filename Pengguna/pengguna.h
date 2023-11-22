@@ -7,7 +7,6 @@
 /* Implementasi dalam bahasa C dengan alokasi statik */
 
 #include "../General/boolean.h"
-#include "../global.h"
 #include "../General/sentenceMachine.h"
 #include "../Kicauan/kicauan.h"
 #include "../Balasan/balasan.h"

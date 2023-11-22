@@ -1,8 +1,6 @@
 #ifndef COMMAND_PENGGUNA_H
 #define COMMAND_PENGGUNA_H
 
-
-#include "global.h"
 #include "commandPengguna.h"
 
 /* PROFIL */

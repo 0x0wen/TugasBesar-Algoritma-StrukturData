@@ -24,7 +24,6 @@ typedef struct treeNode
 typedef addressTree tree;
 
 addressTree createBalasan(Kicauan data);
-
 void addBalasan(tree *parent, tree *child);
 void removeBalasan(tree *parent, tree *child);
 void displayAllBalasan(tree root, int depth);
@@ -52,7 +51,5 @@ typedef struct
 #define KONTEN_BALASAN(P) (P).konten;
 #define PENULIS_BALASAN(P) (P).IDPengguna;
 #define WAKTU_BALASAN(P) (P).waktu;
-
-
 
 #endif
