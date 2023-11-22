@@ -5,7 +5,7 @@
 #include "pengguna.h"
 
 /*  Kamus Umum */
-#define CAPACITY 20
+#define CAPACITYPENGGUNA 20
 /* Kapasitas penyimpanan */
 #define IDX_MIN 0
 /* Indeks minimum list */
@@ -18,7 +18,7 @@
 typedef int IdxType;
 typedef struct
 {
-   Pengguna contents[CAPACITY]; /* memori tempat penyimpan elemen (container) */
+   Pengguna contents[CAPACITYPENGGUNA]; /* memori tempat penyimpan elemen (container) */
 } TabPengguna;
 
 /* Indeks yang digunakan [0..CAPACITY-1] */

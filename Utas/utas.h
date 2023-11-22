@@ -37,7 +37,7 @@ typedef struct node
 Address newKicauanSambungan(KicauanSambungan val);
 typedef Address TabKicauanSambungan;
 
-#define IDX_UNDEF (-1)
+// #define IDX_UNDEF (-1)
 #define FIRST(l) (l)
 
 typedef struct

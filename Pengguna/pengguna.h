@@ -8,10 +8,7 @@
 
 #include "../General/boolean.h"
 #include "../General/sentenceMachine.h"
-#include "../Kicauan/kicauan.h"
-#include "../Balasan/balasan.h"
 #include "../Balasan/tabBalasan.h"
-#include "../Utas/utas.h"
 #include "../Utas/tabUtas.h"
 #include "../DrafKicauan/draf.h"
 #include "../PermintaanTeman/permintaanTeman.h"

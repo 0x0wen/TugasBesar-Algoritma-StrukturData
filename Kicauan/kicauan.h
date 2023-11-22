@@ -10,6 +10,7 @@
 #include "../General/time_adt.h"
 #include "../General/boolean.h"
 #include "../Pengguna/pengguna.h"
+#include "../Balasan/balasan.h"
 
 /*** Struct Kicauan ***/
 typedef struct

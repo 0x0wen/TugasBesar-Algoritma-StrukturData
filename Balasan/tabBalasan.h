@@ -9,6 +9,8 @@
 #define IDX_UNDEF -1
 /* Indeks tak terdefinisi*/
 
+typedef int IdxType; /* type indeks */
+
 typedef struct
 {
     Balasan *buffer; /* memori tempat penyimpan elemen (container) */
