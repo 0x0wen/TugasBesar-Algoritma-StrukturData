@@ -15,7 +15,7 @@ int JUMLAH_TEMAN(int IDPengguna)
 
 void DAFTAR_TEMAN()
 {
-    for (int i = 0; i < len(dataPengguna); i++)
+    for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
     {
         if (ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)) == ID_PENGGUNA(p))
         {
@@ -58,7 +58,7 @@ void DAFTAR_TEMAN()
 
 void HAPUS_TEMAN()
 {
-    for (int i = 0; i < len(dataPengguna); i++)
+    for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
     {
         if (ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)) == ID_PENGGUNA(p))
         {
