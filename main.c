@@ -135,7 +135,7 @@ int main() {
 
   if (statusProgram)
   {
-    if (IsWordEqualStr(&currentWord, "TUTUP_PROGRAM"))
+    if (isWordEqualStr(&currentWord, "TUTUP_PROGRAM"))
       TUTUP_PROGRAM();
   }
 
