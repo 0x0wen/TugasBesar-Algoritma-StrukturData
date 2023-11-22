@@ -145,21 +145,21 @@ Pengguna CURRENT_PENGGUNA(Word penggunaBaru) {
 }
 
 
-void Display_PROFIL(Pengguna p)
+void Display_PROFIL(Pengguna user)
 {
     printf("|  Nama: ");
-    printWord(p.nama);
+    printWord(NamaPengguna(user));
     printf("\n");
     printf("|  Bio Akun: ");
-    printWord(p.bio);
+    printWord(BioPengguna(user));
     printf("\n");
     printf("|  No HP: ");
-    printWord(p.noHP);
+    printWord(NoHPPengguna(user));
     printf("\n");
     printf("|  Weton: ");
-    printWord(p.weton);
+    printWord(WetonPengguna(user));
     printf("\n");
     printf("Foto profil akun :");
-    DISPLAY_FOTO_PROFIL(p);
+    DISPLAY_FOTO_PROFIL(user);
     printf("\n");
 }

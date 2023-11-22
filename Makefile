@@ -6,9 +6,10 @@ GENERAL_DIR = General
 INISIALISASI_DIR = Inisialisasi
 KICAUAN_DIR = Kicauan
 PENGGUNA_DIR = Pengguna
-PERMINTAAN_DIR = Permintaan-pertemanan
+PERMINTAAN_DIR = PermintaanTeman
 TEMAN_DIR = Teman
 UTAS_DIR = Utas
+FOTO_PROFIL_DIR = FotoProfil
 
 # Direktori untuk objek files
 BUILD_DIR = build
@@ -19,16 +20,17 @@ CFLAGS = -Wall -std=c11 -MMD
 
 # Source files
 MAIN_SOURCES = main.c
-ADT_SOURCES = $(wildcard $(ADT_DIR)/*.c)
-BALASAN_SOURCES = $(wildcard $(BALASAN_DIR)/*.c)
-DRAF_SOURCES = $(wildcard $(DRAF_DIR)/*.c)
-GENERAL_SOURCES = $(wildcard $(GENERAL_DIR)/*.c)
-INISIALISASI_SOURCES = $(wildcard $(INISIALISASI_DIR)/*.c)
-KICAUAN_SOURCES = $(wildcard $(KICAUAN_DIR)/*.c)
-PENGGUNA_SOURCES = $(wildcard $(PENGGUNA_DIR)/*.c)
-PERMINTAAN_SOURCES = $(wildcard $(PERMINTAAN_DIR)/*.c)
-TEMAN_SOURCES = $(wildcard $(TEMAN_DIR)/*.c)
-UTAS_SOURCES = $(wildcard $(UTAS_DIR)/*.c)
+ADT_SOURCES = $(ADT_DIR)/*.c
+BALASAN_SOURCES = $(BALASAN_DIR)/balasan.c $(BALASAN_DIR)/commandBalasan.c $(BALASAN_DIR)/tabBalasan.c
+DRAF_SOURCES = $(DRAF_DIR)/draf.c $(DRAF_DIR)/commandDraf.c
+GENERAL_SOURCES = $(GENERAL_DIR)/*.c
+INISIALISASI_SOURCES = $(INISIALISASI_DIR)/*.c
+KICAUAN_SOURCES = $(KICAUAN_DIR)/kicauan.c $(KICAUAN_DIR)/commandKicauan.c $(KICAUAN_DIR)/tabKicauan.c
+PENGGUNA_SOURCES = $(PENGGUNA_DIR)/pengguna.c $(PENGGUNA_DIR)/commandPengguna.c $(PENGGUNA_DIR)/tabPengguna.c
+PERMINTAAN_SOURCES = $(PERMINTAAN_DIR)/permintaanTeman.c $(PERMINTAAN_DIR)/commandPermintaanTeman.c 
+TEMAN_SOURCES = $(TEMAN_DIR)/teman.c $(TEMAN_DIR)/commandTeman.c 
+UTAS_SOURCES = $(UTAS_DIR)/utas.c $(UTAS_DIR)/commandUtas.c $(UTAS_DIR)/tabUtas.c
+FOTO_PROFIL_SOURCES = $(FOTO_PROFIL_SOURCES)/utas.c $(FOTO_PROFIL_SOURCES)/commandUtas.c $(FOTO_PROFIL_SOURCES)/tabUtas.c
 
 # Objek files
 MAIN_OBJ = $(BUILD_DIR)/main.o

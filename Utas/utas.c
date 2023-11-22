@@ -5,15 +5,15 @@
 Address newKicauanSambungan(KicauanSambungan val)
 {
 
-    Address NODE = (Address)malloc(sizeof(Node));
+    Address NodeKicauanSambungan = (Address)malloc(sizeof(NodeKicauanSambungan));
 
-    if (NODE != NULL)
+    if (NodeKicauanSambungan != NULL)
     {
-        INFO(NODE) = val;
-        NEXT(NODE) = NULL;
+        INFO(NodeKicauanSambungan) = val;
+        NEXT(NodeKicauanSambungan) = NULL;
     }
 
-    return NODE;
+    return NodeKicauanSambungan;
 }
 
 void createTabKicauanSambungan(TabKicauanSambungan *T)
@@ -30,20 +30,20 @@ boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T)
 int indexOfTabKicauanSambungan(TabKicauanSambungan T, KicauanSambungan val)
 {
 
-    Address NODE = FIRST(T);
+    Address NodeKicauanSambungan = FIRST(T);
     int IDX = 0;
     boolean FOUND = false;
 
-    while (NODE != NULL && !FOUND)
+    while (NodeKicauanSambungan != NULL && !FOUND)
     {
-        if (INFO(NODE) == val)
+        if (INFO(NodeKicauanSambungan) == val)
         {
             FOUND = true;
         }
         else
         {
             IDX++;
-            NODE = NEXT(NODE);
+            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
         }
     }
 
@@ -53,19 +53,19 @@ int indexOfTabKicauanSambungan(TabKicauanSambungan T, KicauanSambungan val)
     }
     else
     {
-        return IDX_UNDEF;
+        return IDX_UNDEF_UTAS;
     }
 }
 
 void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
 {
 
-    Address NEWNODE = newNode(val);
+    Address NodeKicauanSambungan = newNode(val);
 
-    if (NEWNODE != NULL)
+    if (NodeKicauanSambungan != NULL)
     {
-        NEXT(NEWNODE) = FIRST(*T);
-        FIRST(*T) = NEWNODE;
+        NEXT(NodeKicauanSambungan) = FIRST(*T);
+        FIRST(*T) = NodeKicauanSambungan;
     }
 }
 
@@ -79,18 +79,18 @@ void insertLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
     else
     {
 
-        Address NODE = FIRST(*T);
+        Address NodeKicauanSambungan = FIRST(*T);
 
-        while (NEXT(NODE) != NULL)
+        while (NEXT(NodeKicauanSambungan) != NULL)
         {
-            NODE = NEXT(NODE);
+            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
         }
 
-        Address NEWNODE = newNode(val);
+        Address NodeKicauanSambunganNew = newNode(val);
 
-        if (NEWNODE != NULL)
+        if (NodeKicauanSambunganNew != NULL)
         {
-            NEXT(NODE) = NEWNODE;
+            NEXT(NodeKicauanSambungan) = NodeKicauanSambunganNew;
         }
     }
 }
@@ -105,50 +105,50 @@ void insertAtTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val, i
     else
     {
 
-        Address NEWNODE = newNode(val);
+        Address NodeKicauanSambunganNew = newNode(val);
 
-        if (NEWNODE != NULL)
+        if (NodeKicauanSambunganNew != NULL)
         {
-            Address NODE = FIRST(*T);
+            Address NodeKicauanSambungan = FIRST(*T);
 
             int i;
             for (i = 0; i < idx - 1; i++)
             {
-                NODE = NEXT(NODE);
+                NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
             }
-            NEXT(NEWNODE) = NEXT(NODE);
-            NEXT(NODE) = NEWNODE;
+            NEXT(NodeKicauanSambunganNew) = NEXT(NodeKicauanSambungan);
+            NEXT(NodeKicauanSambungan) = NodeKicauanSambunganNew;
         }
     }
 }
 void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val)
 {
 
-    Address NODE = FIRST(*T);
-    *val = INFO(NODE);
+    Address NodeKicauanSambungan = FIRST(*T);
+    *val = INFO(NodeKicauanSambungan);
 
-    FIRST(*T) = NEXT(NODE);
-    free(NODE);
+    FIRST(*T) = NEXT(NodeKicauanSambungan);
+    free(NodeKicauanSambungan);
 }
 void deleteLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val)
 {
 
-    Address NODE = NULL;
+    Address NodeKicauanSambungan = NULL;
     Address LAST = FIRST(*T);
 
     while (NEXT(LAST) != NULL)
     {
-        NODE = LAST;
+        NodeKicauanSambungan = LAST;
         LAST = NEXT(LAST);
     }
 
-    if (NODE == NULL)
+    if (NodeKicauanSambungan == NULL)
     {
         FIRST(*T) = NULL;
     }
     else
     {
-        NEXT(NODE) = NULL;
+        NEXT(NodeKicauanSambungan) = NULL;
     }
 
     *val = INFO(LAST);
@@ -163,20 +163,20 @@ void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx, KicauanSambung
     }
     else
     {
-        Address NODE = FIRST(*T);
+        Address NodeKicauanSambungan = FIRST(*T);
 
         int i;
 
         for (i = 0; i < idx - 1; i++)
         {
-            NODE = NEXT(NODE);
+            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
         }
 
-        Address DELETE = NEXT(NODE);
+        Address DELETE = NEXT(NodeKicauanSambungan);
 
         *val = INFO(DELETE);
 
-        NEXT(NODE) = NEXT(DELETE);
+        NEXT(NodeKicauanSambungan) = NEXT(DELETE);
         free(DELETE);
     }
 }
@@ -187,14 +187,14 @@ void displayTabKicauanSambungan(TabKicauanSambungan T)
 
     if (!isTabKicauanSambunganEmpty(T))
     {
-        Address NODE = FIRST(T);
+        Address NodeKicauanSambungan = FIRST(T);
 
-        while (NEXT(NODE) != NULL)
+        while (NEXT(NodeKicauanSambungan) != NULL)
         {
-            printf("%d,", INFO(NODE));
-            NODE = NEXT(NODE);
+            printf("%d,", INFO(NodeKicauanSambungan));
+            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
         }
-        printf("%d", INFO(NODE));
+        printf("%d", INFO(NodeKicauanSambungan));
     }
 
     printf("]");
@@ -209,11 +209,11 @@ int lengthTabKicauanSambungan(TabKicauanSambungan T)
     }
 
     int len = 1;
-    Address NODE = FIRST(T);
+    Address NodeKicauanSambungan = FIRST(T);
 
-    while (NEXT(NODE) != NULL)
+    while (NEXT(NodeKicauanSambungan) != NULL)
     {
-        NODE = NEXT(NODE);
+        NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
         len++;
     }
 

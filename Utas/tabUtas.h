@@ -6,7 +6,7 @@
 /*  Kamus Umum */
 #define IDX_MIN 0
 /* Indeks minimum list */
-#define IDX_UNDEF -1
+#define IDX_UNDEF_TAB_UTAS -1
 /* Indeks tak terdefinisi*/
 
 typedef struct
@@ -47,10 +47,10 @@ int lengthTabUtas();
 /* Mengirimkan banyaknya elemen efektif list */
 
 /* ********** Test Indeks yang valid ********** */
-boolean isIdxTabUtasValid(IdxType i);
+boolean isIdxTabUtasValid(int i);
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean isIdxTabUtasEff(IdxType i);
+boolean isIdxTabUtasEff(int i);
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
 /* yaitu antara 0..NEFF(l) */
 
@@ -59,7 +59,7 @@ boolean isTabUtasEmpty();
 boolean isTabUtasFull();
 
 Utas cariUtas(int IDUtas);
-IdxType indexOfTabUtas(Utas val);
+int indexOfTabUtas(Utas val);
 
 void insertLastTabUtas(Utas val);
 void deleteLastTabUtas(Utas *val);

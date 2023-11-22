@@ -19,12 +19,12 @@ int lengthTabUtas()
     return NEFF_UTAS(dataUtas);
 };
 
-boolean isIdxTabUtasValid(IdxType i)
+boolean isIdxTabUtasValid(int i)
 {
     return (i < (CAPACITY_UTAS(dataUtas)) && i >= IDX_MIN);
 };
 
-boolean isIdxTabUtasEff(IdxType i)
+boolean isIdxTabUtasEff(int i)
 {
     return (i < (NEFF_UTAS(dataUtas)) && i >= IDX_MIN);
 };
@@ -39,7 +39,7 @@ boolean isTabUtasFull()
     return (NEFF_UTAS(dataUtas) == CAPACITY_UTAS(dataUtas));
 };
 
-IdxType indexOfTabUtas(Utas utas)
+int indexOfTabUtas(Utas utas)
 {
     int i;
     for (i = IDX_MIN; i < NEFF_UTAS(dataUtas); i++)
@@ -49,7 +49,7 @@ IdxType indexOfTabUtas(Utas utas)
             return i;
         }
     }
-    return IDX_UNDEF;
+    return IDX_UNDEF_TAB_UTAS;
 };
 
 void insertLastTabUtas(Utas val)
