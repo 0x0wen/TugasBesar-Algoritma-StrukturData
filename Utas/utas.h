@@ -25,7 +25,7 @@ typedef struct node
 {
   KicauanSambungan info;
   Address next;
-} Node;
+} NodeKicauanSambungan;
 /* Definisi List : */
 /* List kosong : FIRST(l) = NULL */
 /* Setiap elemen dengan Address p dapat diacu INFO(p), NEXT(p) */
@@ -37,7 +37,7 @@ typedef struct node
 Address newKicauanSambungan(KicauanSambungan val);
 typedef Address TabKicauanSambungan;
 
-// #define IDX_UNDEF (-1)
+#define IDX_UNDEF_UTAS (-1)
 #define FIRST(l) (l)
 
 typedef struct
