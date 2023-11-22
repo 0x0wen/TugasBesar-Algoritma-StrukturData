@@ -1,18 +1,13 @@
 #ifndef PENGGUNA_H
 #define PENGGUNA_H
 
-/* File : stack.h */
-/* deklarasi stack yang diimplementasi dengan tabel kontigu dan ukuran sama */
-/* TOP adalah alamat elemen puncak */
-/* Implementasi dalam bahasa C dengan alokasi statik */
 
 #include "../General/boolean.h"
 #include "../General/sentenceMachine.h"
-#include "../Balasan/tabBalasan.h"
-#include "../Utas/tabUtas.h"
 #include "../DrafKicauan/draf.h"
 #include "../PermintaanTeman/permintaanTeman.h"
 #include "../FotoProfil/fotoProfil.h"
+#include "../General/listDinamis.h"
 
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
@@ -29,14 +24,14 @@ typedef struct
     Sentence kataSandi;
     Sentence bio;
     Word weton;
-    int noHP;
+    Word noHP;
     boolean privat;
     FotoProfil foto;
-    TabKicauan kicauan;
-    TabBalasan balasan;
-    TabUtas utas;
-    PermintaanTeman permintaan_teman;
-    Draf drafkicauan;
+    ListDin daftarKicauan;
+    ListDin daftarBalasan;
+    ListDin daftarUtas;
+    PermintaanTeman daftarPermmintaanTeman;
+    Draf drafKicauan;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
@@ -45,18 +40,19 @@ typedef struct
 /* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define IdPengguna(P) (P).id
-#define NamaPengguna(P) (P).nama
-#define KataSandiPengguna(P) (P).kataSandi
-#define BioPengguna(P) (P).bio
-#define WetonPengguna(P) (P).weton
-#define NoHPPengguna(P) (P).noHP
-#define PrivasiPengguna(P) (P).privat
-#define FotoPengguna(P) (P).foto
-#define KicauanPengguna(P, i) (P).kicauan[i]
-#define BalasanPengguna(P, i) (P).balasan[i]
-#define UtasPengguna(P, i) (P).utas[i]
-
+#define ID_PENGGUNA(P) (P).id
+#define NAMA_PENGGUNA(P) (P).nama
+#define PASSWORD_PENGGUNA(P) (P).kataSandi
+#define BIO_PENGGUNA(P) (P).bio
+#define WETON_PENGGUNA(P) (P).weton
+#define HP_PENGGUNA(P) (P).noHP
+#define PRIVASI_PENGGUNA(P) (P).privat
+#define FOTO_PENGGUNA(P) (P).foto
+#define KICAUAN_PENGGUNA(P, i) (P).daftarKicauan[i]
+#define BALASAN_PENGGUNA(P, i) (P).daftarBalasan[i]
+#define UTAS_PENGGUNA(P, i) (P).daftarUtas[i]
+#define PERMINTAAN_PENGGUNA(P, i) (P).daftarPermintaanTeman[i]
+#define DRAF_PENGGUNA(P, i) (P).drafKicauan[i]
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
