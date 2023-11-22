@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "../General/wordmachinefile.c"
 #include "../Pengguna/pengguna.h"
-#include "Alstrukdat\Tubes\Alstrokedat\ADT\sentenceMachine.h"
-#include "Alstrukdat\Tubes\Alstrokedat\global.h"
+#include "../General/sentenceMachine.h"
+#include "../global.h"
 
 Word writefilename(Word input1, Word input2){
     Word output;

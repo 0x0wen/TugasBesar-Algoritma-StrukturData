@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "Inisialisasi/inisialisasi.h"
 #include "General/wordmachine.h"
 #include "Pengguna/pengguna.h"
 #include "Pengguna/commandPengguna.h"
