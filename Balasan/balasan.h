@@ -27,7 +27,7 @@ typedef addressTree tree;
 
 addressTree createBalasan(Balasan data);
 void addBalasan(tree *parent, tree *child);
-void removeBalasan(tree *parent, tree *child);
+void removeBalasan(tree *parent);
 void displayAllBalasan(tree root, int depth);
 addressTree searchBalasan(tree root, int val);
 
