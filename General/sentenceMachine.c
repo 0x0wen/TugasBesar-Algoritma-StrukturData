@@ -1,60 +1,147 @@
 #include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 #include "sentenceMachine.h"
-/* File: charmachine.c */
-/* Implementasi Mesin Karakter */
 
-Sentence sentence;
+/* State Mesin Word */
+boolean EndWord;
+Word currentWord;
 
-void AcquireBlanks()
+void startSentence()
 {
-    int i = 0;
-    currentWord.Length = 0;
-    while (currentChar == BLANK)
+    START();
+    if (currentChar == MARK)
     {
-        currentWord.TabWord[i] = currentChar;
-        currentWord.Length++;
-        ADV();
-        i++;
+        EndWord = true;
+    }
+    else
+    {
+        CopyWord();
+        EndWord = false;
     }
 }
-/*  Membaca blank spaces
-    I.S :   currentChar adalah blank pertama
-    F.S :   currentWord adalah kumpulan blank
-            currentChar adalah sebuah character atau MARK
-    */
-
-void AcquireSentence()
+void ADVWORD()
 {
-    sentence.Length = 0;
+    IgnoreBlanks();
+    if (currentChar == MARK)
+    {
+        EndWord = true;
+    }
+    else
+    {
+        CopyWord();
+        IgnoreBlanks();
+    }
+}
+void CopyWord()
+{
     int i = 0;
     while (currentChar != MARK)
     {
-        if (currentChar == BLANK)
+        if (i < NMax)
         {
-            AcquireBlanks();
+            currentWord.TabWord[i] = currentChar;
         }
-        else
-        {
-            CopyWord();
-        }
-        sentence.TabSentence[i] = currentWord;
-        sentence.Length++;
+        i++;
+        currentWord.Length = i;
         ADV();
+    }
+
+    if (i > NMax)
+    {
+        currentWord.Length = NMax;
+    }
+}
+void writeWord(Word *writeWord, char input[], int length)
+{
+    int i;
+    for (i = 0; i < length; i++)
+    {
+        writeWord->TabWord[i] = input[i];
+    }
+    writeWord->TabWord[length] = '\0';
+    writeWord->Length = length;
+}
+
+
+void printSentence(Sentence w)
+{
+    int i;
+    for (i = 0; i < w.Length; i++)
+    {
+        printf("%c", w.TabWord[i]);
+    }
+}
+
+void InputSentence(Sentence *inputWord)
+{
+    startSentence();
+    if (EOP)
+    {
+        writeWord(inputWord, currentWord.TabWord, currentWord.Length);
+    }
+    else
+    {
+        writeWord(inputWord, "", 0);
+        while (!EOP)
+        {
+            ADVWORD();
+        }
+    }
+}
+
+boolean IsSentenceEqual(Sentence w1, Sentence w2)
+{
+    if (w1.Length != w2.Length)
+    {
+        return false;
+    }
+    else
+    {
+        int n = w1.Length;
+        boolean IsEqual = true;
+        int i = 0;
+        while (IsEqual && (i < n))
+        {
+            if ((w1.TabWord[i] != w2.TabWord[i]))
+            {
+                IsEqual = false;
+            }
+            else
+            {
+                i += 1;
+            }
+        }
+        return IsEqual;
+    }
+}
+boolean isOnlyBlank(Sentence w)
+{
+    boolean onlyBlank = true;
+    int i = 0;
+
+    while (i < w.Length && onlyBlank)
+    {
+        if (w.TabWord[i] != BLANK)
+        {
+            onlyBlank = false;
+        }
         i++;
     }
-};
-/* Membaca seluruh pita dan mengakuisisi kalimat
-   I.S. : currentChar adalah karakter pertama dari pita
-   F.S. : sentence berisi kalimat yang sudah diakuisisi dengan format array of words.
-          Contoh: "Saya suka     babi" akan disimpan dengan format ["Saya", " ", "suka", "     ", "babi"]
-          currentChar = MARK; */
 
-void PrintSentence()
+    return onlyBlank;
+}
+
+int LengthStr(const char *str)
 {
-    int i = 0;
-    for (i = 0; i < sentence.Length; i++)
+    int length = 0;
+
+    // Loop hingga karakter null ditemukan
+    while (str[length] != '\0')
     {
-        printWord(sentence.TabSentence[i]);
+        length++;
     }
+
+    return length;
 }
 
