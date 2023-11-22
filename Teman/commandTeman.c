@@ -1,6 +1,6 @@
 #include "commandTeman.h"
 
-int JUMLAH_TEMAN(Pengguna P)
+int JUMLAH_TEMAN(int IDPengguna)
 {
     int countTeman = 0;
     for (int i = 0; i < lengthTabPengguna(); i++)
@@ -13,7 +13,7 @@ int JUMLAH_TEMAN(Pengguna P)
     return countTeman;
 }
 
-void DAFTAR_TEMAN(Pengguna p)
+void DAFTAR_TEMAN()
 {
     for (int i = 0; i < len(dataPengguna); i++)
     {
@@ -23,7 +23,7 @@ void DAFTAR_TEMAN(Pengguna p)
         }
     }
 
-    if (ID_PENGGUNA(penggunaSekarang) == -1)
+    if (ID_PENGGUNA(penggunaSekarang) == IDX_UNDEF_TAB_PENGGUNA)
     {
         printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
     }
@@ -56,7 +56,7 @@ void DAFTAR_TEMAN(Pengguna p)
     }
 }
 
-void HAPUS_TEMAN(Pengguna p)
+void HAPUS_TEMAN()
 {
     for (int i = 0; i < len(dataPengguna); i++)
     {

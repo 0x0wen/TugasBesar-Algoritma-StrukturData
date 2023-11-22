@@ -1,10 +1,9 @@
 #ifndef COMMAND_TEMAN_H
 #define COMMAND_TEMAN_H
 
-#include "../Pengguna/pengguna.h"
+#include "../Pengguna/tabPengguna.h"
 
-int JUMLAH_TEMAN(Pengguna P);
-void DAFTAR_TEMAN(Pengguna p);
-void HAPUS_TEMAN(Pengguna p);
+void DAFTAR_TEMAN();
+void HAPUS_TEMAN();
 
 #endif
