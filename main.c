@@ -70,98 +70,27 @@ int main()
 
     if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN"))
     {
-      ADV();
-      Sentence namaPengguna; // Assuming namaPengguna is of type Word
-      Pengguna temanPengguna;
-
-      // Find the Pengguna with the given namaPengguna
-      for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
-      {
-        if (IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)), namaPengguna))
-        {
-          temanPengguna = SELECT_PENGGUNA(dataPengguna, i);
-          break; // Assuming each namaPengguna is unique
-        }
-      }
-
-      // Call the function with the selected Pengguna
-      DAFTAR_TEMAN(temanPengguna);
+      DAFTAR_TEMAN();
     }
 
     if (isWordEqualStr(&currentWord, "HAPUS_TEMAN"))
     {
-      ADV();
-      Sentence namaPengguna; // Assuming namaPengguna is of type Word
-      Pengguna temanPengguna;
-
-      // Find the Pengguna with the given namaPengguna
-      for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
-      {
-        if (IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)), namaPengguna))
-        {
-          temanPengguna = SELECT_PENGGUNA(dataPengguna, i);
-          break; // Assuming each namaPengguna is unique
-        }
-      }
-
-      HAPUS_TEMAN(temanPengguna);
+      HAPUS_TEMAN();
     }
 
     if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN"))
     {
-      ADV();
-      Sentence namaPengguna; // Assuming namaPengguna is of type Word
-      Pengguna temanPengguna;
-
-      // Find the Pengguna with the given namaPengguna
-      for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
-      {
-        if (IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)), namaPengguna))
-        {
-          temanPengguna = SELECT_PENGGUNA(dataPengguna, i);
-          break; // Assuming each namaPengguna is unique
-        }
-      }
-
-      TAMBAH_TEMAN(temanPengguna);
+      TAMBAH_TEMAN();
     }
 
     if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN"))
     {
-      ADV();
-      Sentence namaPengguna; // Assuming namaPengguna is of type Word
-      Pengguna temanPengguna;
-
-      // Find the Pengguna with the given namaPengguna
-      for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
-      {
-        if (IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)), namaPengguna))
-        {
-          temanPengguna = SELECT_PENGGUNA(dataPengguna, i);
-          break; // Assuming each namaPengguna is unique
-        }
-      }
-
-      DAFTAR_PERMINTAAN_PERTEMANAN(temanPengguna);
+      DAFTAR_PERMINTAAN_PERTEMANAN();
     }
 
     if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN"))
     {
-      ADV();
-      Sentence namaPengguna; // Assuming namaPengguna is of type Word
-      Pengguna temanPengguna;
-
-      // Find the Pengguna with the given namaPengguna
-      for (int i = 0; i < BANYAK_PENGGUNA(dataPengguna); i++)
-      {
-        if (IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)), namaPengguna))
-        {
-          temanPengguna = SELECT_PENGGUNA(dataPengguna, i);
-          break; // Assuming each namaPengguna is unique
-        }
-      }
-
-      SETUJUI_PERTEMANAN(temanPengguna);
+      SETUJUI_PERTEMANAN();
     }
 
     if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
