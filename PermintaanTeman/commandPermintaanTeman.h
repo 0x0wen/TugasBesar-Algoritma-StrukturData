@@ -3,8 +3,8 @@
 
 #include "../Pengguna/pengguna.h"
 
-void TAMBAH_TEMAN(Pengguna p);
-void DAFTAR_PERMINTAAN_PERTEMANAN(Pengguna p);
-void SETUJUI_PERTEMANAN(Pengguna p);
+void TAMBAH_TEMAN();
+void DAFTAR_PERMINTAAN_PERTEMANAN();
+void SETUJUI_PERTEMANAN();
 
 #endif
