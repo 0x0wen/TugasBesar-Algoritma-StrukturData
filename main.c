@@ -66,7 +66,7 @@ int main() {
 
       // Find the Pengguna with the given namaPengguna
       for (int i = 0; i < len(dataPengguna); i++) {
-          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+          if (IsWordEqual(&SelectPengguna(dataPengguna, i).nama, namaPengguna)) {
               temanPengguna = SelectPengguna(dataPengguna, i);
               break;  // Assuming each namaPengguna is unique
           }
@@ -83,7 +83,7 @@ int main() {
 
       // Find the Pengguna with the given namaPengguna
       for (int i = 0; i < len(dataPengguna); i++) {
-          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+          if (IsWordEqual(&SelectPengguna(dataPengguna, i).nama, namaPengguna)) {
               temanPengguna = SelectPengguna(dataPengguna, i);
               break;  // Assuming each namaPengguna is unique
           }
@@ -99,7 +99,7 @@ int main() {
 
       // Find the Pengguna with the given namaPengguna
       for (int i = 0; i < len(dataPengguna); i++) {
-          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+          if (IsWordEqual(&SelectPengguna(dataPengguna, i).nama, namaPengguna)) {
               temanPengguna = SelectPengguna(dataPengguna, i);
               break;  // Assuming each namaPengguna is unique
           }
@@ -115,7 +115,7 @@ int main() {
 
       // Find the Pengguna with the given namaPengguna
       for (int i = 0; i < len(dataPengguna); i++) {
-          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+          if (IsWordEqual(&SelectPengguna(dataPengguna, i).nama, namaPengguna)) {
               temanPengguna = SelectPengguna(dataPengguna, i);
               break;  // Assuming each namaPengguna is unique
           }
@@ -131,7 +131,7 @@ int main() {
 
       // Find the Pengguna with the given namaPengguna
       for (int i = 0; i < len(dataPengguna); i++) {
-          if (isWordEqual(&SelectPengguna(dataPengguna, i).nama, &namaPengguna)) {
+          if (IsWordEqual(&SelectPengguna(dataPengguna, i).nama, namaPengguna)) {
               temanPengguna = SelectPengguna(dataPengguna, i);
               break;  // Assuming each namaPengguna is unique
           }
@@ -169,7 +169,7 @@ int main() {
     if (isWordEqualStr(&currentWord, "BALASAN")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
-      BALASAN(IDKicau);
+      CETAK_BALASAN(IDKicau);
     }
 
     if (isWordEqualStr(&currentWord, "HAPUS_BALASAN")) {
@@ -183,7 +183,7 @@ int main() {
     if (isWordEqualStr(&currentWord, "UTAS")) {
       ADV();
       int IDKicau = wordToInteger(&currentWord);
-      UTAS(IDKicau);
+      CREATE_UTAS(IDKicau);
     }
 
     if (isWordEqualStr(&currentWord, "SAMBUNG_UTAS")) {
