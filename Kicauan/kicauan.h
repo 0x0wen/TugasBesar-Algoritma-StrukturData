@@ -19,19 +19,18 @@ typedef struct
   int Like;
   Sentence Author;
   DATETIME DateTime;
-  Balasan TabBalasan; /* Pointer ke Tree Balasan */
-} Kicauan;            /* tiap elemen pada list tsb merupakan root dari tree balasan */
+  TreeBalasan TabBalasan; /* Pointer ke Tree Balasan */
+} Kicauan;                /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
-#define ID_KICAU(K) (K).IDKicau;
-#define TEXT_KICAU(K) (K).Text;
-#define LIKE_KICAU(K) (K).Like;
-#define AUTHOR_KICAU(K) (K).Author;
-#define TIME_KICAU(K) (K).DateTime;
-#define LIST_BALASAN(K) *((K).TabBalasan); // nge retrieve list dinamis of balasan
+#define ID_KICAU(K) (K).IDKicau
+#define TEXT_KICAU(K) (K).Text
+#define LIKE_KICAU(K) (K).Like
+#define AUTHOR_KICAU(K) (K).Author
+#define TIME_KICAU(K) (K).DateTime
+#define LIST_BALASAN(K) (K).TabBalasan // nge retrieve list dinamis of balasan
 
 Kicauan createKicauan(int id, Sentence text, Sentence author);
 void printDetilKicau(Kicauan k);
-
 
 #endif
