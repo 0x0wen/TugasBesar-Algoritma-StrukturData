@@ -1,6 +1,5 @@
 build/main.o: main.c Inisialisasi/inisialisasi.h \
  Inisialisasi/../General/wordmachine.h Inisialisasi/../General/boolean.h \
- Inisialisasi/../General/charmachine.c \
  Inisialisasi/../General/charmachine.h General/wordmachine.h \
  Pengguna/pengguna.h Pengguna/../General/boolean.h \
  Pengguna/../General/sentenceMachine.h Pengguna/../General/boolean.h \
@@ -33,11 +32,13 @@ build/main.o: main.c Inisialisasi/inisialisasi.h \
  Utas/../Kicauan/kicauan.h Utas/../General/sentenceMachine.h \
  Utas/commandUtas.h Utas/tabUtas.h Utas/utas.h Teman/teman.h \
  Teman/../General/boolean.h Teman/commandTeman.h \
- Teman/../Pengguna/tabPengguna.h Teman/../global.h \
- Teman/../Pengguna/tabPengguna.h Teman/../Pengguna/pengguna.h \
- Teman/../Kicauan/tabKicauan.h Teman/../Utas/tabUtas.h \
- Teman/../Balasan/tabBalasan.h Teman/../Balasan/balasan.h \
- Teman/../Teman/tabTeman.h Teman/../Utas/commandUtas.h Teman/tabTeman.h \
+ Teman/../Pengguna/tabPengguna.h Teman/../General/wordmachine.h \
+ Teman/../General/charmachine.h Teman/../General/sentenceMachine.h \
+ Teman/../global.h Teman/../Pengguna/tabPengguna.h \
+ Teman/../Pengguna/pengguna.h Teman/../Kicauan/tabKicauan.h \
+ Teman/../Utas/tabUtas.h Teman/../Balasan/tabBalasan.h \
+ Teman/../Balasan/balasan.h Teman/../Teman/teman.h \
+ Teman/../Utas/commandUtas.h Teman/tabTeman.h \
  PermintaanTeman/permintaanTeman.h \
  PermintaanTeman/commandPermintaanTeman.h \
  PermintaanTeman/../Pengguna/pengguna.h PermintaanTeman/../global.h \

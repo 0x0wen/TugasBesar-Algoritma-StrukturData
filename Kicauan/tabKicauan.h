@@ -44,8 +44,8 @@ void expandListKicauan(TabKicauan *t, int num);
 // void compressListKicauan(TabKicauan *t);
 
 /*** Prosedur Kicauan ***/
-Kicauan createKicauan();
-void printKicauan(Kicauan k);
+// Kicauan createKicauan();
+// void printKicauan(Kicauan k);
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/
 Kicauan searchKicauan(TabKicauan t, int id);

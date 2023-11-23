@@ -20,6 +20,7 @@ typedef struct
 
 #define ID_BALASAN(P) (P).IDBalasan
 #define KONTEN_BALASAN(P) (P).konten
+#define AUTHOR_BALASAN(P) (P).author
 #define PENULIS_BALASAN(P) (P).IDPengguna
 #define WAKTU_BALASAN(P) (P).waktu
 
@@ -32,18 +33,19 @@ typedef struct treeNode
     addressTree parent;
 } NodeBalasan;
 
-#define DataNodeBalasan(P) (P)->data
-#define FirstChildBalasan(P) (P)->firstChild
-#define NextSiblingBalasan(P) (P)->nextSibling
-#define ParentBalasan(P) (P)->parent
-#define AdressBalasan(P) (P)
+#define DATA_NODE_BALASAN(P) (P)->data
+#define FIRST_CHILD_BALASAN(P) (P)->firstChild
+#define NEXT_SIBLING_BALASAN(P) (P)->nextSibling
+#define PARENT_BALASAN(P) (P)->parent
+#define ADDRESS_BALASAN(P) (P)
 
-typedef addressTree tree;
+typedef addressTree TreeBalasan;
 
 addressTree createBalasan(Balasan data);
-void addBalasan(tree *parent, tree *child);
-void removeBalasan(tree *parent);
-void displayAllBalasan(tree root, int depth);
-addressTree searchBalasan(tree root, int val);
+void addBalasan(TreeBalasan *parent, TreeBalasan *child);
+void removeBalasan(TreeBalasan *parent);
+void printTreeBalasan(TreeBalasan root, int depth);
+void displayAllBalasan(TreeBalasan root, int depth);
+Balasan *searchBalasan(TreeBalasan root, int val);
 
 #endif

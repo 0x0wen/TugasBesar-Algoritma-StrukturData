@@ -8,69 +8,68 @@ addressTree createBalasan(Balasan data)
     addressTree node = (addressTree)malloc(sizeof(NodeBalasan));
     if (node != NULL)
     {
-        DataNodeBalasan(node) = data;
-        FirstChildBalasan(node) = NULL;
-        NextSiblingBalasan(node) = NULL;
-        ParentBalasan(node) = NULL;
+        DATA_NODE_BALASAN(node) = data;
+        FIRST_CHILD_BALASAN(node) = NULL;
+        NEXT_SIBLING_BALASAN(node) = NULL;
+        PARENT_BALASAN(node) = NULL;
     }
     return node;
 }
 
-void addBalasan(tree *parent, tree *child)
+void addBalasan(TreeBalasan *parent, TreeBalasan *child)
 {
-
     if (*parent != NULL && *child != NULL)
     {
-        if (FirstChildBalasan(*parent) == NULL)
+        if (FIRST_CHILD_BALASAN(*parent) == NULL)
         {
-            FirstChildBalasan(*parent) = *child;
+            FIRST_CHILD_BALASAN(*parent) = *child;
         }
         else
         {
-            tree sibling = FirstChildBalasan(*parent);
+            TreeBalasan sibling = FIRST_CHILD_BALASAN(*parent);
             int x = 0;
-            while (NextSiblingBalasan(sibling) != NULL)
+            while (NEXT_SIBLING_BALASAN(sibling) != NULL)
             {
                 x++;
-                sibling = NextSiblingBalasan(sibling);
+                sibling = NEXT_SIBLING_BALASAN(sibling);
             }
-            NextSiblingBalasan(sibling) = *child;
+            NEXT_SIBLING_BALASAN(sibling) = *child;
         }
-        ParentBalasan(*child) = *parent;
+        PARENT_BALASAN(*child) = *parent;
     }
 }
 
-void removeBalasan(tree *node)
+void removeBalasan(TreeBalasan *node)
 {
-    if (ParentBalasan(*node) == NULL)
+    if (PARENT_BALASAN(*node) == NULL)
     {
         *node = NULL;
         free(*node);
     }
     else
     {
-        tree parent = ParentBalasan(*node);
-        tree sibling = FirstChildBalasan(parent);
+        TreeBalasan parent = PARENT_BALASAN(*node);
+        TreeBalasan sibling = FIRST_CHILD_BALASAN(parent);
         if (sibling == *node)
         {
-            FirstChildBalasan(parent) = NextSiblingBalasan(sibling);
+            FIRST_CHILD_BALASAN(parent) = NEXT_SIBLING_BALASAN(sibling);
             *node = NULL;
             free(*node);
         }
         else
         {
-            while (NextSiblingBalasan(sibling) != *node)
+            while (NEXT_SIBLING_BALASAN(sibling) != *node)
             {
                 ;
-                sibling = NextSiblingBalasan(sibling);
+                sibling = NEXT_SIBLING_BALASAN(sibling);
             }
-            if (NextSiblingBalasan(*node) != NULL)
+            if (NEXT_SIBLING_BALASAN(*node) != NULL)
             {
-                NextSiblingBalasan(sibling) = NextSiblingBalasan(*node);
+                NEXT_SIBLING_BALASAN(sibling) = NEXT_SIBLING_BALASAN(*node);
             }
             else
             {
-                NextSiblingBalasan(sibling) = NULL;
+                NEXT_SIBLING_BALASAN(sibling) = NULL;
             }
             *node = NULL;
             free(*node);
@@ -78,60 +77,67 @@ void removeBalasan(tree *node)
     }
 }
 
-void displayAllBalasan(tree root, int depth)
+void printTreeBalasan(TreeBalasan root, int depth)
 {
     if (root != NULL)
     {
-        printf("%*s%d\n", depth * 2, "", DataNodeBalasan(root));
-        tree child = FirstChildBalasan(root);
+        printf("%*s| ID = %d", depth * 2, "", ID_BALASAN(DATA_NODE_BALASAN(root)));
+        printf("%*s\n| ", depth * 2, "");
+        printSentence(AUTHOR_BALASAN(DATA_NODE_BALASAN(root)));
+        printf("%*s\n| ", depth * 2, "");
+        TulisDATETIME(WAKTU_BALASAN(DATA_NODE_BALASAN(root)));
+        printf("%*s\n| ", depth * 2, "");
+        printSentence(KONTEN_BALASAN(DATA_NODE_BALASAN(root)));
+        printf("/n");
+        TreeBalasan child = FIRST_CHILD_BALASAN(root);
         while (child != NULL)
         {
-            printTree(child, depth + 1);
-            child = NextSiblingBalasan(child);
+            printTreeBalasan(child, depth + 1);
+            child = NEXT_SIBLING_BALASAN(child);
         }
     }
 }
 
-addressTree searchBalasan(tree root, int IDBalasan)
+Balasan *searchBalasan(TreeBalasan root, int IDBalasan)
 {
-    addressTree p = ADDRESS(root);
-    if (ID_BALASAN(DataNodeBalasan(p)) == IDBalasan)
+    addressTree p = ADDRESS_BALASAN(root);
+    if (ID_BALASAN(DATA_NODE_BALASAN(p)) == IDBalasan)
     {
-        return p;
+        return &DATA_NODE_BALASAN(p);
     }
     else
     {
-        p = FirstChildBalasan(p);
+        p = FIRST_CHILD_BALASAN(p);
         int cek = 0;
-        while (p != ADDRESS(root) && cek == 0)
+        while (p != ADDRESS_BALASAN(root) && cek == 0)
         {
             while ((p) != NULL && cek == 0)
             {
-                if (ID_BALASAN(DataNodeBalasan(p)) == IDBalasan)
+                if (ID_BALASAN(DATA_NODE_BALASAN(p)) == IDBalasan)
                 {
                     cek = 1;
                 }
                 else
                 {
-                    p = FirstChildBalasan(p);
+                    p = FIRST_CHILD_BALASAN(p);
                 }
             }
             if (cek == 0)
             {
-                p = ParentBalasan(p);
-                if (NextSiblingBalasan(p) == NULL)
+                p = PARENT_BALASAN(p);
+                if (NEXT_SIBLING_BALASAN(p) == NULL)
                 {
-                    p = ParentBalasan(p);
+                    p = PARENT_BALASAN(p);
                 }
                 else
                 {
-                    p = NextSiblingBalasan(p);
+                    p = NEXT_SIBLING_BALASAN(p);
                 }
             }
         }
         if (cek == 1)
         {
-            return p;
+            return &DATA_NODE_BALASAN(p);
         }
         else
         {

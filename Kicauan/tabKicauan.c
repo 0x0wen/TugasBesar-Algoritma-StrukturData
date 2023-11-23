@@ -134,6 +134,15 @@ void expandListKicauan(TabKicauan *t, int num){
     deleteTabKicauan(&temp);
 }
 
+Kicauan* searchKicauan(TabKicauan t, int id){
+    int idx = getKicauanIdx(t, id);
+    if (idx == -1){
+        return NULL;
+    } else {
+        return &SELECT_KICAUAN(t, idx);
+    }
+}
+
 // void shrinkListKicauan(TabKicauan *t, int num){
 //     TabKicauan temp;
 //     int cap, nEff, maxId, i;

@@ -77,7 +77,7 @@ void LIHAT_DRAF(){
                 pushDraf(&penggunaSekarang.drafKicauan, draf_kicau);
                 printf("\nDraf telah berhasil disimpan!");
             }
-            else /* isWordEqual(action, Terbit)*/{
+            else if (isWordEqual(action, Terbit)){
                 draf_kicau.IDKicau = MAXID_TAB_KICAUAN(dataKicauan)+1;
                 addKicauanToTab(&dataKicauan, draf_kicau);
                 printf("Selamat! draf kicauan telah diterbitkan!\n");
@@ -88,7 +88,7 @@ void LIHAT_DRAF(){
         else if (IsWordEqual(action, Hapus)){
             printf("\nDraf telah berhasil dihapus!");
         }
-        else /* isWordEqual(action, Terbit)*/{
+        else if(isWordEqual(action, Terbit)){
             draf_kicau.IDKicau = MAXID_TAB_KICAUAN(dataKicauan)+1;
             addKicauanToTab(&dataKicauan, draf_kicau);
             printf("Selamat! draf kicauan telah diterbitkan!\n");
