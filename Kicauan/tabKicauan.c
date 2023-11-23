@@ -36,12 +36,12 @@ void copyListKicauan(TabKicauan lIn, TabKicauan *lOut){
     int i;
     CreateTabKicauan(lOut, CAPACITY(lIn));
 
-    for (i = 0; i < NEFF(lIn); i++)
+    for (i = 0; i < NEFF_TAB_KICAUAN(lIn); i++)
     {
         SELECT_KICAUAN(*lOut, i) = SELECT_KICAUAN(lIn, i);
     }
-    NEFF_TAB_KICAUAN(*lOut) = NEFF(lIn);
-    MAXID_TAB_KICAUAN(*lOut) = MAXID(lIn);
+    NEFF_TAB_KICAUAN(*lOut) = NEFF_TAB_KICAUAN(lIn);
+    MAXID_TAB_KICAUAN(*lOut) = MAXID_TAB_KICAUAN(lIn);
 };
 
 
@@ -55,7 +55,7 @@ void addKicauanToTab(TabKicauan *t, Kicauan k){
     else
     {
         // expand dulu list nya by 1P
-        expandList(t, 1);
+        expandListKicauan(t, 1);
     }
     // assign k ke indeks ke-neff di t
     SELECT_KICAUAN(*t, NEFF_TAB_KICAUAN(*t)) = k;
@@ -121,7 +121,7 @@ void expandListKicauan(TabKicauan *t, int num){
     nEff = NEFF_TAB_KICAUAN(*t);
     maxId = MAXID_TAB_KICAUAN(*t);
 
-    dealocateList(t);
+    deleteTabKicauan(t);
 
     CreateTabKicauan(t, cap);
     NEFF_TAB_KICAUAN(*t) = nEff;
@@ -131,7 +131,7 @@ void expandListKicauan(TabKicauan *t, int num){
     {
         SELECT_KICAUAN(*t, i) = SELECT_KICAUAN(temp, i);
     }
-    dealocateList(&temp);
+    deleteTabKicauan(&temp);
 }
 
 // void shrinkListKicauan(TabKicauan *t, int num){

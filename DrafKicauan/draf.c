@@ -4,7 +4,7 @@
 
 
 /* Prototype manajemen memori */
-Address_draf newNode(Kicauan k){
+Address_draf newNodeDraf(Kicauan k){
     Address_draf p = (Address_draf) malloc (sizeof(Node_draf));
     if (p != NULL){
         INFO_DRAF(p) = k;
@@ -64,7 +64,7 @@ void CreateDraf(Draf *s){
 /* Jika Draf kosong : menulis [] */
 
 void pushDraf(Draf *s, Kicauan k){
-    Address_draf p = newNode(k);
+    Address_draf p = newNodeDraf(k);
     if (p != NIL){
         if (isEmptyDraf(*s)){
             ADDR_TOP_DRAF(*s) = p;

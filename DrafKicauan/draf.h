@@ -28,7 +28,7 @@ typedef struct
 #define INFO_TOP_DRAF(s) (s).addrTop->info
 
 /* Prototype manajemen memori */
-Address_draf newNode(Kicauan k);
+Address_draf newNodeDraf(Kicauan k);
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x,
    atau
    NULL jika alokasi gagal */

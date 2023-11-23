@@ -1,4 +1,5 @@
 #include "commandPermintaanTeman.h"
+#include "../Teman/teman.h"
 
 void TAMBAH_TEMAN(){
 
