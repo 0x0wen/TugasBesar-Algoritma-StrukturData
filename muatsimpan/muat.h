@@ -1,8 +1,8 @@
 #ifndef MUAT_H
 #define MUAT_H
 
-#include "General/wordmachine.h"
-#include "Pengguna/pengguna.h"
+#include "../General/wordmachine.h"
+#include "../Pengguna/pengguna.h"
 
 Word writefilename(Word input1, Word input2);
 int compareCharArrays(const char *array1, const char *array2);
