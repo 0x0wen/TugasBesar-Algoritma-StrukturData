@@ -49,5 +49,6 @@ boolean checkUsernameExist(TabPengguna T, Sentence username, int numUsers);
 boolean checkPassword(TabPengguna T, Sentence password, int numUsers);
 Pengguna *searchPenggunaByName(TabPengguna T, Sentence username);
 Pengguna *searchPengguna(TabPengguna T, int IDPengguna);
+int getIDPengguna(TabPengguna T, Sentence username);
 
 #endif

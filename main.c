@@ -38,6 +38,10 @@ int main()
     printf(">> ");
     STARTWORD();
 
+    if (isWordEqualStr(&currentWord, "MUAT")) 
+      muat();
+    if (isWordEqualStr(&currentWord, "SIMPAN")) 
+      simpan();
     if (isWordEqualStr(&currentWord, "DAFTAR"))
       DAFTAR();
     if (isWordEqualStr(&currentWord, "MASUK"))
@@ -48,7 +52,9 @@ int main()
   {
     printf(">> ");
     STARTWORD();
-
+    
+    if (isWordEqualStr(&currentWord, "SIMPAN")) 
+      simpan();
     if (isWordEqualStr(&currentWord, "KELUAR"))
       KELUAR();
     if (isWordEqualStr(&currentWord, "GANTI_PROFIL"))
@@ -152,9 +158,6 @@ int main()
       int IDUtas = wordToInteger(&currentWord);
       CETAK_UTAS(IDUtas);
     }
-
-    // if (isWordEqualStr(&currentWord, "SIMPAN")) SIMPAN();
-    // if (isWordEqualStr(&currentWord, "MUAT")) MUAT();
   }
 
   if (statusProgram)
