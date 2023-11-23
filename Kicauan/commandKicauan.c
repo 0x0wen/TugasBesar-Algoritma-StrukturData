@@ -15,6 +15,7 @@ void KICAU(){
 
         Kicauan newKicau = createKicauan(id, text, author);
         addKicauanToTab(&dataKicauan, newKicau);
+        insertLast(&penggunaSekarang.daftarKicauan, id);
 
         printf("Selamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
