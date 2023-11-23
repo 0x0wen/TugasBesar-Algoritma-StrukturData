@@ -85,78 +85,78 @@ int main()
       SETUJUI_PERTEMANAN();
 
     if (isWordEqualStr(&currentWord, "LIHAT_PROFIL")) {
-      ADV();
+      ADVWORD();
       Word Nama = currentWord;
       LIHAT_PROFIL(Nama);
     }
 
     if (isWordEqualStr(&currentWord, "SUKA_KICAUAN"))
     {
-      ADV();
+      ADVWORD();
       int IDKicau = wordToInteger(&currentWord);
       SUKA_KICAUAN(IDKicau);
     }
 
     if (isWordEqualStr(&currentWord, "UBAH_KICAUAN"))
     {
-      ADV();
+      ADVWORD();
       int IDKicau = wordToInteger(&currentWord);
       UBAH_KICAUAN(IDKicau);
     }
 
     if (isWordEqualStr(&currentWord, "BALAS"))
     {
-      ADV();
+      ADVWORD();
       int IDKicau = wordToInteger(&currentWord);
-      ADV();
+      ADVWORD();
       int IDBalasan = wordToInteger(&currentWord);
       BALAS(IDKicau, IDBalasan);
     }
 
     if (isWordEqualStr(&currentWord, "BALASAN"))
     {
-      ADV();
+      ADVWORD();
       int IDKicau = wordToInteger(&currentWord);
       CETAK_BALASAN(IDKicau);
     }
 
     if (isWordEqualStr(&currentWord, "HAPUS_BALASAN"))
     {
-      ADV();
+      ADVWORD();
       int IDKicau = wordToInteger(&currentWord);
-      ADV();
+      ADVWORD();
       int IDBalasan = wordToInteger(&currentWord);
       HAPUS_BALASAN(IDKicau, IDBalasan);
     }
 
     if (isWordEqualStr(&currentWord, "UTAS"))
     {
-      ADV();
+      ADVWORD();
       int IDKicau = wordToInteger(&currentWord);
       CREATE_UTAS(IDKicau);
     }
 
     if (isWordEqualStr(&currentWord, "SAMBUNG_UTAS"))
     {
-      ADV();
+      ADVWORD();
       int IDUtas = wordToInteger(&currentWord);
-      ADV();
+      ADVWORD();
       int Index = wordToInteger(&currentWord);
       SAMBUNG_UTAS(IDUtas, Index);
     }
 
     if (isWordEqualStr(&currentWord, "HAPUS_UTAS"))
     {
-      ADV();
+      ADVWORD();
       int IDUtas = wordToInteger(&currentWord);
-      ADV();
+      ADVWORD();
       int Index = wordToInteger(&currentWord);
       HAPUS_UTAS(IDUtas, Index);
     }
 
     if (isWordEqualStr(&currentWord, "CETAK_UTAS"))
     {
-      ADV();
+      ADVWORD();
       int IDUtas = wordToInteger(&currentWord);
       CETAK_UTAS(IDUtas);
     }
