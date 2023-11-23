@@ -36,18 +36,24 @@ int main() {
   // printf("Panjang sentence: %d\n", Input.Length);
 
   STARTWORD();
-
   printWord(currentWord);
+  ADVWORD(); printf("\n");
 
-  if (isWordEqualStr(&currentWord, "rafi")) {
-    printf("Sama\n");
-  } ADVWORD();
+  printf("ID Kicau : %d", wordToInteger(&currentWord));
+  ADVWORD(); printf("\n");
 
-  printWord(currentWord); printf("\n");
+  printf("ID Balasan : %d\n", wordToInteger(&currentWord));
 
-  int number = wordToInteger(&currentWord);
+  printf("======= NEW ========\n");
 
-  printf("\n%d", number);
+  STARTWORD();
+  printWord(currentWord);
+  ADVWORD(); printf("\n");
+
+  printf("ID Kicau : %d", wordToInteger(&currentWord));
+  ADVWORD(); printf("\n");
+
+  printf("ID Balasan : %d", wordToInteger(&currentWord));
 
   return 0;
 }
