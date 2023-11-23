@@ -100,7 +100,7 @@ void SETUJUI_PERTEMANAN()
         Word TIDAK = {"TIDAK", 5};
 
         if (IsWordEqual(pilihan, YA)){
-            addFriend(ID_PENGGUNA(current_user), ID_PENGGUNA(sender));
+            addFriend(&matrixTeman, ID_PENGGUNA(current_user), ID_PENGGUNA(sender));
 
             printf("Permintaan pertemanan dari "); printSentence(NAMA_PENGGUNA(sender));
             printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
