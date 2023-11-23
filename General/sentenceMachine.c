@@ -115,7 +115,7 @@ boolean IsSentenceEqual(Sentence w1, Sentence w2)
         return IsEqual;
     }
 }
-boolean isOnlyBlank(Sentence w)
+boolean isSentenceOnlyBlank(Sentence w)
 {
     boolean onlyBlank = true;
     int i = 0;

@@ -1,7 +1,7 @@
 #ifndef COMMAND_KICAUAN_H
 #define COMMAND_KICAUAN_H
 
-#include "kicauan.h"
+#include "tabKicauan.h"
 
 
 void KICAU();

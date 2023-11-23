@@ -36,12 +36,12 @@ int getKicauanIdx(TabKicauan t, int id);
 
 /*** Add/Delete Kicauan from Tab ***/
 void addKicauanToTab(TabKicauan *t, Kicauan k);
-void deleteKicauanFromTab(TabKicauan *t, Kicauan *k, int id);
+void deleteKicauanFromTab(TabKicauan *t, int id);
 
 /*** Mengubah Ukuran Tab ***/
 void expandListKicauan(TabKicauan *t, int num);
-void shrinkListKicauan(TabKicauan *t, int num);
-void compressListKicauan(TabKicauan *t);
+// void shrinkListKicauan(TabKicauan *t, int num);
+// void compressListKicauan(TabKicauan *t);
 
 /*** Prosedur Kicauan ***/
 Kicauan createKicauan();

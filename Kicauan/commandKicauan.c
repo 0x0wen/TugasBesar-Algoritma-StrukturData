@@ -1,50 +1,60 @@
 #include "commandKicauan.h"
+#include "../global.h"
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/
 void KICAU(){
 
     printf("\nMasukkan kicauan:\n");
-    Kicauan newKicau = createKicauan();
+    Sentence text; InputSentence(&text);
 
-    // add newKicau ke tab
-    addKicauanToTab(&dataKicauan, newKicau);
+    if (isSentenceOnlyBlank(text)){
+        printf("\nKicauan tidak boleh hanya berisi spasi!\n");
+    } else {
+        int id = MAXID_TAB_KICAUAN(dataKicauan) + 1;
+        Sentence author = NAMA_PENGGUNA(penggunaSekarang);
 
-    printf("Selamat! kicauan telah diterbitkan!\n");
-    printf("Detil kicauan:");
-    newKicau.IDKicau = MAXID(dataKicauan);
+        Kicauan newKicau = createKicauan(id, text, author);
+        addKicauanToTab(&dataKicauan, newKicau);
 
-    printKicauan(newKicau);
+        printf("Selamat! kicauan telah diterbitkan!\n");
+        printf("Detil kicauan:\n");
+        printDetilKicauan(newKicau);
+    }
 }
 
 void KICAUAN(){
 
     int i;
-    for (i = 0; i < NEFF(dataKicauan); i++){
-        if (ELMT(dataKicauan, i).Author == penggunaSekarang){
+    for (i = 0; i < NEFF_TAB_KICAUAN(dataKicauan); i++){
+        if (IsSentenceEqual(SELECT_KICAUAN(dataKicauan, i).Author, NAMA_PENGGUNA(penggunaSekarang))){
             printf("\n");
-            printKicauan(ELMT(dataKicauan, i));
+            printKicauan(SELECT_KICAUAN(dataKicauan, i));
         } 
     }
 }
 
 void SUKA_KICAUAN(int id){
 
-
     if (isKicauanInTab(&dataKicauan, id)){
 
         int i, idx = getKicauanIdx(dataKicauan, id);
+        Sentence author_name = SELECT_KICAUAN(dataKicauan, idx).Author;
+        Pengguna author;
 
-        Word Publik = {"Publik", 6};
+        for (i = 0; i < dataPengguna.length; i++){
+            if (IsSentenceEqual(SELECT_PENGGUNA(dataPengguna, i), author_name)){
+                author = SELECT_PENGGUNA(dataPengguna, i);
+            }
+        }
    
-        if (dataKicauan[idx].Author == penggunaSekarang || 
-            IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) /*|| 
-            isFriend(penggunaSekarang, dataKicauan[idx].Author) */){
+        if (IsSentenceEqual(SELECT_KICAUAN(dataKicauan, i).Author, NAMA_PENGGUNA(penggunaSekarang)) || 
+            !author.privat || 
+            isFriend(ID_PENGGUNA(penggunaSekarang), ID_PENGGUNA(author))){
             
-            dataKicauan[idx].Likes++;
+            SELECT_KICAUAN(dataKicauan, idx).Like++;
             printf("Selamat! kicauan telah disukai!\n");
             printf("Detil kicauan:");
-
-            printKicauan(dataKicauan[idx]);
+            printKicauan( SELECT_KICAUAN(dataKicauan, idx));
             
         } else {
             printf("\nWah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya");
@@ -61,15 +71,14 @@ void UBAH_KICAUAN(int id){
 
         int i, idx = getKicauanIdx(dataKicauan, id);
 
-        if (dataKicauan[idx].Author != penggunaSekarang){
+        if (!IsSentenceEqual(SELECT_KICAUAN(dataKicauan, idx).Author, NAMA_PENGGUNA(penggunaSekarang))){
             printf("\nKicauan dengan ID = %d bukan milikmu!", id);
         } else {
-
             printf("\nMasukkan kicauan baru: \n");
-            Word text; InputWordWithBlank(&text);
-            dataKicauan[idx].Text = text;
+            Sentence text; InputSentence(&text);
+            SELECT_KICAUAN(dataKicauan, idx).Text = text;
             printf("\nSelamat! kicauan telah diterbitkan!");
-            printKicauan(dataKicauan[idx]);
+            printKicauan(SELECT_KICAUAN(dataKicauan, idx));
         }
     } else {
         printf("\nTidak ditemukan kicauan dengan ID = %d!;", id);

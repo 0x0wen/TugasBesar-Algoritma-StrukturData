@@ -2,6 +2,7 @@
     "files.associations": {
         "kicauan.h": "c",
         "charmachine.h": "c",
-        "commandutas.h": "c"
+        "commandutas.h": "c",
+        "sentencemachine.h": "c"
     }
 }

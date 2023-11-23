@@ -25,11 +25,18 @@ void startSentence();
 void ADVW0RD();
 void CopyWord();
 void writeWord(Word *writeWord, char input[], int length);
-void InputWord(Word *inputWord);
-void printWord(Word w);
-void InputWordWithBlank(Word *inputWord);
+void printSentence(Sentence w);
+void InputSentence(Sentence *inputWord);
 boolean IsSentenceEqual(Sentence w1, Sentence w2);
-boolean isOnlyBlank(Word w);
+boolean isSentenceOnlyBlank(Sentence w);
 int LengthStr(const char *str);
-boolean isWordEqualStr(const Word *w, const char *str);
+
+// void InputWord(Word *inputWord);
+// void printWord(Word w);
+// void InputWordWithBlank(Word *inputWord);
+// void printSentence(Sentence w)
+// boolean IsSentenceEqual(Sentence w1, Sentence w2);
+// boolean isOnlyBlank(Word w);
+// int LengthStr(const char *str);
+// boolean isWordEqualStr(const Word *w, const char *str);
 #endif

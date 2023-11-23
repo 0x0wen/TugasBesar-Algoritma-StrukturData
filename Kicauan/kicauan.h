@@ -9,14 +9,13 @@
 #include "../General/datetime.h"
 #include "../General/time_adt.h"
 #include "../General/boolean.h"
-#include "../Pengguna/pengguna.h"
 #include "../Balasan/balasan.h"
 
 /*** Struct Kicauan ***/
 typedef struct
 {
   int IDKicau;
-  Sentence Text; // 280 char + 1 mark
+  Sentence Text;
   int Like;
   Sentence Author;
   DATETIME DateTime;
@@ -24,12 +23,15 @@ typedef struct
 } Kicauan;             /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
-#define ID(K) (K).IDKicau;
-#define TEXT(K) (K).Text;
-#define LIKE(K) (K).Like;
-#define AUTHOR(K) (K).Author;
-#define TIME(K) (K).DateTime;
+#define ID_KICAU(K) (K).IDKicau;
+#define TEXT_KICAU(K) (K).Text;
+#define LIKE_KICAU(K) (K).Like;
+#define AUTHOR_KICAU(K) (K).Author;
+#define TIME_KICAU(K) (K).DateTime;
 #define LIST_BALASAN(K) *((K).TabBalasan); // nge retrieve list dinamis of balasan
+
+Kicauan createKicauan(int id, Sentence text, Sentence author);
+void printDetilKicau(Kicauan k);
 
 
 #endif
