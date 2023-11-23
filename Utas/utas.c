@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "utas.h"
 #include "../General/sentenceMachine.h"
-
+#include <stdlib.h>
 Address newKicauanSambungan(KicauanSambungan val)
 {
 
@@ -9,8 +9,8 @@ Address newKicauanSambungan(KicauanSambungan val)
 
     if (NodeKicauanSambungan != NULL)
     {
-        INFO(NodeKicauanSambungan) = val;
-        NEXT(NodeKicauanSambungan) = NULL;
+        INFO_UTAS(NodeKicauanSambungan) = val;
+        NEXT_UTAS(NodeKicauanSambungan) = NULL;
     }
 
     return NodeKicauanSambungan;
@@ -18,79 +18,49 @@ Address newKicauanSambungan(KicauanSambungan val)
 
 void createTabKicauanSambungan(TabKicauanSambungan *T)
 {
-    FIRST(*T) = NULL;
+    FIRST_UTAS(*T) = NULL;
 }
 
 boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T)
 {
 
-    return FIRST(T) == NULL;
-}
-
-int indexOfTabKicauanSambungan(TabKicauanSambungan T, KicauanSambungan val)
-{
-
-    Address NodeKicauanSambungan = FIRST(T);
-    int IDX = 0;
-    boolean FOUND = false;
-
-    while (NodeKicauanSambungan != NULL && !FOUND)
-    {
-        if (INFO(NodeKicauanSambungan) == val)
-        {
-            FOUND = true;
-        }
-        else
-        {
-            IDX++;
-            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
-        }
-    }
-
-    if (FOUND)
-    {
-        return IDX;
-    }
-    else
-    {
-        return IDX_UNDEF_UTAS;
-    }
+    return FIRST_UTAS(T) == NULL;
 }
 
 void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
 {
 
-    Address NodeKicauanSambungan = newNode(val);
+    Address NodeKicauanSambungan = newKicauanSambungan(val);
 
     if (NodeKicauanSambungan != NULL)
     {
-        NEXT(NodeKicauanSambungan) = FIRST(*T);
-        FIRST(*T) = NodeKicauanSambungan;
+        NEXT_UTAS(NodeKicauanSambungan) = FIRST_UTAS(*T);
+        FIRST_UTAS(*T) = NodeKicauanSambungan;
     }
 }
 
 void insertLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
 {
 
-    if (isKicauanSambunganEmpty(*T))
+    if (isTabKicauanSambunganEmpty(*T))
     {
         insertFirstTabKicauanSambungan(T, val);
     }
     else
     {
 
-        Address NodeKicauanSambungan = FIRST(*T);
+        Address NodeKicauanSambungan = FIRST_UTAS(*T);
 
-        while (NEXT(NodeKicauanSambungan) != NULL)
+        while (NEXT_UTAS(NodeKicauanSambungan) != NULL)
         {
-            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
+            NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
         }
 
-        Address NodeKicauanSambunganNew = newNode(val);
+        Address NodeKicauanSambunganNew = newKicauanSambungan(val);
 
         if (NodeKicauanSambunganNew != NULL)
         {
-            NEXT(NodeKicauanSambungan) = NodeKicauanSambunganNew;
+            NEXT_UTAS(NodeKicauanSambungan) = NodeKicauanSambunganNew;
         }
     }
 }
@@ -100,103 +70,96 @@ void insertAtTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val, i
 
     if (idx == 0)
     {
-        insertFirstTabicauanSambungan(T, val);
+        insertFirstTabKicauanSambungan(T, val);
     }
     else
     {
 
-        Address NodeKicauanSambunganNew = newNode(val);
+        Address NodeKicauanSambunganNew = newKicauanSambungan(val);
 
         if (NodeKicauanSambunganNew != NULL)
         {
-            Address NodeKicauanSambungan = FIRST(*T);
+            Address NodeKicauanSambungan = FIRST_UTAS(*T);
 
             int i;
             for (i = 0; i < idx - 1; i++)
             {
-                NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
+                NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
             }
-            NEXT(NodeKicauanSambunganNew) = NEXT(NodeKicauanSambungan);
-            NEXT(NodeKicauanSambungan) = NodeKicauanSambunganNew;
+            NEXT_UTAS(NodeKicauanSambunganNew) = NEXT_UTAS(NodeKicauanSambungan);
+            NEXT_UTAS(NodeKicauanSambungan) = NodeKicauanSambunganNew;
         }
     }
 }
-void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val)
+void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T)
 {
 
-    Address NodeKicauanSambungan = FIRST(*T);
-    *val = INFO(NodeKicauanSambungan);
+    Address NodeKicauanSambungan = FIRST_UTAS(*T);
 
-    FIRST(*T) = NEXT(NodeKicauanSambungan);
+    FIRST_UTAS(*T) = NEXT_UTAS(NodeKicauanSambungan);
     free(NodeKicauanSambungan);
 }
-void deleteLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan *val)
+void deleteLastTabKicauanSambungan(TabKicauanSambungan *T)
 {
 
     Address NodeKicauanSambungan = NULL;
-    Address LAST = FIRST(*T);
+    Address LAST = FIRST_UTAS(*T);
 
-    while (NEXT(LAST) != NULL)
+    while (NEXT_UTAS(LAST) != NULL)
     {
         NodeKicauanSambungan = LAST;
-        LAST = NEXT(LAST);
+        LAST = NEXT_UTAS(LAST);
     }
 
     if (NodeKicauanSambungan == NULL)
     {
-        FIRST(*T) = NULL;
+        FIRST_UTAS(*T) = NULL;
     }
     else
     {
-        NEXT(NodeKicauanSambungan) = NULL;
+        NEXT_UTAS(NodeKicauanSambungan) = NULL;
     }
 
-    *val = INFO(LAST);
     free(LAST);
 }
-void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx, KicauanSambungan *val)
+void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx)
 {
 
     if (idx == 0)
     {
-        deleteFirstTabKicauanSambungan(T, val);
+        deleteFirstTabKicauanSambungan(T);
     }
     else
     {
-        Address NodeKicauanSambungan = FIRST(*T);
-
+        Address NodeKicauanSambungan = FIRST_UTAS(*T);
         int i;
-
         for (i = 0; i < idx - 1; i++)
         {
-            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
+            NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
         }
-
-        Address DELETE = NEXT(NodeKicauanSambungan);
-
-        *val = INFO(DELETE);
-
-        NEXT(NodeKicauanSambungan) = NEXT(DELETE);
+        Address DELETE = NEXT_UTAS(NodeKicauanSambungan);
+        NEXT_UTAS(NodeKicauanSambungan) = NEXT_UTAS(DELETE);
         free(DELETE);
     }
 }
 void displayTabKicauanSambungan(TabKicauanSambungan T)
 {
-
     printf("[");
-
     if (!isTabKicauanSambunganEmpty(T))
     {
-        Address NodeKicauanSambungan = FIRST(T);
-
-        while (NEXT(NodeKicauanSambungan) != NULL)
+        Address NodeKicauanSambungan = FIRST_UTAS(T);
+        while (NEXT_UTAS(NodeKicauanSambungan) != NULL)
         {
-            printf("%d,", INFO(NodeKicauanSambungan));
-            NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
+            printf("%*s| ID = %d", 2, "", ID_UTAS(INFO_UTAS(NodeKicauanSambungan)));
+            printf("%*s| ", 2, "");
+            printSentence(AUTHOR_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
+            printf("%*s| ", 2, "");
+            TulisDATETIME(WAKTU_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
+            printf("%*s| ", 2, "");
+            printSentence(KONTEN_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
+            NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
         }
-        printf("%d", INFO(NodeKicauanSambungan));
     }
-
     printf("]");
 }
 
@@ -209,11 +172,11 @@ int lengthTabKicauanSambungan(TabKicauanSambungan T)
     }
 
     int len = 1;
-    Address NodeKicauanSambungan = FIRST(T);
+    Address NodeKicauanSambungan = FIRST_UTAS(T);
 
-    while (NEXT(NodeKicauanSambungan) != NULL)
+    while (NEXT_UTAS(NodeKicauanSambungan) != NULL)
     {
-        NodeKicauanSambungan = NEXT(NodeKicauanSambungan);
+        NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
         len++;
     }
 

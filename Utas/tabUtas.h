@@ -12,8 +12,8 @@
 typedef struct
 {
   Utas *buffer; /* memori tempat penyimpan elemen (container) */
-  int nEff;       /* >=0, banyaknya elemen efektif */
-  int capacity;   /* ukuran elemen */
+  int nEff;     /* >=0, banyaknya elemen efektif */
+  int capacity; /* ukuran elemen */
 } TabUtas;
 /* Indeks yang digunakan [0..capacity-1] */
 /* Jika l adalah : ListDin, cara deklarasi dan akses: */
@@ -37,34 +37,34 @@ typedef struct
 #define CAPACITY_UTAS(l) (l).capacity
 
 /* ********** KONSTRUKTOR & DESTRUKTOR ********** */
-void createTabUtas(int capacity);
+void createTabUtas(TabUtas *TU, int capacity);
 
-void deallocateTabUtas();
+void deallocateTabUtas(TabUtas *TU);
 /* I.S. l terdefinisi; */
 /* F.S. (l) dikembalikan ke system, CAPACITY(l)=0; NEFF(l)=0 */
 
-int lengthTabUtas();
+int lengthTabUtas(TabUtas TU);
 /* Mengirimkan banyaknya elemen efektif list */
 
 /* ********** Test Indeks yang valid ********** */
-boolean isIdxTabUtasValid(int i);
+boolean isIdxTabUtasValid(TabUtas TU, int i);
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean isIdxTabUtasEff(int i);
+boolean isIdxTabUtasEff(TabUtas TU, int i);
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
 /* yaitu antara 0..NEFF(l) */
 
-boolean isTabUtasEmpty();
+boolean isTabUtasEmpty(TabUtas TU);
 
-boolean isTabUtasFull();
+boolean isTabUtasFull(TabUtas TU);
 
-Utas cariUtas(int IDUtas);
-int indexOfTabUtas(Utas val);
+Utas *searchUtas(TabUtas TU, int IDUtas);
+int indexOfTabUtas(TabUtas TU, Utas utas);
 
-void insertLastTabUtas(Utas val);
-void deleteLastTabUtas(Utas *val);
+void insertLastTabUtas(TabUtas *TU, Utas val);
+void deleteLastTabUtas(TabUtas *TU);
 
 /* ********* MENGUBAH UKURAN ARRAY ********* */
-void expandTabUtas(int num);
+void expandTabUtas(TabUtas *TU, int num);
 
 #endif
