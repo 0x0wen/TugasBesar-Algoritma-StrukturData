@@ -21,7 +21,6 @@
 #include "Balasan/balasan.h"
 #include "Balasan/commandBalasan.h"
 #include "Balasan/tabBalasan.h"
-#include "muatsimpan/muat.h"
 #include "muatsimpan/newMuat.h"
 #include "muatsimpan/simpan.h"
 #include "global.h"

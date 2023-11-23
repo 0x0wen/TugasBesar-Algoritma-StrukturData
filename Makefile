@@ -1,4 +1,5 @@
 # Direktori untuk source code
+MUAT_SIMPAN_DIR = muatsimpan
 ADT_DIR = ADT
 BALASAN_DIR = Balasan
 DRAF_DIR = DrafKicauan
@@ -10,6 +11,7 @@ PERMINTAAN_DIR = PermintaanTeman
 TEMAN_DIR = Teman
 UTAS_DIR = Utas
 FOTO_PROFIL_DIR = FotoProfil
+
 
 # Direktori untuk objek files
 BUILD_DIR = build
@@ -30,7 +32,8 @@ PENGGUNA_SOURCES = $(PENGGUNA_DIR)/pengguna.c $(PENGGUNA_DIR)/commandPengguna.c 
 PERMINTAAN_SOURCES = $(PERMINTAAN_DIR)/permintaanTeman.c $(PERMINTAAN_DIR)/commandPermintaanTeman.c 
 TEMAN_SOURCES = $(TEMAN_DIR)/teman.c $(TEMAN_DIR)/commandTeman.c 
 UTAS_SOURCES = $(UTAS_DIR)/utas.c $(UTAS_DIR)/commandUtas.c $(UTAS_DIR)/tabUtas.c
-FOTO_PROFIL_SOURCES = $(FOTO_PROFIL_SOURCES)/utas.c $(FOTO_PROFIL_SOURCES)/commandUtas.c $(FOTO_PROFIL_SOURCES)/tabUtas.c
+FOTO_PROFIL_SOURCES = $(FOTO_PROFIL_DIR)/utas.c $(FOTO_PROFIL_DIR)/commandUtas.c $(FOTO_PROFIL_DIR)/tabUtas.c
+MUAT_SIMPAN_SOURCES = $(MUAT_SIMPAN_DIR)/newMuat.c $(MUAT_SIMPAN_DIR)/simpan.c
 
 # Objek files
 MAIN_OBJ = $(BUILD_DIR)/main.o
@@ -81,6 +84,9 @@ $(BUILD_DIR)/%.o: $(UTAS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(PENGGUNA_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(MUAT_SIMPAN_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Aturan untuk membuat executable
