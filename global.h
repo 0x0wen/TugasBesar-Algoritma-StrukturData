@@ -6,14 +6,14 @@
 #include "Kicauan/tabKicauan.h"
 #include "Utas/tabUtas.h"
 #include "Balasan/tabBalasan.h"
-#include "Teman/tabTeman.h"
+#include "Teman/teman.h"
 #include "Utas/commandUtas.h"
 
 extern Pengguna penggunaSekarang;
 extern TabPengguna dataPengguna;
 extern TabUtas dataUtas;
 extern TabKicauan dataKicauan;
-extern TabTeman dataTeman;
+extern AdjacencyMatrix matrixTeman;
 extern boolean statusLogin;
 extern boolean statusProgram;
 

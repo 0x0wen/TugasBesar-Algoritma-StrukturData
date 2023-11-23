@@ -1,5 +1,6 @@
 #include "global.h"
 #include "commandPengguna.h"
+#include "../FotoProfil/fotoProfil.h"
 
 /* PROFIL */
 void GANTI_PROFIL()
@@ -266,25 +267,24 @@ void UBAH_FOTO_PROFIL()
 
 void DISPLAY_FOTO_PROFIL(Pengguna p)
 {
-    FotoProfil m = p.foto;
-    createFotoProfil(5, 10, &m);
-    int i, j;
-    for (i = 0; i < ROW_EFF(m); i++)
-    {
-        for (j = 0; j < COL_EFF(m); j + 2)
-        {
-            if (MAtELMT(m, i, j) == 'R')
-            {
-                print_red(MatELMT(m, i, j + 1));
-            }
-            else if (MatELMT(m, i, j) == 'G')
-            {
-                print_green(MatELMT(m, i, j + 1));
-            }
-            else if (MatELMT(m, i, j) == 'B')
-            {
-                print_blue(MatELMT(m, i, j + 1));
-            }
-        }
-    }
+    displayFotoProfil(FOTO_PENGGUNA(p));
+}
+
+void DISPLAY_PROFIL(Pengguna P)
+{
+    printf("|  Nama: ");
+    printSentence(NAMA_PENGGUNA(P));
+    printf("\n");
+    printf("|  Bio Akun: ");
+    printSentence(BIO_PENGGUNA(P));
+    printf("\n");
+    printf("|  No HP: ");
+    printWord(HP_PENGGUNA(P));
+    printf("\n");
+    printf("|  Weton: ");
+    printWord(WETON_PENGGUNA(P));
+    printf("\n");
+    printf("Foto profil akun :");
+    displayFotoProfil(FOTO_PENGGUNA(P));
+    printf("\n");
 }

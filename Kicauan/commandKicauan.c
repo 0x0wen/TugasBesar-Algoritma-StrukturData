@@ -50,7 +50,7 @@ void SUKA_KICAUAN(int id){
    
         if (IsSentenceEqual(SELECT_KICAUAN(dataKicauan, i).Author, NAMA_PENGGUNA(penggunaSekarang)) || 
             !author.privat || 
-            isFriend(ID_PENGGUNA(penggunaSekarang), ID_PENGGUNA(author))){
+            isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), ID_PENGGUNA(author))){
             
             SELECT_KICAUAN(dataKicauan, idx).Like++;
             printf("Selamat! kicauan telah disukai!\n");
