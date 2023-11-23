@@ -10,6 +10,7 @@
 #include "../General/time_adt.h"
 #include "../General/boolean.h"
 #include "../Balasan/balasan.h"
+#include "../Utas/utas.h"
 
 /*** Struct Kicauan ***/
 typedef struct
@@ -20,7 +21,8 @@ typedef struct
   Sentence Author;
   DATETIME DateTime;
   TreeBalasan TabBalasan; /* Pointer ke Tree Balasan */
-} Kicauan;                /* tiap elemen pada list tsb merupakan root dari tree balasan */
+  Utas *UtasPointer;
+} Kicauan; /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
 #define ID_KICAU(K) (K).IDKicau
@@ -29,6 +31,7 @@ typedef struct
 #define AUTHOR_KICAU(K) (K).Author
 #define TIME_KICAU(K) (K).DateTime
 #define LIST_BALASAN(K) (K).TabBalasan // nge retrieve list dinamis of balasan
+#define UTAS_KICAU(K) (K).UtasPointer  // nge retrieve list dinamis of balasan
 
 Kicauan createKicauan(int id, Sentence text, Sentence author);
 void printDetilKicau(Kicauan k);
