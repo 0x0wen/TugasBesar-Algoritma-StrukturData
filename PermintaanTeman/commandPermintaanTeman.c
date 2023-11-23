@@ -32,7 +32,7 @@ void TAMBAH_TEMAN(){
             printf("\nPermintaan pertemanan kepada ");
             printSentence(input_name);
     
-            Requester send_val = {JUMLAH_TEMAN(current_user), ID_PENGGUNA(current_user)};
+            Requester send_val = {countFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang)), ID_PENGGUNA(current_user)};
             enqueue_PQR(&(send_to.daftarPermintaanTeman), send_val);
 
             printf(" telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");

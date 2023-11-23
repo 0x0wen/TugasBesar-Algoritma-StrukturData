@@ -12,7 +12,7 @@
 #include "Utas/tabUtas.h"
 #include "Teman/teman.h"
 #include "Teman/commandTeman.h"
-#include "Teman/tabTeman.h"
+#include "Teman/teman.h"
 #include "PermintaanTeman/permintaanTeman.h"
 #include "PermintaanTeman/commandPermintaanTeman.h"
 #include "FotoProfil/fotoProfil.h"
@@ -27,7 +27,7 @@ Pengguna penggunaSekarang;
 TabPengguna dataPengguna;
 TabKicauan dataKicauan;
 TabUtas dataUtas;
-TabTeman dataTeman;
+AdjacencyMatrix matrixTeman;
 
 int main()
 {
