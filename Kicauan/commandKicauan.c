@@ -55,7 +55,7 @@ void SUKA_KICAUAN(int id){
             SELECT_KICAUAN(dataKicauan, idx).Like++;
             printf("Selamat! kicauan telah disukai!\n");
             printf("Detil kicauan:");
-            printKicauan( SELECT_KICAUAN(dataKicauan, idx));
+            printDetilKicau( SELECT_KICAUAN(dataKicauan, idx));
             
         } else {
             printf("\nWah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya");
@@ -79,7 +79,7 @@ void UBAH_KICAUAN(int id){
             Sentence text; InputSentence(&text);
             SELECT_KICAUAN(dataKicauan, idx).Text = text;
             printf("\nSelamat! kicauan telah diterbitkan!");
-            printKicauan(SELECT_KICAUAN(dataKicauan, idx));
+            printDetilKicau(SELECT_KICAUAN(dataKicauan, idx));
         }
     } else {
         printf("\nTidak ditemukan kicauan dengan ID = %d!;", id);
