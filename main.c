@@ -38,6 +38,10 @@ int main()
     printf(">> ");
     STARTWORD();
 
+    if (isWordEqualStr(&currentWord, "MUAT")) 
+      muat();
+    if (isWordEqualStr(&currentWord, "SIMPAN")) 
+      simpan();
     if (isWordEqualStr(&currentWord, "DAFTAR"))
       DAFTAR();
     if (isWordEqualStr(&currentWord, "MASUK"))
@@ -48,11 +52,9 @@ int main()
   {
     printf(">> ");
     STARTWORD();
-
+    
     if (isWordEqualStr(&currentWord, "SIMPAN")) 
       simpan();
-    if (isWordEqualStr(&currentWord, "MUAT")) 
-      muat();
     if (isWordEqualStr(&currentWord, "KELUAR"))
       KELUAR();
     if (isWordEqualStr(&currentWord, "GANTI_PROFIL"))
