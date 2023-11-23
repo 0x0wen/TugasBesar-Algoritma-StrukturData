@@ -9,5 +9,6 @@ void LIHAT_PROFIL();
 void ATUR_JENIS_AKUN();
 void UBAH_FOTO_PROFIL();
 void DISPLAY_FOTO_PROFIL(Pengguna p);
+void DISPLAY_PROFIL(Pengguna user);
 
 #endif
