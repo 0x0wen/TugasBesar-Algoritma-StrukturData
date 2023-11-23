@@ -12,7 +12,7 @@ void BALAS(int IDKicau, int IDBalasan)
     {
         printf("Wah, tidak terdapat balasan yang ingin Anda balas!");
     }
-    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), PENULIS_BALASAN(*searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan))) == false && PRIVASI_PENGGUNA(*searchPengguna(dataPengguna, IDKicau)))
+    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), PENULIS_BALASAN(*searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan))) == false && PRIVASI_PENGGUNA(*searchPengguna(&dataPengguna, IDKicau)))
     {
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman dengan akun tersebut!");
     }
@@ -55,7 +55,7 @@ void CETAK_BALASAN(int IDKicau)
     {
         printf("Belum terdapat balasan apapun pada kicauan tersebut. Yuk balas kicauan tersebut!");
     }
-    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau)))) == false && PRIVASI_PENGGUNA(*searchPengguna(dataPengguna, IDKicau)))
+    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau)))) == false && PRIVASI_PENGGUNA(*searchPengguna(&dataPengguna, IDKicau)))
     {
         printf("Wah, kicauan tersebut dibuat oleh pengguna dengan akun privat!");
     }

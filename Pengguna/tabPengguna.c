@@ -1,4 +1,5 @@
 #include "tabPengguna.h"
+#include "pengguna.h"
 #include <stdio.h>
 
 void createTabPengguna(TabPengguna *T)
@@ -19,11 +20,6 @@ int lengthTabPengguna(TabPengguna T)
     return i;
 }
 
-boolean isIdxEffTabPengguna(TabPengguna T, int i)
-{
-    return (i >= IDX_MIN) && (i <= getLastIdxTabPengguna(T));
-}
-
 boolean isTabPenggunaEmpty(TabPengguna T)
 {
     return lengthTabPengguna(T) == 0;
@@ -34,26 +30,10 @@ boolean isTabPenggunaFull(TabPengguna T)
     return lengthTabPengguna(T) == CAPACITYPENGGUNA;
 }
 
-void printTabPengguna(TabPengguna T)
-{
-    printf("[");
-    int i = getFirstIdxTabPengguna(T);
-    while (i <= getLastIdxTabPengguna(T))
-    {
-        printf("%d", SELECT_PENGGUNA(T, i));
-        if (i < getLastIdxTabPengguna(T))
-        {
-            printf(",");
-        }
-        i++;
-    }
-    printf("]\n");
-}
-
 int indexOfTabPengguna(TabPengguna T, Pengguna val)
 {
-    int i = getFirstIdxTabPengguna(T);
-    while (i <= getLastIdxTabPengguna(T))
+    int i = 0;
+    while (i < T.length)
     {
         if (ID_PENGGUNA(SELECT_PENGGUNA(T, i)) == ID_PENGGUNA(val))
         {
@@ -64,37 +44,11 @@ int indexOfTabPengguna(TabPengguna T, Pengguna val)
     return IDX_UNDEF_TAB_PENGGUNA;
 }
 
-void insertFirstTabPengguna(TabPengguna *T, Pengguna val)
-{
-    if (!isTabPenggunaFull(*T))
-    {
-        int last = getLastIdxTabPengguna(*T);
-        for (int i = last; i >= getFirstIdxTabPengguna(*T); i--)
-        {
-            SELECT_PENGGUNA(*T, i + 1) = SELECT_PENGGUNA(*T, i);
-        }
-        SELECT_PENGGUNA(*T, getFirstIdxTabPengguna(*T)) = val;
-    }
-}
-
-void insertAtTabPengguna(TabPengguna *T, Pengguna val, int idx)
-{
-    if (!isTabPenggunaFull(*T) && isIdxEffTabPengguna(*T, idx))
-    {
-        int last = getLastIdxTabPengguna(*T);
-        for (int i = last; i >= idx; i--)
-        {
-            SELECT_PENGGUNA(*T, i + 1) = SELECT_PENGGUNA(*T, i);
-        }
-        SELECT_PENGGUNA(*T, idx) = val;
-    }
-}
-
 void insertLastTabPengguna(TabPengguna *T, Pengguna val)
 {
     if (!isTabPenggunaFull(*T))
     {
-        int last = getLastIdxTabPengguna(*T);
+        int last = T->length;
         SELECT_PENGGUNA(*T, last + 1) = val;
     }
 }
@@ -138,10 +92,10 @@ boolean checkPassword(TabPengguna T, Sentence password, int numUsers)
     return found;
 }
 
-Pengguna *searchPenggunaByName(TabPengguna T, Sentence username)
+Pengguna *searchPenggunaByName(TabPengguna *T, Sentence username)
 {
     int i = 0;
-    while (i < CAPACITYPENGGUNA && !IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(T, i)), username))
+    while (i < CAPACITYPENGGUNA && !IsSentenceEqual(NAMA_PENGGUNA(SELECT_PENGGUNA(*T, i)), username))
     {
         i++;
     }
@@ -151,13 +105,13 @@ Pengguna *searchPenggunaByName(TabPengguna T, Sentence username)
     }
     else
     {
-        return &SELECT_PENGGUNA(T, i);
+        return &SELECT_PENGGUNA(*T, i);
     }
 };
-Pengguna *searchPengguna(TabPengguna T, int IDPengguna)
+Pengguna *searchPengguna(TabPengguna *T, int IDPengguna)
 {
     int i = 0;
-    while (i < CAPACITYPENGGUNA && ID_PENGGUNA(SELECT_PENGGUNA(T, i)) != IDPengguna)
+    while (i < CAPACITYPENGGUNA && ID_PENGGUNA(SELECT_PENGGUNA(*T, i)) != IDPengguna)
     {
         i++;
     }
@@ -167,7 +121,7 @@ Pengguna *searchPengguna(TabPengguna T, int IDPengguna)
     }
     else
     {
-        return &SELECT_PENGGUNA(T, i);
+        return &SELECT_PENGGUNA(*T, i);
     }
 };
 

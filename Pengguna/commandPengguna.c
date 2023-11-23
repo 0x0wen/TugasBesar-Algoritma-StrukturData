@@ -1,12 +1,100 @@
 #include "commandPengguna.h"
+#include <stdio.h>
+#include "tabPengguna.h"
+#include "../global.h"
+#include "../Teman/tabTeman.h"
+#include "../General/wordmachine.h"
+#include "../General/sentenceMachine.h"
 
-void GANTI_PROFIL() {
-    for (int i = 0; i < len(dataPengguna); i++) {
-        if (IdPengguna(SelectPengguna(dataPengguna, i)) == IdPengguna(penggunaSekarang)) {
-            Pengguna penggunaSekarang = SELECT_PENGGUNA(dataPengguna, i);
-        }
+/* PENGGUNA  */
+void DAFTAR() {
+    Sentence Username, Password;
+    int Length = dataPengguna.length;
+
+    if (statusProgram) {
+      printf("Anda sudah masuk. Keluar terlebih dahulu\nuntuk melakukan daftar.\n");
+    } else {
+        do {
+            printf("Masukkan nama:\n");
+            InputSentence(&Username);
+
+            if (checkUsernameExist(dataPengguna, Username, Length)) {
+              printf("Wah, sayang sekali nama tersebut telah diambil.\n");
+            }
+        } while (checkUsernameExist(dataPengguna, Username, Length));
+
+        printf("Masukkan kata sandi:\n");
+        InputSentence(&Password);
+
+        Pengguna newUser;
+
+        NAMA_PENGGUNA(newUser) = Username;
+        PASSWORD_PENGGUNA(newUser) = Password;
+
+        insertLastTabPengguna(&dataPengguna, newUser);
+
+        printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
+    }
+}
+
+void MASUK() {
+    Sentence Username, Password;
+    int Length = dataPengguna.length;
+
+    if (statusLogin) {
+        printf("Wah Anda sudah masuk. Keluar dulu yuk!\n");
+    } else {
+        do {
+            printf("Masukkan nama:\n");
+            InputSentence(&Username);
+
+            if (!checkUsernameExist(dataPengguna, Username, Length)) {
+                printf("Wah, nama yang Anda cari tidak ada.\nMasukkan nama lain!\n");
+            }
+
+        } while (!checkUsernameExist(dataPengguna, Username, Length));
+
+        do {
+            printf("Masukkan kata sandi:\n");
+            InputSentence(&Password);
+
+            if (!checkPassword(dataPengguna, Password, Length)) {
+                printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
+            }
+        } while (!checkPassword(dataPengguna, Password, Length));
+
+        penggunaSekarang = *searchPenggunaByName(&dataPengguna, Username);
+
+        statusLogin = true;
+    }
+    
+}
+
+void KELUAR() {
+    if (statusLogin) {
+        printf("Anda belum login! Masuk terlebih dahulu\nuntuk menikmati layanan BurBir.\n");
+    } else {
+        statusLogin = false;
+        printf("Anda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
+    }
+}
+
+void TUTUP_PROGRAM() {
+    statusProgram = false;
+    printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
+}
+
+// Fungsi untuk menyalin string secara manual
+void copyString(char *destination, const char *source, int maxSize) {
+    for (int i = 0; i < maxSize - 1 && source[i] != '\0'; ++i) {
+        destination[i] = source[i];
     }
 
+    // Pastikan string diakhiri dengan karakter null
+    destination[maxSize - 1] = '\0';
+}
+
+void GANTI_PROFIL() {
     if (ID_PENGGUNA(penggunaSekarang) == -1) {
         printf("Anda Belum Login! Masuk terlebih dahulu untuk mengganti profil.\n");
     } else {
@@ -23,8 +111,6 @@ void GANTI_PROFIL() {
         printf("|  Weton: ");
         printWord(WETON_PENGGUNA(penggunaSekarang));
         printf("\n");
-
-        Word empty = {';', 1};
 
         /* Mengganti bio pengguna */
         boolean IsValidBio = false;
@@ -48,7 +134,7 @@ void GANTI_PROFIL() {
         boolean IsValidNoHP = false;
         while (!IsValidNoHP) {
             printf("Masukkan No HP: \n");
-            STARTSENTENCE();
+            startSentence();
 
             for (int i = 0; i < currentWord.Length; i++) {
                 if (currentWord.TabWord[i] > '0' && currentWord.TabWord[i] < '9') {
@@ -63,19 +149,21 @@ void GANTI_PROFIL() {
 
         HP_PENGGUNA(penggunaSekarang) = currentWord; printf("\n");
 
-        Word weton[] = {{"Pahing", 6}, {"Kliwon", 6}, {"Wage", 6}, {"Legi", 4}, {"Pon", 3}}; // deklarasi Weton
+        Sentence weton[5] = {{"Pahing", 6}, {"Kliwon", 6}, {"Wage", 6}, {"Legi", 4}, {"Pon", 3}}; // deklarasi Weton
 
         /* Mengganti weton pengguna */
+        Sentence Weton;
         boolean IsValidWeton = false;
         while (!IsValidWeton) {
             printf("Masukkan Weton:\n");
-            STARTSENTENCE();
-            if (IsWordEqual(currentWord, empty)) {
+            InputSentence(&Weton);
+
+            if (isSentenceOnlyBlank(Weton)) {
                 IsValidWeton = true;
             }
 
             for (int i = 0; i < 4; i++) {
-                if (IsWordEqual(currentWord, weton[i])) {
+                if (IsSentenceEqual(Weton, weton[i])) {
                     IsValidWeton = true;
                 }
             }
@@ -92,33 +180,23 @@ void GANTI_PROFIL() {
 }
 
 void LIHAT_PROFIL() {
-    for (int i = 0; i < len(dataPengguna); i++) {
-        if (ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)) == ID_PENGGUNA(penggunaSekarang)) {
-            Pengguna penggunaSekarang = SELECT_PENGGUNA(dataPengguna, i);
-        }
-    }
-
     if (ID_PENGGUNA(penggunaSekarang) == -1) {
         printf("Anda Belum Login! Masuk terlebih dahulu untuk melihat profil.\n");
     } else {
         Sentence Nama;
         InputSentence(&Nama);
-        int idPengguna = ID_PENGGUNA(penggunaSekarang);
-        Word Privat = {"Privat", 6};
-        Word Publik = {"Publik", 6};
-        boolean TipeAkun = PRIVASI_PENGGUNA(penggunaSekarang);
 
         if (IsSentenceEqual(Nama, NAMA_PENGGUNA(penggunaSekarang))) {
             DISPLAY_PROFIL(penggunaSekarang);
         } else {
             Pengguna penggunaSekarang1;
-            for (int i = 0; i < len(dataPengguna); i++) {
+            for (int i = 0; i < dataPengguna.length; i++) {
                 if (IsSentenceEqual(Nama, NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)))) {
-                    Pengguna penggunaSekarang1 = SELECT_PENGGUNA(dataPengguna, i);
+                    penggunaSekarang1 = SELECT_PENGGUNA(dataPengguna, i);
                 }
             }
 
-            if (IsWordEboolean(TipeAkun, Privat) && !isFriend()) {
+            if (!PRIVASI_PENGGUNA(penggunaSekarang1) || !isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), ID_PENGGUNA(penggunaSekarang1))) {
                 printf("Wah, akun ");
                 printSentence(Nama);
                 printf(" diprivat nih. Ikuti dulu yuk untuk bisa melihat profil ");
@@ -131,30 +209,30 @@ void LIHAT_PROFIL() {
 }
 
 void ATUR_JENIS_AKUN() {
-    for (int i = 0; i < len(dataPengguna); i++) {
-        if (ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)) == ID_PENGGUNA(penggunaSekarang)) {
-            Pengguna penggunaSekarang = SELECT_PENGGUNA(dataPengguna, i);
-        }
-    }
-
     if (ID_PENGGUNA(penggunaSekarang) == -1) {
         printf("Anda Belum Login!\n");
     } else
     {
-        boolean TipeAkun = PRIVASI_PENGGUNA(penggunaSekarang);
-        Word Privat = {"Privat", 6};
-        Word Publik = {"Publik", 6};
-        Word YA = {"YA", 2};
+        boolean isPrivate = PRIVASI_PENGGUNA(penggunaSekarang);
         Word TIDAK = {"TIDAK", 5};
 
         printf("Saat ini, akun Anda adalah akun");
-        printboolean(TipeAkun);
-        if (IsWordEboolean(TipeAkun, Privat)) {
+        if (isPrivate) {
+            printf("Privat.\n");
+        } else {
+            printf("Publik.\n");
+        }
+
+        Word Action;
+        
+        if (isPrivate) {
             printf("Ingin mengubah ke akun Publik?");
             printf("\n");
             printf("(YA/TIDAK)");
-            STARTWORD();
-            if (IsWordEqual(currentWord, TIDAK)) {
+            
+            InputWord(&Action);
+
+            if (IsWordEqual(Action, TIDAK)) {
                 printf("Perubahan akun dibatalkan.");
             } else
             {
@@ -165,12 +243,14 @@ void ATUR_JENIS_AKUN() {
             printf("Ingin mengubah ke akun Privat?");
             printf("\n");
             printf("(YA/TIDAK)");
-            STARTWORD();
-            if (IsWordEqual(currentWord, TIDAK)) {
+
+            InputWord(&Action);
+
+            if (IsWordEqual(Action, TIDAK)) {
                 printf("Perubahan akun dibatalkan.\n");
             } else
             {
-                penggunaSekarang.privat = true;
+                PRIVASI_PENGGUNA(penggunaSekarang) = true;
                 printf("Akun anda sudah diubah menjadi akun Privat.\n");
             }
         }
@@ -178,39 +258,20 @@ void ATUR_JENIS_AKUN() {
 }
 
 void UBAH_FOTO_PROFIL() {
-    for (int i = 0; i < len(dataPengguna); i++) {
-        if (ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i)) == ID_PENGGUNA(penggunaSekarang)) {
-            Pengguna penggunaSekarang = SELECT_PENGGUNA(dataPengguna, i);
-        }
-    }
-
     if (ID_PENGGUNA(penggunaSekarang) == -1) {
         printf("Anda Belum Login! Masuk terlebih dahulu untuk mengganti foto profil.\n");
     } else {
         printf("Foto profil Anda saat ini adalah\n");
         DISPLAY_FOTO_PROFIL(penggunaSekarang);
-        printf("\n");
-        printf("Masukkan foto profil yang baru\n");
-        FotoProfil fp;
-        START();
-        IgnoreBlanks();
-        IgnoreEnters();
-        createFotoProfil(5, 10, &fp);
-        int i, j;
-        for (i = 0; i < ROW_EFF(fp); i++)
-        {
-            for (j = 0; j < COL_EFF(fp); j++)
-            {
-                ELMT(fp, i, j) = currentChar;
-                ADV();
-                IgnoreBlanks();
-                IgnoreEnters();
-            }
-            IgnoreEnters();
-        }
-        FOTO_PENGGUNA(penggunaSekarang) = fp;
-        printf("\n");
-        printf("Foto profil anda sudah berhasil diganti!\n\n");
+        printf("\nMasukkan foto profil yang baru\n");
+
+        FotoProfil FP;
+        createFotoProfil(5, 10, &FP);
+        readFotoProfil(&FP, 5, 10);
+
+        FOTO_PENGGUNA(penggunaSekarang) = FP;
+
+        printf("\nFoto profil anda sudah berhasil diganti!\n\n");
         DISPLAY_FOTO_PROFIL(penggunaSekarang);
     }
 }
