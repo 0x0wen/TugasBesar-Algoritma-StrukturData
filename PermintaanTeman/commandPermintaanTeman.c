@@ -9,7 +9,7 @@ void TAMBAH_TEMAN(){
     {
         printf("Masukkan nama pengguna:\n");
         Sentence input_name; InputSentence(&input_name);
-        Pengguna send_to; int userid;
+        Pengguna send_to;
 
         int i;
         for (i = 0; i < dataPengguna.length; i++)
