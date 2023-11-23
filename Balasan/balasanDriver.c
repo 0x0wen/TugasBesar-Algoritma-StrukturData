@@ -7,8 +7,8 @@ int main()
 {
     Kicauan K1;
     Balasan B1, B2, B3;
-    tree T1;
-    createBalasan(K1);
+    TreeBalasan T1;
+    createBalasan(B1);
     addBalasan(&K1, &B1);
     addBalasan(&K1, &B2);
     addBalasan(&K1, &B3);

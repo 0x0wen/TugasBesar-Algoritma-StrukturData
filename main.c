@@ -76,11 +76,10 @@ int main()
     if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN"))
       SETUJUI_PERTEMANAN();
 
-    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
-    {
-      // ADV();
-      // Sentence NAMA = currentWord;
-      // LIHAT_PROFIL(NAMA);
+    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL")) {
+      ADV();
+      Word Nama = currentWord;
+      LIHAT_PROFIL(Nama);
     }
 
     if (isWordEqualStr(&currentWord, "SUKA_KICAUAN"))
