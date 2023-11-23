@@ -30,7 +30,7 @@ void InputSentence(Sentence *inputWord);
 boolean IsSentenceEqual(Sentence w1, Sentence w2);
 boolean isSentenceOnlyBlank(Sentence w);
 int LengthStr(const char *str);
-
+void AcquireSentence();
 // void InputWord(Word *inputWord);
 // void printWord(Word w);
 // void InputWordWithBlank(Word *inputWord);
