@@ -4,9 +4,9 @@
 *.exe 
 
 # ignore vscode files
-./.vscode/settings.json
-./.vscode/c_cpp_properties.json
+/.vscode/settings.json
+/.vscode/c_cpp_properties.json
 
 # exec files
-./build/*.o
-./build/*.d
+/build/*.o
+/build/*.d
