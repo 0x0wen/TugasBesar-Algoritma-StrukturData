@@ -82,7 +82,7 @@ void pushDraf(Draf *s, Kicauan k){
 
 void popDraf(Draf *s, Kicauan *k){
     *k = INFO_DRAF(ADDR_TOP_DRAF(*s));
-    if (length(*s) == 1){
+    if (lengthDraf(*s) == 1){
         ADDR_TOP_DRAF(*s) = NULL;
     } else {
         ADDR_TOP_DRAF(*s) = NEXT_DRAF(ADDR_TOP_DRAF(*s));

@@ -19,7 +19,7 @@ void KICAU(){
 
         printf("Selamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
-        printDetilKicauan(newKicau);
+        printDetilKicau(newKicau);
     }
 }
 
@@ -43,7 +43,7 @@ void SUKA_KICAUAN(int id){
         Pengguna author;
 
         for (i = 0; i < dataPengguna.length; i++){
-            if (IsSentenceEqual(SELECT_PENGGUNA(dataPengguna, i), author_name)){
+            if (IsSentenceEqual(SELECT_PENGGUNA(dataPengguna, i).nama , author_name)){
                 author = SELECT_PENGGUNA(dataPengguna, i);
             }
         }

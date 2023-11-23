@@ -2,7 +2,7 @@
 #define COMMAND_KICAUAN_H
 
 #include "tabKicauan.h"
-
+#include "../General/listDinamis.h"
 
 void KICAU();
 void KICAUAN();

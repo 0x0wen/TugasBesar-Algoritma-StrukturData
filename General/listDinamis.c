@@ -4,6 +4,15 @@
 #include <math.h>
 #include <stdlib.h>
 
+void deleteVal(ListDin *l, int val){
+    int idx = indexOf(*l, val);
+    int i;
+    for (i = idx+1; i < NEFF_LIST_DIN(*l)-1; i++){
+        ELMT_LIST_DIN(*l, i-1) = ELMT_LIST_DIN(*l, i);
+    }
+    NEFF_LIST_DIN(*l)--;
+}
+
 void CreateListDin(ListDin *l, int capacity)
 {
     CAPACITY_LIST_DIN(*l) = capacity;

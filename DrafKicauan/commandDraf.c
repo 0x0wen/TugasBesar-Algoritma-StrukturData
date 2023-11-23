@@ -44,7 +44,7 @@ void LIHAT_DRAF(){
         popDraf(&penggunaSekarang.drafKicauan, &draf_kicau);
 
         printf("Ini draf terakhir anda:");
-        printf("| "); printTime(draf_kicau.DateTime); printf("\n");
+        printf("| "); TulisDATETIME(draf_kicau.DateTime); printf("\n");
         printf("| "); printSentence(draf_kicau.Text); printf("\n");
 
         printf("Apakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)");

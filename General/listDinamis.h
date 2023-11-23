@@ -60,6 +60,7 @@ int countVal(ListDin l, int val);
 void sort(ListDin *l, boolean asc);
 void insertLast(ListDin *l, int val);
 void deleteLast(ListDin *l, int *val);
+void deleteVal(ListDin *l, int val);
 void expandList(ListDin *l, int num);
 void shrinkList(ListDin *l, int num);
 void compressList(ListDin *l);

@@ -18,7 +18,7 @@ Kicauan createKicauan(int id, Sentence text, Sentence author){
 void printDetilKicauan(Kicauan k){   
     printf("| ID = %d\n", k.IDKicau);
     printf("| "); printSentence(k.Author); printf("\n");
-    printf("| "); printTime(k.DateTime); printf("\n");
+    printf("| "); TulisDATETIME(k.DateTime); printf("\n");
     printf("| "); printSentence(k.Text); printf("\n");
     printf("| Disukai = %d\n", k.Like);
 }

@@ -32,7 +32,7 @@ void TAMBAH_TEMAN(){
             printSentence(input_name);
     
             Requester send_val = {JUMLAH_TEMAN(current_user), ID_PENGGUNA(current_user)};
-            Enqueue(&(send_to.daftarPermintaanTeman), send_val);
+            enqueue_PQR(&(send_to.daftarPermintaanTeman), send_val);
 
             printf(" telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
         }
@@ -106,13 +106,13 @@ void SETUJUI_PERTEMANAN()
             printSentence(NAMA_PENGGUNA(sender));
             printf(".\n");
 
-            Dequeue(&(current_user.daftarPermintaanTeman));
+            dequeue_PQR(&(current_user.daftarPermintaanTeman));
 
         } else {
             printf("Permintaan pertemanan dari "); printSentence(NAMA_PENGGUNA(sender));
             printf(" telah ditolak.\n");
 
-            Dequeue(&(current_user.daftarPermintaanTeman));
+            dequeue_PQR(&(current_user.daftarPermintaanTeman));
         }
     }
 }
