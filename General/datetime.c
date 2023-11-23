@@ -2,7 +2,7 @@
 #include <math.h>
 
 #include "datetime.h"
-#include "time_adt.c"
+#include "time_adt.h"
 
 void CreateDATETIME(DATETIME *D, int DD, int MM, int YYYY, int hh, int mm, int ss)
 {
