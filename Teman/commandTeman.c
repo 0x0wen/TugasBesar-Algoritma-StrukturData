@@ -4,7 +4,7 @@ void DAFTAR_TEMAN(){
 
     Sentence nama_user = NAMA_PENGGUNA(penggunaSekarang);
     int id_user = ID_PENGGUNA(penggunaSekarang);
-    int banyak_teman = countTeman(matrixTeman, id_user);
+    int banyak_teman = countFriend(matrixTeman, id_user);
 
     printf("\n");
     printSentence(nama_user); printf(" memiliki %d teman\n", banyak_teman);
@@ -63,7 +63,7 @@ void HAPUS_TEMAN(){
             if (IsWordEqual(Ya, Action)){
                 deleteFriend(&matrixTeman, id_user, id_teman);
                 printSentence(nama_teman); printf(" berhasil dihapus dari daftar teman Anda.");
-            } else {
+            } else if(IsWordEqual(Tidak, Action)){
                 printf("\nPenghapusan teman dibatalkan.");
             }
         }

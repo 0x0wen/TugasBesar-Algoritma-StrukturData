@@ -3,6 +3,7 @@
         "kicauan.h": "c",
         "charmachine.h": "c",
         "commandutas.h": "c",
-        "sentencemachine.h": "c"
+        "sentencemachine.h": "c",
+        "wordmachine.h": "c"
     }
 }

@@ -20,8 +20,8 @@ void deleteFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2){
     ELMT_TEMAN(*matrix_teman, id_user2, id_user1) = 0;
 }
 
-boolean isFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2){
-    return ELMT_TEMAN(*matrix_teman, id_user1, id_user2) == 1;
+boolean isFriend(AdjacencyMatrix matrix_teman, int id_user1, int id_user2){
+    return ELMT_TEMAN(matrix_teman, id_user1, id_user2) == 1;
 }
 
 int countFriend(AdjacencyMatrix matrix_teman, int id_user){
