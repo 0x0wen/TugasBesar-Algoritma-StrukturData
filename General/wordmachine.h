@@ -32,7 +32,7 @@ void STARTWORD();
           currentChar karakter pertama sesudah karakter terakhir kata */
 void STARTWORD_BLANK();        
 
-void ADVW0RD();
+void ADVWORD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
           currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK

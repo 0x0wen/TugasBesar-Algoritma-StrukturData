@@ -33,6 +33,9 @@ AdjacencyMatrix matrixTeman;
 
 int main()
 {
+  statusLogin = false;
+  statusProgram = true;
+
   inisialisasi();
 
   while (!statusLogin)
