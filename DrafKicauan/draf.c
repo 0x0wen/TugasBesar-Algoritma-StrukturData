@@ -4,7 +4,7 @@
 
 
 /* Prototype manajemen memori */
-Address newNode(Kicauan k){
+Address_draf newNode(Kicauan k){
     Address_draf p = (Address_draf) malloc (sizeof(Node_draf));
     if (p != NULL){
         INFO_DRAF(p) = k;

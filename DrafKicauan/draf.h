@@ -12,7 +12,7 @@
 typedef struct node_draf *Address_draf;
 typedef struct node_draf {
     Kicauan info;
-    Address next;
+    Address_draf next;
 } Node_draf;
 
 /* Type Draf dengan ciri Top: */
@@ -28,7 +28,7 @@ typedef struct
 #define INFO_TOP_DRAF(s) (s).addrTop->info
 
 /* Prototype manajemen memori */
-Address newNode(Kicauan k);
+Address_draf newNode(Kicauan k);
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x,
    atau
    NULL jika alokasi gagal */
