@@ -20,16 +20,15 @@ typedef struct
   int Like;
   Sentence Author;
   DATETIME DateTime;
-  Balasan *TabBalasan; /* Pointer ke list dinamis TabBalasan */
-} Kicauan;             /* tiap elemen pada list tsb merupakan root dari tree balasan */
+  Balasan TabBalasan; /* Pointer ke Tree Balasan */
+} Kicauan;            /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
-#define ID(K) (K).IDKicau;
-#define TEXT(K) (K).Text;
-#define LIKE(K) (K).Like;
-#define AUTHOR(K) (K).Author;
-#define TIME(K) (K).DateTime;
-#define LIST_BALASAN(K) *((K).TabBalasan); // nge retrieve list dinamis of balasan
-
+#define ID_KICAUAN(K) (K).IDKicau
+#define TEXT_KICAUAN(K) (K).Text
+#define LIKE_KICAUAN(K) (K).Like
+#define AUTHOR_KICAUAN(K) (K).Author
+#define TIME_KICAUAN(K) (K).DateTime
+#define TREE_BALASAN(K) (K).TabBalasan // nge retrieve tree of balasan
 
 #endif
