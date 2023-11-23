@@ -48,5 +48,7 @@ Kicauan createKicauan();
 void printKicauan(Kicauan k);
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/
+Kicauan searchKicauan(TabKicauan t, int id);
+
 
 #endif
