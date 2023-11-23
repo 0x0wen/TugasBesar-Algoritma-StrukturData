@@ -60,5 +60,4 @@ void MASUK();
 void KELUAR();
 void TUTUP_PROGRAM();
 
-
 #endif

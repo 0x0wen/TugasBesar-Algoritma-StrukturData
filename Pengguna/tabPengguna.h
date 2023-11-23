@@ -11,6 +11,8 @@
 #define MARK_PENGGUNA NULL
 /* Nilai elemen tak terdefinisi*/
 
+#include "pengguna.h"
+
 /* Definisi elemen dan koleksi objek */
 typedef struct
 {
@@ -45,5 +47,7 @@ void deleteAtTabPengguna(Pengguna *val, int idx);
 void deleteLastTabPengguna(Pengguna *val);
 boolean checkUsernameExist(TabPengguna T, Sentence username, int numUsers);
 boolean checkPassword(TabPengguna T, Sentence password, int numUsers);
+Pengguna *searchPenggunaByName(TabPengguna T, Sentence username);
+Pengguna *searchPengguna(TabPengguna T, int IDPengguna);
 
 #endif
