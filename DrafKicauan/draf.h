@@ -3,12 +3,6 @@
 #ifndef DrafLINKED_H
 #define DrafLINKED_H
 
-#include "../General/wordmachine.h"
-#include "../General/charmachine.h"
-#include "../General/sentenceMachine.h"
-#include "../General/datetime.h"
-#include "../General/time_adt.h"
-#include "../General/boolean.h"
 #include "../Kicauan/kicauan.h"
 #include <stdlib.h>
 
@@ -16,28 +10,25 @@
 /* Deklarasi infotype */
 /* Draf dengan representasi berkait dengan pointer */
 typedef struct node_draf *Address_draf;
-typedef struct node *Address;
-
-typedef struct node_draf
-{
-    Kicauan info_draf;
-    Address next_draf;
+typedef struct node_draf {
+    Kicauan info;
+    Address next;
 } Node_draf;
 
 /* Type Draf dengan ciri Top: */
 typedef struct
 {
-    Address_draf addrTop_draf; /* alamat Top: elemen puncak */
+    Address_draf addrTop; /* alamat Top: elemen puncak */
 } Draf;
 
 /* Selektor */
-#define NEXT_DRAF(p) (p)->next_draf
-#define INFO_DRAF(p) (p)->info_draf
-#define ADDR_TOP_DRAF(s) (s).addrTop_draf
-#define TOP_DRAF(s) (s).addrTop_draf->info_draf
+#define NEXT_DRAF(p) (p)->next
+#define INFO_DRAF(p) (p)->info
+#define ADDR_TOP_DRAF(s) (s).addrTop
+#define INFO_TOP_DRAF(s) (s).addrTop->info
 
 /* Prototype manajemen memori */
-// Address newNode(ElType x);
+Address newNode(Kicauan k);
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x,
    atau
    NULL jika alokasi gagal */
@@ -61,21 +52,17 @@ void CreateDraf(Draf *s);
 /* Contoh : jika ada tiga elemen bernilai 1 (TOP), 20, 30 akan dicetak: [1,20,30] */
 /* Jika Draf kosong : menulis [] */
 
-void pushDraf(Draf *s, Kicauan x);
+void pushDraf(Draf *s, Kicauan k);
 /* Menambahkan x sebagai elemen Draf s */
 /* I.S. s mungkin kosong, x terdefinisi */
 /* F.S. x menjadi Top yang baru jika alokasi x berhasil, */
 /*      jika tidak, s tetap */
 /* Pada dasarnya adalah operasi insertFirst pada list linier */
 
-void popDraf(Draf *s, Kicauan *x);
+void popDraf(Draf *s, Kicauan *k);
 /* Menghapus Top dari Draf s */
 /* I.S. s tidak kosong */
 /* F.S. x adalah nilai elemen Top yang lama, */
 /*      elemen Top yang lama didealokasi */
 /* Pada dasarnya adalah operasi deleteFirst pada list linier */
-
-void BUAT_DRAF(Draf *s);
-void LIHAT_DRAF(Draf *s);
-
 #endif

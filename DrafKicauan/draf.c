@@ -4,14 +4,14 @@
 
 
 /* Prototype manajemen memori */
-// Address newNode(ElType x){
-//     Address p = (Address) malloc (sizeof(Node));
-//     if (p != NULL){
-//         INFO(p) = x;
-//         NEXT_DRAF(p) = NIL;
-//     }
-//     return p;
-// }
+Address newNode(Kicauan k){
+    Address_draf p = (Address_draf) malloc (sizeof(Node_draf));
+    if (p != NULL){
+        INFO_DRAF(p) = k;
+        NEXT_DRAF(p) = NIL;
+    }
+    return p;
+}
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
    atau 
    NULL jika alokasi gagal */   
@@ -63,9 +63,9 @@ void CreateDraf(Draf *s){
 /* Contoh : jika ada tiga elemen bernilai 1 (TOP), 20, 30 akan dicetak: [1,20,30] */
 /* Jika Draf kosong : menulis [] */
 
-void pushDraf(Draf *s, Kicauan x){
-    Address_draf p = newNode(x);
-    if (p != NULL){
+void pushDraf(Draf *s, Kicauan k){
+    Address_draf p = newNode(k);
+    if (p != NIL){
         if (isEmptyDraf(*s)){
             ADDR_TOP_DRAF(*s) = p;
         } else {
@@ -80,8 +80,8 @@ void pushDraf(Draf *s, Kicauan x){
 /*      jika tidak, s tetap */
 /* Pada dasarnya adalah operasi insertFirst pada list linier */
 
-void popDraf(Draf *s, Kicauan *x){
-    *x = INFO_DRAF(ADDR_TOP_DRAF(*s));
+void popDraf(Draf *s, Kicauan *k){
+    *k = INFO_DRAF(ADDR_TOP_DRAF(*s));
     if (length(*s) == 1){
         ADDR_TOP_DRAF(*s) = NULL;
     } else {
@@ -95,91 +95,3 @@ void popDraf(Draf *s, Kicauan *x){
 /* Pada dasarnya adalah operasi deleteFirst pada list linier */
 
 // #endif
-
-void BUAT_DRAF(Draf *s){
-
-    printf("\nMasukkan draf:\n");
-    Kicauan draf = createKicauan();
-
-    // HAPUS; SIMPAN; TERBIT; ?
-    printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-    Word action; InputWordWithBlank(&action);
-
-    Word Hapus = {"HAPUS", 5};
-    Word Simpan = {"SIMPAN", 6};
-    Word Terbit = {"TERBIT", 6};
-
-    if (IsWordEqual(action, Hapus)){
-        printf("\nDraf telah berhasil dihapus!");
-    }
-    else if (IsWordEqual(action, Simpan)){
-        pushDraf(s, draf);
-        printf("\nDraf telah berhasil disimpan!");
-    }
-    else /* isWordEqual(action, Terbit)*/{
-        addKicauanToTab(&dataKicauan, draf);
-        printf("Selamat! draf kicauan telah diterbitkan!\n");
-        printf("Detil kicauan:");
-        printKicauan(draf);
-    }
-
-}
-void LIHAT_DRAF(Draf *s){
-
-    if (isEmptyDraf(*s)){
-        printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D");
-
-    } else {
-
-        Kicauan draf;
-        popDraf(s, &draf);
-
-        printf("Ini draf terakhir anda:");
-        printf("| "); printTime(draf.DateTime); printf("\n");
-        printf("| "); printWord(draf.Text); printf("\n");
-
-        printf("Apakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)");
-        Word action; InputWordWithBlank(&action);
-
-        Word Ubah = {"UBAH", 6};
-        Word Hapus = {"HAPUS", 5};
-        Word Terbit = {"TERBIT", 6};
-        Word Kembali = {"KEMBALI", 7};
-
-        if (IsWordEqual(action, Ubah)){
-            printf("\nMasukkan draf yang baru:\n");
-            Kicauan newdraf = createKicauan();
-
-            // HAPUS; SIMPAN; TERBIT; ?
-            printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-            action; InputWordWithBlank(&action);
-
-            Word Simpan = {"SIMPAN", 6};
-
-            if (IsWordEqual(action, Hapus)){
-                printf("\nDraf telah berhasil dihapus!");
-            }
-            else if (IsWordEqual(action, Simpan)){
-                pushDraf(s, newdraf);
-                printf("\nDraf telah berhasil disimpan!");
-            }
-            else /* isWordEqual(action, Terbit)*/{
-                addKicauanToTab(&dataKicauan, newdraf);
-                printf("Selamat! draf kicauan telah diterbitkan!\n");
-                printf("Detil kicauan:");
-                newdraf.IDKicau = dataKicauan.maxID_TabKicauan;
-                printKicauan(newdraf);
-            }
-        }
-        else if (IsWordEqual(action, Hapus)){
-            printf("\nDraf telah berhasil dihapus!");
-        }
-        else /* isWordEqual(action, Terbit)*/{
-            addKicauanToTab(&dataKicauan, draf);
-            printf("Selamat! draf kicauan telah diterbitkan!\n");
-            printf("Detil kicauan:");
-            draf.IDKicau = dataKicauan.maxID_TabKicauan;
-            printKicauan(draf);
-        }
-    }
-}
