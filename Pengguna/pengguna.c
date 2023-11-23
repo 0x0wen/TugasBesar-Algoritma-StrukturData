@@ -87,23 +87,3 @@ void copyString(char *destination, const char *source, int maxSize) {
     // Pastikan string diakhiri dengan karakter null
     destination[maxSize - 1] = '\0';
 }
-
-
-void Display_PROFIL(Pengguna user)
-{
-    printf("|  Nama: ");
-    printWord(NamaPengguna(user));
-    printf("\n");
-    printf("|  Bio Akun: ");
-    printWord(BioPengguna(user));
-    printf("\n");
-    printf("|  No HP: ");
-    printWord(NoHPPengguna(user));
-    printf("\n");
-    printf("|  Weton: ");
-    printWord(WetonPengguna(user));
-    printf("\n");
-    printf("Foto profil akun :");
-    DISPLAY_FOTO_PROFIL(user);
-    printf("\n");
-}
