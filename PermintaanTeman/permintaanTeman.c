@@ -1,158 +1,85 @@
 #include "permintaanTeman.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "tabTeman.h"
+Requester create_Requester(int priority, int id){
+    Requester R;
+    R.prio = priority;
+    R.id_requester = id;
 
-/* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsPermintaanTemanEmpty(PermintaanTeman Q)
-{
-    return NBElmt(Q) == 0;
+    return R;
 }
 
-/* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
-boolean IsPermintaanTemanFull(PermintaanTeman Q)
-{
-    return NBElmt(Q) == MaxPermintaan;
+void create_PQR(PrioQueueRequest *Q){
+    (*Q).idxHead = IDX_UNDEF;
+    (*Q).idxTail = IDX_UNDEF;
 }
 
-/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
-int BanyakPermintaanTeman(PermintaanTeman Q)
-{
-
-    if (Head(Q) == Nil)
-    {
-        return 0;
-    }
-    else if (Head(Q) <= Tail(Q))
-    {
-        return Tail(Q) - Head(Q) + 1;
-    }
-    else
-    {
-        return MaxPermintaan - (Head(Q) - Tail(Q) - 1);
-    }
+boolean IsEmpty_PQR(PrioQueueRequest Q){
+    return nEff_PQR(Q) == 0;
 }
 
-/* *** Kreator *** */
-
-/* I.S. sembarang */
-/* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
-/* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
-/* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-void CreatePermintaanTeman(PermintaanTeman *Q, int Max)
-{
-
-    (*Q).T = (AnggotaTeman *)malloc((Max) * sizeof(AnggotaTeman));
-    Head(*Q) = Nil;
-    Tail(*Q) = Nil;
+/* harusnya gak bakal penuh sih */
+boolean IsFull_PQR(PrioQueueRequest Q){
+    return nEff_PQR(Q) == MaxPermintaan;
 }
 
-/* *** Destruktor *** */
-
-/* Proses: Mengembalikan memori Q */
-/* I.S. Q pernah dialokasi */
-/* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
-void DealokasiPermintaanTeman(PermintaanTeman *Q)
-{
-    Head(*Q) = Nil;
-    Tail(*Q) = Nil;
-    free((*Q).T);
+boolean nEff_PQR(PrioQueueRequest Q){
+    return Q.idxTail+1;
 }
 
-/* *** Primitif Add/Delete *** */
+boolean isExists_PQR(PrioQueueRequest Q, int id_requester){
 
-/* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut membesar berdasarkan prio */
-/* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
-        TAIL "maju" dengan mekanisme circular buffer; */
-void EnqueuePermintaanTeman(PermintaanTeman *Q, AnggotaTeman X)
-{
+    int i, len = nEff_PQR(Q);
 
-    if (NBElmt(*Q) == 0)
-    {
-
-        Head(*Q) = 0;
-        Tail(*Q) = 0;
-        InfoHead(*Q) = X;
-    }
-    else
-    {
-        AnggotaTeman temp[100];
-        int i;
-
-        for (i = 0; i < NBElmt(*Q); i++)
-        {
-            temp[i] = Elmt(*Q, (Head(*Q) + i) % MaxPermintaan);
+    for (i = 0; i < len; i++){
+        if (ELMT_PQR(Q, i).id_requester == id_requester){
+            return true;
         }
+    }  
+    return false;
+}
 
+void enqueue_PQR(PrioQueueRequest *Q, Requester R){
+
+    if (IsEmpty_PQR(*Q)) {
+        ELMT_PQR(*Q, 0) = R;
+        (*Q).idxHead = 0;
+        (*Q).idxTail = 0;
+    } else {
         int idxPlace = 0;
-        while (temp[idxPlace].prio <= Prio(X) && idxPlace < NBElmt(*Q))
-        {
+        while ((ELMT_PQR(*Q, idxPlace).prio >= R.prio) && (idxPlace < nEff_PQR(*Q))){
             idxPlace++;
         }
-
-        int idxMove = NBElmt(*Q) - 1;
-
-        while (idxMove >= idxPlace)
-        {
-            temp[idxMove + 1] = temp[idxMove];
-            idxMove--;
-        }
-
-        temp[idxPlace] = X;
-
-        Tail(*Q) = (Tail(*Q) + 1) % MaxPermintaan;
-
-        for (i = 0; i < NBElmt(*Q); i++)
-        {
-
-            Elmt(*Q, (Head(*Q) + i) % MaxPermintaan) = temp[i];
-        }
+        int i;
+        for (i = nEff_PQR(*Q)-1; i >= idxPlace; i--){
+            ELMT_PQR(*Q, i+1) = ELMT_PQR(*Q, i);
+        } 
+        ELMT_PQR(*Q, idxPlace) = R;
+        (*Q).idxTail++;
     }
 }
 
-/* Proses: Menghapus X pada Q dengan aturan FIFO */
-/* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
-        Q mungkin kosong */
-void DequeuePermintaanTeman(PermintaanTeman *Q, AnggotaTeman *X)
-{
-    int len = NBElmt(*Q);
+void dequeue_PQR(PrioQueueRequest *Q){
 
-    *X = InfoHead(*Q);
-    Head(*Q) = (Head(*Q) + 1) % MaxPermintaan;
-
-    if (len == 1)
-    {
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+    if (nEff_PQR(*Q) == 1){
+        (*Q).idxHead = IDX_UNDEF;
+        (*Q).idxTail = IDX_UNDEF;
+    } else {
+        int i;
+        for (i = 0; i < nEff_PQR(*Q)-1; i++){
+            ELMT_PQR(*Q, i) = ELMT_PQR(*Q, i+1);
+        }
+        (*Q).idxTail--;
     }
 }
 
-/* Operasi Tambahan */
-
-/* Mencetak isi queue Q ke layar */
-/* I.S. Q terdefinisi, mungkin kosong */
-/* F.S. Q tercetak ke layar dengan format:
-<prio-1> <elemen-1>
-...
-<prio-n> <elemen-n>
-#
-*/
-void CetakPermintaanTeman(PermintaanTeman Q)
-{
-
+void display_PQR(PrioQueueRequest Q){
     int i;
-    AnggotaTeman current;
-
-    for (i = 0; i < NBElmt(Q); i++)
-    {
-
-        current = Elmt(Q, (Head(Q) + i) % MaxPermintaan);
-        printf("%d %c\n", Prio(current), Info(current));
+    printf("\nQueue: \n");
+    for (i = 0; i < nEff_PQR(Q); i++){
+        Requester current = ELMT_PQR(Q,i);
+        printf("[banyak teman: %d, id: %d]\n", current.prio, current.id_requester);
     }
-    printf("#\n");
+    if (IsEmpty_PQR(Q)){
+        printf("Kosong\n");
+    }
 }

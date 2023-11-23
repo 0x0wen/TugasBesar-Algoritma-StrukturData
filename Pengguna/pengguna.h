@@ -28,7 +28,7 @@ typedef struct
     ListDin daftarKicauan;
     ListDin daftarBalasan;
     ListDin daftarUtas;
-    PermintaanTeman daftarPermmintaanTeman;
+    PrioQueueRequest daftarPermintaanTeman;
     Draf drafKicauan;
 } Pengguna;
 /* Definisi stack S kosong : S.TOP = Nil */

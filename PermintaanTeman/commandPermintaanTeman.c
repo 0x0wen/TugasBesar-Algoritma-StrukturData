@@ -1,34 +1,40 @@
 #include "commandPermintaanTeman.h"
 
-void TAMBAH_TEMAN()
-{
-    if (IsEmpty_PrioQueue(p.permintaan_teman))
+void TAMBAH_TEMAN(){
+
+    Pengguna current_user = penggunaSekarang;
+
+    if (IsEmpty_PQR(current_user.daftarPermintaanTeman))
     {
         printf("Masukkan nama pengguna:\n");
-        STARTWORD();
-        Word name = currentWord;
-        Pengguna A;
-        for (int i = 0; i < len(dataPengguna); i++)
+        Sentence input_name; InputSentence(&input_name);
+        Pengguna send_to; int userid;
+
+        int i;
+        for (i = 0; i < dataPengguna.length; i++)
         {
-            if (IsWordEqual(name, SelectPengguna(dataPengguna, i).nama))
+            if (IsSentenceEqual(input_name, SELECT_PENGGUNA(dataPengguna, i).nama))
             {
-                A = SelectPengguna(dataPengguna, i);
+                send_to = SELECT_PENGGUNA(dataPengguna, i);
             }
         }
-        if (IdPengguna(A) == IDX_UNDEF)
+        if (ID_PENGGUNA(send_to) == IDX_UNDEF)
         {
             printf("Pengguna bernama ");
-            printWord(name);
+            printSentence(input_name);
             printf(" tidak ditemukan.");
         }
         else
-        {
-            MakeEmpty(&p.permintaan_teman, 20);
+        {   
+            // harus diinisialisasi saat config / create user, bkn disini
+            // MakeEmpty(&p.permintaan_teman, 20);
             printf("\nPermintaan pertemanan kepada ");
-            printWord(name);
+            printSentence(input_name);
+    
+            Requester send_val = {JUMLAH_TEMAN(current_user), ID_PENGGUNA(current_user)};
+            Enqueue(&(send_to.daftarPermintaanTeman), send_val);
+
             printf(" telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
-            infotype req = {JUMLAH_TEMAN(name), name};
-            Enqueue(&p.permintaan_teman, req);
         }
     }
     else
@@ -38,41 +44,75 @@ void TAMBAH_TEMAN()
 }
 
 void DAFTAR_PERMINTAAN_PERTEMANAN()
-{
-    PrintPrioQueueChar(p.permintaan_teman);
+{   
+    PrioQueueRequest current = penggunaSekarang.daftarPermintaanTeman;
+
+    if (isEmpty_PQR(current)){
+        printf("\nTidak ada permintaan pertemanan untuk Anda.\n");
+    } else {
+
+        printf("\nTerdapat %d permintaan pertemanan untuk Anda.\n", nEff_PQR(current));
+        int i,j;
+        for(i = 0; i < nEff_PQR(current); i++){
+
+            Pengguna sender;
+            for (j = 0; j < dataPengguna.length; j++){
+                if (ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, j)) == ELMT_PQR(current, i).id_requester){
+                    sender = SELECT_PENGGUNA(dataPengguna, j); 
+                    break;
+                }
+            }
+            printf("| "); printSentence(NAMA_PENGGUNA(sender));
+            printf("| Jumlah teman: %d\n", PRIO(ELMT_PQR(current, i)));
+        }
+    }
 }
 
 void SETUJUI_PERTEMANAN()
-{
-    printf("Permintaan pertemanan teratas dari ");
-    printWord(InfoHead(p.permintaan_teman));
-    printf("| ");
-    printWord(InfoHead(p.permintaan_teman));
-    printf("| Jumlah teman: %d\n", Prio(Elmt(p.permintaan_teman, Head(p.permintaan_teman))));
-
-    printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
-    STARTWORD();
-    Word pilihan = currentWord;
-    Word YA = {"YA", 2};
-    Word TIDAK = {"TIDAK", 5};
-    Pengguna Y = InfoHead(p.permintaan_teman); // Pengguna yang request pertemanan ke Pengguna p
-    infotype Z;
-
-    if (IsWordEqual(pilihan, YA))
-    {
-        addFriend(IdPengguna(p), IdPengguna(Y));
-        printf("Permintaan pertemanan dari ");
-        printWord(InfoHead(p.permintaan_teman));
-        printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
-        printWord(InfoHead(p.permintaan_teman));
-        printf(".\n");
-        Dequeue(&p.permintaan_teman, &Z);
+{   
+    Pengguna current_user = penggunaSekarang;
+    if (IsEmpty_PQR(current_user.daftarPermintaanTeman)){
+        printf("Permintaan pertemanan Anda kosong!");
     }
-    else
-    {
-        printf("Permintaan pertemanan dari ");
-        printWord(InfoHead(p.permintaan_teman));
-        printf(" telah ditolak.\n");
-        Dequeue(&p.permintaan_teman, &Z);
+    else {
+    
+        Requester req_val = INFO_HEAD_PQR(current_user.daftarPermintaanTeman);
+        Pengguna sender;
+
+        int i;
+        for (i = 0; i < dataPengguna.length; i++)
+        {
+            if (INFO_HEAD_PQR(current_user.daftarPermintaanTeman).id_requester == ID_PENGGUNA(SELECT_PENGGUNA(dataPengguna, i))){
+                sender = SELECT_PENGGUNA(dataPengguna, i);
+            }
+        }
+
+        printf("Permintaan pertemanan teratas dari "); printSentence(NAMA_PENGGUNA(sender));
+        printf("\n");
+        printf("| "); printSentence(NAMA_PENGGUNA(sender));
+        printf("| Jumlah teman: %d\n", PRIO(req_val));
+
+        printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
+        Word pilihan; InputWord(&pilihan);
+
+        Word YA = {"YA", 2};
+        Word TIDAK = {"TIDAK", 5};
+
+        if (IsWordEqual(pilihan, YA)){
+            addFriend(ID_PENGGUNA(current_user), ID_PENGGUNA(sender));
+
+            printf("Permintaan pertemanan dari "); printSentence(NAMA_PENGGUNA(sender));
+            printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
+            printSentence(NAMA_PENGGUNA(sender));
+            printf(".\n");
+
+            Dequeue(&(current_user.daftarPermintaanTeman));
+
+        } else {
+            printf("Permintaan pertemanan dari "); printSentence(NAMA_PENGGUNA(sender));
+            printf(" telah ditolak.\n");
+
+            Dequeue(&(current_user.daftarPermintaanTeman));
+        }
     }
 }
