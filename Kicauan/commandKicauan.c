@@ -70,7 +70,7 @@ void UBAH_KICAUAN(int id){
 
     if (isKicauanInTab(&dataKicauan, id)){
 
-        int i, idx = getKicauanIdx(dataKicauan, id);
+        int idx = getKicauanIdx(dataKicauan, id);
 
         if (!IsSentenceEqual(SELECT_KICAUAN(dataKicauan, idx).Author, NAMA_PENGGUNA(penggunaSekarang))){
             printf("\nKicauan dengan ID = %d bukan milikmu!", id);
