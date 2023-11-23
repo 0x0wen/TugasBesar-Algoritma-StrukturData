@@ -75,8 +75,12 @@ int main()
       DAFTAR_PERMINTAAN_PERTEMANAN();
     if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN"))
       SETUJUI_PERTEMANAN();
-    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
-      LIHAT_PROFIL();
+
+    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL")) {
+      ADV();
+      Word Nama = currentWord;
+      LIHAT_PROFIL(Nama);
+    }
 
     if (isWordEqualStr(&currentWord, "SUKA_KICAUAN"))
     {
