@@ -5,7 +5,7 @@
 #include "../FotoProfil/fotoProfil.h"
 #include "pengguna.h"
 #include "tabPengguna.h"
-#include "global.h"
+#include "../global.h"
 
 /* PROFIL */
 void GANTI_PROFIL();
