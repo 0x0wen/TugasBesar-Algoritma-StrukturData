@@ -1,14 +1,12 @@
 #ifndef PENGGUNA_H
 #define PENGGUNA_H
 
-
 #include "../General/boolean.h"
 #include "../General/sentenceMachine.h"
 #include "../DrafKicauan/draf.h"
 #include "../PermintaanTeman/permintaanTeman.h"
 #include "../FotoProfil/fotoProfil.h"
 #include "../General/listDinamis.h"
-
 
 typedef int infotype;
 typedef int address; /* indeks tabel */

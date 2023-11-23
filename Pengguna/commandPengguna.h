@@ -1,7 +1,11 @@
 #ifndef COMMAND_PENGGUNA_H
 #define COMMAND_PENGGUNA_H
 
-#include "commandPengguna.h"
+#include "../General/boolean.h"
+#include "../FotoProfil/fotoProfil.h"
+#include "pengguna.h"
+#include "tabPengguna.h"
+#include "global.h"
 
 /* PROFIL */
 void GANTI_PROFIL();
