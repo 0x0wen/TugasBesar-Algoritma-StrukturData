@@ -80,6 +80,9 @@ $(BUILD_DIR)/%.o: $(TEMAN_DIR)/%.c
 $(BUILD_DIR)/%.o: $(UTAS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BUILD_DIR)/%.o: $(PENGGUNA_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 # Aturan untuk membuat executable
 main: $(BUILD_DIR) $(MAIN_OBJ) $(ADT_OBJ) $(GENERAL_OBJ) $(BALASAN_OBJ) $(KICAUAN_OBJ) $(DRAF_OBJ) $(INISIALISASI_OBJ) $(PERMINTAAN_OBJ) $(PENGGUNA_OBJ) $(TEMAN_OBJ) $(UTAS_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
