@@ -19,8 +19,8 @@ typedef struct
   int Like;
   Sentence Author;
   DATETIME DateTime;
-  Balasan *TabBalasan; /* Pointer ke list dinamis TabBalasan */
-} Kicauan;             /* tiap elemen pada list tsb merupakan root dari tree balasan */
+  Balasan TabBalasan; /* Pointer ke Tree Balasan */
+} Kicauan;            /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
 /*** Selektor Struct Kicauan***/
 #define ID_KICAU(K) (K).IDKicau;
