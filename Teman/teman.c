@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../global.h"
 #include "teman.h"
 
 void createMatrixTeman(AdjacencyMatrix *matrix_teman)

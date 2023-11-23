@@ -10,6 +10,9 @@ Created at: 17/10/2019
 Modified at: 23/10/2023
 **/
 
+#include <stdio.h>
+
+
 void print_red(char c)
 {
     printf("%s%c", RED, c);

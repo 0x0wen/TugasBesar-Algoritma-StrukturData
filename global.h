@@ -1,8 +1,8 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include "Pengguna/tabPengguna.h"
 #include "Pengguna/pengguna.h"
+#include "Pengguna/tabPengguna.h"
 #include "Kicauan/tabKicauan.h"
 #include "Utas/tabUtas.h"
 #include "Balasan/tabBalasan.h"

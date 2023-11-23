@@ -36,7 +36,10 @@ typedef struct
 void createTabPengguna(TabPengguna *T);
 boolean isTabPenggunaEmpty();
 boolean isTabPenggunaFull();
-int indexOfTabPengguna(TabPengguna T, Pengguna val);
+void printTabPengguna();
+int indexOfTabPengguna(Pengguna val);
+void insertFirstTabPengguna(Pengguna val);
+void insertAtTabPengguna(Pengguna val, int idx);
 void insertLastTabPengguna(TabPengguna *T, Pengguna val);
 void deleteFirstTabPengguna(Pengguna *val);
 void deleteAtTabPengguna(Pengguna *val, int idx);

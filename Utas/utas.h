@@ -7,8 +7,8 @@ typedef struct
 {
   int IDUtas;
   Sentence author;
-  Sentence konten;
-  int jumlahSuka;
+  Sentence pesan;
+  int IDPengguna;
   DATETIME waktu;
 } KicauanSambungan;
 

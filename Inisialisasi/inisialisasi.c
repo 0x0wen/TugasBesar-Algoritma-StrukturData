@@ -61,30 +61,17 @@ void inisialisasi()
     else
     {
         printf("Name file ada.\n");
-        // Baca pengguna config
-        int jmlUser = muatPengguna(inputFile);
+        muatPenggunaNew(inputFile,&dataPengguna);
 
-        // Baca konfig kicauan
-        writeWord(&locFile, "/kicauan.config", 15);
-        inputFile = writefilename(config, locFile);
+        writeWord(&locFile,"/kicauan.config", 15);
+        inputFile = writefilename(inputFolder,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
-        int jmlKicau = muatKicauan(inputFile);
+        muatKicauanNew(inputFile,&dataKicau);
 
-        // Baca konfig balasan
-        writeWord(&locFile, "/balasan.config", 15);
-        inputFile = writefilename(config, locFile);
+        writeWord(&locFile,"/balasan.config", 15);
+        inputFile = writefilename(inputFolder,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
-        muatBalasan(inputFile,jmlKicau);
-
-        writeWord(&locFile, "/draf.config", 12);
-        inputFile = writefilename(config, locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatDraf(inputFile, jmlKicau);
-
-        writeWord(&locFile, "/utas.config", 12);
-        inputFile = writefilename(config, locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatUtas(inputFile,jmlKicau);
+        muatBalasanNew(inputFile,dataPengguna);
 
         printf("\n");
         printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");

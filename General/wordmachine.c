@@ -20,15 +20,15 @@ void IgnoreBlanks()
 
 void STARTWORD()
 {
-    START(); //
+    START();
     IgnoreBlanks();
-
     if (currentChar == MARK)
     {
+        printf("yes");
         EndWord = true;
     }
     else
-    {
+    {   
         CopyWord();
         EndWord = false;
     }
@@ -110,11 +110,13 @@ void writeWord(Word *writeWord, char input[], int length)
 }
 
 void InputWord(Word *inputWord)
-{
+{   
     STARTWORD();
     if (EOP)
     {
         writeWord(inputWord, currentWord.TabWord, currentWord.Length);
+        currentWord.Length=0;
+        currentChar=currentWord.TabWord[0];
     }
     // else
     // {
@@ -205,8 +207,8 @@ boolean isOnlyBlank(Word w)
 //     return length;
 // }
 
-boolean isWordEqualStr(Word *w, char *str) {
-    int n = w->Length;
+boolean isWordEqualStr(Word w, char *str) {
+    int n = w.Length;
     int strLength = LengthStr(str);
 
     // Jika panjang Word tidak sama dengan panjang String, return false
@@ -216,7 +218,7 @@ boolean isWordEqualStr(Word *w, char *str) {
 
     // Bandingkan setiap karakter
     for (int i = 0; i < n; ++i) {
-        if (w->TabWord[i] != str[i]) {
+        if (w.TabWord[i] != str[i]) {
             return false;
         }
     }
@@ -224,7 +226,21 @@ boolean isWordEqualStr(Word *w, char *str) {
     return true;
 }
 
-int wordToInteger(Word *word) {
-    int result = atoi((*word).TabWord);
-    return result;
+int wordToInteger(Word word) {
+    // Check if the Word is empty
+    if (word.Length == 0) {
+        printf("Error: Empty Word\n");
+        return 0;  // You may want to handle this differently based on your requirements
+    }
+
+    // Convert the character array to an integer using strtol function
+    char *endptr;
+    long result = strtol(word.TabWord, &endptr, 10);
+
+    // Check if the conversion was successful
+    if (*endptr != '\0') {
+        printf("Error: Non-integer characters found in Word\n");
+        return 0;  // You may want to handle this differently based on your requirements
+    }
+    return (int)result;
 }

@@ -65,8 +65,8 @@ boolean isOnlyBlank(Word w);
 
 int LengthStr(const char *str);
 
-boolean isWordEqualStr(Word *w, char *str);
+boolean isWordEqualStr(Word w,char *str);
 
-int wordToInteger(Word *word);
+int wordToInteger(const Word word);
 
 #endif

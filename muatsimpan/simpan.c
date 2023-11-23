@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "..\General\wordmachinefile.c"
-#include "..\General\wordmachine.c"
-#include <sys/stat.h>
-#include "simpan.h"
-// #include "..\global.h"
+#include "..\General\wordmachinefile.h"
+#include "..\General\wordmachine.h"
+#include "..\global.h"
 
 
 Word writefilename(Word input1, Word input2){
@@ -31,11 +29,11 @@ void createFile(char *fullPath,char *filename){
     fclose(fptr);
 }
 
-void simpanPengguna(int jumlahUser,Word inputfile){
+void simpanPengguna(TabPengguna datapengguna, Word inputfile){
     FILE *file;
     file = fopen(inputfile.TabWord, "w");
-    fprintf(file, "%d\n",jumlahUser);//jumlah user
-    for(int i=0; i < jumlahUser; i++){
+    fprintf(file, "%d\n",datapengguna.length);//jumlah user
+    for(int i=0; i < datapengguna.length; i++){
         fprintf(file, "%s\n",inputfile);//nama
         fprintf(file, "%s\n",inputfile);//password
         fprintf(file, "%s\n",inputfile);//bio
@@ -51,15 +49,15 @@ void simpanPengguna(int jumlahUser,Word inputfile){
         }
     }
 
-    for(int i = 0; i < jumlahUser; i++){
+    for(int i = 0; i < datapengguna.length; i++){
         fprintf(file, "%c ",inputfile.TabWord[0]);//matriks pertemanan
         fprintf(file, "%c ",inputfile.TabWord[0]);
         fprintf(file, "%c\n",inputfile.TabWord[0]);
 
     }
 
-    fprintf(file, "%d\n",jumlahUser);//banyakpermintaan pertemanan
-    for(int i = 0;i < jumlahUser;i++){
+    fprintf(file, "%d\n",datapengguna.length);//banyakpermintaan pertemanan
+    for(int i = 0;i < datapengguna.length;i++){
         fprintf(file, "%c ",inputfile.TabWord[0]);// matriks req teman
         fprintf(file, "%c ",inputfile.TabWord[0]);
         fprintf(file, "%c\n",inputfile.TabWord[0]);
@@ -67,7 +65,7 @@ void simpanPengguna(int jumlahUser,Word inputfile){
     fclose(file);
 }
 
-void simpanKicauan(int jumlahKicauan,Word inputfile){
+void simpanKicauan(int jumlahKicauan,Word inputfile,TabPengguna k){
     FILE *file;
     file = fopen(inputfile.TabWord, "w");
     fprintf(file, "%d\n",jumlahKicauan);//jumlah kicauan
@@ -171,23 +169,22 @@ void simpan(){
         printf("3...\n");
         printf("%s sudah berhasil dibuat.\n",foldername);
     }else{
-        printf("Anda akan melakukan pemuatan dari %s.\n",foldername);
+        printf("Anda akan melakukan penyimpanan dari %s.\n",foldername);
     }
 
-    int jumlahUser = 3;
-    simpanPengguna(jumlahUser,inputFile);
+    // simpanPengguna(*datapengguna,inputFile);
 
     int jumlahKicauan = 2;
     writeWord(&locFile,"/kicauan.config", 15);
     inputFile = writefilename(inputFolder,locFile);
-    simpanKicauan(jumlahKicauan,inputFile);
+    // simpanKicauan(jumlahKicauan,inputFile, *datapengguna);
 
     jumlahKicauan = 1;
     writeWord(&locFile,"/balasan.config", 15);
     inputFile = writefilename(inputFolder,locFile);
     simpanBalasan(jumlahKicauan,inputFile);
 
-    jumlahUser=2;
+    int jumlahUser=2;
     writeWord(&locFile,"/draf.config", 12);
     inputFile = writefilename(inputFolder,locFile);
     simpanDraf(jumlahUser,inputFile);
