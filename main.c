@@ -78,9 +78,9 @@ int main()
 
     if (isWordEqualStr(&currentWord, "LIHAT_PROFIL"))
     {
-      ADV();
-      Sentence NAMA = currentWord;
-      LIHAT_PROFIL(NAMA);
+      // ADV();
+      // Sentence NAMA = currentWord;
+      // LIHAT_PROFIL(NAMA);
     }
 
     if (isWordEqualStr(&currentWord, "SUKA_KICAUAN"))
