@@ -5,7 +5,7 @@
 
 /* State Mesin Word */
 boolean EndWord;
-Word currentWord;
+Sentence currentSentence;
 
 void startSentence()
 {
@@ -20,47 +20,24 @@ void startSentence()
         EndWord = false;
     }
 }
-void ADVWORD()
-{
-    IgnoreBlanks();
-    if (currentChar == MARK)
-    {
-        EndWord = true;
-    }
-    else
-    {
-        CopyWord();
-        IgnoreBlanks();
-    }
-}
-void CopyWord()
+void AcquireSentence()
 {
     int i = 0;
     while (currentChar != MARK)
     {
         if (i < NMax)
         {
-            currentWord.TabWord[i] = currentChar;
+            currentSentence.TabWord[i] = currentChar;
         }
         i++;
-        currentWord.Length = i;
+        currentSentence.Length = i;
         ADV();
     }
 
     if (i > NMax)
     {
-        currentWord.Length = NMax;
+        currentSentence.Length = NMax;
     }
-}
-void writeWord(Word *writeWord, char input[], int length)
-{
-    int i;
-    for (i = 0; i < length; i++)
-    {
-        writeWord->TabWord[i] = input[i];
-    }
-    writeWord->TabWord[length] = '\0';
-    writeWord->Length = length;
 }
 
 
@@ -70,23 +47,6 @@ void printSentence(Sentence w)
     for (i = 0; i < w.Length; i++)
     {
         printf("%c", w.TabWord[i]);
-    }
-}
-
-void InputSentence(Sentence *inputWord)
-{
-    startSentence();
-    if (EOP)
-    {
-        writeWord(inputWord, currentWord.TabWord, currentWord.Length);
-    }
-    else
-    {
-        writeWord(inputWord, "", 0);
-        while (!EOP)
-        {
-            ADVWORD();
-        }
     }
 }
 
