@@ -1,50 +1,51 @@
 #include <stdio.h>
 #include "tabUtas.h"
-void createTabUtas(int capacity)
+#include <stdlib.h>
+void createTabUtas(TabUtas *TU, int capacity)
 {
-    CAPACITY_UTAS(dataUtas) = capacity;
-    NEFF_UTAS(dataUtas) = 0;
-    BUFFER_UTAS(dataUtas) = (Utas *)malloc(capacity * sizeof(Utas));
+    CAPACITY_UTAS(*TU) = capacity;
+    NEFF_UTAS(*TU) = 0;
+    BUFFER_UTAS(*TU) = (Utas *)malloc(capacity * sizeof(Utas));
 };
 
-void deallocateTabUtas()
+void deallocateTabUtas(TabUtas *TU)
 {
-    free(BUFFER_UTAS(dataUtas));
-    CAPACITY_UTAS(dataUtas) = 0;
-    NEFF_UTAS(dataUtas) = 0;
+    free(BUFFER_UTAS(*TU));
+    CAPACITY_UTAS(*TU) = 0;
+    NEFF_UTAS(*TU) = 0;
 };
 
-int lengthTabUtas()
+int lengthTabUtas(TabUtas TU)
 {
-    return NEFF_UTAS(dataUtas);
+    return NEFF_UTAS(TU);
 };
 
-boolean isIdxTabUtasValid(int i)
+boolean isIdxTabUtasValid(TabUtas TU, int i)
 {
-    return (i < (CAPACITY_UTAS(dataUtas)) && i >= IDX_MIN);
+    return (i < (CAPACITY_UTAS(TU)) && i >= IDX_MIN_TAB_UTAS);
 };
 
-boolean isIdxTabUtasEff(int i)
+boolean isIdxTabUtasEff(TabUtas TU, int i)
 {
-    return (i < (NEFF_UTAS(dataUtas)) && i >= IDX_MIN);
+    return (i < (NEFF_UTAS(TU)) && i >= IDX_MIN_TAB_UTAS);
 };
 
-boolean isTabUtasEmpty()
+boolean isTabUtasEmpty(TabUtas TU)
 {
-    return (NEFF_UTAS(dataUtas) == 0);
+    return (NEFF_UTAS(TU) == 0);
 };
 
-boolean isTabUtasFull()
+boolean isTabUtasFull(TabUtas TU)
 {
-    return (NEFF_UTAS(dataUtas) == CAPACITY_UTAS(dataUtas));
+    return (NEFF_UTAS(TU) == CAPACITY_UTAS(TU));
 };
 
-int indexOfTabUtas(Utas utas)
+int indexOfTabUtas(TabUtas TU, Utas utas)
 {
     int i;
-    for (i = IDX_MIN; i < NEFF_UTAS(dataUtas); i++)
+    for (i = IDX_MIN_TAB_UTAS; i < NEFF_UTAS(TU); i++)
     {
-        if (SELECT_UTAS(dataUtas, i).IDKicau == utas.IDKicau)
+        if (SELECT_UTAS(TU, i).IDKicau == ID_KICAU_UTAS(utas))
         {
             return i;
         }
@@ -52,61 +53,57 @@ int indexOfTabUtas(Utas utas)
     return IDX_UNDEF_TAB_UTAS;
 };
 
-void insertLastTabUtas(Utas val)
+void insertLastTabUtas(TabUtas *TU, Utas val)
 {
-    SELECT_UTAS(dataUtas, NEFF_UTAS(dataUtas)) = val;
-    NEFF_UTAS(dataUtas) += 1;
+    SELECT_UTAS(*TU, NEFF_UTAS(*TU)) = val;
+    NEFF_UTAS(*TU) += 1;
 };
 
-void deleteLastTabUtas(Utas *val)
+void deleteLastTabUtas(TabUtas *TU)
 {
-    *val = SELECT_UTAS(dataUtas, NEFF_UTAS(dataUtas) - 1);
-    NEFF_UTAS(dataUtas) -= 1;
+    NEFF_UTAS(*TU) -= 1;
 };
 
 void copyTabUtas(TabUtas lIn, TabUtas *lOut)
 {
     int i;
-    createTabUtas(lOut, CAPACITY(lIn));
-    for (i = 0; i < NEFF(lIn); i++)
+    createTabUtas(lOut, CAPACITY_UTAS(lIn));
+    for (i = 0; i < NEFF_UTAS(lIn); i++)
     {
         SELECT_UTAS(*lOut, i) = SELECT_UTAS(lIn, i);
     }
-    NEFF(*lOut) = NEFF(lIn);
+    NEFF_UTAS(*lOut) = NEFF_UTAS(lIn);
 };
 
-Utas cariUtas(int IDUtas)
+Utas *searchUtas(TabUtas TU, int IDUtas)
 {
     int i;
-    Utas utas;
-    for (i = 0; i < lengthTabUtas(dataUtas); i++)
+    for (i = 0; i < lengthTabUtas(TU); i++)
     {
-        if (ID_UTAS(SELECT_UTAS(dataUtas, i)) == IDUtas)
+        if (ID_UTAS(SELECT_UTAS(TU, i)) == IDUtas)
         {
-            utas = SELECT_UTAS(dataUtas, i);
-            break;
+            return &SELECT_UTAS(TU, i);
         }
     }
-    return utas;
 };
 
-void expandTabUtas(int num)
+void expandTabUtas(TabUtas *TU, int num)
 {
-    ListDinUtas L;
+    TabUtas L;
     int cap1, nEff1, i;
 
-    copyTabUtas(dataUtas, &L);
-    cap1 = CAPACITY_UTAS(dataUtas) + num;
-    nEff1 = NEFF_UTAS(dataUtas);
+    copyTabUtas(*TU, &L);
+    cap1 = CAPACITY_UTAS(*TU) + num;
+    nEff1 = NEFF_UTAS(*TU);
 
-    deallocateTabUtas(dataUtas);
+    deallocateTabUtas(TU);
 
-    createTabUtas(&dataUtas, cap1);
-    NEFF_UTAS(dataUtas) = nEff1;
+    createTabUtas(TU, cap1);
+    NEFF_UTAS(*TU) = nEff1;
 
-    for (i = 0; i < lengthTabUtas(dataUtas); i++)
+    for (i = 0; i < lengthTabUtas(*TU); i++)
     {
-        SELECT_UTAS(dataUtas, i) = SELECT_UTAS(L, i);
+        SELECT_UTAS(*TU, i) = SELECT_UTAS(L, i);
     }
     deallocateTabUtas(&L);
 };

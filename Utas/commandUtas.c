@@ -1,53 +1,56 @@
 #include "commandUtas.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 void CREATE_UTAS(int IDKicau)
 {
-    if (IDKicau bukan punya user)
+    Word currentWord;
+    STARTWORD();
+
+    if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau))))
     {
         printf("Utas ini bukan milik anda!");
     }
-    else if (Kicauan sudah menjadi kicauan utama utas lain)
+    else if (UTAS_KICAU(*searchKicauan(dataKicauan, IDKicau)) != NULL)
     {
+        printf("Utas sudah dibuat!");
     }
-    else if (!adaKicau(IDKicau))
+    else if (searchKicauan(dataKicauan, IDKicau) == NULL)
     {
-        printf("Kicauan tidak ditemukan\n");
+        printf("Kicauan tidak ditemukan!\n");
     }
     else
     {
-
         printf("Utas berhasil dibuat!\n");
         do
         {
             printf("Masukkan kicauan: \n");
             printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
-        } while (kata == "YA");
+        } while (isWordEqualStr(&currentWord, "YA"));
         printf("Utas selesai!\n");
     }
 }
 void SAMBUNG_UTAS(int IDUtas, int index)
 {
-    if (index lewat batas)
+    if (isIdxTabUtasEff(dataUtas, index))
     {
         printf("Index terlalu tinggi!\n");
     }
-    else if (!adaUtas(IDUtas))
+    else if (searchUtas(dataUtas, IDUtas) == NULL)
     {
         printf("Utas tidak ditemukan!\n");
     }
-    else if (Utas not owned by user)
+    else if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_UTAS(*searchUtas(dataUtas, IDUtas))))
     {
         printf("Anda tidak bisa menyambung utas ini!");
     }
 };
 void HAPUS_UTAS(int IDUtas, int index)
 {
-    if (!adaUtas(IDUtas))
+    if (searchUtas(dataUtas, IDUtas) == NULL)
     {
         printf("Utas tidak ditemukan!");
     }
-    else if (index not found)
+    else if (searchUtas(dataUtas, IDUtas) == NULL)
     {
         printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!", index);
     }
@@ -55,7 +58,7 @@ void HAPUS_UTAS(int IDUtas, int index)
     {
         printf("Anda tidak bisa menghapus kicauan utama!");
     }
-    else if (utas is not owned by user)
+    else if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_UTAS(*searchUtas(dataUtas, IDUtas))))
     {
         printf("Anda tidak bisa menghapus kicauan dalam utas ini!");
     }
@@ -68,30 +71,16 @@ void HAPUS_UTAS(int IDUtas, int index)
 }
 void CETAK_UTAS(int IDUtas)
 {
-    if (!adaUtas(IDUtas))
+    if (searchUtas(dataUtas, IDUtas) == NULL)
     {
         printf("Utas tidak ditemukan!");
     }
-    else if (utas owner is private)
+    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), getIDPengguna(dataPengguna, AUTHOR_UTAS(*searchUtas(dataUtas, IDUtas)))))
     {
         printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!");
     }
     else
     {
-        int i;
-        printf("| ID = %d", IDUtas);
-        printf("| %s");
-        printf("| %s");
-        printf("| ");
-        PrintSentence();
-        for (i = 0; i < lengthTabKicauanSambungan(KICAUAN_SAMBUNGAN(cariUtas(IDUtas))); i++)
-        {
-            printf("\t| INDEX = %d");
-            printf("\t| %s");
-            printf("\t| %s");
-            printf("\t| ");
-            PrintSentence();
-            printf("\n");
-        }
+        displayTabKicauanSambungan(KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas)));
     }
 };
