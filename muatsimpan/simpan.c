@@ -4,6 +4,7 @@
 #include "..\General\wordmachinefile.c"
 #include "..\General\wordmachine.c"
 #include <sys/stat.h>
+#include "simpan.h"
 // #include "..\global.h"
 
 

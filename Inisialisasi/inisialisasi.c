@@ -29,7 +29,6 @@ int compareCharArrays(const char *array1, const char *array2)
 }
 #include "../General/sentenceMachine.h"
 #include "../global.h"
-#include "../muatsimpan/muat.c"
 
 void inisialisasi()
 {

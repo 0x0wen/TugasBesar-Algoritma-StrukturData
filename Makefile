@@ -47,6 +47,8 @@ PENGGUNA_OBJ = $(patsubst $(PENGGUNA_DIR)/%.c,$(BUILD_DIR)/%.o, $(PENGGUNA_SOURC
 PERMINTAAN_OBJ = $(patsubst $(PERMINTAAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(PERMINTAAN_SOURCES))
 TEMAN_OBJ = $(patsubst $(TEMAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(TEMAN_SOURCES))
 UTAS_OBJ = $(patsubst $(UTAS_DIR)/%.c,$(BUILD_DIR)/%.o, $(UTAS_SOURCES))
+FOTO_PROFIL_OBJ = $(patsubst $(FOTO_PROFIL_DIR)/%.c,$(BUILD_DIR)/%.o, $(FOTO_PROFIL_SOURCES))
+MUAT_SIMPAN_OBJ = $(patsubst $(MUAT_SIMPAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(MUAT_SIMPAN_SOURCES))
 
 # Target utama
 all: $(BUILD_DIR) main
@@ -89,8 +91,9 @@ $(BUILD_DIR)/%.o: $(PENGGUNA_DIR)/%.c
 $(BUILD_DIR)/%.o: $(MUAT_SIMPAN_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 # Aturan untuk membuat executable
-main: $(BUILD_DIR) $(MAIN_OBJ) $(ADT_OBJ) $(GENERAL_OBJ) $(BALASAN_OBJ) $(KICAUAN_OBJ) $(DRAF_OBJ) $(INISIALISASI_OBJ) $(PERMINTAAN_OBJ) $(TEMAN_OBJ) $(PENGGUNA_OBJ) $(UTAS_OBJ)
+main: $(BUILD_DIR) $(MAIN_OBJ) $(ADT_OBJ) $(GENERAL_OBJ) $(BALASAN_OBJ) $(KICAUAN_OBJ) $(DRAF_OBJ) $(INISIALISASI_OBJ) $(PERMINTAAN_OBJ)  $(TEMAN_OBJ)  $(UTAS_OBJ) $(PENGGUNA_OBJ) $(FOTO_PROFIL_OBJ) $(MUAT_SIMPAN_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
 # Target untuk menjalankan program

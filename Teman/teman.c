@@ -1,33 +1,41 @@
 #include <stdio.h>
 #include "teman.h"
 
-void createMatrixTeman(AdjacencyMatrix *matrix_teman){
-    int i,j;
-    for (i = 0; i < MAX_SIMPUL; i++){
-        for (j = 0; j < MAX_SIMPUL; j++){
+void createMatrixTeman(AdjacencyMatrix *matrix_teman)
+{
+    int i, j;
+    for (i = 0; i < MAX_SIMPUL; i++)
+    {
+        for (j = 0; j < MAX_SIMPUL; j++)
+        {
             ELMT_TEMAN(*matrix_teman, i, j) = 0;
         }
     }
 }
 
-void addFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2){
+void addFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2)
+{
     ELMT_TEMAN(*matrix_teman, id_user1, id_user2) = 1;
     ELMT_TEMAN(*matrix_teman, id_user2, id_user1) = 1;
 }
 
-void deleteFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2){
+void deleteFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2)
+{
     ELMT_TEMAN(*matrix_teman, id_user1, id_user2) = 0;
     ELMT_TEMAN(*matrix_teman, id_user2, id_user1) = 0;
 }
 
-boolean isFriend(AdjacencyMatrix matrix_teman, int id_user1, int id_user2){
+boolean isFriend(AdjacencyMatrix matrix_teman, int id_user1, int id_user2)
+{
     return ELMT_TEMAN(matrix_teman, id_user1, id_user2) == 1;
 }
 
-int countFriend(AdjacencyMatrix matrix_teman, int id_user){
+int countFriend(AdjacencyMatrix matrix_teman, int id_user)
+{
 
     int i, count = 0;
-    for (i = 0; i < MAX_SIMPUL; i++){
+    for (i = 0; i < MAX_SIMPUL; i++)
+    {
         count += ELMT_TEMAN(matrix_teman, id_user, i);
     }
 

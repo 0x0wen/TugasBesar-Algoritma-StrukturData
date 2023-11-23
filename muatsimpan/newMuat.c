@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "..\General\wordmachinefile.c"
 #include "..\General\wordmachine.c"
+#include "newMuat.h"
 
 Word writefilename(Word input1, Word input2){
     Word output;
