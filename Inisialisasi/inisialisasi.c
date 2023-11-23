@@ -27,9 +27,9 @@ int compareCharArrays(const char *array1, const char *array2)
     int result = strcmp(array1, array2);
     return result;
 }
-#include "Alstrukdat\Tubes\Alstrokedat\ADT\sentenceMachine.h"
-#include "Alstrukdat\Tubes\Alstrokedat\global.h"
-#include "Alstrukdat\Tubes\Alstrokedat\muatsimpan\muat.c"
+#include "../General/sentenceMachine.h"
+#include "../global.h"
+#include "../muatsimpan/muat.c"
 
 void inisialisasi()
 {
