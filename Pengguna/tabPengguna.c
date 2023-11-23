@@ -170,3 +170,19 @@ Pengguna *searchPengguna(TabPengguna T, int IDPengguna)
         return &SELECT_PENGGUNA(T, i);
     }
 };
+
+int getIDPengguna(TabPengguna T, Sentence username)
+{
+    int id_teman = 0;
+    int i;
+
+    for (i = 0; i < BANYAK_PENGGUNA(T); i++)
+    {
+        if (IsSentenceEqual(SELECT_PENGGUNA(T, i).nama, username))
+        {
+            id_teman = SELECT_PENGGUNA(T, i).id;
+            break;
+        }
+    }
+    return id_teman;
+}
