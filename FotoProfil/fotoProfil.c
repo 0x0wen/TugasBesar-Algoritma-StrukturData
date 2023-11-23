@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 /**
 Filename: pcolor.c (implementation of pcolor.h)
 Description: Print character with some color in terminal
@@ -10,9 +9,6 @@ Prepared by: Asisten IF2110
 Created at: 17/10/2019
 Modified at: 23/10/2023
 **/
-
-#include <stdio.h>
-#include "pcolor.h"
 
 void print_red(char c)
 {
@@ -79,12 +75,11 @@ void copyFotoProfil(FotoProfil mIn, FotoProfil *mOut)
 void readFotoProfil(FotoProfil *m, int nRow, int nCol)
 {
     int i, j;
-    createFotoProfil(nRow, nCol, m);
     for (i = 0; i < nRow; i++)
     {
         for (j = 0; j < nCol; j++)
         {
-            scanf("%d", &ELMT(*m, i, j));
+            scanf(" %c", &ELMT(*m, i, j));
         }
     }
 }
@@ -97,11 +92,24 @@ void displayFotoProfil(FotoProfil m)
 
     for (i = 0; i < nRow; i++)
     {
-        for (j = 0; j < nCol - 1; j++)
+        for (j = 0; j < nCol; j++)
         {
-            printf("%d ", ELMT(m, i, j));
+            char pixel = ELMT(m, i, j);
+            char nextPixel = ' ';
+            
+            if (j < nCol - 1) {
+                nextPixel = ELMT(m, i, j + 1);
+            }
+            
+            if (pixel == 'R') {
+                print_red(nextPixel);
+            } else if (pixel == 'G') {
+                print_green(nextPixel);
+            } else if (pixel == 'B') {
+                print_blue(nextPixel);
+            }
+            j++;
         }
-        printf("%d", ELMT(m, i, nCol - 1));
         printf("\n");
     }
 }
