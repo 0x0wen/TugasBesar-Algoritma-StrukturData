@@ -43,7 +43,7 @@ DATETIME muatDateTime(){
     return date;
 }
 
-void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna){
+void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna,AdjacencyMatrix *mteman){
     STARWORDFILE(inputFile.TabWord);
     int jumlahUser = atoi(currentWordFile.TabWord); //jumlah user
     if(jumlahUser!=0){
@@ -100,7 +100,6 @@ void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna){
             // (*dataPengguna).contents[i] = pengguna;
             //(*dataPengguna).length++;
         }
-        AdjacencyMatrix mteman;
         createMatrixTeman(&mteman);
         int j = 0;
         int z = 0;
@@ -273,12 +272,8 @@ void muatDrafNew(Word inputFile,TabPengguna tabuser){
             kicau.DateTime = dateTime;
             pushDraf(&draf,kicau);
         }
-        for(int j = 0; j < tabuser.length; j++){
-            boolean cek = IsSentenceEqual(username,tabuser.contents[j].nama);
-            if(cek==true){
-                tabuser.contents[j].drafKicauan = draf;
-            }
-        }
+        Pengguna *pengguna = searchPenggunaByName(&tabuser,username);
+        (pengguna)->drafKicauan = draf;
     }
     StopWordFile(inputFile.TabWord);
 }

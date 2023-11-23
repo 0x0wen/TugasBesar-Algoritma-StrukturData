@@ -1,9 +1,13 @@
 #ifndef NEWMUAT_H
 #define NEWMUAT_H
 
-#include "../General/wordmachine.h"
+#include "../global.h"
 
-Word writefilename(Word input1, Word input2);
-void muatPengguna(Word inputFile);
+DATETIME muatDateTime();
+void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna,AdjacencyMatrix *mteman);
+void muatKicauanNew(Word inputFile,TabKicauan *tabkicau);
+void muatBalasanNew(Word inputFile,TabPengguna tabuser);
+void muatDrafNew(Word inputFile,TabPengguna tabuser);
+void muatUtasNew(Word inputFile, TabUtas *dataUtas);
 
 #endif
