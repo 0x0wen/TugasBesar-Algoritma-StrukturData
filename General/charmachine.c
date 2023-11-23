@@ -37,6 +37,9 @@ void ADV()
     EOP = (currentChar == MARK);
     if (EOP)
     {
-        fclose(pita);
+
+    }
+    if (currentChar == '\n'){
+        ADV();
     }
 }

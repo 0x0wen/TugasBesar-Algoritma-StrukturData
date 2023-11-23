@@ -20,6 +20,7 @@ void startSentence()
         EndWord = false;
     }
 }
+
 void AcquireSentence()
 {
     int i = 0;
@@ -48,6 +49,18 @@ void printSentence(Sentence w)
     {
         printf("%c", w.TabWord[i]);
     }
+}
+
+void InputSentence(Sentence *inputWord)
+{   
+    int len = 0;
+    START();
+    while(!EOP){
+        currentSentence.TabWord[len] = currentChar;
+        ADV(); len++;
+    }
+    currentSentence.Length = len;
+    *inputWord = currentSentence;
 }
 
 boolean IsSentenceEqual(Sentence w1, Sentence w2)

@@ -194,52 +194,52 @@ boolean isOnlyBlank(Word w)
     return onlyBlank;
 }
 
-int LengthStr(const char *str) {
-    int length = 0;
+// int LengthStr(const char *str) {
+//     int length = 0;
 
-    // Loop hingga karakter null ditemukan
-    while (str[length] != '\0') {
-        length++;
-    }
+//     // Loop hingga karakter null ditemukan
+//     while (str[length] != '\0') {
+//         length++;
+//     }
 
-    return length;
-}
+//     return length;
+// }
 
-boolean isWordEqualStr(Word *w, char *str) {
-    int n = w->Length;
-    int strLength = LengthStr(str);
+// boolean isWordEqualStr(Word *w, char *str) {
+//     int n = w->Length;
+//     int strLength = LengthStr(str);
 
-    // Jika panjang Word tidak sama dengan panjang String, return false
-    if (n != strLength) {
-        return false;
-    }
+//     // Jika panjang Word tidak sama dengan panjang String, return false
+//     if (n != strLength) {
+//         return false;
+//     }
 
-    // Bandingkan setiap karakter
-    for (int i = 0; i < n; ++i) {
-        if (w->TabWord[i] != str[i]) {
-            return false;
-        }
-    }
+//     // Bandingkan setiap karakter
+//     for (int i = 0; i < n; ++i) {
+//         if (w->TabWord[i] != str[i]) {
+//             return false;
+//         }
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
-int wordToInteger(Word *word) {
-    // Check if the Word is empty
-    if (word->Length == 0) {
-        printf("Error: Empty Word\n");
-        return 0;  // You may want to handle this differently based on your requirements
-    }
+// int wordToInteger(Word *word) {
+//     // Check if the Word is empty
+//     if (word->Length == 0) {
+//         printf("Error: Empty Word\n");
+//         return 0;  // You may want to handle this differently based on your requirements
+//     }
 
-    // Convert the character array to an integer using strtol function
-    char *endptr;
-    long result = strtol(word->TabWord, &endptr, 10);
+//     // Convert the character array to an integer using strtol function
+//     char *endptr;
+//     long result = strtol(word->TabWord, &endptr, 10);
 
-    // Check if the conversion was successful
-    if (*endptr != '\0') {
-        printf("Error: Non-integer characters found in Word\n");
-        return 0;  // You may want to handle this differently based on your requirements
-    }
+//     // Check if the conversion was successful
+//     if (*endptr != '\0') {
+//         printf("Error: Non-integer characters found in Word\n");
+//         return 0;  // You may want to handle this differently based on your requirements
+//     }
 
-    return (int)result;
-}
+//     return (int)result;
+// }

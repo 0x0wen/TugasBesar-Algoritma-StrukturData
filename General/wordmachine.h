@@ -63,10 +63,10 @@ boolean IsWordNotEqual(Word w1, Word w2);
 
 boolean isOnlyBlank(Word w);
 
-int LengthStr(const char *str);
+// int LengthStr(const char *str);
 
-boolean isWordEqualStr(const Word *w, const char *str);
+// boolean isWordEqualStr(Word *w, char *str);
 
-int wordToInteger(const Word *word);
+// int wordToInteger(Word *word);
 
 #endif
