@@ -34,7 +34,7 @@ void deleteTabKicauan(TabKicauan *t)
 void copyListKicauan(TabKicauan lIn, TabKicauan *lOut){
 
     int i;
-    CreateTabKicauan(lOut, CAPACITY_TAB_KICAUAN(lIn));
+    createTabKicauan(lOut, CAPACITY_TAB_KICAUAN(lIn));
 
     for (i = 0; i < NEFF_TAB_KICAUAN(lIn); i++)
     {
@@ -95,7 +95,7 @@ int getKicauanIdx(TabKicauan t, int id){
 }
 void deleteKicauanFromTab(TabKicauan *t, int id){
 
-    int idxStart, i;
+    int i;
     boolean found = false;
 
     for (i = 0; i < NEFF_TAB_KICAUAN(*t); i++) {
@@ -123,7 +123,7 @@ void expandListKicauan(TabKicauan *t, int num){
 
     deleteTabKicauan(t);
 
-    CreateTabKicauan(t, cap);
+    createTabKicauan(t, cap);
     NEFF_TAB_KICAUAN(*t) = nEff;
     MAXID_TAB_KICAUAN(*t) = maxId;
 

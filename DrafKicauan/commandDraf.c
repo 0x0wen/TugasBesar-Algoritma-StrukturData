@@ -66,7 +66,7 @@ void LIHAT_DRAF(){
 
             // HAPUS; SIMPAN; TERBIT; ?
             printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-            Word action; InputWordWithBlank(&action);
+            Word action; InputWord(&action);
 
             Word Simpan = {"SIMPAN", 6};
 

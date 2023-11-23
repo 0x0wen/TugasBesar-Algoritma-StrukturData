@@ -48,7 +48,7 @@ void DAFTAR_PERMINTAAN_PERTEMANAN()
 {   
     PrioQueueRequest current = penggunaSekarang.daftarPermintaanTeman;
 
-    if (isEmpty_PQR(current)){
+    if (IsEmpty_PQR(current)){
         printf("\nTidak ada permintaan pertemanan untuk Anda.\n");
     } else {
 
@@ -109,7 +109,7 @@ void SETUJUI_PERTEMANAN()
 
             dequeue_PQR(&(current_user.daftarPermintaanTeman));
 
-        } else {
+        } else if (IsWordEqual(pilihan, TIDAK)){
             printf("Permintaan pertemanan dari "); printSentence(NAMA_PENGGUNA(sender));
             printf(" telah ditolak.\n");
 

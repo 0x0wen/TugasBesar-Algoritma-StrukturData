@@ -29,7 +29,7 @@ void KICAUAN(){
     for (i = 0; i < NEFF_TAB_KICAUAN(dataKicauan); i++){
         if (IsSentenceEqual(SELECT_KICAUAN(dataKicauan, i).Author, NAMA_PENGGUNA(penggunaSekarang))){
             printf("\n");
-            printKicauan(SELECT_KICAUAN(dataKicauan, i));
+            printDetilKicau(SELECT_KICAUAN(dataKicauan, i));
         } 
     }
 }
