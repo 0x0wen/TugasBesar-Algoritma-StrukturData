@@ -25,7 +25,7 @@ void createTabKicauan(TabKicauan *t, int capacity)
 
 void deleteTabKicauan(TabKicauan *t)
 {
-    free(TAB(*t));
+    free(SELECT_TAB_KICAUAN(*t));
     CAPACITY_TAB_KICAUAN(*t) = 0;
     NEFF_TAB_KICAUAN(*t) = 0;
 }
@@ -34,7 +34,7 @@ void deleteTabKicauan(TabKicauan *t)
 void copyListKicauan(TabKicauan lIn, TabKicauan *lOut){
 
     int i;
-    CreateTabKicauan(lOut, CAPACITY(lIn));
+    CreateTabKicauan(lOut, CAPACITY_TAB_KICAUAN(lIn));
 
     for (i = 0; i < NEFF_TAB_KICAUAN(lIn); i++)
     {
@@ -69,7 +69,7 @@ boolean isKicauanInTab(TabKicauan *t, int id)
     found = false;
 
     int i;
-    for (i = 0; i < NEFF(*t); i++)
+    for (i = 0; i < NEFF_TAB_KICAUAN(*t); i++)
     {
         if (SELECT_KICAUAN(*t, i).IDKicau == id)
         {
@@ -85,7 +85,7 @@ int getKicauanIdx(TabKicauan t, int id){
     int idx = -1;
     int i;
 
-    for (i = 0; i < NEFF(t); i++){
+    for (i = 0; i < NEFF_TAB_KICAUAN(t); i++){
         if (SELECT_KICAUAN(t, i).IDKicau == id){
             idx = i;
             break;
@@ -98,7 +98,7 @@ void deleteKicauanFromTab(TabKicauan *t, int id){
     int idxStart, i;
     boolean found = false;
 
-    for (i = 0; i < NEFF(*t); i++) {
+    for (i = 0; i < NEFF_TAB_KICAUAN(*t); i++) {
         if (found) { // geser elemen ke-i mundur ke-(i-1)
             SELECT_KICAUAN(*t, i-1) = SELECT_KICAUAN(*t, i);
 
