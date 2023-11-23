@@ -1,7 +1,7 @@
 #include "draf.h"
 #include "../global.h"
 
-void BUAT_DRAF(Draf *s){
+void BUAT_DRAF(){
 
     printf("\nMasukkan draf:\n");
     Sentence text; InputSentence(&text);
@@ -21,7 +21,7 @@ void BUAT_DRAF(Draf *s){
         printf("\nDraf telah berhasil dihapus!");
     }
     else if (IsWordEqual(action, Simpan)){
-        pushDraf(s, draf_kicau);
+        pushDraf(&penggunaSekarang.drafKicauan, draf_kicau);
         printf("\nDraf telah berhasil disimpan!");
     }
     else /* isWordEqual(action, Terbit)*/{
@@ -31,17 +31,17 @@ void BUAT_DRAF(Draf *s){
         printf("Detil kicauan:");
         printKicauan(draf_kicau);
     }
-
 }
-void LIHAT_DRAF(Draf *s){
 
-    if (isEmptyDraf(*s)){
+void LIHAT_DRAF(){
+
+    if (isEmptyDraf(penggunaSekarang.drafKicauan)){
         printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D");
 
     } else {
 
         Kicauan draf_kicau;
-        popDraf(s, &draf_kicau);
+        popDraf(&penggunaSekarang.drafKicauan, &draf_kicau);
 
         printf("Ini draf terakhir anda:");
         printf("| "); printTime(draf_kicau.DateTime); printf("\n");
@@ -74,7 +74,7 @@ void LIHAT_DRAF(Draf *s){
                 printf("\nDraf telah berhasil dihapus!");
             }
             else if (IsWordEqual(action, Simpan)){
-                pushDraf(s, draf_kicau);
+                pushDraf(&penggunaSekarang.drafKicauan, draf_kicau);
                 printf("\nDraf telah berhasil disimpan!");
             }
             else /* isWordEqual(action, Terbit)*/{
