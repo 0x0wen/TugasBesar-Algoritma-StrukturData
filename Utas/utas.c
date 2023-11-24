@@ -13,13 +13,13 @@ KicauanSambungan createKicauanSambungan(Sentence konten, Sentence author, int ID
 
 Address newKicauanSambunganNode(KicauanSambungan val)
 {
-    Address NodeKicauanSambungan = (Address)malloc(sizeof(NodeKicauanSambungan));
-    if (NodeKicauanSambungan != NULL)
+    Address Node = (Address)malloc(sizeof(NodeKicauanSambungan));
+    if (Node != NULL)
     {
-        INFO_UTAS(NodeKicauanSambungan) = val;
-        NEXT_UTAS(NodeKicauanSambungan) = NULL;
+        INFO_UTAS(Node) = val;
+        NEXT_UTAS(Node) = NULL;
     }
-    return NodeKicauanSambungan;
+    return Node;
 }
 
 Utas createUtas(Sentence author, int IDUtas, int IDKicau, Sentence konten, DATETIME waktu)
@@ -35,12 +35,12 @@ Utas createUtas(Sentence author, int IDUtas, int IDKicau, Sentence konten, DATET
 
 void printUtas(Utas U)
 {
-    printf("%*s| ID = %d", 2, "", ID_UTAS(U));
-    printf("%*s| ", 2, "");
+    printf("%*s| ID = %d", 1, "", ID_UTAS(U));
+    printf("\n%*s| ", 1, "");
     printSentence(AUTHOR_UTAS(U));
-    printf("%*s| ", 2, "");
+    printf("\n%*s| ", 1, "");
     TulisDATETIME(WAKTU_UTAS(U));
-    printf("%*s| ", 2, "");
+    printf("\n%*s| ", 1, "");
     printSentence(KONTEN_UTAS(U));
     TabKicauanSambungan T = KICAUAN_SAMBUNGAN(U);
     if (!isTabKicauanSambunganEmpty(T))
@@ -48,12 +48,12 @@ void printUtas(Utas U)
         Address NodeKicauanSambungan = FIRST_UTAS(T);
         while (NEXT_UTAS(NodeKicauanSambungan) != NULL)
         {
-            printf("%*s| INDEX = %d", 2, "", ID_UTAS(INFO_UTAS(NodeKicauanSambungan)));
-            printf("%*s| ", 2, "");
+            printf("%*s| INDEX = %d", 5, "", ID_UTAS(INFO_UTAS(NodeKicauanSambungan)));
+            printf("\n%*s| ", 5, "");
             printSentence(AUTHOR_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
-            printf("%*s| ", 2, "");
+            printf("\n%*s| ", 5, "");
             TulisDATETIME(WAKTU_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
-            printf("%*s| ", 2, "");
+            printf("\n%*s| ", 5, "");
             printSentence(KONTEN_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
             printf("\n");
             NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
