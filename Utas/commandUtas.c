@@ -1,9 +1,7 @@
 #include "../global.h"
 void CREATE_UTAS(int IDKicau)
 {
-    Word currentWord;
-    STARTWORD();
-
+    Kicauan K = *searchKicauan(dataKicauan, IDKicau);
     if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau))))
     {
         printf("Utas ini bukan milik anda!");
@@ -18,10 +16,20 @@ void CREATE_UTAS(int IDKicau)
     }
     else
     {
+        Utas U;
+        KicauanSambungan KS;
+        U = createUtas(AUTHOR_KICAU(K), lengthTabUtas(dataUtas), IDKicau, TEXT_KICAU(K), TIME_KICAU(K));
+        insertLastTabUtas(&dataUtas, U);
+        insertLastListDin(&DAFTAR_UTAS(*searchPengguna(&dataPengguna, ID_PENGGUNA(penggunaSekarang))), ID_UTAS(U));
+        UTAS_KICAU(K) = &U;
         printf("Utas berhasil dibuat!\n");
         do
         {
+            Sentence kalimat;
             printf("Masukkan kicauan: \n");
+            InputSentence(&kalimat);
+            KS = createKicauanSambungan(kalimat, AUTHOR_KICAU(K), ID_PENGGUNA(penggunaSekarang), lengthTabKicauanSambungan(KICAUAN_SAMBUNGAN(U)));
+            insertLastTabKicauanSambungan(&KICAUAN_SAMBUNGAN(U), KS);
             printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
         } while (isWordEqualStr(currentWord, "YA"));
         printf("Utas selesai!\n");
@@ -29,7 +37,7 @@ void CREATE_UTAS(int IDKicau)
 }
 void SAMBUNG_UTAS(int IDUtas, int index)
 {
-    if (isIdxTabUtasEff(dataUtas, index))
+    if (isIdxTabUtasEff(dataUtas, index) == false)
     {
         printf("Index terlalu tinggi!\n");
     }
@@ -41,6 +49,12 @@ void SAMBUNG_UTAS(int IDUtas, int index)
     {
         printf("Anda tidak bisa menyambung utas ini!");
     }
+    else
+    {
+        Sentence kalimat;
+        printf("Masukkan kicauan: \n");
+        InputSentence(&kalimat);
+    }
 };
 void HAPUS_UTAS(int IDUtas, int index)
 {
@@ -48,7 +62,7 @@ void HAPUS_UTAS(int IDUtas, int index)
     {
         printf("Utas tidak ditemukan!");
     }
-    else if (searchUtas(dataUtas, IDUtas) == NULL)
+    else if (index <= 0 || index > lengthTabKicauanSambungan(KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas))))
     {
         printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!", index);
     }
@@ -62,9 +76,8 @@ void HAPUS_UTAS(int IDUtas, int index)
     }
     else
     {
+        deleteAtTabKicauanSambungan(&KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas)), index - 1);
         printf("Kicauan sambungan berhasil dihapus!");
-        // algoritma hapus
-        // ...
     }
 }
 void CETAK_UTAS(int IDUtas)
@@ -79,6 +92,6 @@ void CETAK_UTAS(int IDUtas)
     }
     else
     {
-        displayTabKicauanSambungan(KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas)));
+        printUtas(*searchUtas(dataUtas, IDUtas));
     }
 };
