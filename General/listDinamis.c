@@ -1,7 +1,7 @@
 #include "../global.h"
 
 void deleteValListDin(ListDin *l, int val){
-    int idx = indexOf(*l, val);
+    int idx = indexOfListDin(*l, val);
     int i;
     for (i = idx+1; i < NEFF_LIST_DIN(*l)-1; i++){
         ELMT_LIST_DIN(*l, i-1) = ELMT_LIST_DIN(*l, i);
@@ -9,7 +9,7 @@ void deleteValListDin(ListDin *l, int val){
     NEFF_LIST_DIN(*l)--;
 }
 
-void CreateListDinListDin(ListDin *l, int capacity)
+void CreateListDin(ListDin *l, int capacity)
 {
     CAPACITY_LIST_DIN(*l) = capacity;
     NEFF_LIST_DIN(*l) = 0;
@@ -98,9 +98,9 @@ void printListDin(ListDin l)
 {
     int i;
     printf("[");
-    for (i = IDX_MIN_LIST_DIN; i < listLength(l); i++)
+    for (i = IDX_MIN_LIST_DIN; i < listLengthListDin(l); i++)
     {
-        if (i == listLength(l) - 1)
+        if (i == listLengthListDin(l) - 1)
         {
             printf("%d", ELMT_LIST_DIN(l, i));
         }
@@ -257,9 +257,9 @@ void sortListDin(ListDin *l, boolean asc)
     int temp;
     if (asc == true)
     {
-        for (i = IDX_MIN_LIST_DIN; i < listLength(*l); i++)
+        for (i = IDX_MIN_LIST_DIN; i < listLengthListDin(*l); i++)
         {
-            for (j = i + 1; j < listLength(*l); j++)
+            for (j = i + 1; j < listLengthListDin(*l); j++)
             {
                 if (ELMT_LIST_DIN(*l, j) < ELMT_LIST_DIN(*l, i))
                 {
@@ -272,9 +272,9 @@ void sortListDin(ListDin *l, boolean asc)
     }
     else
     {
-        for (i = IDX_MIN_LIST_DIN; i < listLength(*l); i++)
+        for (i = IDX_MIN_LIST_DIN; i < listLengthListDin(*l); i++)
         {
-            for (j = i + 1; j < listLength(*l); j++)
+            for (j = i + 1; j < listLengthListDin(*l); j++)
             {
                 if (ELMT_LIST_DIN(*l, j) > ELMT_LIST_DIN(*l, i))
                 {
@@ -320,20 +320,20 @@ void expandListDin(ListDin *l, int num)
     ListDin l1;
     int cap1, nEff1, i;
 
-    copyList(*l, &l1);
+    copyListDin(*l, &l1);
     cap1 = CAPACITY_LIST_DIN(*l) + num;
     nEff1 = NEFF_LIST_DIN(*l);
 
-    dealocateList(l);
+    dealocateListDin(l);
 
     CreateListDin(l, cap1);
     NEFF_LIST_DIN(*l) = nEff1;
 
-    for (i = 0; i < listLength(*l); i++)
+    for (i = 0; i < listLengthListDin(*l); i++)
     {
         ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(l1, i);
     }
-    dealocateList(&l1);
+    dealocateListDin(&l1);
 };
 /* Proses : Menambahkan capacity l sebanyak num */
 /* I.S. List sudah terdefinisi */
@@ -344,20 +344,20 @@ void shrinkListDin(ListDin *l, int num)
     ListDin l1;
     int cap1, nEff1, i;
 
-    copyList(*l, &l1);
+    copyListDin(*l, &l1);
     cap1 = CAPACITY_LIST_DIN(*l) - num;
     nEff1 = NEFF_LIST_DIN(*l);
 
-    dealocateList(l);
+    dealocateListDin(l);
 
     CreateListDin(l, cap1);
     NEFF_LIST_DIN(*l) = nEff1;
 
-    for (i = 0; i < listLength(*l); i++)
+    for (i = 0; i < listLengthListDin(*l); i++)
     {
         ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(l1, i);
     }
-    dealocateList(&l1);
+    dealocateListDin(&l1);
 };
 /* Proses : Mengurangi capacity sebanyak num */
 /* I.S. List sudah terdefinisi, ukuran capacity > num, dan nEff < capacity - num. */
@@ -368,19 +368,19 @@ void compressListDin(ListDin *l)
     ListDin l1;
     int nEff1, i;
 
-    copyList(*l, &l1);
+    copyListDin(*l, &l1);
     nEff1 = NEFF_LIST_DIN(*l);
 
-    dealocateList(l);
+    dealocateListDin(l);
 
     CreateListDin(l, nEff1);
     NEFF_LIST_DIN(*l) = nEff1;
 
-    for (i = 0; i < listLength(*l); i++)
+    for (i = 0; i < listLengthListDin(*l); i++)
     {
         ELMT_LIST_DIN(*l, i) = ELMT_LIST_DIN(l1, i);
     }
-    dealocateList(&l1);
+    dealocateListDin(&l1);
 };
 /* Proses : Mengubah capacity sehingga capacity = nEff */
 /* I.S. List tidak kosong */
