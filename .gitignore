@@ -8,5 +8,4 @@
 /.vscode/c_cpp_properties.json
 
 # exec files
-/build/*.o
-/build/*.d
+*.o
