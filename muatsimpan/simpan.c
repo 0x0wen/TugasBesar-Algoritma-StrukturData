@@ -93,7 +93,6 @@ void simpanKicauan(Word inputfile,TabKicauan tabkicau){
         fprintf(file, "%s\n",tabkicau.buffer[i].Text.TabWord);//teks
         fprintf(file, "%d\n",tabkicau.buffer[i].Like);//like
         fprintf(file, "%s\n",tabkicau.buffer[i].Author.TabWord);//author
-        fprintf(file, "%s\n",tabkicau.buffer->DateTime);//datetime
         DATETIME time = tabkicau.buffer[i].DateTime;
         TIME jam = time.T;
         fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
