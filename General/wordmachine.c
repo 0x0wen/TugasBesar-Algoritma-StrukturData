@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include "wordmachine.h"
+#include "../global.h"
 
 /* State Mesin Word */
 boolean EndWord;
@@ -24,11 +21,10 @@ void STARTWORD()
     IgnoreBlanks();
     if (currentChar == MARK)
     {
-        printf("yes");
         EndWord = true;
     }
     else
-    {   
+    {
         CopyWord();
         EndWord = false;
     }
@@ -110,13 +106,13 @@ void writeWord(Word *writeWord, char input[], int length)
 }
 
 void InputWord(Word *inputWord)
-{   
+{
     STARTWORD();
     if (EOP)
     {
         writeWord(inputWord, currentWord.TabWord, currentWord.Length);
-        currentWord.Length=0;
-        currentChar=currentWord.TabWord[0];
+        currentWord.Length = 0;
+        currentChar = currentWord.TabWord[0];
     }
     // else
     // {
@@ -128,9 +124,11 @@ void InputWord(Word *inputWord)
     // }
 }
 
-void printWord(Word w) {
+void printWord(Word w)
+{
     int i;
-    for (i = 0; i < w.Length; i++) {
+    for (i = 0; i < w.Length; i++)
+    {
         printf("%c", w.TabWord[i]);
     }
 }
@@ -207,18 +205,22 @@ boolean isOnlyBlank(Word w)
 //     return length;
 // }
 
-boolean isWordEqualStr(Word w, char *str) {
+boolean isWordEqualStr(Word w, char *str)
+{
     int n = w.Length;
-    int strLength = LengthStr(str);
+    // int strLength = LengthStr(str);
 
-    // Jika panjang Word tidak sama dengan panjang String, return false
-    if (n != strLength) {
-        return false;
-    }
+    // // Jika panjang Word tidak sama dengan panjang String, return false
+    // if (n != strLength)
+    // {
+    //     return false;
+    // }
 
     // Bandingkan setiap karakter
-    for (int i = 0; i < n; ++i) {
-        if (w.TabWord[i] != str[i]) {
+    for (int i = 0; i < n; ++i)
+    {
+        if (w.TabWord[i] != str[i])
+        {
             return false;
         }
     }
@@ -226,11 +228,17 @@ boolean isWordEqualStr(Word w, char *str) {
     return true;
 }
 
-int wordToInteger(Word word) {
+int wordToInteger(Word word)
+{
+    if (word.TabWord[0] == '-')
+    {
+        return -1;
+    }
     // Check if the Word is empty
-    if (word.Length == 0) {
+    if (word.Length == 0)
+    {
         printf("Error: Empty Word\n");
-        return 0;  // You may want to handle this differently based on your requirements
+        return 0; // You may want to handle this differently based on your requirements
     }
 
     // Convert the character array to an integer using strtol function
@@ -238,9 +246,9 @@ int wordToInteger(Word word) {
     long result = strtol(word.TabWord, &endptr, 10);
 
     // Check if the conversion was successful
-    if (*endptr != '\0') {
-        printf("Error: Non-integer characters found in Word\n");
-        return 0;  // You may want to handle this differently based on your requirements
-    }
+    // if (*endptr != '\0') {
+    //     printf("Error: Non-integer characters found in Word\n");
+    //     return 0;  // You may want to handle this differently based on your requirements
+    // }
     return (int)result;
 }

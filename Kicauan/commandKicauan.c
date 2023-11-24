@@ -1,4 +1,3 @@
-#include "commandKicauan.h"
 #include "../global.h"
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/
@@ -12,12 +11,11 @@ void KICAU(){
     } else {
         int id = MAXID_TAB_KICAUAN(dataKicauan) + 1;
         Sentence author = NAMA_PENGGUNA(penggunaSekarang);
-
         Kicauan newKicau = createKicauan(id, text, author);
         addKicauanToTab(&dataKicauan, newKicau);
-        insertLast(&penggunaSekarang.daftarKicauan, id);
+        insertLastListDin(&penggunaSekarang.daftarKicauan, id);
 
-        printf("Selamat! kicauan telah diterbitkan!\n");
+        printf("\nSelamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
         printDetilKicau(newKicau);
     }

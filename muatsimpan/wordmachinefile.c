@@ -1,23 +1,17 @@
-#include <stdio.h>
-#include "wordmachinefile.h"
-#include "sentenceMachine.h"
+#include "../global.h"
 
 boolean endWordFile;
 Word currentWordFile;
 
-void IgnoreBlanksFile(){
-    if(currentCharFile == BLANK && currentCharFile!=MARK_FILE){    
-        while (currentCharFile == BLANK && currentCharFile != MARK_FILE) {
+void IgnoreBlanksFile(){   
+    while (currentCharFile == BLANK && currentCharFile != MARK_FILE) {
             ADVFILE();
-        }
     }
 }
 
 void STARWORDFILE(char namaFile[]){
     STARFILE(namaFile);
-    IgnoreBlanksFile();
-
-    if (currentCharFile == MARK_FILE || atoi(&currentCharFile)==0) {
+    if (currentCharFile == '\n') {
         currentWordFile.TabWord[0] = currentCharFile;
         endWordFile = true;
         ADVFILE();
@@ -41,7 +35,7 @@ void CopyWordFile(){
     int i;
     i = 0;
     
-    while (currentCharFile != MARK_FILE) {
+    while (currentCharFile != MARK_FILE && currentCharFile != BLANK) {
         if (i < NMax) {
             currentWordFile.TabWord[i] = currentCharFile;
         }

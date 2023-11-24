@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "../global.h"
-#include "teman.h"
 
 void createMatrixTeman(AdjacencyMatrix *matrix_teman)
 {
@@ -15,7 +13,7 @@ void createMatrixTeman(AdjacencyMatrix *matrix_teman)
 }
 
 void addFriend(AdjacencyMatrix *matrix_teman, int id_user1, int id_user2)
-{
+{   
     ELMT_TEMAN(*matrix_teman, id_user1, id_user2) = 1;
     ELMT_TEMAN(*matrix_teman, id_user2, id_user1) = 1;
 }

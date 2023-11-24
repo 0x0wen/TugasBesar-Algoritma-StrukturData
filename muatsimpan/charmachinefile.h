@@ -1,11 +1,12 @@
 #ifndef __CHAR_MACHINE_FILE_H__
 #define __CHAR_MACHINE_FILE_H__
 
-#include "boolean.h"
-#include "charmachine.h"
+
+#include "../General/boolean.h"
+#include "../General/charmachine.h"
 #include <stdio.h>
 
-#define MARK_FILE "\r\n"
+#define MARK_FILE '\n'
 
 /* Char Engine State*/
 extern char currentCharFile;

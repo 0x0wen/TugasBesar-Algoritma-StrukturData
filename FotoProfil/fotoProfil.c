@@ -10,7 +10,7 @@ Created at: 17/10/2019
 Modified at: 23/10/2023
 **/
 
-#include <stdio.h>
+#include "../global.h"
 
 
 void print_red(char c)
@@ -57,7 +57,7 @@ boolean isIdxEff(FotoProfil m, int i, int j)
     return (i >= 0 && i <= ROW_EFF(m) - 1 && j >= 0 && j <= COL_EFF(m) - 1);
 }
 
-ElType getElmtDiagonal(FotoProfil m, int i)
+char getElmtDiagonal(FotoProfil m, int i)
 {
     return (ELMT(m, i, i));
 }
@@ -77,13 +77,19 @@ void copyFotoProfil(FotoProfil mIn, FotoProfil *mOut)
 
 void readFotoProfil(FotoProfil *m, int nRow, int nCol)
 {
+    START();
+    IgnoreBlanks();
+
     int i, j;
     for (i = 0; i < nRow; i++)
     {
         for (j = 0; j < nCol; j++)
         {
-            scanf(" %c", &ELMT(*m, i, j));
+            ELMT(*m, i, j) = currentChar;
+            ADV();
+            IgnoreBlanks();
         }
+        IgnoreBlanks();
     }
 }
 
@@ -186,7 +192,7 @@ FotoProfil multiplyFotoProfilWithMod(FotoProfil m1, FotoProfil m2, int mod)
     return m;
 }
 
-FotoProfil multiplyByConst(FotoProfil m, ElType x)
+FotoProfil multiplyByConst(FotoProfil m, char x)
 {
     FotoProfil m1;
     int i, j;
@@ -201,7 +207,7 @@ FotoProfil multiplyByConst(FotoProfil m, ElType x)
     return m1;
 }
 
-void pMultiplyByConst(FotoProfil *m, ElType k)
+void pMultiplyByConst(FotoProfil *m, char k)
 {
     int i, j;
     for (i = 0; i < ROW_EFF(*m); i++)

@@ -24,16 +24,10 @@ typedef struct
     boolean privat;
     FotoProfil foto;
     ListDin daftarKicauan;
-    ListDin daftarBalasan;
     ListDin daftarUtas;
     PrioQueueRequest daftarPermintaanTeman;
     Draf drafKicauan;
 } Pengguna;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
-/* Jika S adalah Stack maka akses elemen : */
-/* S.T[(S.TOP)] untuk mengakses elemen TOP */
-/* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
 #define ID_PENGGUNA(P) (P).id
@@ -44,18 +38,12 @@ typedef struct
 #define HP_PENGGUNA(P) (P).noHP
 #define PRIVASI_PENGGUNA(P) (P).privat
 #define FOTO_PENGGUNA(P) (P).foto
+#define DAFTAR_KICAUAN(P) (P).daftarKicauan
+#define DAFTAR_UTAS(P) (P).daftarUtas
 #define KICAUAN_PENGGUNA(P, i) (P).daftarKicauan[i]
 #define BALASAN_PENGGUNA(P, i) (P).daftarBalasan[i]
 #define UTAS_PENGGUNA(P, i) (P).daftarUtas[i]
-#define PERMINTAAN_PENGGUNA(P, i) (P).daftarPermintaanTeman[i]
+#define PERMINTAAN_TEMAN(P) (P).daftarPermintaanTeman
 #define DRAF_PENGGUNA(P, i) (P).drafKicauan[i]
-
-/* ************ Prototype ************ */
-/* *** Konstruktor/Kreator *** */
-
-void DAFTAR();
-void MASUK();
-void KELUAR();
-void TUTUP_PROGRAM();
 
 #endif

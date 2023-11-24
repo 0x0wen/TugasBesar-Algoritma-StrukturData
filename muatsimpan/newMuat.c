@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include "..\General\wordmachinefile.h"
-#include "..\General\wordmachine.h"
-#include "..\global.h"
-#include "simpan.h"
-#include "newMuat.h"
+#include "../global.h"
 
 DATETIME muatDateTime(){
     ADVFILE();
@@ -45,14 +40,13 @@ DATETIME muatDateTime(){
     return date;
 }
 
-void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna,AdjacencyMatrix *mteman){
+void muatPenggunaNew(Word inputFile,TabPengguna dataPengguna,AdjacencyMatrix mteman){
     STARWORDFILE(inputFile.TabWord);
     int jumlahUser = atoi(currentWordFile.TabWord); //jumlah user
     if(jumlahUser!=0){
-        ADVFILE();
+
         for(int i = 0; i < jumlahUser; i++){
             Pengguna pengguna;
-
             pengguna.id = i;
 
             Sentence username = CopySentenceFile();
@@ -97,7 +91,7 @@ void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna,AdjacencyMatrix *m
             pengguna.daftarPermintaanTeman = req;
             
 
-            insertLastTabPengguna(dataPengguna,pengguna);
+            insertLastTabPengguna(&dataPengguna,pengguna);
             
             // (*dataPengguna).contents[i] = pengguna;
             //(*dataPengguna).length++;
@@ -136,12 +130,11 @@ void muatPenggunaNew(Word inputFile,TabPengguna* dataPengguna,AdjacencyMatrix *m
             request.prio = banyakfoll;
 
             for(int j = 0; j < jumlahUser; j++){
-                if(dataPengguna->contents[j].id==iddiminta){
-                    enqueue_PQR(&dataPengguna->contents[j].daftarPermintaanTeman,request);
+                if(dataPengguna.contents[j].id==iddiminta){
+                    enqueue_PQR(&dataPengguna.contents[j].daftarPermintaanTeman,request);
                 }
 
             }
-            
         }
     }
     StopWordFile(inputFile.TabWord);
@@ -180,57 +173,60 @@ void muatKicauanNew(Word inputFile,TabKicauan *tabkicau){
     StopWordFile(inputFile.TabWord);
 }
 
-void muatBalasanNew(Word inputFile,TabPengguna tabuser){
+void muatBalasanNew(Word inputFile,TabPengguna *tabuser){
+    printf("tesss");
     STARWORDFILE(inputFile.TabWord);
     int jumlahKicauan = atoi(currentWordFile.TabWord);
     if(jumlahKicauan!=0){
         ADVFILE();
         CopyWordFile();
-        int id= atoi(currentWordFile.TabWord);
+        //int id= atoi(currentWordFile.TabWord);
 
         ADVFILE();
         CopyWordFile();
         int banyakBalasan = atoi(currentWordFile.TabWord);
 
         for(int i = 0; i < banyakBalasan; i++){
-            Balasan balas;
-            ADVFILE();
-            CopyWordFile3();
-            int idparent = atoi(currentWordFile.TabWord);
-            if(idparent>=0){
-                balas.IDParent = idparent;
-            }else{
-                balas.IDParent = id;
-            }
-
-            ADVFILE();
-            CopyWordFile3();
-            int idbalas = atoi(currentWordFile.TabWord);
-            balas.IDBalasan = idbalas;
-
-            ADVFILE();
-            Sentence teks = CopySentenceFile();
-            balas.konten = teks;
+            // Balasan data;
             
-            ADVFILE();
-            Sentence author = CopySentenceFile();
-            balas.author = author;
+            // ADVFILE();
+            // CopyWordFile3();
+            // int idparent = atoi(currentWordFile.TabWord);
+            // if(idparent>=0){
+            //     data.IDParent = idparent;
+            // }else{
+            //     .data.IDParent = id;
+            // }
 
-            Pengguna *temp = searchPenggunaByName(&tabuser,author);
-            balas.IDPengguna = (temp)->id;
+            // ADVFILE();
+            // CopyWordFile3();
+            // int idbalas = atoi(currentWordFile.TabWord);
+            // data.IDBalasan = idbalas;
+
+            // ADVFILE();
+            // Sentence teks = CopySentenceFile();
+            // data.konten = teks;
             
-            DATETIME dateTime = muatDateTime();
-            balas.waktu = dateTime;
+            // ADVFILE();
+            // Sentence author = CopySentenceFile();
+            // data.author = author;
+
+            // Pengguna *temp = searchPenggunaByName(tabuser,author);
+            // data.IDPengguna = (temp)->id;
+            
+            // DATETIME dateTime = muatDateTime();
+            // balas->data.waktu = dateTime;
         }
     }
     StopWordFile(inputFile.TabWord);
 }
 
-void muatDrafNew(Word inputFile,TabPengguna tabuser){
+void muatDrafNew(Word inputFile,TabPengguna *tabuser){
+    printf("debug");
     STARWORDFILE(inputFile.TabWord);
     int jumlahPengguna= atoi(currentWordFile.TabWord);
-    printf("%d\n",jumlahPengguna);
     for(int i = 0; i < jumlahPengguna; i++){
+        printf("debug");
         Draf draf;
         ADVFILE();
         int j,k;
@@ -274,7 +270,7 @@ void muatDrafNew(Word inputFile,TabPengguna tabuser){
             kicau.DateTime = dateTime;
             pushDraf(&draf,kicau);
         }
-        Pengguna *pengguna = searchPenggunaByName(&tabuser,username);
+        Pengguna *pengguna = searchPenggunaByName(tabuser,username);
         (pengguna)->drafKicauan = draf;
     }
     StopWordFile(inputFile.TabWord);
@@ -297,18 +293,19 @@ void muatUtasNew(Word inputFile, TabUtas *dataUtas){
             int banyakUtas = atoi(currentWordFile.TabWord);
 
             for(int i = 0; i < banyakUtas; i++){
-                KicauanSambungan kicauanSambungan;
+                KicauanSambungan sambungan;
+                Address kicauannew= newKicauanSambunganNode(sambungan);
                 ADVFILE();
                 Sentence teks = CopySentenceFile();
-                kicauanSambungan.pesan = teks;
+                kicauannew->info.konten = teks;
 
                 ADVFILE();
                 Sentence author = CopySentenceFile();
-                kicauanSambungan.author;
+                kicauannew->info.author = author;
 
                 DATETIME dateTime = muatDateTime();
-                kicauanSambungan.waktu = dateTime;
-                insertLastTabKicauanSambungan(&tabsambungan,kicauanSambungan);
+                kicauannew->info.waktu = dateTime;
+                insertLastTabKicauanSambungan(&tabsambungan,kicauannew->info);
             }
             utas.dataKicauanSambungan = tabsambungan;
             utas.IDUtas = k;
@@ -332,7 +329,7 @@ void muat(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabk
     }else{
         printf("Anda akan melakukan pemuatan dari Folder2.\n");
 
-        muatPenggunaNew(inputFile, datauser,matrikstemen);
+        muatPenggunaNew(inputFile, *datauser,*matrikstemen);
 
         writeWord(&locFile,"/kicauan.config", 15);
         inputFile = writefilename(inputFolder,locFile);
@@ -344,14 +341,14 @@ void muat(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabk
         writeWord(&locFile,"/balasan.config", 15);
         inputFile = writefilename(inputFolder,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
-        muatBalasanNew(inputFile,*datauser);
+        muatBalasanNew(inputFile,datauser);
 
         printf("1...\n");
 
         writeWord(&locFile,"/draf.config", 12);
         inputFile = writefilename(inputFolder,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
-        muatDrafNew(inputFile,*datauser);
+        muatDrafNew(inputFile,datauser);
 
         printf("2...\n");
 

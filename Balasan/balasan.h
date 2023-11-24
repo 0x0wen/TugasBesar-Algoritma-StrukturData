@@ -41,11 +41,12 @@ typedef struct treeNode
 
 typedef addressTree TreeBalasan;
 
-addressTree createBalasan(Balasan data);
-void addBalasan(TreeBalasan *parent, TreeBalasan *child);
+Balasan createBalasan(Sentence konten, Sentence author, int IDPengguna, int IDBalasan);
+TreeBalasan createBalasanNode(Balasan data);
+void addBalasan(TreeBalasan *parent, Balasan child);
 void removeBalasan(TreeBalasan *parent);
 void printTreeBalasan(TreeBalasan root, int depth);
-void displayAllBalasan(TreeBalasan root, int depth);
-Balasan *searchBalasan(TreeBalasan root, int val);
+void insertFirstTreeBalasan(TreeBalasan *TB, Balasan balasan);
+TreeBalasan searchBalasan(TreeBalasan root, int val);
 
 #endif

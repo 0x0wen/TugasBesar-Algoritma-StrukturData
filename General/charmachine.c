@@ -2,8 +2,7 @@
 /* Implementasi Mesin Karakter */
 
 
-#include "charmachine.h"
-#include <stdio.h>
+#include "../global.h"
 
 char currentChar;
 boolean EOP;

@@ -1,21 +1,65 @@
-#include <stdio.h>
-#include "utas.h"
-#include "../General/sentenceMachine.h"
-#include <stdlib.h>
-Address newKicauanSambungan(KicauanSambungan val)
+#include "../global.h"
+
+KicauanSambungan createKicauanSambungan(Sentence konten, Sentence author, int IDPengguna, int IDKicauanSambungan)
 {
-
-    Address NodeKicauanSambungan = (Address)malloc(sizeof(NodeKicauanSambungan));
-
-    if (NodeKicauanSambungan != NULL)
-    {
-        INFO_UTAS(NodeKicauanSambungan) = val;
-        NEXT_UTAS(NodeKicauanSambungan) = NULL;
-    }
-
-    return NodeKicauanSambungan;
+    KicauanSambungan newKicauanSambungan;
+    newKicauanSambungan.IDKicauanSambungan = IDKicauanSambungan;
+    newKicauanSambungan.konten = konten;
+    newKicauanSambungan.author = author;
+    newKicauanSambungan.IDPengguna = IDPengguna;
+    newKicauanSambungan.waktu = getDATETIME();
+    return newKicauanSambungan;
 }
 
+Address newKicauanSambunganNode(KicauanSambungan val)
+{
+    Address Node = (Address)malloc(sizeof(NodeKicauanSambungan));
+    if (Node != NULL)
+    {
+        INFO_UTAS(Node) = val;
+        NEXT_UTAS(Node) = NULL;
+    }
+    return Node;
+}
+
+Utas createUtas(Sentence author, int IDUtas, int IDKicau, Sentence konten, DATETIME waktu)
+{
+    Utas newUtas;
+    AUTHOR_UTAS(newUtas) = author;
+    ID_UTAS(newUtas) = IDUtas;
+    ID_KICAU_UTAS(newUtas) = IDKicau;
+    KONTEN_UTAS(newUtas) = konten;
+    createTabKicauanSambungan(&KICAUAN_SAMBUNGAN(newUtas));
+    return newUtas;
+}
+
+void printUtas(Utas U)
+{
+    printf("%*s| ID = %d", 1, "", ID_UTAS(U));
+    printf("\n%*s| ", 1, "");
+    printSentence(AUTHOR_UTAS(U));
+    printf("\n%*s| ", 1, "");
+    TulisDATETIME(WAKTU_UTAS(U));
+    printf("\n%*s| ", 1, "");
+    printSentence(KONTEN_UTAS(U));
+    TabKicauanSambungan T = KICAUAN_SAMBUNGAN(U);
+    if (!isTabKicauanSambunganEmpty(T))
+    {
+        Address NodeKicauanSambungan = FIRST_UTAS(T);
+        while (NEXT_UTAS(NodeKicauanSambungan) != NULL)
+        {
+            printf("%*s| INDEX = %d", 5, "", ID_UTAS(INFO_UTAS(NodeKicauanSambungan)));
+            printf("\n%*s| ", 5, "");
+            printSentence(AUTHOR_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
+            printf("\n%*s| ", 5, "");
+            TulisDATETIME(WAKTU_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
+            printf("\n%*s| ", 5, "");
+            printSentence(KONTEN_KICAUAN_SAMBUNGAN(INFO_UTAS(NodeKicauanSambungan)));
+            printf("\n");
+            NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
+        }
+    }
+}
 void createTabKicauanSambungan(TabKicauanSambungan *T)
 {
     FIRST_UTAS(*T) = NULL;
@@ -30,7 +74,7 @@ boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T)
 void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
 {
 
-    Address NodeKicauanSambungan = newKicauanSambungan(val);
+    Address NodeKicauanSambungan = newKicauanSambunganNode(val);
 
     if (NodeKicauanSambungan != NULL)
     {
@@ -56,7 +100,7 @@ void insertLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val)
             NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
         }
 
-        Address NodeKicauanSambunganNew = newKicauanSambungan(val);
+        Address NodeKicauanSambunganNew = newKicauanSambunganNode(val);
 
         if (NodeKicauanSambunganNew != NULL)
         {
@@ -75,7 +119,7 @@ void insertAtTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val, i
     else
     {
 
-        Address NodeKicauanSambunganNew = newKicauanSambungan(val);
+        Address NodeKicauanSambunganNew = newKicauanSambunganNode(val);
 
         if (NodeKicauanSambunganNew != NULL)
         {
@@ -144,7 +188,6 @@ void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx)
 }
 void displayTabKicauanSambungan(TabKicauanSambungan T)
 {
-    printf("[");
     if (!isTabKicauanSambunganEmpty(T))
     {
         Address NodeKicauanSambungan = FIRST_UTAS(T);
@@ -160,7 +203,6 @@ void displayTabKicauanSambungan(TabKicauanSambungan T)
             NodeKicauanSambungan = NEXT_UTAS(NodeKicauanSambungan);
         }
     }
-    printf("]");
 }
 
 int lengthTabKicauanSambungan(TabKicauanSambungan T)

@@ -1,11 +1,20 @@
-#include <stdio.h>
-#include "balasan.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../global.h"
 
-addressTree createBalasan(Balasan data)
+Balasan createBalasan(Sentence konten, Sentence author, int IDPengguna, int IDBalasan)
 {
-    addressTree node = (addressTree)malloc(sizeof(NodeBalasan));
+    Balasan newBalasan;
+
+    newBalasan.IDBalasan = IDBalasan;
+    newBalasan.konten = konten;
+    newBalasan.author = author;
+    newBalasan.IDPengguna = IDPengguna;
+    newBalasan.waktu = getDATETIME();
+
+    return newBalasan;
+}
+TreeBalasan createBalasanNode(Balasan data)
+{
+    TreeBalasan node = (TreeBalasan)malloc(sizeof(NodeBalasan));
     if (node != NULL)
     {
         DATA_NODE_BALASAN(node) = data;
@@ -16,13 +25,24 @@ addressTree createBalasan(Balasan data)
     return node;
 }
 
-void addBalasan(TreeBalasan *parent, TreeBalasan *child)
+void insertFirstTreeBalasan(TreeBalasan *TB, Balasan balasan)
 {
-    if (*parent != NULL && *child != NULL)
+    TreeBalasan p = createBalasanNode(balasan);
+    if (p != NULL)
+    {
+        FIRST_CHILD_BALASAN(p) = *TB;
+        *TB = p;
+    }
+}
+
+void addBalasan(TreeBalasan *parent, Balasan child)
+{
+    TreeBalasan p = createBalasanNode(child);
+    if (*parent != NULL && p != NULL)
     {
         if (FIRST_CHILD_BALASAN(*parent) == NULL)
         {
-            FIRST_CHILD_BALASAN(*parent) = *child;
+            FIRST_CHILD_BALASAN(*parent) = p;
         }
         else
         {
@@ -33,9 +53,9 @@ void addBalasan(TreeBalasan *parent, TreeBalasan *child)
                 x++;
                 sibling = NEXT_SIBLING_BALASAN(sibling);
             }
-            NEXT_SIBLING_BALASAN(sibling) = *child;
+            NEXT_SIBLING_BALASAN(sibling) = p;
         }
-        PARENT_BALASAN(*child) = *parent;
+        PARENT_BALASAN(p) = *parent;
     }
 }
 
@@ -81,14 +101,14 @@ void printTreeBalasan(TreeBalasan root, int depth)
 {
     if (root != NULL)
     {
-        printf("%*s| ID = %d", depth * 2, "", ID_BALASAN(DATA_NODE_BALASAN(root)));
-        printf("%*s\n| ", depth * 2, "");
+        printf("%*s| ID = %d", depth * 5, "", ID_BALASAN(DATA_NODE_BALASAN(root)));
+        printf("\n%*s| ", depth * 5, "");
         printSentence(AUTHOR_BALASAN(DATA_NODE_BALASAN(root)));
-        printf("%*s\n| ", depth * 2, "");
+        printf("\n%*s| ", depth * 5, "");
         TulisDATETIME(WAKTU_BALASAN(DATA_NODE_BALASAN(root)));
-        printf("%*s\n| ", depth * 2, "");
+        printf("\n%*s| ", depth * 5, "");
         printSentence(KONTEN_BALASAN(DATA_NODE_BALASAN(root)));
-        printf("/n");
+        printf("\n\n");
         TreeBalasan child = FIRST_CHILD_BALASAN(root);
         while (child != NULL)
         {
@@ -98,46 +118,57 @@ void printTreeBalasan(TreeBalasan root, int depth)
     }
 }
 
-Balasan *searchBalasan(TreeBalasan root, int IDBalasan)
+TreeBalasan searchBalasan(TreeBalasan root, int IDBalasan)
 {
-    addressTree p = ADDRESS_BALASAN(root);
+    TreeBalasan p = root;
     if (ID_BALASAN(DATA_NODE_BALASAN(p)) == IDBalasan)
     {
-        return &DATA_NODE_BALASAN(p);
+        return p;
     }
     else
     {
-        p = FIRST_CHILD_BALASAN(p);
         int cek = 0;
-        while (p != ADDRESS_BALASAN(root) && cek == 0)
+        if (FIRST_CHILD_BALASAN(p) != NULL)
         {
-            while ((p) != NULL && cek == 0)
+            p = FIRST_CHILD_BALASAN(p);
+            while (p != root && cek == 0)
             {
-                if (ID_BALASAN(DATA_NODE_BALASAN(p)) == IDBalasan)
+                while (p != NULL && cek == 0)
                 {
-                    cek = 1;
+                    if (ID_BALASAN(DATA_NODE_BALASAN(p)) == IDBalasan)
+                    {
+                        cek = 1;
+                        if (p != NULL)
+                        {
+                            return p;
+                        }
+                    }
+                    else
+                    {
+                        p = FIRST_CHILD_BALASAN(p);
+                    }
                 }
-                else
-                {
-                    p = FIRST_CHILD_BALASAN(p);
-                }
-            }
-            if (cek == 0)
-            {
-                p = PARENT_BALASAN(p);
-                if (NEXT_SIBLING_BALASAN(p) == NULL)
+                if (cek == 0)
                 {
                     p = PARENT_BALASAN(p);
-                }
-                else
-                {
-                    p = NEXT_SIBLING_BALASAN(p);
+                    if (NEXT_SIBLING_BALASAN(p) == NULL)
+                    {
+                        p = PARENT_BALASAN(p);
+                    }
+                    else
+                    {
+                        p = NEXT_SIBLING_BALASAN(p);
+                    }
                 }
             }
-        }
-        if (cek == 1)
-        {
-            return &DATA_NODE_BALASAN(p);
+            if (cek == 1)
+            {
+                return p;
+            }
+            else
+            {
+                return NULL;
+            }
         }
         else
         {

@@ -1,9 +1,10 @@
 #ifndef __WORDMACHINEFILE_H__
 #define __WORDMACHINEFILE_H__
 
-#include "boolean.h"
-#include "charmachinefile.c"
-#include "wordmachine.h"
+#include "../General/boolean.h"
+#include "charmachinefile.h"
+#include "../General/wordmachine.h"
+//#include "charmachine.c"
 
 extern boolean endWordFile;
 extern Word currentWordFile;
@@ -44,5 +45,4 @@ void StopWordFile();
 /* Memberhentikan pembacaan Mesin Kata. Pita tidak bisa lagi dibaca
    I.S. : Mesin Kata sedang dijalankan
    F.S. : Mesin Kata berhenti */
-
 #endif

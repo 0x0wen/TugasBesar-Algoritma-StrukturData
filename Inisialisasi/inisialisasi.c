@@ -1,22 +1,16 @@
-#include <stdio.h>
-#include "../General/wordmachinefile.h"
-#include "../Pengguna/pengguna.h"
-#include "../General/sentenceMachine.h"
 #include "../global.h"
-#include "../muatsimpan/simpan.h"
-#include "../muatsimpan/newMuat.h"
 
 
 void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas)
 {
-    printf("/$$$$$$$                      /$$       /$$           ");
-    printf("| $$__  $$                    | $$      |__/          ");
-    printf("| $$  \ $$ /$$   /$$  /$$$$$$ | $$$$$$$  /$$  /$$$$$$ ");
-    printf("| $$$$$$$ | $$  | $$ /$$__  $$| $$__  $$| $$ /$$__  $$");
-    printf("| $$__  $$| $$  | $$| $$  \__/| $$  \ $$| $$| $$  \__/");
-    printf("| $$  \ $$| $$  | $$| $$      | $$  | $$| $$| $$      ");
-    printf("| $$$$$$$/|  $$$$$$/| $$      | $$$$$$$/| $$| $$      ");
-    printf("|_______/  \______/ |__/      |_______/ |__/|__/      ");
+    printf("/$$$$$$$                      /$$       /$$           \n");
+    printf("| $$__  $$                    | $$      |__/          \n");
+    printf("| $$  \\ $$ /$$   /$$  /$$$$$$ | $$$$$$$  /$$  /$$$$$$ \n");
+    printf("| $$$$$$$ | $$  | $$ /$$__  $$| $$__  $$| $$ /$$__  $$\n");
+    printf("| $$__  $$| $$  | $$| $$  \\__/| $$  \\ $$| $$| $$  \\__/\n");
+    printf("| $$  \\ $$| $$  | $$| $$      | $$  | $$| $$| $$      \n");
+    printf("| $$$$$$$/|  $$$$$$/| $$      | $$$$$$$/| $$| $$      \n");
+    printf("|_______/  \\______/ |__/      |_______/ |__/|__/      \n");
     printf("\n");
     printf("Selamat datang di BurBir.\n");
     printf("\n");
@@ -37,38 +31,36 @@ void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicau
         printf("Name file tidak ada.\n");
     }
     else
-    {
+    {   
         printf("Name file ada.\n");
-        muatPenggunaNew(inputFile, datauser,matrikstemen);
+        // muatPenggunaNew(inputFile, *datauser,*matrikstemen);
+        printf("Maaf sedang ada masalah pada pemuatan.\n");
 
-        writeWord(&locFile,"/kicauan.config", 15);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatKicauanNew(inputFile,tabkicauan);
 
-        printf("Mohon tunggu...\n");
+        // simpan(*datauser,*matrikstemen,*tabkicauan,*datautas);
+        // writeWord(&locFile,"/kicauan.config", 15);
+        // inputFile = writefilename(inputFolder,locFile);
+        // tempFile = fopen(inputFile.TabWord, "r");
+        // muatKicauanNew(inputFile,tabkicauan);
+        // printf("Name file ada.\n");
 
-        writeWord(&locFile,"/balasan.config", 15);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatBalasanNew(inputFile,*datauser);
+        // writeWord(&locFile,"/balasan.config", 15);
+        // inputFile = writefilename(inputFolder,locFile);
+        // tempFile = fopen(inputFile.TabWord, "r");
+        // muatBalasanNew(inputFile,datauser);
+        // printf("Name file ada.\n");
 
-        printf("1...\n");
+        // writeWord(&locFile,"/draf.config", 12);
+        // inputFile = writefilename(inputFolder,locFile);
+        // tempFile = fopen(inputFile.TabWord, "r");
+        // muatDrafNew(inputFile,*datauser);
+        // printf("Name file ada.\n");
 
-        writeWord(&locFile,"/draf.config", 12);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatDrafNew(inputFile,*datauser);
-
-        printf("2...\n");
-
-        writeWord(&locFile,"/utas.config", 12);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatUtasNew(inputFile,datautas);
-
-        printf("3...\n");
-        printf("Pemuatan selesai!\n");
+        // writeWord(&locFile,"/utas.config", 12);
+        // inputFile = writefilename(inputFolder,locFile);
+        // tempFile = fopen(inputFile.TabWord, "r");
+        // muatUtasNew(inputFile,datautas);
+        // printf("Name file ada.\n");
 
         printf("\n");
         printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");

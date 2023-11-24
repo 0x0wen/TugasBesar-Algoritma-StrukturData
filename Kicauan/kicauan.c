@@ -1,53 +1,57 @@
-#include "kicauan.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../global.h"
 
-Kicauan createKicauan(int id, Sentence text, Sentence author){
+Kicauan createKicauan(int id, Sentence text, Sentence author)
+{
 
     Kicauan newKicau;
-
     newKicau.IDKicau = id;
     newKicau.Text = text;
     newKicau.Like = 0;
     newKicau.Author = author;
     newKicau.DateTime = getDATETIME();
-
+    newKicau.TabBalasan = NULL;
+    newKicau.JumlahBalasan = 0;
+    newKicau.UtasPointer = NULL;
     return newKicau;
 }
 
-void printDetilKicauan(Kicauan k){   
+void printDetilKicau(Kicauan k){   
     printf("| ID = %d\n", k.IDKicau);
-    printf("| "); printSentence(k.Author); printf("\n");
-    printf("| "); TulisDATETIME(k.DateTime); printf("\n");
-    printf("| "); printSentence(k.Text); printf("\n");
+    printf("| ");
+    printSentence(k.Author);
+    printf("\n");
+    printf("| ");
+    TulisDATETIME(k.DateTime);
+    printf("\n");
+    printf("| ");
+    printSentence(k.Text);
+    printf("\n");
     printf("| Disukai = %d\n", k.Like);
 }
-
-
 
 // Kicauan createKicauan(){
 //     Kicauan newKicau;
 
-//     // id 
+//     // id
 //     int newID = 0;
 //     newKicau.IDKicau = newID;
 
-//     // text 
+//     // text
 //     Word text; InputWordWithBlank(&text);
 //     newKicau.Text = text;
 
-//     // like 
+//     // like
 //     newKicau.Like = 0;
 
 //     // author
 //     Se author = penggunaSekarang;
 //     newKicau.Author = author;
-//     // 
+//     //
 
-//     // time 
+//     // time
 //     DATETIME time = getDATETIME();
 //     newKicau.DateTime = time;
-    
+
 //     return newKicau;
 // }
 
@@ -93,7 +97,6 @@ void printDetilKicauan(Kicauan k){
 //     NEFF_TabKicauan(*lOut) = NEFF_TabKicauan(lIn);
 //     MAXID_TabKicauan(*lOut) = MAXID_TabKicauan(lIn);
 // };
-
 
 // /*** Add/Delete Kicauan from Tab ***/
 // void addKicauanToTab(TabKicauan *t, Kicauan k)
@@ -233,38 +236,37 @@ void printDetilKicauan(Kicauan k){
 //     dealocateList(&temp);
 // }
 
-
 /*** Prosedur Kicauan ***/
 
 /** Membuat kicauan baru kemudian memasukkannya ke list **/
 // Kicauan createKicauan(){
 //     Kicauan newKicau;
 
-//     // id 
+//     // id
 //     int newID = 0;
 //     newKicau.IDKicau = newID;
 
-//     // text 
+//     // text
 //     Word text; InputWordWithBlank(&text);
 //     newKicau.Text = text;
 
-//     // like 
+//     // like
 //     newKicau.Like = 0;
 
 //     // author
 //     Pengguna penggunaSekarang;
 //     Pengguna author = penggunaSekarang;
 //     newKicau.Author = author;
-//     // 
+//     //
 
-//     // time 
+//     // time
 //     DATETIME time = getDATETIME();
 //     newKicau.DateTime = time;
-    
+
 //     return newKicau;
 // }
 
-// void printKicauan(Kicauan k){   
+// void printKicauan(Kicauan k){
 //     printf("\n");
 //     printf("| ID = %d\n", k.IDKicau);
 //     printf("| "); printSentence(k.Author.nama); printf("\n");
@@ -296,29 +298,28 @@ void printDetilKicauan(Kicauan k){
 //         if (ELMT_TabKicauan(dataKicauan, i).Author == penggunaSekarang){
 //             printf("\n");
 //             printKicauan(ELMT_TabKicauan(dataKicauan, i));
-//         } 
+//         }
 //     }
 // }
 
 // void SUKA_KICAUAN(id){
-
 
 //     if (isKicauanInTab(&dataKicauan, id)){
 
 //         int i, idx = getKicauanIdx(dataKicauan, id);
 
 //         Word Publik = {"Publik", 6};
-   
-//         if (dataKicauan[idx].Author == penggunaSekarang || 
-//             IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) /*|| 
+
+//         if (dataKicauan[idx].Author == penggunaSekarang ||
+//             IsWordEqual(dataKicauan[idx].Author.jenisAkun,Publik) /*||
 //             isFriend(penggunaSekarang, dataKicauan[idx].Author) */){
-            
+
 //             dataKicauan.buffer_TabKicauan[idx].Like++;
 //             printf("Selamat! kicauan telah disukai!\n");
 //             printf("Detil kicauan:");
 
 //             printKicauan(dataKicauan.buffer_TabKicauan[idx]);
-            
+
 //         } else {
 //             printf("\nWah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya");
 //         }

@@ -1,4 +1,4 @@
-#include "commandTeman.h"
+#include "../global.h"
 
 void DAFTAR_TEMAN(){
 
@@ -19,7 +19,7 @@ void DAFTAR_TEMAN(){
             if (isFriend(matrixTeman, id_user, id_teman)){
 
                 for (j = 0; j < BANYAK_PENGGUNA(dataPengguna); j++){
-                    if (SELECT_PENGGUNA(dataPengguna, j).id == j){
+                    if (SELECT_PENGGUNA(dataPengguna, j).id == id_teman){
                         nama_teman = NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, j));
                         break;
                     }
@@ -53,12 +53,12 @@ void HAPUS_TEMAN(){
         if(!isFriend(matrixTeman, id_user, id_teman)){
             printf("\n"); printSentence(nama_teman); printf(" bukan teman Anda");
         } else {
-            printf("\nApakah anda yakin ingin menghapus Bob dari daftar teman anda?(YA/TIDAK)\n");
+            printf("\nApakah anda yakin ingin menghapus "), printSentence(nama_teman), printf(" dari daftar teman anda?(YA/TIDAK)\n");
 
             Word Action; InputWord(&Action);
 
-            Word Ya = {"Ya", 2};
-            Word Tidak = {"Tidak", 5};
+            Word Ya = {"YA", 2};
+            Word Tidak = {"TIDAK", 5};
 
             if (IsWordEqual(Ya, Action)){
                 deleteFriend(&matrixTeman, id_user, id_teman);

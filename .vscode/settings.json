@@ -4,6 +4,12 @@
         "charmachine.h": "c",
         "commandutas.h": "c",
         "sentencemachine.h": "c",
-        "wordmachine.h": "c"
+        "wordmachine.h": "c",
+        "listdinamis.h": "c",
+        "time_adt.h": "c",
+        "commandpermintaanteman.h": "c",
+        "balasan.h": "c",
+        "fotoprofil.h": "c",
+        "global.h": "c"
     }
 }

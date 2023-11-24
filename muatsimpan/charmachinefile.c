@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "charmachinefile.h"
+#include "../global.h"
 
 char currentCharFile;
 boolean eotFile;
@@ -13,8 +12,9 @@ void STARFILE(char namaFile[]){
 }
 
 void ADVFILE(){
+  printf("%c",currentCharFile);
   retvalFile = fscanf(tapeFile, "%c", &currentCharFile);
-  eotFile = (currentCharFile == MARK_FILE);
+  eotFile = (currentCharFile==MARK_FILE);
 }
 
 void ENDFILE(){

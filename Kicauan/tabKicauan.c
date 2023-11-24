@@ -1,7 +1,4 @@
-#include "tabKicauan.h"
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "../global.h"
 /*** Kreator/Deletor Tab Kicauan ***/
 void createTabKicauan(TabKicauan *t, int capacity)
 {

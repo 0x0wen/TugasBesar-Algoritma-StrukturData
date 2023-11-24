@@ -1,111 +1,106 @@
-# Direktori untuk source code
-MUAT_SIMPAN_DIR = muatsimpan
-ADT_DIR = ADT
-BALASAN_DIR = Balasan
-DRAF_DIR = DrafKicauan
-GENERAL_DIR = General
-INISIALISASI_DIR = Inisialisasi
-KICAUAN_DIR = Kicauan
-PENGGUNA_DIR = Pengguna
-PERMINTAAN_DIR = PermintaanTeman
-TEMAN_DIR = Teman
-UTAS_DIR = Utas
-FOTO_PROFIL_DIR = FotoProfil
-
-
-# Direktori untuk objek files
-BUILD_DIR = build
-
-# Compiler dan flags
 CC = gcc
-CFLAGS = -Wall -std=c11 -MMD
+CFLAGS = -Wall -Werror -std=c11
 
-# Source files
-MAIN_SOURCES = main.c
-ADT_SOURCES = $(ADT_DIR)/*.c
-BALASAN_SOURCES = $(BALASAN_DIR)/balasan.c $(BALASAN_DIR)/commandBalasan.c
-DRAF_SOURCES = $(DRAF_DIR)/draf.c $(DRAF_DIR)/commandDraf.c
-GENERAL_SOURCES = $(GENERAL_DIR)/*.c
-INISIALISASI_SOURCES = $(INISIALISASI_DIR)/*.c
-KICAUAN_SOURCES = $(KICAUAN_DIR)/kicauan.c $(KICAUAN_DIR)/commandKicauan.c $(KICAUAN_DIR)/tabKicauan.c
-PENGGUNA_SOURCES = $(PENGGUNA_DIR)/pengguna.c $(PENGGUNA_DIR)/commandPengguna.c $(PENGGUNA_DIR)/tabPengguna.c
-PERMINTAAN_SOURCES = $(PERMINTAAN_DIR)/permintaanTeman.c $(PERMINTAAN_DIR)/commandPermintaanTeman.c 
-TEMAN_SOURCES = $(TEMAN_DIR)/teman.c $(TEMAN_DIR)/commandTeman.c 
-UTAS_SOURCES = $(UTAS_DIR)/utas.c $(UTAS_DIR)/commandUtas.c $(UTAS_DIR)/tabUtas.c
-FOTO_PROFIL_SOURCES = $(FOTO_PROFIL_DIR)/utas.c $(FOTO_PROFIL_DIR)/commandUtas.c $(FOTO_PROFIL_DIR)/tabUtas.c
-MUAT_SIMPAN_SOURCES = $(MUAT_SIMPAN_DIR)/newMuat.c $(MUAT_SIMPAN_DIR)/simpan.c
+SRC_MESINKAR = General/charmachine.c
+OBJ_MESINKAR = $(SRC_MESINKAR:.c=.o)
 
-# Objek files
-MAIN_OBJ = $(BUILD_DIR)/main.o
-ADT_OBJ = $(patsubst $(ADT_DIR)/%.c,$(BUILD_DIR)/%.o, $(ADT_SOURCES))
-BALASAN_OBJ = $(patsubst $(BALASAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(BALASAN_SOURCES))
-DRAF_OBJ = $(patsubst $(DRAF_DIR)/%.c,$(BUILD_DIR)/%.o, $(DRAF_SOURCES))
-GENERAL_OBJ = $(patsubst $(GENERAL_DIR)/%.c,$(BUILD_DIR)/%.o, $(GENERAL_SOURCES))
-INISIALISASI_OBJ = $(patsubst $(INISIALISASI_DIR)/%.c,$(BUILD_DIR)/%.o, $(INISIALISASI_SOURCES))
-KICAUAN_OBJ = $(patsubst $(KICAUAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(KICAUAN_SOURCES))
-PENGGUNA_OBJ = $(patsubst $(PENGGUNA_DIR)/%.c,$(BUILD_DIR)/%.o, $(PENGGUNA_SOURCES))
-PERMINTAAN_OBJ = $(patsubst $(PERMINTAAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(PERMINTAAN_SOURCES))
-TEMAN_OBJ = $(patsubst $(TEMAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(TEMAN_SOURCES))
-UTAS_OBJ = $(patsubst $(UTAS_DIR)/%.c,$(BUILD_DIR)/%.o, $(UTAS_SOURCES))
-FOTO_PROFIL_OBJ = $(patsubst $(FOTO_PROFIL_DIR)/%.c,$(BUILD_DIR)/%.o, $(FOTO_PROFIL_SOURCES))
-MUAT_SIMPAN_OBJ = $(patsubst $(MUAT_SIMPAN_DIR)/%.c,$(BUILD_DIR)/%.o, $(MUAT_SIMPAN_SOURCES))
+SRC_MESINKARFILE = muatsimpan/charmachinefile.c
+OBJ_MESINKARFILE = $(SRC_MESINKARFILE:.c=.o)
 
-# Target utama
-all: $(BUILD_DIR) main
+SRC_MESINWORD = General/wordmachine.c
+OBJ_MESINWORD = $(SRC_MESINWORD:.c=.o)
+
+SRC_MESINWORDFILE = muatsimpan/wordmachinefile.c
+OBJ_MESINWORDFILE = $(SRC_MESINWORDFILE:.c=.o)
+
+SRC_MESINSENTENCE = General/sentenceMachine.c
+OBJ_MESINSENTENCE = $(SRC_MESINSENTENCE:.c=.o)
+
+SRC_TIME_ADT = General/time_adt.c
+OBJ_TIME_ADT = $(SRC_TIME_ADT:.c=.o)
+
+SRC_DATETIME = General/datetime.c
+OBJ_DATETIME = $(SRC_DATETIME:.c=.o)
+
+SRC_LISTDINAMIS = General/listDinamis.c
+OBJ_LISTDINAMIS = $(SRC_LISTDINAMIS:.c=.o)
+
+SRC_INISIALISASI = Inisialisasi/inisialisasi.c
+OBJ_INISIALISASI = $(SRC_INISIALISASI:.c=.o)
+
+SRC_MUAT = muatsimpan/newMuat.c
+OBJ_MUAT = $(SRC_MUAT:.c=.o)
+
+SRC_SIMPA = muatsimpan/simpan.c
+OBJ_SIMPA = $(SRC_SIMPA:.c=.o)
+
+SRC_FOTOPROFIL = FotoProfil/fotoProfil.c
+OBJ_FOTOPROFIL = $(SRC_FOTOPROFIL:.c=.o)
+
+SRC_BALASAN = Balasan/balasan.c
+OBJ_BALASAN = $(SRC_BALASAN:.c=.o)
+
+SRC_CMDBALASAN = Balasan/commandBalasan.c
+OBJ_CMDBALASAN = $(SRC_CMDBALASAN:.c=.o)
+
+SRC_UTAS = Utas/utas.c
+OBJ_UTAS = $(SRC_UTAS:.c=.o)
+
+SRC_TABUTAS = Utas/tabUtas.c
+OBJ_TABUTAS = $(SRC_TABUTAS:.c=.o)
+
+SRC_CMDUTAS = Utas/commandUtas.c
+OBJ_CMDUTAS = $(SRC_CMDUTAS:.c=.o)
+
+SRC_KICAUAN = Kicauan/kicauan.c
+OBJ_KICAUAN = $(SRC_KICAUAN:.c=.o)
+
+SRC_TABKICAUAN = Kicauan/tabKicauan.c
+OBJ_TABKICAUAN = $(SRC_TABKICAUAN:.c=.o)
+
+SRC_CMDKICAUAN = Kicauan/commandKicauan.c
+OBJ_CMDKICAUAN = $(SRC_CMDKICAUAN:.c=.o)
+
+SRC_DRAFKICAUAN = DrafKicauan/draf.c
+OBJ_DRAFKICAUAN = $(SRC_DRAFKICAUAN:.c=.o)
+
+SRC_CMDDRAFKICAUAN = DrafKicauan/commandDraf.c
+OBJ_CMDDRAFKICAUAN = $(SRC_CMDDRAFKICAUAN:.c=.o)
+
+SRC_TEMAN = Teman/teman.c
+OBJ_TEMAN = $(SRC_TEMAN:.c=.o)
+
+SRC_CMDTEMAN = Teman/commandTeman.c
+OBJ_CMDTEMAN = $(SRC_CMDTEMAN:.c=.o)
+
+SRC_PERMTMAN = PermintaanTeman/permintaanTeman.c
+OBJ_PERMTMAN = $(SRC_PERMTMAN:.c=.o)
+
+SRC_CMDPERMTMAN = PermintaanTeman/commandPermintaanTeman.c
+OBJ_CMDPERMTMAN = $(SRC_CMDPERMTMAN:.c=.o)
+
+SRC_CMDPENGGUNA = Pengguna/commandPengguna.c
+OBJ_CMDPENGGUNA = $(SRC_CMDPENGGUNA:.c=.o)
+
+SRC_TABPENGGUNA = Pengguna/tabPengguna.c
+OBJ_TABPENGGUNA = $(SRC_TABPENGGUNA:.c=.o)
+
+SRC_GLOBAL = global.c
+OBJ_GLOBAL = $(SRC_GLOBAL:.c=.o)
+
+SRC_MAIN = main.c
+OBJ_MAIN = $(SRC_MAIN:.c=.o)
+
+.PHONY: all clean test
+
+all: main
+
+main: $(OBJ_MESINKAR) $(OBJ_MESINKARFILE) $(OBJ_MESINWORD) $(OBJ_MESINWORDFILE) $(OBJ_MESINSENTENCE) $(OBJ_TIME_ADT) $(OBJ_DATETIME) $(OBJ_LISTDINAMIS) $(OBJ_INISIALISASI) $(OBJ_MUAT) $(OBJ_SIMPA) $(OBJ_FOTOPROFIL) $(OBJ_BALASAN) $(OBJ_CMDBALASAN) $(OBJ_UTAS) $(OBJ_TABUTAS) $(OBJ_CMDUTAS) $(OBJ_KICAUAN) $(OBJ_TABKICAUAN) $(OBJ_CMDKICAUAN) $(OBJ_DRAFKICAUAN) $(OBJ_CMDDRAFKICAUAN) $(OBJ_TEMAN) $(OBJ_CMDTEMAN) $(OBJ_PERMTMAN) $(OBJ_CMDPERMTMAN) $(OBJ_CMDPENGGUNA) $(OBJ_PENGGUNA) $(OBJ_TABPENGGUNA) $(OBJ_GLOBAL) $(OBJ_MAIN)
+	$(CC) $(CFLAGS) -o $@ $^
 	./main
 
-# Aturan untuk membuat objek files dari source files
-$(BUILD_DIR)/main.o: $(MAIN_SOURCES)
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(BUILD_DIR)/%.o: $(ADT_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(BALASAN_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(DRAF_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(GENERAL_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(INISIALISASI_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(KICAUAN_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(PERMINTAAN_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(TEMAN_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(UTAS_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(PENGGUNA_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_DIR)/%.o: $(MUAT_SIMPAN_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-
-# Aturan untuk membuat executable
-main: $(BUILD_DIR) $(MAIN_OBJ) $(ADT_OBJ) $(GENERAL_OBJ) $(BALASAN_OBJ) $(KICAUAN_OBJ) $(DRAF_OBJ) $(INISIALISASI_OBJ) $(PERMINTAAN_OBJ)  $(TEMAN_OBJ)  $(UTAS_OBJ) $(PENGGUNA_OBJ) $(FOTO_PROFIL_OBJ) $(MUAT_SIMPAN_OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
-# Target untuk menjalankan program
-run: main
-	./main
-
-# Target untuk membersihkan objek files dan executable
 clean:
-	rm -rf $(BUILD_DIR)/*.o main
-
-# Membuat direktori build jika belum ada
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
--include $(BUILD_DIR)/*.d
+	rm -f main *.o $(OBJ_MESINKAR) $(OBJ_MESINKARFILE) $(OBJ_MESINWORDFILE) $(OBJ_MESINWORD) $(OBJ_MESINSENTENCE) $(OBJ_TIME_ADT) $(OBJ_DATETIME) $(OBJ_LISTDINAMIS) $(OBJ_INISIALISASI) $(OBJ_MUAT) $(OBJ_SIMPA) $(OBJ_FOTOPROFIL) $(OBJ_BALASAN) $(OBJ_CMDBALASAN) $(OBJ_UTAS) $(OBJ_TABUTAS) $(OBJ_CMDUTAS) $(OBJ_KICAUAN) $(OBJ_TABKICAUAN) $(OBJ_CMDKICAUAN) $(OBJ_DRAFKICAUAN) $(OBJ_CMDDRAFKICAUAN) $(OBJ_TEMAN) $(OBJ_CMDTEMAN) $(OBJ_PERMTMAN) $(OBJ_CMDPERMTMAN) $(OBJ_CMDPENGGUNA) $(OBJ_PENGGUNA) $(OBJ_TABPENGGUNA) $(OBJ_GLOBAL) $(OBJ_MAIN)

@@ -1,23 +1,13 @@
-#include "tabPengguna.h"
-#include "pengguna.h"
-#include <stdio.h>
+#include "../global.h"
 
 void createTabPengguna(TabPengguna *T)
 {
-    for (int i = IDX_MIN; i < CAPACITYPENGGUNA; i++)
-    {
-        ID_PENGGUNA(SELECT_PENGGUNA(*T, i)) = IDX_UNDEF_TAB_PENGGUNA;
-    }
+    (*T).length = 0;
 }
 
 int lengthTabPengguna(TabPengguna T)
 {
-    int i = IDX_MIN;
-    while (i < CAPACITYPENGGUNA && ID_PENGGUNA(SELECT_PENGGUNA(T, i)) != IDX_UNDEF_TAB_PENGGUNA)
-    {
-        i++;
-    }
-    return i;
+    return T.length;
 }
 
 boolean isTabPenggunaEmpty(TabPengguna T)
@@ -46,11 +36,9 @@ int indexOfTabPengguna(TabPengguna T, Pengguna val)
 
 void insertLastTabPengguna(TabPengguna *T, Pengguna val)
 {
-    if (!isTabPenggunaFull(*T))
-    {
-        int last = T->length;
-        SELECT_PENGGUNA(*T, last + 1) = val;
-    }
+    int len = T->length;
+    SELECT_PENGGUNA(*T, len) = val;
+    (*T).length++;
 }
 
 boolean checkUsernameExist(TabPengguna T, Sentence username, int numUsers)

@@ -4,7 +4,6 @@
 #define DrafLINKED_H
 
 #include "../Kicauan/kicauan.h"
-#include <stdlib.h>
 
 #define NIL NULL
 /* Deklarasi infotype */
@@ -65,4 +64,6 @@ void popDraf(Draf *s, Kicauan *k);
 /* F.S. x adalah nilai elemen Top yang lama, */
 /*      elemen Top yang lama didealokasi */
 /* Pada dasarnya adalah operasi deleteFirst pada list linier */
+// void BUAT_DRAF();
+// void LIHAT_DRAF();
 #endif

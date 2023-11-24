@@ -1,10 +1,6 @@
-#include <stdio.h>
+#include "../global.h"
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "..\General\wordmachinefile.h"
-#include "..\General\wordmachine.h"
-#include "..\global.h"
-#include "simpan.h"
 
 
 Word writefilename(Word input1, Word input2){
@@ -23,7 +19,7 @@ Word writefilename(Word input1, Word input2){
 }
 
 void createFile(char *fullPath,char *filename){
-    char fullpath[100]; 
+    char fullpath[300]; 
     snprintf(fullpath, sizeof(fullpath), "%s/%s", fullPath, filename);
     FILE *fptr;
     fptr = fopen(fullpath, "w");
@@ -95,7 +91,7 @@ void simpanKicauan(Word inputfile,TabKicauan tabkicau){
         fprintf(file, "%s\n",tabkicau.buffer[i].Author.TabWord);//author
         DATETIME time = tabkicau.buffer[i].DateTime;
         TIME jam = time.T;
-        fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
+        fprintf(file,"%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
     }
 }
 
@@ -110,9 +106,9 @@ void simpanBalasan(int jumlahKicauan,Word inputfile){
         for(int j = 0; j < jumlahbalasan; j++){
             fprintf(file, "%d ",jumlahKicauan);//id parent
             fprintf(file, "%d\n",jumlahbalasan);//id balasan
-            fprintf(file, "%s\n",inputfile);//teks
-            fprintf(file, "%s\n",inputfile);//penulis
-            fprintf(file, "%s\n",inputfile);//datetime
+            fprintf(file, "%s\n",inputfile.TabWord);//teks
+            fprintf(file, "%s\n",inputfile.TabWord);//penulis
+            fprintf(file, "%s\n",inputfile.TabWord);//datetime
         }
     }
 }
@@ -136,7 +132,7 @@ void simpanDraf(Word inputfile,TabPengguna datapengguna){
                 fprintf(file, "%s\n",p->info.Text.TabWord);//isi draf
                 DATETIME time = p->info.DateTime;
                 TIME jam = time.T;
-                fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
+                fprintf(file,"%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
                 p = p->next;
             }
         }
@@ -148,18 +144,16 @@ void simpanUtas(Word inputfile,TabUtas datautas){
     file = fopen(inputfile.TabWord, "w");
     fprintf(file, "%d\n",datautas.nEff);//Banyak kicauan yang punya utas
     for(int i = 0; i < datautas.nEff; i++){
-        TabKicauanSambungan tabkicauansambungan = datautas.buffer[i].dataKicauanSambungan;
-        tabkicauansambungan->info.IDUtas;
         fprintf(file, "%d\n",datautas.buffer[i].IDKicau);//id kicauan
-        int banyakUtas = lengthTabKicauanSambungan(tabkicauansambungan);
+        int banyakUtas = lengthTabKicauanSambungan(datautas.buffer[i].dataKicauanSambungan);
         fprintf(file, "%d\n",banyakUtas);//banyak utas
         for(int j = 0; j < banyakUtas; j++){
-            fprintf(file, "%s\n",tabkicauansambungan->info.pesan.TabWord);//teks
-            fprintf(file, "%s\n",tabkicauansambungan->info.author.TabWord);//penulis
-            DATETIME time = tabkicauansambungan->info.waktu;
+            fprintf(file, "%s\n",datautas.buffer[i].dataKicauanSambungan->info.konten.TabWord);//teks
+            fprintf(file, "%s\n",datautas.buffer[i].dataKicauanSambungan->info.author.TabWord);//penulis
+            DATETIME time = datautas.buffer[i].dataKicauanSambungan->info.waktu;
             TIME jam = time.T;
-            fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
-            tabkicauansambungan = tabkicauansambungan->next;
+            fprintf(file,"%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
+            datautas.buffer[i].dataKicauanSambungan = datautas.buffer[i].dataKicauanSambungan->next;
         }
     }
 }
@@ -180,20 +174,24 @@ void simpan(TabPengguna tabuser,AdjacencyMatrix matriksteman, TabKicauan tabkica
     if (tempFile == NULL) {
         printf("Belum terdapat %s Akan dilakukan pembuatan Folder1 terlebih dahulu.\n",foldername);
         printf("Mohon tunggu...\n");
-        char fullPath[300];  
-        char fullpath[300];
-        char folderpath[100] = "./muatsimpan/Data/";
+        mkdir(foldername, 0777);
+        char fullPath[200] = "";
+        char folderpath[100] = "/muatsimpan/Data";
         snprintf(fullPath, sizeof(fullPath), "%s/%s", folderpath, foldername);
-        int result = mkdir(fullPath);
-        char filename[] = "pengguna.config";
-        createFile(fullPath,filename);
-        char filename1[] = "kicauan.config";
+        char filenames[300];
+        snprintf(filenames, sizeof(filenames), "%s/%s", fullPath, "pengguna.config");
+        printf("%s\n",filenames);
+        FILE *fptr;
+        fptr = fopen("muatsimpan/Data/halo/pengguna.config", "w");
+        fclose(fptr);
+        printf("debug1\n");
+        char filename1[14] = "kicauan.config";
         createFile(fullPath,filename1);
-        char filename2[] = "balasan.config";
+        char filename2[14] = "balasan.config";
         createFile(fullPath,filename2);
-        char filename3[] = "draf.config";
+        char filename3[11] = "draf.config";
         createFile(fullPath,filename3);
-        char filename4[] = "utas.config";
+        char filename4[11] = "utas.config";
         createFile(fullPath,filename4);
         writeWord(&locFile,"muatsimpan/Data/", 16);
         inputFolder = writefilename(locFile,config);

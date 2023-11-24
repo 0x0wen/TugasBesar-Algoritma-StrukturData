@@ -1,173 +1,164 @@
-#include <stdio.h>
-#include "Inisialisasi/inisialisasi.h"
-#include "General/wordmachine.h"
-#include "Pengguna/pengguna.h"
-#include "Pengguna/commandPengguna.h"
-#include "Pengguna/tabPengguna.h"
-#include "Kicauan/kicauan.h"
-#include "Kicauan/commandKicauan.h"
-#include "Kicauan/tabKicauan.h"
-#include "Utas/utas.h"
-#include "Utas/commandUtas.h"
-#include "Utas/tabUtas.h"
-#include "Teman/teman.h"
-#include "Teman/commandTeman.h"
-#include "Teman/teman.h"
-#include "PermintaanTeman/permintaanTeman.h"
-#include "PermintaanTeman/commandPermintaanTeman.h"
-#include "FotoProfil/fotoProfil.h"
-#include "DrafKicauan/draf.h"
-#include "DrafKicauan/commandDraf.h"
-#include "Balasan/balasan.h"
-#include "Balasan/commandBalasan.h"
-#include "muatsimpan/newMuat.h"
-#include "muatsimpan/simpan.h"
 #include "global.h"
 
-Pengguna penggunaSekarang;
-TabPengguna dataPengguna;
-TabKicauan dataKicauan;
-TabUtas dataUtas;
-AdjacencyMatrix matrixTeman;
+// Pengguna penggunaSekarang;
+// TabPengguna dataPengguna;
+// TabKicauan dataKicauan;
+// TabUtas dataUtas;
+// AdjacencyMatrix matrixTeman;
 
 int main()
-{
+{ 
+  createTabPengguna(&dataPengguna);
+  createTabUtas(&dataUtas, 100);
+  createTabKicauan(&dataKicauan, 100);
+  createMatrixTeman(&matrixTeman);
+
   statusLogin = false;
-  statusProgram = true;
+  statusProgram = false;
 
-  inisialisasi();
+  inisialisasi(&dataPengguna,&matrixTeman,&dataKicauan,&dataUtas);
 
-  while (!statusLogin)
+  while (statusProgram)
   {
-    printf(">> ");
-    STARTWORD();
+    while (!statusLogin && statusProgram)
+      {
+        printf("\n𝑴𝒂𝒔𝒖𝒌/𝑫𝒂𝒇𝒕𝒂𝒓 𝒖𝒏𝒕𝒖𝒌 𝒎𝒆𝒍𝒂𝒏𝒋𝒖𝒕𝒌𝒂𝒏\n");
+        printf("\n>> ");
+        STARTWORD();
 
-    if (isWordEqualStr(&currentWord, "MUAT")) 
-      muat();
-    if (isWordEqualStr(&currentWord, "SIMPAN")) 
-      simpan();
-    if (isWordEqualStr(&currentWord, "DAFTAR"))
-      DAFTAR();
-    if (isWordEqualStr(&currentWord, "MASUK"))
-      MASUK();
-  }
-
-  while (statusLogin && statusProgram)
-  {
-    printf(">> ");
-    STARTWORD();
+        // if (isWordEqualStr(currentWord, "MUAT")) 
+        //   muat();
+        // if (isWordEqualStr(currentWord, "SIMPAN")) 
+        //   simpan();
+        if (isWordEqualStr(currentWord, "DAFTAR"))
+          DAFTAR();
+        if (isWordEqualStr(currentWord, "MASUK"))
+          MASUK();
+        if (isWordEqualStr(currentWord, "TUTUP_PROGRAM"))
+          TUTUP_PROGRAM();
+      }
     
-    if (isWordEqualStr(&currentWord, "SIMPAN")) 
-      simpan();
-    if (isWordEqualStr(&currentWord, "KELUAR"))
-      KELUAR();
-    if (isWordEqualStr(&currentWord, "GANTI_PROFIL"))
-      GANTI_PROFIL();
-    if (isWordEqualStr(&currentWord, "ATUR_JENIS_AKUN"))
-      ATUR_JENIS_AKUN();
-    if (isWordEqualStr(&currentWord, "UBAH_FOTO_PROFIL"))
-      UBAH_FOTO_PROFIL();
-    if (isWordEqualStr(&currentWord, "KICAU"))
-      KICAU();
-    if (isWordEqualStr(&currentWord, "KICAUAN"))
-      KICAU();
-    if (isWordEqualStr(&currentWord, "BUAT_DRAF"))
-      BUAT_DRAF(NULL);
-    if (isWordEqualStr(&currentWord, "LIHAT_DRAF"))
-      LIHAT_DRAF(NULL);
-    if (isWordEqualStr(&currentWord, "DAFTAR_TEMAN"))
-      DAFTAR_TEMAN();
-    if (isWordEqualStr(&currentWord, "HAPUS_TEMAN"))
-      HAPUS_TEMAN();
-    if (isWordEqualStr(&currentWord, "TAMBAH_TEMAN"))
-      TAMBAH_TEMAN();
-    if (isWordEqualStr(&currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN"))
-      DAFTAR_PERMINTAAN_PERTEMANAN();
-    if (isWordEqualStr(&currentWord, "SETUJUI_PERTEMANAN"))
-      SETUJUI_PERTEMANAN();
+    if (statusProgram) {
+      printf("\n>> ");
+      STARTWORD();
 
-    if (isWordEqualStr(&currentWord, "LIHAT_PROFIL")) {
-      ADVWORD();
-      Word Nama = currentWord;
-      LIHAT_PROFIL(Nama);
+    
+    
+    // if (isWordEqualStr(currentWord, "SIMPAN")) 
+    //   simpan();
+    if (isWordEqualStr(currentWord, "KELUAR"))
+      KELUAR();
+    else if (isWordEqualStr(currentWord, "GANTI_PROFIL"))
+      GANTI_PROFIL();
+    else if (isWordEqualStr(currentWord, "ATUR_JENIS_AKUN"))
+      ATUR_JENIS_AKUN();
+    else if (isWordEqualStr(currentWord, "UBAH_FOTO_PROFIL"))
+      UBAH_FOTO_PROFIL();
+    else if (isWordEqualStr(currentWord, "KICAU"))
+      KICAU();
+    else if (isWordEqualStr(currentWord, "KICAUAN"))
+      KICAUAN();
+    else if (isWordEqualStr(currentWord, "BUAT_DRAF"))
+      BUAT_DRAF();
+    else if (isWordEqualStr(currentWord, "LIHAT_DRAF"))
+      LIHAT_DRAF();
+    else if (isWordEqualStr(currentWord, "DAFTAR_TEMAN"))
+      DAFTAR_TEMAN();
+    else if (isWordEqualStr(currentWord, "HAPUS_TEMAN"))
+      HAPUS_TEMAN();
+    else if (isWordEqualStr(currentWord, "TAMBAH_TEMAN"))
+      TAMBAH_TEMAN();
+    else if (isWordEqualStr(currentWord, "DAFTAR_PERMINTAAN_PERTEMANAN"))
+      DAFTAR_PERMINTAAN_PERTEMANAN();
+    else if (isWordEqualStr(currentWord, "SETUJUI_PERTEMANAN"))
+      SETUJUI_PERTEMANAN();
+    else if (isWordEqualStr(currentWord, "LIHAT_PROFIL")) {
+      LIHAT_PROFIL();
     }
 
-    if (isWordEqualStr(&currentWord, "SUKA_KICAUAN"))
+    else if (isWordEqualStr(currentWord, "SUKA_KICAUAN"))
     {
       ADVWORD();
-      int IDKicau = wordToInteger(&currentWord);
+      int IDKicau = wordToInteger(currentWord);
       SUKA_KICAUAN(IDKicau);
     }
 
-    if (isWordEqualStr(&currentWord, "UBAH_KICAUAN"))
+    else if (isWordEqualStr(currentWord, "UBAH_KICAUAN"))
     {
       ADVWORD();
-      int IDKicau = wordToInteger(&currentWord);
+      int IDKicau = wordToInteger(currentWord);
       UBAH_KICAUAN(IDKicau);
     }
 
-    if (isWordEqualStr(&currentWord, "BALAS"))
+    else if (isWordEqualStr(currentWord, "BALAS"))
     {
       ADVWORD();
-      int IDKicau = wordToInteger(&currentWord);
+      int IDKicau = wordToInteger(currentWord);
       ADVWORD();
-      int IDBalasan = wordToInteger(&currentWord);
+      int IDBalasan = wordToInteger(currentWord);
       BALAS(IDKicau, IDBalasan);
     }
 
-    if (isWordEqualStr(&currentWord, "BALASAN"))
+    else if (isWordEqualStr(currentWord, "BALASAN"))
     {
       ADVWORD();
-      int IDKicau = wordToInteger(&currentWord);
+      int IDKicau = wordToInteger(currentWord);
       CETAK_BALASAN(IDKicau);
     }
 
-    if (isWordEqualStr(&currentWord, "HAPUS_BALASAN"))
+    else if (isWordEqualStr(currentWord, "HAPUS_BALASAN"))
     {
       ADVWORD();
-      int IDKicau = wordToInteger(&currentWord);
+      int IDKicau = wordToInteger(currentWord);
       ADVWORD();
-      int IDBalasan = wordToInteger(&currentWord);
+      int IDBalasan = wordToInteger(currentWord);
       HAPUS_BALASAN(IDKicau, IDBalasan);
     }
 
-    if (isWordEqualStr(&currentWord, "UTAS"))
+    else if (isWordEqualStr(currentWord, "UTAS"))
     {
       ADVWORD();
-      int IDKicau = wordToInteger(&currentWord);
+      int IDKicau = wordToInteger(currentWord);
       CREATE_UTAS(IDKicau);
     }
 
-    if (isWordEqualStr(&currentWord, "SAMBUNG_UTAS"))
+    else if (isWordEqualStr(currentWord, "SAMBUNG_UTAS"))
     {
       ADVWORD();
-      int IDUtas = wordToInteger(&currentWord);
+      int IDUtas = wordToInteger(currentWord);
       ADVWORD();
-      int Index = wordToInteger(&currentWord);
+      int Index = wordToInteger(currentWord);
       SAMBUNG_UTAS(IDUtas, Index);
     }
 
-    if (isWordEqualStr(&currentWord, "HAPUS_UTAS"))
+    else if (isWordEqualStr(currentWord, "HAPUS_UTAS"))
     {
       ADVWORD();
-      int IDUtas = wordToInteger(&currentWord);
+      int IDUtas = wordToInteger(currentWord);
       ADVWORD();
-      int Index = wordToInteger(&currentWord);
+      int Index = wordToInteger(currentWord);
       HAPUS_UTAS(IDUtas, Index);
     }
 
-    if (isWordEqualStr(&currentWord, "CETAK_UTAS"))
+    else if (isWordEqualStr(currentWord, "CETAK_UTAS"))
     {
       ADVWORD();
-      int IDUtas = wordToInteger(&currentWord);
+      int IDUtas = wordToInteger(currentWord);
       CETAK_UTAS(IDUtas);
     }
-  }
 
-  if (statusProgram)
-  {
-    if (isWordEqualStr(&currentWord, "TUTUP_PROGRAM"))
+    else if (isWordEqualStr(currentWord, "TUTUP_PROGRAM")) {
       TUTUP_PROGRAM();
+    }
+
+    else {
+      printf("Perintah tidak dikenali.\n");
+    }
+
+    printf("\nTekan ; kemudian Enter untuk melanjutkan...\n");
+    STARTWORD();
+    system("clear");
+    }
   }
 
   return 0;

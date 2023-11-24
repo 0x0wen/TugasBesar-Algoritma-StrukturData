@@ -1,11 +1,7 @@
-#include "commandUtas.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../global.h"
 void CREATE_UTAS(int IDKicau)
 {
-    Word currentWord;
-    STARTWORD();
-
+    Kicauan *K = searchKicauan(dataKicauan, IDKicau);
     if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau))))
     {
         printf("Utas ini bukan milik anda!");
@@ -20,18 +16,36 @@ void CREATE_UTAS(int IDKicau)
     }
     else
     {
+        Word kata;
+        Utas U;
+        KicauanSambungan KS;
+        Sentence kalimat;
+        U = createUtas(AUTHOR_KICAU(*K), PANJANG_UTAS(U) + 1, IDKicau, TEXT_KICAU(*K), TIME_KICAU(*K));
+        insertLastTabUtas(&dataUtas, U);
+        insertLastListDin(&DAFTAR_UTAS(*searchPengguna(&dataPengguna, ID_PENGGUNA(penggunaSekarang))), ID_UTAS(U));
+        UTAS_KICAU(*K) = &U;
         printf("Utas berhasil dibuat!\n");
         do
         {
-            printf("Masukkan kicauan: \n");
-            printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
-        } while (isWordEqualStr(&currentWord, "YA"));
+            printf("\nMasukkan kicauan: \n");
+            InputSentence(&kalimat);
+            KS = createKicauanSambungan(kalimat, AUTHOR_KICAU(*K), ID_PENGGUNA(penggunaSekarang), PANJANG_UTAS(U));
+            insertLastTabKicauanSambungan(&KICAUAN_SAMBUNGAN(U), KS);
+            PANJANG_UTAS(U) = PANJANG_UTAS(U) + 1;
+            printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)\n");
+            InputWord(&kata);
+        } while (isWordEqualStr(kata, "YA"));
+        UTAS_KICAU(*K) = &U;
         printf("Utas selesai!\n");
     }
 }
 void SAMBUNG_UTAS(int IDUtas, int index)
 {
-    if (isIdxTabUtasEff(dataUtas, index))
+    Word kata;
+    Utas *U = searchUtas(dataUtas, IDUtas);
+    KicauanSambungan KS;
+    Sentence kalimat;
+    if (index >= PANJANG_UTAS(*U) || index < 0)
     {
         printf("Index terlalu tinggi!\n");
     }
@@ -43,6 +57,20 @@ void SAMBUNG_UTAS(int IDUtas, int index)
     {
         printf("Anda tidak bisa menyambung utas ini!");
     }
+    else
+    {
+        do
+        {
+            printf("\nMasukkan kicauan: \n");
+            InputSentence(&kalimat);
+            KS = createKicauanSambungan(kalimat, AUTHOR_UTAS(*U), ID_PENGGUNA(penggunaSekarang), PANJANG_UTAS(*U));
+            insertLastTabKicauanSambungan(&KICAUAN_SAMBUNGAN(*U), KS);
+            PANJANG_UTAS(*U) = PANJANG_UTAS(*U) + 1;
+            printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)\n");
+            InputWord(&kata);
+        } while (isWordEqualStr(kata, "YA"));
+        printf("Utas selesai!\n");
+    }
 };
 void HAPUS_UTAS(int IDUtas, int index)
 {
@@ -50,7 +78,7 @@ void HAPUS_UTAS(int IDUtas, int index)
     {
         printf("Utas tidak ditemukan!");
     }
-    else if (searchUtas(dataUtas, IDUtas) == NULL)
+    else if (index <= 0 || index > PANJANG_UTAS((*searchUtas(dataUtas, IDUtas))))
     {
         printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!", index);
     }
@@ -64,9 +92,8 @@ void HAPUS_UTAS(int IDUtas, int index)
     }
     else
     {
+        deleteAtTabKicauanSambungan(&KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas)), index - 1);
         printf("Kicauan sambungan berhasil dihapus!");
-        // algoritma hapus
-        // ...
     }
 }
 void CETAK_UTAS(int IDUtas)
@@ -81,6 +108,6 @@ void CETAK_UTAS(int IDUtas)
     }
     else
     {
-        displayTabKicauanSambungan(KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas)));
+        printUtas(*searchUtas(dataUtas, IDUtas));
     }
 };

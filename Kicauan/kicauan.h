@@ -21,6 +21,7 @@ typedef struct
   Sentence Author;
   DATETIME DateTime;
   TreeBalasan TabBalasan; /* Pointer ke Tree Balasan */
+  int JumlahBalasan;
   Utas *UtasPointer;
 } Kicauan; /* tiap elemen pada list tsb merupakan root dari tree balasan */
 
@@ -32,6 +33,7 @@ typedef struct
 #define TIME_KICAU(K) (K).DateTime
 #define LIST_BALASAN(K) (K).TabBalasan // nge retrieve list dinamis of balasan
 #define UTAS_KICAU(K) (K).UtasPointer  // nge retrieve list dinamis of balasan
+#define JUMLAH_BALASAN(K) (K).JumlahBalasan
 
 Kicauan createKicauan(int id, Sentence text, Sentence author);
 void printDetilKicau(Kicauan k);

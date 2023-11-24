@@ -18,13 +18,14 @@ typedef struct
 } Sentence;
 
 /* State Mesin Word */
-extern boolean EndWord;
-extern Word currentWord;
+extern boolean EndSentence;
+extern Sentence currentSentence;
 
 void startSentence();
-void ADVW0RD();
-void CopyWord();
-void writeWord(Word *writeWord, char input[], int length);
+// void ADVW0RD();
+// void CopyWord();
+// void writeWord(Word *writeWord, char input[], int length);
+void AcquireSentence();
 void printSentence(Sentence w);
 void InputSentence(Sentence *inputWord);
 boolean IsSentenceEqual(Sentence w1, Sentence w2);
