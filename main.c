@@ -7,9 +7,14 @@
 // AdjacencyMatrix matrixTeman;
 
 int main()
-{
+{ 
+  createTabPengguna(&dataPengguna);
+  createTabUtas(&dataUtas, 100);
+  createTabKicauan(&dataKicauan, 100);
+  createMatrixTeman(&matrixTeman);
+
   statusLogin = false;
-  statusProgram = true;
+  statusProgram = false;
 
   inisialisasi();
 
@@ -32,6 +37,7 @@ int main()
   {
     printf(">> ");
     STARTWORD();
+
     
     // if (isWordEqualStr(currentWord, "SIMPAN")) 
     //   simpan();
@@ -46,7 +52,7 @@ int main()
     if (isWordEqualStr(currentWord, "KICAU"))
       KICAU();
     if (isWordEqualStr(currentWord, "KICAUAN"))
-      KICAU();
+      KICAUAN();
     if (isWordEqualStr(currentWord, "BUAT_DRAF"))
       BUAT_DRAF();
     if (isWordEqualStr(currentWord, "LIHAT_DRAF"))

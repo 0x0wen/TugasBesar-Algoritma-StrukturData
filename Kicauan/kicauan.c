@@ -15,8 +15,8 @@ Kicauan createKicauan(int id, Sentence text, Sentence author)
     return newKicau;
 }
 
-void printDetilKicau(Kicauan k)
-{
+void printDetilKicau(Kicauan k){   
+    printf("\n");
     printf("| ID = %d\n", k.IDKicau);
     printf("| ");
     printSentence(k.Author);

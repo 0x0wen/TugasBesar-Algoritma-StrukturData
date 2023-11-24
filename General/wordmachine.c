@@ -235,9 +235,9 @@ int wordToInteger(Word word) {
     long result = strtol(word.TabWord, &endptr, 10);
 
     // Check if the conversion was successful
-    if (*endptr != '\0') {
-        printf("Error: Non-integer characters found in Word\n");
-        return 0;  // You may want to handle this differently based on your requirements
-    }
+    // if (*endptr != '\0') {
+    //     printf("Error: Non-integer characters found in Word\n");
+    //     return 0;  // You may want to handle this differently based on your requirements
+    // }
     return (int)result;
 }
