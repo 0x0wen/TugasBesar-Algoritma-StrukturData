@@ -34,16 +34,10 @@ typedef struct
 #define BANYAK_PENGGUNA(l) (l).length
 
 void createTabPengguna(TabPengguna *T);
-boolean isTabPenggunaEmpty();
-boolean isTabPenggunaFull();
-void printTabPengguna();
+int lengthTabPengguna(TabPengguna T);
+boolean isTabPenggunaEmpty(TabPengguna T);
+boolean isTabPenggunaFull(TabPengguna T);
 int indexOfTabPengguna(TabPengguna T, Pengguna val);
-void insertFirstTabPengguna(Pengguna val);
-void insertAtTabPengguna(Pengguna val, int idx);
-void insertLastTabPengguna(TabPengguna *T, Pengguna val);
-void deleteFirstTabPengguna(Pengguna *val);
-void deleteAtTabPengguna(Pengguna *val, int idx);
-void deleteLastTabPengguna(Pengguna *val);
 boolean checkUsernameExist(TabPengguna T, Sentence username, int numUsers);
 boolean checkPassword(TabPengguna T, Sentence password, int numUsers);
 Pengguna *searchPenggunaByName(TabPengguna *T, Sentence username);

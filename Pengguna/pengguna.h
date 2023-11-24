@@ -29,11 +29,7 @@ typedef struct
     PrioQueueRequest daftarPermintaanTeman;
     Draf drafKicauan;
 } Pengguna;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
-/* Jika S adalah Stack maka akses elemen : */
-/* S.T[(S.TOP)] untuk mengakses elemen TOP */
-/* S.TOP adalah alamat elemen TOP */
+
 
 /* Definisi akses dengan Selektor : Set dan Get */
 #define ID_PENGGUNA(P) (P).id
@@ -53,12 +49,5 @@ typedef struct
 #define PERMINTAAN_PENGGUNA(P, i) (P).daftarPermintaanTeman[i]
 #define DRAF_PENGGUNA(P, i) (P).drafKicauan[i]
 
-/* ************ Prototype ************ */
-/* *** Konstruktor/Kreator *** */
-
-// void DAFTAR();
-// void MASUK();
-// void KELUAR();
-// void TUTUP_PROGRAM();
 
 #endif
