@@ -52,11 +52,11 @@ Program ini seperti aplikasi twitter yang dibuat dalam bahasa pemrograman C deng
 | Buat Draf                     | Selesai   |
 | Lihat Draf                    | Selesai   |
 | Utas                          | Selesai   |
-| Sambung Utas                  | tidak     |
-| Hapus Utas                    | tidak     |
+| Sambung Utas                  | Tidak     |
+| Hapus Utas                    | Tidak     |
 | Display Utas                  | Selesai   |
-| Simpan                        | tidak     |
-| Muat                          | tidak     |
+| Simpan                        | Tidak     |
+| Muat                          | Tidak     |
 
 
 
