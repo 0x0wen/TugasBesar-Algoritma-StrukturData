@@ -77,13 +77,19 @@ void copyFotoProfil(FotoProfil mIn, FotoProfil *mOut)
 
 void readFotoProfil(FotoProfil *m, int nRow, int nCol)
 {
+    START();
+    IgnoreBlanks();
+
     int i, j;
     for (i = 0; i < nRow; i++)
     {
         for (j = 0; j < nCol; j++)
         {
-            scanf("%c", &ELMT(*m, i, j));
+            ELMT(*m, i, j) = currentChar;
+            ADV();
+            IgnoreBlanks();
         }
+        IgnoreBlanks();
     }
 }
 
