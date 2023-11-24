@@ -9,8 +9,23 @@
 
 # exec files
 /build/*.d
+/build/*.o
 /Pengguna/*.d
 /Pengguna/*.o
 /Utas/*.d
 /Utas/*.o
+/Balasan/*.d
+/Balasan/*.o
+/PermintaanTeman/*.d
+/PermintaanTeman/*.o
+/DrafKicauan/*.d
+/DrafKicauan/*.o
+/Kicauan/*.d
+/Kicauan/*.o
+/FotoProfil/*.d
+/FotoProfil/*.o
+/Teman/*.d
+/Teman/*.o
+
+
 ```
