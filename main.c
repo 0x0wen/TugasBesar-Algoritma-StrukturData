@@ -142,6 +142,10 @@ int main()
       CETAK_UTAS(IDUtas);
     }
 
+    else {
+      printf("Perintah tidak dikenali.\n");
+    }
+
     printf("\nTekan ; kemudian Enter untuk melanjutkan...\n");
     STARTWORD();
     system("clear");
