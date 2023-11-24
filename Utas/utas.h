@@ -60,6 +60,7 @@ typedef struct
 
 Utas createUtas(Sentence author, int IDUtas, int IDKicau, Sentence konten, DATETIME waktu);
 void printUtas(Utas U);
+Address newKicauanSambunganNode(KicauanSambungan val);
 KicauanSambungan createKicauanSambungan(Sentence konten, Sentence author, int IDPengguna, int IDKicauanSambungan);
 void createTabKicauanSambungan(TabKicauanSambungan *T);
 boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T);

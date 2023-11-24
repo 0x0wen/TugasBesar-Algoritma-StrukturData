@@ -2,7 +2,6 @@
 void CREATE_UTAS(int IDKicau)
 {
     Kicauan K = *searchKicauan(dataKicauan, IDKicau);
-    Balasan B;
     if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau))))
     {
         printf("Utas ini bukan milik anda!");
@@ -30,7 +29,6 @@ void CREATE_UTAS(int IDKicau)
             printf("Masukkan kicauan: \n");
             InputSentence(&kalimat);
             KS = createKicauanSambungan(kalimat, AUTHOR_KICAU(K), ID_PENGGUNA(penggunaSekarang), lengthTabKicauanSambungan(KICAUAN_SAMBUNGAN(U)));
-            createicausanSambunganNode(KS);
             insertLastTabKicauanSambungan(&KICAUAN_SAMBUNGAN(U), KS);
             printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
         } while (isWordEqualStr(currentWord, "YA"));
@@ -64,7 +62,7 @@ void HAPUS_UTAS(int IDUtas, int index)
     {
         printf("Utas tidak ditemukan!");
     }
-    else if (index <= 0 || index > lengthTabKicauanSambungan(KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas))) == NULL)
+    else if (index <= 0 || index > lengthTabKicauanSambungan(KICAUAN_SAMBUNGAN(*searchUtas(dataUtas, IDUtas))))
     {
         printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!", index);
     }
