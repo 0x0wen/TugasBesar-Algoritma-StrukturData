@@ -40,7 +40,7 @@ typedef struct
 #define ELMT_LIST_DIN(l, i) (l).buffer[i]
 #define CAPACITY_LIST_DIN(l) (l).capacity
 
-void CreateListDinListDin(ListDin *l, int capacity);
+void CreateListDin(ListDin *l, int capacity);
 void dealocateListDin(ListDin *l);
 int listLengthListDin(ListDin l);
 int getFirstIdxListDin(ListDin l);
