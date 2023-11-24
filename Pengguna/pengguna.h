@@ -24,12 +24,10 @@ typedef struct
     boolean privat;
     FotoProfil foto;
     ListDin daftarKicauan;
-    ListDin daftarBalasan;
     ListDin daftarUtas;
     PrioQueueRequest daftarPermintaanTeman;
     Draf drafKicauan;
 } Pengguna;
-
 
 /* Definisi akses dengan Selektor : Set dan Get */
 #define ID_PENGGUNA(P) (P).id
@@ -41,13 +39,11 @@ typedef struct
 #define PRIVASI_PENGGUNA(P) (P).privat
 #define FOTO_PENGGUNA(P) (P).foto
 #define DAFTAR_KICAUAN(P) (P).daftarKicauan
-#define DAFTAR_BALASAN(P) (P).daftarBalasan
 #define DAFTAR_UTAS(P) (P).daftarUtas
 #define KICAUAN_PENGGUNA(P, i) (P).daftarKicauan[i]
 #define BALASAN_PENGGUNA(P, i) (P).daftarBalasan[i]
 #define UTAS_PENGGUNA(P, i) (P).daftarUtas[i]
 #define PERMINTAAN_PENGGUNA(P, i) (P).daftarPermintaanTeman[i]
 #define DRAF_PENGGUNA(P, i) (P).drafKicauan[i]
-
 
 #endif
