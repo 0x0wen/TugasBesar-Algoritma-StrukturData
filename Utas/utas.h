@@ -35,7 +35,7 @@ typedef struct node
 #define INFO_UTAS(p) (p)->info
 #define NEXT_UTAS(p) (p)->next
 
-Address newKicauanSambungan(KicauanSambungan val);
+Address newKicauanSambunganNode(KicauanSambungan val);
 typedef Address TabKicauanSambungan;
 
 #define IDX_UNDEF_UTAS (-1)
@@ -46,14 +46,21 @@ typedef struct
   Sentence author;
   int IDUtas;
   int IDKicau;
+  Sentence konten;
+  DATETIME waktu;
   TabKicauanSambungan dataKicauanSambungan;
 } Utas;
 
 #define ID_UTAS(p) (p).IDUtas
 #define AUTHOR_UTAS(p) (p).author
 #define ID_KICAU_UTAS(p) (p).IDKicau
+#define KONTEN_UTAS(p) (p).konten
+#define WAKTU_UTAS(p) (p).waktu
 #define KICAUAN_SAMBUNGAN(p) (p).dataKicauanSambungan
 
+Utas createUtas(Sentence author, int IDUtas, int IDKicau, Sentence konten, DATETIME waktu);
+void printUtas(Utas U);
+KicauanSambungan createKicauanSambungan(Sentence konten, Sentence author, int IDPengguna, int IDKicauanSambungan);
 void createTabKicauanSambungan(TabKicauanSambungan *T);
 boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T);
 /*** Penambahan ***/
