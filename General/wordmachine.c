@@ -21,7 +21,6 @@ void STARTWORD()
     IgnoreBlanks();
     if (currentChar == MARK)
     {
-        printf("yes");
         EndWord = true;
     }
     else

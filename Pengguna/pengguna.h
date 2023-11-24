@@ -43,7 +43,7 @@ typedef struct
 #define KICAUAN_PENGGUNA(P, i) (P).daftarKicauan[i]
 #define BALASAN_PENGGUNA(P, i) (P).daftarBalasan[i]
 #define UTAS_PENGGUNA(P, i) (P).daftarUtas[i]
-#define PERMINTAAN_PENGGUNA(P, i) (P).daftarPermintaanTeman[i]
+#define PERMINTAAN_TEMAN(P) (P).daftarPermintaanTeman
 #define DRAF_PENGGUNA(P, i) (P).drafKicauan[i]
 
 #endif

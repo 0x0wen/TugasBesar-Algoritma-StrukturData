@@ -31,7 +31,7 @@ void create_PQR(PrioQueueRequest *Q);
 
 boolean IsEmpty_PQR(PrioQueueRequest Q);
 boolean IsFull_PQR(PrioQueueRequest Q);
-boolean nEff_PQR(PrioQueueRequest Q);
+int nEff_PQR(PrioQueueRequest Q);
 
 boolean isExists_PQR(PrioQueueRequest Q, int id_requester);
 

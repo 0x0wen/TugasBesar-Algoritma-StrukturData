@@ -14,7 +14,7 @@ void create_PQR(PrioQueueRequest *Q){
 }
 
 boolean IsEmpty_PQR(PrioQueueRequest Q){
-    return nEff_PQR(Q) == 0;
+    return Q.idxTail == -1;
 }
 
 /* harusnya gak bakal penuh sih */
@@ -22,7 +22,7 @@ boolean IsFull_PQR(PrioQueueRequest Q){
     return nEff_PQR(Q) == MaxPermintaan;
 }
 
-boolean nEff_PQR(PrioQueueRequest Q){
+int nEff_PQR(PrioQueueRequest Q){
     return Q.idxTail+1;
 }
 

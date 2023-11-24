@@ -18,24 +18,24 @@ int main()
 
   inisialisasi();
 
-  while (!statusLogin)
+  while (statusProgram)
   {
-    printf(">> ");
-    STARTWORD();
+      while (!statusLogin)
+      {
+        printf("\n>> ");
+        STARTWORD();
 
-    // if (isWordEqualStr(currentWord, "MUAT")) 
-    //   muat();
-    // if (isWordEqualStr(currentWord, "SIMPAN")) 
-    //   simpan();
-    if (isWordEqualStr(currentWord, "DAFTAR"))
-      DAFTAR();
-    if (isWordEqualStr(currentWord, "MASUK"))
-      MASUK();
-  }
-
-  while (statusLogin && statusProgram)
-  {
-    printf(">> ");
+        // if (isWordEqualStr(currentWord, "MUAT")) 
+        //   muat();
+        // if (isWordEqualStr(currentWord, "SIMPAN")) 
+        //   simpan();
+        if (isWordEqualStr(currentWord, "DAFTAR"))
+          DAFTAR();
+        if (isWordEqualStr(currentWord, "MASUK"))
+          MASUK();
+      }
+      
+    printf("\n>> ");
     STARTWORD();
 
     

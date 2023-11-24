@@ -7,12 +7,7 @@ void createTabPengguna(TabPengguna *T)
 
 int lengthTabPengguna(TabPengguna T)
 {
-    int i = IDX_MIN;
-    while (i < CAPACITYPENGGUNA && ID_PENGGUNA(SELECT_PENGGUNA(T, i)) != IDX_UNDEF_TAB_PENGGUNA)
-    {
-        i++;
-    }
-    return i;
+    return T.length;
 }
 
 boolean isTabPenggunaEmpty(TabPengguna T)
