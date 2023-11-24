@@ -2,6 +2,7 @@
 // Command Balasan
 void BALAS(int IDKicau, int IDBalasan)
 {
+    TreeBalasan TB = searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan);
     Kicauan K = *searchKicauan(dataKicauan, IDKicau);
     if (LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)) == NULL)
     {
@@ -11,7 +12,7 @@ void BALAS(int IDKicau, int IDBalasan)
     {
         printf("Wah, tidak terdapat balasan yang ingin Anda balas!");
     }
-    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), PENULIS_BALASAN(*searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan))) == false && PRIVASI_PENGGUNA(*searchPengguna(&dataPengguna, IDKicau)))
+    else if (isFriend(matrixTeman, ID_PENGGUNA(penggunaSekarang), PENULIS_BALASAN(DATA_NODE_BALASAN(TB))) == false && PRIVASI_PENGGUNA(*searchPengguna(&dataPengguna, IDKicau)) == true)
     {
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman dengan akun tersebut!");
     }
@@ -24,8 +25,8 @@ void BALAS(int IDKicau, int IDBalasan)
             printf("Masukkan Balasan:\n");
             InputSentence(&kalimat);
             B = createBalasan(kalimat, NAMA_PENGGUNA(penggunaSekarang), ID_PENGGUNA(penggunaSekarang), JUMLAH_BALASAN(K));
-            createBalasanNode(B);
-            addBalasan(&LIST_BALASAN(K), createBalasanNode(B));
+            TreeBalasan TB2 = createBalasanNode(B);
+            addBalasan(&LIST_BALASAN(K), &TB2);
             JUMLAH_BALASAN(K) += 1;
             printf("Selamat! balasan telah diterbitkan!\n");
             printf("Detil balasan:\n");
@@ -33,7 +34,7 @@ void BALAS(int IDKicau, int IDBalasan)
             printf("\n| ");
             printSentence(AUTHOR_BALASAN(B));
             printf("\n| ");
-            TulisDATETIME(WAKTU_BALASAN(*searchBalasan(LIST_BALASAN(K), IDBalasan)));
+            TulisDATETIME(WAKTU_BALASAN(DATA_NODE_BALASAN(TB)));
             printf("\n| ");
             printf("/n");
         }
@@ -45,7 +46,8 @@ void BALAS(int IDKicau, int IDBalasan)
             InputSentence(&kalimat);
             B = createBalasan(kalimat, NAMA_PENGGUNA(penggunaSekarang), ID_PENGGUNA(penggunaSekarang), JUMLAH_BALASAN(K));
             createBalasanNode(B);
-            addBalasan(searchBalasan(LIST_BALASAN(K), IDBalasan), createBalasanNode(B));
+            TreeBalasan TB2 = createBalasanNode(B);
+            addBalasan(&TB, &TB2);
             JUMLAH_BALASAN(K) += 1;
             printf("Selamat! balasan telah diterbitkan!\n");
             printf("Detil balasan:\n");
@@ -53,7 +55,7 @@ void BALAS(int IDKicau, int IDBalasan)
             printf("\n| ");
             printSentence(AUTHOR_BALASAN(B));
             printf("\n| ");
-            TulisDATETIME(WAKTU_BALASAN(*searchBalasan(LIST_BALASAN(K), IDBalasan)));
+            TulisDATETIME(WAKTU_BALASAN(DATA_NODE_BALASAN(TB)));
             printf("\n| ");
             printf("/n");
         }
@@ -82,19 +84,18 @@ void CETAK_BALASAN(int IDKicau)
 
 void HAPUS_BALASAN(int IDKicau, int IDBalasan)
 {
-    Kicauan K = *searchKicauan(dataKicauan, IDKicau);
-    Balasan *B = searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan);
-    if (B == NULL)
+    TreeBalasan TB = searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan);
+    if (TB == NULL)
     {
         printf("Balasan tidak ditemukan");
     }
-    else if (IsSentenceEqual(AUTHOR_BALASAN(*B), NAMA_PENGGUNA(penggunaSekarang)) == false)
+    else if (IsSentenceEqual(AUTHOR_BALASAN(DATA_NODE_BALASAN(TB)), NAMA_PENGGUNA(penggunaSekarang)) == false)
     {
         printf("Hei, ini balasan punya siapa? Jangan dihapus ya!");
     }
     else
     {
-        removeBalasan(searchBalasan(LIST_BALASAN(K), IDBalasan));
+        removeBalasan(&TB);
         printf("Balasan berhasil dihapus");
     }
 };

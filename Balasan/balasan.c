@@ -12,9 +12,9 @@ Balasan createBalasan(Sentence konten, Sentence author, int IDPengguna, int IDBa
 
     return newBalasan;
 }
-addressTree createBalasanNode(Balasan data)
+TreeBalasan createBalasanNode(Balasan data)
 {
-    addressTree node = (addressTree)malloc(sizeof(NodeBalasan));
+    TreeBalasan node = (TreeBalasan)malloc(sizeof(NodeBalasan));
     if (node != NULL)
     {
         DATA_NODE_BALASAN(node) = data;
@@ -107,12 +107,12 @@ void printTreeBalasan(TreeBalasan root, int depth)
     }
 }
 
-Balasan *searchBalasan(TreeBalasan root, int IDBalasan)
+TreeBalasan searchBalasan(TreeBalasan root, int IDBalasan)
 {
-    addressTree p = ADDRESS_BALASAN(root);
+    TreeBalasan p = ADDRESS_BALASAN(root);
     if (ID_BALASAN(DATA_NODE_BALASAN(p)) == IDBalasan)
     {
-        return &DATA_NODE_BALASAN(p);
+        return p;
     }
     else
     {
@@ -146,7 +146,7 @@ Balasan *searchBalasan(TreeBalasan root, int IDBalasan)
         }
         if (cek == 1)
         {
-            return &DATA_NODE_BALASAN(p);
+            return p;
         }
         else
         {
