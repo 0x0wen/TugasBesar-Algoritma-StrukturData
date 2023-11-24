@@ -23,7 +23,7 @@ CFLAGS = -Wall -std=c11 -MMD
 # Source files
 MAIN_SOURCES = main.c
 ADT_SOURCES = $(ADT_DIR)/*.c
-BALASAN_SOURCES = $(BALASAN_DIR)/balasan.c $(BALASAN_DIR)/commandBalasan.c $(BALASAN_DIR)/tabBalasan.c
+BALASAN_SOURCES = $(BALASAN_DIR)/balasan.c $(BALASAN_DIR)/commandBalasan.c
 DRAF_SOURCES = $(DRAF_DIR)/draf.c $(DRAF_DIR)/commandDraf.c
 GENERAL_SOURCES = $(GENERAL_DIR)/*.c
 INISIALISASI_SOURCES = $(INISIALISASI_DIR)/*.c

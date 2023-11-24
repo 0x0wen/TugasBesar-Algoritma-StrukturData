@@ -5,7 +5,6 @@
 #include "Pengguna/tabPengguna.h"
 #include "Kicauan/tabKicauan.h"
 #include "Utas/tabUtas.h"
-#include "Balasan/tabBalasan.h"
 #include "Teman/teman.h"
 #include "Utas/commandUtas.h"
 
