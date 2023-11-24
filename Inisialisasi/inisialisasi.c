@@ -1,31 +1,7 @@
 #include "../global.h"
-// Word writefilename(Word input1, Word input2)
-// {
-//     Word output;
-//     int i;
-//     for (i = 0; i < input1.Length; i++)
-//     {
-//         output.TabWord[i] = input1.TabWord[i];
-//     }
-//     for (i = 0; i < input2.Length; i++)
-//     {
-//         output.TabWord[input1.Length + i] = input2.TabWord[i];
-//     }
-//     output.TabWord[input1.Length + input2.Length] = '\0';
-//     output.Length = input1.Length + input2.Length;
 
-//     return output;
-// }
 
-// int compareCharArrays(const char *array1, const char *array2)
-// {
-//     int result = strcmp(array1, array2);
-//     return result;
-// }
-// #include "../General/sentenceMachine.h"
-#include "../global.h"
-
-void inisialisasi()
+void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas)
 {
     printf("/$$$$$$$                      /$$       /$$           \n");
     printf("| $$__  $$                    | $$      |__/          \n");
