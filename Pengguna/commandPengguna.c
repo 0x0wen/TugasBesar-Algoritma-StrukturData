@@ -108,6 +108,7 @@ void KELUAR()
 void TUTUP_PROGRAM()
 {
     statusProgram = false;
+    statusLogin = false;
     printf("Anda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }
 

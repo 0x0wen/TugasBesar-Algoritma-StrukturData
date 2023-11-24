@@ -20,7 +20,7 @@ int main()
 
   while (statusProgram)
   {
-    while (!statusLogin)
+    while (!statusLogin && statusProgram)
       {
         printf("\n𝑴𝒂𝒔𝒖𝒌/𝑫𝒂𝒇𝒕𝒂𝒓 𝒖𝒏𝒕𝒖𝒌 𝒎𝒆𝒍𝒂𝒏𝒋𝒖𝒕𝒌𝒂𝒏\n");
         printf("\n>> ");
@@ -34,10 +34,15 @@ int main()
           DAFTAR();
         if (isWordEqualStr(currentWord, "MASUK"))
           MASUK();
+        if (isWordEqualStr(currentWord, "TUTUP_PROGRAM"))
+          TUTUP_PROGRAM();
       }
-      
-    printf("\n>> ");
-    STARTWORD();
+    
+    if (statusProgram) {
+      printf("\n>> ");
+      STARTWORD();
+
+    
     
     // if (isWordEqualStr(currentWord, "SIMPAN")) 
     //   simpan();
@@ -142,6 +147,10 @@ int main()
       CETAK_UTAS(IDUtas);
     }
 
+    else if (isWordEqualStr(currentWord, "TUTUP_PROGRAM")) {
+      TUTUP_PROGRAM();
+    }
+
     else {
       printf("Perintah tidak dikenali.\n");
     }
@@ -149,12 +158,7 @@ int main()
     printf("\nTekan ; kemudian Enter untuk melanjutkan...\n");
     STARTWORD();
     system("clear");
-  }
-
-  if (statusProgram)
-  {
-    if (isWordEqualStr(currentWord, "TUTUP_PROGRAM"))
-      TUTUP_PROGRAM();
+    }
   }
 
   return 0;
