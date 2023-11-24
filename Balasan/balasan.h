@@ -43,10 +43,10 @@ typedef addressTree TreeBalasan;
 
 Balasan createBalasan(Sentence konten, Sentence author, int IDPengguna, int IDBalasan);
 TreeBalasan createBalasanNode(Balasan data);
-void addBalasan(TreeBalasan *parent, TreeBalasan *child);
+void addBalasan(TreeBalasan *parent, Balasan child);
 void removeBalasan(TreeBalasan *parent);
 void printTreeBalasan(TreeBalasan root, int depth);
-void displayAllBalasan(TreeBalasan root, int depth);
+void insertFirstTreeBalasan(TreeBalasan *TB, Balasan balasan);
 TreeBalasan searchBalasan(TreeBalasan root, int val);
 
 #endif
