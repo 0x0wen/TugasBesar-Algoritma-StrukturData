@@ -15,7 +15,6 @@ void BALAS(int IDKicau, int IDBalasan)
         // }
         else if (LIST_BALASAN(*K) == NULL)
         {
-            printf("JUmlah balasan nih mase: %d", JUMLAH_BALASAN(*K));
             Balasan B, rootB;
             Sentence kalimat;
             printf("Masukkan Balasan:\n");
