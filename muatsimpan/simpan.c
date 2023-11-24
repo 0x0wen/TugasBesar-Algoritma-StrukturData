@@ -71,12 +71,6 @@ void simpanPengguna(TabPengguna datapengguna, Word inputfile, AdjacencyMatrix mt
         }
     }
     fprintf(file, "%d\n",req);//banyakpermintaan pertemanan
-    for(int i = 0;i < req;i++){
-
-        fprintf(file, "%c ",inputfile.TabWord[0]);// matriks req teman
-        fprintf(file, "%c ",inputfile.TabWord[0]);
-        fprintf(file, "%c\n",inputfile.TabWord[0]);
-    }
     for(int i = 0; i < datapengguna.length;i++){
         if(datapengguna.contents[i].daftarPermintaanTeman.idxHead!=IDX_UNDEF){
             int temp = datapengguna.contents[i].daftarPermintaanTeman.idxTail-datapengguna.contents[i].daftarPermintaanTeman.idxHead+1;
