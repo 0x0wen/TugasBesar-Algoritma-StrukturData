@@ -5,7 +5,7 @@
 #include "charmachine.h"
 #include <stdio.h>
 
-#define MARK_FILE '\n'
+#define MARK_FILE "\r\n"
 
 /* Char Engine State*/
 extern char currentCharFile;
