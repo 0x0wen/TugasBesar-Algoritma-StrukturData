@@ -8,5 +8,24 @@
 /.vscode/c_cpp_properties.json
 
 # exec files
-/build/*.o
 /build/*.d
+/build/*.o
+/Pengguna/*.d
+/Pengguna/*.o
+/Utas/*.d
+/Utas/*.o
+/Balasan/*.d
+/Balasan/*.o
+/PermintaanTeman/*.d
+/PermintaanTeman/*.o
+/DrafKicauan/*.d
+/DrafKicauan/*.o
+/Kicauan/*.d
+/Kicauan/*.o
+/FotoProfil/*.d
+/FotoProfil/*.o
+/Teman/*.d
+/Teman/*.o
+
+
+```

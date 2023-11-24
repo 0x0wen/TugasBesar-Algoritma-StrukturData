@@ -82,9 +82,6 @@ OBJ_CMDPERMTMAN = $(SRC_CMDPERMTMAN:.c=.o)
 SRC_CMDPENGGUNA = Pengguna/commandPengguna.c
 OBJ_CMDPENGGUNA = $(SRC_CMDPENGGUNA:.c=.o)
 
-SRC_PENGGUNA = Pengguna/pengguna.c
-OBJ_PENGGUNA = $(SRC_PENGGUNA:.c=.o)
-
 SRC_TABPENGGUNA = Pengguna/tabPengguna.c
 OBJ_TABPENGGUNA = $(SRC_TABPENGGUNA:.c=.o)
 

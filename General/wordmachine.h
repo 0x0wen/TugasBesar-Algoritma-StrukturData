@@ -63,7 +63,7 @@ boolean IsWordNotEqual(Word w1, Word w2);
 
 boolean isOnlyBlank(Word w);
 
-int LengthStr(const char *str);
+// int LengthStr(const char *str);
 
 boolean isWordEqualStr(Word w,char *str);
 
