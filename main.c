@@ -11,13 +11,12 @@ int main()
   statusLogin = false;
   statusProgram = true;
 
-  inisialisasi();
+  inisialisasi(&dataPengguna,&matrixTeman,&dataKicauan,&dataUtas);
 
   while (!statusLogin)
   {
     printf(">> ");
     STARTWORD();
-
     // if (isWordEqualStr(currentWord, "MUAT")) 
     //   muat();
     // if (isWordEqualStr(currentWord, "SIMPAN")) 
