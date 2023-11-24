@@ -4,6 +4,7 @@
 #include "..\General\wordmachinefile.h"
 #include "..\General\wordmachine.h"
 #include "..\global.h"
+#include "simpan.h"
 
 
 Word writefilename(Word input1, Word input2){
@@ -29,52 +30,79 @@ void createFile(char *fullPath,char *filename){
     fclose(fptr);
 }
 
-void simpanPengguna(TabPengguna datapengguna, Word inputfile){
+void simpanPengguna(TabPengguna datapengguna, Word inputfile, AdjacencyMatrix mteman){
     FILE *file;
     file = fopen(inputfile.TabWord, "w");
     fprintf(file, "%d\n",datapengguna.length);//jumlah user
     for(int i=0; i < datapengguna.length; i++){
-        fprintf(file, "%s\n",inputfile);//nama
-        fprintf(file, "%s\n",inputfile);//password
-        fprintf(file, "%s\n",inputfile);//bio
-        fprintf(file, "%s\n",inputfile);//no hp
-        fprintf(file, "%s\n",inputfile);//weton
-        fprintf(file, "%s\n",inputfile);//jenis akun
+        fprintf(file, "%s\n",datapengguna.contents[i].nama.TabWord);//nama
+        fprintf(file, "%s\n",datapengguna.contents[i].kataSandi.TabWord);//password
+        fprintf(file, "%s\n",datapengguna.contents[i].bio.TabWord);//bio
+        fprintf(file, "%s\n",datapengguna.contents[i].noHP.TabWord);//no hp
+        fprintf(file, "%s\n",datapengguna.contents[i].weton.TabWord);//weton
+        if(datapengguna.contents[i].privat == 1){
+            fprintf(file,"Privat\n");
+        }else{
+            fprintf(file,"Publik\n");
+        }
 
         for(int j = 0; j < 5; j++){
             for(int k = 0;k < 10;k++){
-                fprintf(file, "%c",inputfile.TabWord[0]);//foto profil
+                fprintf(file, "%c",datapengguna.contents[i].foto.mem[j][k]);//foto profil
             }
             fprintf(file,"\n");
         }
     }
 
     for(int i = 0; i < datapengguna.length; i++){
-        fprintf(file, "%c ",inputfile.TabWord[0]);//matriks pertemanan
-        fprintf(file, "%c ",inputfile.TabWord[0]);
-        fprintf(file, "%c\n",inputfile.TabWord[0]);
-
+        for(int j = 0; j < datapengguna.length; j++){
+            if(j==datapengguna.length-1){
+                fprintf(file,"%d",mteman.matrix[i][j]);
+            }else{
+                fprintf(file,"%d ",mteman.matrix[i][j]);
+            }
+        }
     }
+    int req=0;
+    for(int i = 0; i < datapengguna.length;i++){
+        if(datapengguna.contents[i].daftarPermintaanTeman.idxHead!=IDX_UNDEF){
+            int temp = datapengguna.contents[i].daftarPermintaanTeman.idxTail-datapengguna.contents[i].daftarPermintaanTeman.idxHead+1;
+            req=req+temp;
+        }
+    }
+    fprintf(file, "%d\n",req);//banyakpermintaan pertemanan
+    for(int i = 0;i < req;i++){
 
-    fprintf(file, "%d\n",datapengguna.length);//banyakpermintaan pertemanan
-    for(int i = 0;i < datapengguna.length;i++){
         fprintf(file, "%c ",inputfile.TabWord[0]);// matriks req teman
         fprintf(file, "%c ",inputfile.TabWord[0]);
         fprintf(file, "%c\n",inputfile.TabWord[0]);
     }
+    for(int i = 0; i < datapengguna.length;i++){
+        if(datapengguna.contents[i].daftarPermintaanTeman.idxHead!=IDX_UNDEF){
+            int temp = datapengguna.contents[i].daftarPermintaanTeman.idxTail-datapengguna.contents[i].daftarPermintaanTeman.idxHead+1;
+            for(int j = 0; j < temp; j++){
+                fprintf(file, "%d ",datapengguna.contents[i].daftarPermintaanTeman.buffer[j].id_requester);// matriks req teman
+                fprintf(file, "%d ",datapengguna.contents[i].id);
+                fprintf(file, "%d\n",datapengguna.contents[i].daftarPermintaanTeman.buffer[j].prio);
+            }
+        }
+    }
     fclose(file);
 }
 
-void simpanKicauan(int jumlahKicauan,Word inputfile,TabPengguna k){
+void simpanKicauan(Word inputfile,TabKicauan tabkicau){
     FILE *file;
     file = fopen(inputfile.TabWord, "w");
-    fprintf(file, "%d\n",jumlahKicauan);//jumlah kicauan
-    for(int i = 0; i < jumlahKicauan; i++){
-        fprintf(file, "%d\n",jumlahKicauan);//id kicauan
-        fprintf(file, "%s\n",inputfile);//teks
-        fprintf(file, "%d\n",jumlahKicauan);//like
-        fprintf(file, "%s\n",inputfile);//author
-        fprintf(file, "%s\n",inputfile);//datetime
+    fprintf(file, "%d\n",tabkicau.nEff);//jumlah kicauan
+    for(int i = 0; i < tabkicau.nEff; i++){
+        fprintf(file, "%d\n",tabkicau.buffer[i].IDKicau);//id kicauan
+        fprintf(file, "%s\n",tabkicau.buffer[i].Text.TabWord);//teks
+        fprintf(file, "%d\n",tabkicau.buffer[i].Like);//like
+        fprintf(file, "%s\n",tabkicau.buffer[i].Author.TabWord);//author
+        fprintf(file, "%s\n",tabkicau.buffer->DateTime);//datetime
+        DATETIME time = tabkicau.buffer[i].DateTime;
+        TIME jam = time.T;
+        fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
     }
 }
 
@@ -96,42 +124,57 @@ void simpanBalasan(int jumlahKicauan,Word inputfile){
     }
 }
 
-void simpanDraf(int jumlahUser,Word inputfile){
+void simpanDraf(Word inputfile,TabPengguna datapengguna){
     FILE *file;
     file = fopen(inputfile.TabWord, "w");
-    fprintf(file, "%d\n",jumlahUser);//Banyak pengguna punya draf
-    for(int i = 0; i < jumlahUser; i++){
-        fprintf(file, "%s",inputfile);//username
-        fprintf(file, " ",inputfile);
-        int banyakDraf = 3;
-        fprintf(file, "%d\n",banyakDraf);//Banyak draf
-        for(int j = 0; j < banyakDraf; j++){
-            fprintf(file, "%s\n",inputfile);//isi draf
-            fprintf(file, "%s\n",inputfile);//datetime
+    int user=0;
+    for(int i = 0; i < datapengguna.length;i++){
+        user = user + lengthDraf(datapengguna.contents[i].drafKicauan);
+    }
+    fprintf(file, "%d\n",user);//Banyak pengguna punya draf
+    int banyakdraf=0;
+    for(int i = 0; i < datapengguna.length; i++){
+        banyakdraf = lengthDraf(datapengguna.contents[i].drafKicauan);
+        if(banyakdraf!=0){
+            fprintf(file, "%s ",datapengguna.contents[i].nama.TabWord);//username
+            fprintf(file, "%d\n",banyakdraf);//Banyak draf
+            Address_draf p = datapengguna.contents[i].drafKicauan.addrTop;
+            for(int j = 0; j < banyakdraf; j++){
+                fprintf(file, "%s\n",p->info.Text.TabWord);//isi draf
+                DATETIME time = p->info.DateTime;
+                TIME jam = time.T;
+                fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
+                p = p->next;
+            }
         }
     }
 }
 
-void simpanUtas(int jumlahKicauan, Word inputfile){
+void simpanUtas(Word inputfile,TabUtas datautas){
     FILE *file;
     file = fopen(inputfile.TabWord, "w");
-    fprintf(file, "%d\n",jumlahKicauan);//Banyak kicauan yang punya utas
-    for(int i = 0; i < jumlahKicauan; i++){
-        fprintf(file, "%d\n",jumlahKicauan);//id kicauan
-        int banyakUtas = 3;
+    fprintf(file, "%d\n",datautas.nEff);//Banyak kicauan yang punya utas
+    for(int i = 0; i < datautas.nEff; i++){
+        TabKicauanSambungan tabkicauansambungan = datautas.buffer[i].dataKicauanSambungan;
+        tabkicauansambungan->info.IDUtas;
+        fprintf(file, "%d\n",datautas.buffer[i].IDKicau);//id kicauan
+        int banyakUtas = lengthTabKicauanSambungan(tabkicauansambungan);
         fprintf(file, "%d\n",banyakUtas);//banyak utas
         for(int j = 0; j < banyakUtas; j++){
-            fprintf(file, "%s\n",inputfile);//teks
-            fprintf(file, "%s\n",inputfile);//penulis
-            fprintf(file, "%s\n",inputfile);//datetime
+            fprintf(file, "%s\n",tabkicauansambungan->info.pesan.TabWord);//teks
+            fprintf(file, "%s\n",tabkicauansambungan->info.author.TabWord);//penulis
+            DATETIME time = tabkicauansambungan->info.waktu;
+            TIME jam = time.T;
+            fprintf("%02d/%02d/%04d %02d:%02d:%02d\n", Day(time), Month(time), Year(time),Hour(jam), Minute(jam), Second(jam));
+            tabkicauansambungan = tabkicauansambungan->next;
         }
     }
 }
 
-void simpan(){
+void simpan(TabPengguna tabuser,AdjacencyMatrix matriksteman, TabKicauan tabkicau, TabUtas tabutas){
     printf("Masukkan nama folder penyimpanan.\n");
     Word config,locFile;
-    writeWord(&locFile,"Data/", 5);
+    writeWord(&locFile,"muatsimpan/Data/", 16);
     InputWord(&config);
     Word inputFolder = writefilename(locFile,config);
     writeWord(&locFile,"/pengguna.config", 16);
@@ -146,7 +189,7 @@ void simpan(){
         printf("Mohon tunggu...\n");
         char fullPath[300];  
         char fullpath[300];
-        char folderpath[100] = "./Data";
+        char folderpath[100] = "./muatsimpan/Data/";
         snprintf(fullPath, sizeof(fullPath), "%s/%s", folderpath, foldername);
         int result = mkdir(fullPath);
         char filename[] = "pengguna.config";
@@ -159,7 +202,7 @@ void simpan(){
         createFile(fullPath,filename3);
         char filename4[] = "utas.config";
         createFile(fullPath,filename4);
-        writeWord(&locFile,"Data/", 5);
+        writeWord(&locFile,"muatsimpan/Data/", 16);
         inputFolder = writefilename(locFile,config);
         writeWord(&locFile,"/pengguna.config", 16);
         inputFile = writefilename(inputFolder,locFile);
@@ -172,25 +215,21 @@ void simpan(){
         printf("Anda akan melakukan penyimpanan dari %s.\n",foldername);
     }
 
-    // simpanPengguna(*datapengguna,inputFile);
+    simpanPengguna(tabuser,inputFile,matriksteman);
 
-    int jumlahKicauan = 2;
     writeWord(&locFile,"/kicauan.config", 15);
     inputFile = writefilename(inputFolder,locFile);
-    // simpanKicauan(jumlahKicauan,inputFile, *datapengguna);
+    simpanKicauan(inputFile, tabkicau);
 
-    jumlahKicauan = 1;
     writeWord(&locFile,"/balasan.config", 15);
     inputFile = writefilename(inputFolder,locFile);
-    simpanBalasan(jumlahKicauan,inputFile);
+    simpanBalasan(0,inputFile);
 
-    int jumlahUser=2;
     writeWord(&locFile,"/draf.config", 12);
     inputFile = writefilename(inputFolder,locFile);
-    simpanDraf(jumlahUser,inputFile);
+    simpanDraf(inputFile,tabuser);
 
-    jumlahKicauan = 2;
     writeWord(&locFile,"/utas.config", 12);
     inputFile = writefilename(inputFolder,locFile);
-    simpanUtas(jumlahKicauan,inputFile);
+    simpanUtas(inputFile,tabutas);
 }
