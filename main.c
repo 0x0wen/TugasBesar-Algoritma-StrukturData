@@ -16,7 +16,7 @@ int main()
   statusLogin = false;
   statusProgram = false;
 
-  inisialisasi();
+  inisialisasi(&dataPengguna,&matrixTeman,&dataKicauan,&dataUtas);
 
   while (statusProgram)
   {

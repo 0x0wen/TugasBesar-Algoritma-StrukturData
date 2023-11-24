@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "Balasan/balasan.h"
 #include "Balasan/commandBalasan.h"
@@ -41,6 +43,12 @@
 #include "Utas/commandUtas.h"
 #include "Utas/tabUtas.h"
 #include "Utas/utas.h"
+
+#include "muatsimpan/charmachinefile.h"
+#include "muatsimpan/newMuat.h"
+#include "muatsimpan/simpan.h"
+#include "muatsimpan/wordmachinefile.h"
+
 
 extern Pengguna penggunaSekarang;
 extern TabPengguna dataPengguna;
