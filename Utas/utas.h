@@ -7,16 +7,17 @@ typedef struct
 {
   int IDUtas;
   Sentence author;
-  Sentence pesan;
+  Sentence konten;
   int IDPengguna;
   DATETIME waktu;
+  int IDKicauanSambungan;
 } KicauanSambungan;
 
-#define PESAN_KICAUAN_SAMBUNGAN(k) (k).pesan
 #define AUTHOR_KICAUAN_SAMBUNGAN(k) (k).author
-#define KONTEN_KICAUAN_SAMBUNGAN(k) (k).pesan
-// #define SUKA_KICAUAN_SAMBUNGAN(k) (k).jumlahSuka
+#define KONTEN_KICAUAN_SAMBUNGAN(k) (k).konten
 #define WAKTU_KICAUAN_SAMBUNGAN(k) (k).waktu
+#define ID_KICAUAN_SAMBUNGAN(k) (k).IDKicauanSambungan
+#define ID_PENGGUNA_KICAUAN_SAMBUNGAN(k) (k).IDPengguna
 /* Definisi elemen dan koleksi objek */
 
 /* Definisi Node : */
@@ -54,19 +55,15 @@ typedef struct
 #define KICAUAN_SAMBUNGAN(p) (p).dataKicauanSambungan
 
 void createTabKicauanSambungan(TabKicauanSambungan *T);
-
 boolean isTabKicauanSambunganEmpty(TabKicauanSambungan T);
-
 /*** Penambahan ***/
 void insertFirstTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val);
 void insertLastTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val);
 void insertAtTabKicauanSambungan(TabKicauanSambungan *T, KicauanSambungan val, int idx);
-
 /*** Penghapusan ***/
 void deleteFirstTabKicauanSambungan(TabKicauanSambungan *T);
 void deleteLastTabKicauanSambungan(TabKicauanSambungan *T);
 void deleteAtTabKicauanSambungan(TabKicauanSambungan *T, int idx);
-
 void displayTabKicauanSambungan(TabKicauanSambungan T);
 int lengthTabKicauanSambungan(TabKicauanSambungan T);
 

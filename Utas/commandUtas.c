@@ -1,9 +1,8 @@
 #include "../global.h"
 void CREATE_UTAS(int IDKicau)
 {
-    Word currentWord;
-    STARTWORD();
-
+    Kicauan K = *searchKicauan(dataKicauan, IDKicau);
+    Balasan B;
     if (ID_PENGGUNA(penggunaSekarang) != getIDPengguna(dataPengguna, AUTHOR_KICAU(*searchKicauan(dataKicauan, IDKicau))))
     {
         printf("Utas ini bukan milik anda!");
@@ -18,10 +17,15 @@ void CREATE_UTAS(int IDKicau)
     }
     else
     {
+        Utas U;
+        
+        UTAS_KICAU(K) = 
         printf("Utas berhasil dibuat!\n");
         do
         {
+            Sentence kalimat;
             printf("Masukkan kicauan: \n");
+            InputSentence(&kalimat);
             printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
         } while (isWordEqualStr(currentWord, "YA"));
         printf("Utas selesai!\n");

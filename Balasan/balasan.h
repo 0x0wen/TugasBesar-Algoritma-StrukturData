@@ -41,7 +41,8 @@ typedef struct treeNode
 
 typedef addressTree TreeBalasan;
 
-addressTree createBalasan(Balasan data);
+Balasan createBalasan(Sentence konten, Sentence author, int IDPengguna, int IDBalasan);
+addressTree createBalasanNode(Balasan data);
 void addBalasan(TreeBalasan *parent, TreeBalasan *child);
 void removeBalasan(TreeBalasan *parent);
 void printTreeBalasan(TreeBalasan root, int depth);

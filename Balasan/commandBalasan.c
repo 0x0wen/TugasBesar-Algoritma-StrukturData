@@ -19,13 +19,19 @@ void BALAS(int IDKicau, int IDBalasan)
     {
         if (IDBalasan == -1)
         {
+            Balasan B;
+            Sentence kalimat;
             printf("Masukkan Balasan:\n");
-            AcquireSentence();
+            InputSentence(&kalimat);
+            B = createBalasan(kalimat, NAMA_PENGGUNA(penggunaSekarang), ID_PENGGUNA(penggunaSekarang), JUMLAH_BALASAN(K));
+            createBalasanNode(B);
+            addBalasan(&LIST_BALASAN(K), createBalasanNode(B));
+            JUMLAH_BALASAN(K) += 1;
             printf("Selamat! balasan telah diterbitkan!\n");
             printf("Detil balasan:\n");
-            printf("| ID = %d", ID_KICAU(K));
+            printf("| ID = %d", ID_BALASAN(B));
             printf("\n| ");
-            printSentence(NAMA_PENGGUNA(penggunaSekarang));
+            printSentence(AUTHOR_BALASAN(B));
             printf("\n| ");
             TulisDATETIME(WAKTU_BALASAN(*searchBalasan(LIST_BALASAN(K), IDBalasan)));
             printf("\n| ");
@@ -33,13 +39,19 @@ void BALAS(int IDKicau, int IDBalasan)
         }
         else
         {
+            Balasan B;
+            Sentence kalimat;
             printf("Masukkan Balasan:\n");
-            AcquireSentence();
+            InputSentence(&kalimat);
+            B = createBalasan(kalimat, NAMA_PENGGUNA(penggunaSekarang), ID_PENGGUNA(penggunaSekarang), JUMLAH_BALASAN(K));
+            createBalasanNode(B);
+            addBalasan(searchBalasan(LIST_BALASAN(K), IDBalasan), createBalasanNode(B));
+            JUMLAH_BALASAN(K) += 1;
             printf("Selamat! balasan telah diterbitkan!\n");
             printf("Detil balasan:\n");
-            printf("| ID = %d", ID_KICAU(K));
+            printf("| ID = %d", ID_BALASAN(B));
             printf("\n| ");
-            printSentence(NAMA_PENGGUNA(penggunaSekarang));
+            printSentence(AUTHOR_BALASAN(B));
             printf("\n| ");
             TulisDATETIME(WAKTU_BALASAN(*searchBalasan(LIST_BALASAN(K), IDBalasan)));
             printf("\n| ");
@@ -70,6 +82,7 @@ void CETAK_BALASAN(int IDKicau)
 
 void HAPUS_BALASAN(int IDKicau, int IDBalasan)
 {
+    Kicauan K = *searchKicauan(dataKicauan, IDKicau);
     Balasan *B = searchBalasan(LIST_BALASAN(*searchKicauan(dataKicauan, IDKicau)), IDBalasan);
     if (B == NULL)
     {
@@ -81,6 +94,7 @@ void HAPUS_BALASAN(int IDKicau, int IDBalasan)
     }
     else
     {
+        removeBalasan(searchBalasan(LIST_BALASAN(K), IDBalasan));
         printf("Balasan berhasil dihapus");
     }
 };

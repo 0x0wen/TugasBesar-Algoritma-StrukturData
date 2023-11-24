@@ -1,6 +1,18 @@
 #include "../global.h"
 
-addressTree createBalasan(Balasan data)
+Balasan createBalasan(Sentence konten, Sentence author, int IDPengguna, int IDBalasan)
+{
+    Balasan newBalasan;
+
+    newBalasan.IDBalasan = IDBalasan;
+    newBalasan.konten = konten;
+    newBalasan.author = author;
+    newBalasan.IDPengguna = IDPengguna;
+    newBalasan.waktu = getDATETIME();
+
+    return newBalasan;
+}
+addressTree createBalasanNode(Balasan data)
 {
     addressTree node = (addressTree)malloc(sizeof(NodeBalasan));
     if (node != NULL)

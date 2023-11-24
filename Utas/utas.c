@@ -1,15 +1,24 @@
 #include "../global.h"
+
+KicauanSambungan createKicauanSambungan(Sentence konten, Sentence author, int IDPengguna, int IDKicauanSambungan)
+{
+    KicauanSambungan newKicauanSambungan;
+    newKicauanSambungan.IDKicauanSambungan = IDKicauanSambungan;
+    newKicauanSambungan.konten = konten;
+    newKicauanSambungan.author = author;
+    newKicauanSambungan.IDPengguna = IDPengguna;
+    newKicauanSambungan.waktu = getDATETIME();
+    return newKicauanSambungan;
+}
+
 Address newKicauanSambungan(KicauanSambungan val)
 {
-
     Address NodeKicauanSambungan = (Address)malloc(sizeof(NodeKicauanSambungan));
-
     if (NodeKicauanSambungan != NULL)
     {
         INFO_UTAS(NodeKicauanSambungan) = val;
         NEXT_UTAS(NodeKicauanSambungan) = NULL;
     }
-
     return NodeKicauanSambungan;
 }
 
