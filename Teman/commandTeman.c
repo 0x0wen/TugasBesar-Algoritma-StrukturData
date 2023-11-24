@@ -19,7 +19,7 @@ void DAFTAR_TEMAN(){
             if (isFriend(matrixTeman, id_user, id_teman)){
 
                 for (j = 0; j < BANYAK_PENGGUNA(dataPengguna); j++){
-                    if (SELECT_PENGGUNA(dataPengguna, j).id == j){
+                    if (SELECT_PENGGUNA(dataPengguna, j).id == id_teman){
                         nama_teman = NAMA_PENGGUNA(SELECT_PENGGUNA(dataPengguna, j));
                         break;
                     }
