@@ -29,7 +29,10 @@ void DAFTAR()
         Pengguna newUser;
         NAMA_PENGGUNA(newUser) = Username;
         PASSWORD_PENGGUNA(newUser) = Password;
-
+        ID_PENGGUNA(newUser) = lengthTabPengguna(dataPengguna);
+        PRIVASI_PENGGUNA(newUser) = false;
+        CreateListDin(&DAFTAR_UTAS(newUser), 10);
+        CreateListDin(&DAFTAR_KICAUAN(newUser), 10);
         insertLastTabPengguna(&dataPengguna, newUser);
 
         printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
