@@ -49,6 +49,7 @@ typedef struct
   Sentence konten;
   DATETIME waktu;
   TabKicauanSambungan dataKicauanSambungan;
+  int panjang;
 } Utas;
 
 #define ID_UTAS(p) (p).IDUtas
@@ -57,6 +58,7 @@ typedef struct
 #define KONTEN_UTAS(p) (p).konten
 #define WAKTU_UTAS(p) (p).waktu
 #define KICAUAN_SAMBUNGAN(p) (p).dataKicauanSambungan
+#define PANJANG_UTAS(p) (p).panjang
 
 Utas createUtas(Sentence author, int IDUtas, int IDKicau, Sentence konten, DATETIME waktu);
 void printUtas(Utas U);
