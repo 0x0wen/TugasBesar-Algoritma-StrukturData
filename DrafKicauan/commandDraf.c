@@ -1,4 +1,3 @@
-#include "draf.h"
 #include "../global.h"
 
 void BUAT_DRAF(){

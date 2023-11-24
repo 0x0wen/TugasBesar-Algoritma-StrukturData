@@ -1,44 +1,42 @@
-#include <stdio.h>
-#include "tabUtas.h"
-#include <stdlib.h>
+#include "../global.h"
 void createTabUtas(TabUtas *TU, int capacity)
 {
     CAPACITY_UTAS(*TU) = capacity;
     NEFF_UTAS(*TU) = 0;
     BUFFER_UTAS(*TU) = (Utas *)malloc(capacity * sizeof(Utas));
-};
+}
 
 void deallocateTabUtas(TabUtas *TU)
 {
     free(BUFFER_UTAS(*TU));
     CAPACITY_UTAS(*TU) = 0;
     NEFF_UTAS(*TU) = 0;
-};
+}
 
 int lengthTabUtas(TabUtas TU)
 {
     return NEFF_UTAS(TU);
-};
+}
 
 boolean isIdxTabUtasValid(TabUtas TU, int i)
 {
     return (i < (CAPACITY_UTAS(TU)) && i >= IDX_MIN_TAB_UTAS);
-};
+}
 
 boolean isIdxTabUtasEff(TabUtas TU, int i)
 {
     return (i < (NEFF_UTAS(TU)) && i >= IDX_MIN_TAB_UTAS);
-};
+}
 
 boolean isTabUtasEmpty(TabUtas TU)
 {
     return (NEFF_UTAS(TU) == 0);
-};
+}
 
 boolean isTabUtasFull(TabUtas TU)
 {
     return (NEFF_UTAS(TU) == CAPACITY_UTAS(TU));
-};
+}
 
 int indexOfTabUtas(TabUtas TU, Utas utas)
 {
@@ -51,18 +49,17 @@ int indexOfTabUtas(TabUtas TU, Utas utas)
         }
     }
     return IDX_UNDEF_TAB_UTAS;
-};
-
+}
 void insertLastTabUtas(TabUtas *TU, Utas val)
 {
     SELECT_UTAS(*TU, NEFF_UTAS(*TU)) = val;
     NEFF_UTAS(*TU) += 1;
-};
+}
 
 void deleteLastTabUtas(TabUtas *TU)
 {
     NEFF_UTAS(*TU) -= 1;
-};
+}
 
 void copyTabUtas(TabUtas lIn, TabUtas *lOut)
 {
@@ -73,7 +70,7 @@ void copyTabUtas(TabUtas lIn, TabUtas *lOut)
         SELECT_UTAS(*lOut, i) = SELECT_UTAS(lIn, i);
     }
     NEFF_UTAS(*lOut) = NEFF_UTAS(lIn);
-};
+}
 
 Utas *searchUtas(TabUtas TU, int IDUtas)
 {
@@ -85,7 +82,8 @@ Utas *searchUtas(TabUtas TU, int IDUtas)
             return &SELECT_UTAS(TU, i);
         }
     }
-};
+    return NULL;
+}
 
 void expandTabUtas(TabUtas *TU, int num)
 {
@@ -106,4 +104,4 @@ void expandTabUtas(TabUtas *TU, int num)
         SELECT_UTAS(*TU, i) = SELECT_UTAS(L, i);
     }
     deallocateTabUtas(&L);
-};
+}

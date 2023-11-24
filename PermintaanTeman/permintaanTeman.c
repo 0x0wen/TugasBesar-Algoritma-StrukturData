@@ -1,4 +1,4 @@
-#include "permintaanTeman.h"
+#include "../global.h"
 
 Requester create_Requester(int priority, int id){
     Requester R;

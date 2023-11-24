@@ -20,10 +20,9 @@ void print_red(char c);
 void print_green(char c);
 void print_blue(char c);
 
-typedef int ElType;
 typedef struct
 {
-    ElType mem[ROW_CAP][COL_CAP];
+    char mem[ROW_CAP][COL_CAP];
     int rowEff; /* banyaknya/ukuran baris yg terdefinisi */
     int colEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } FotoProfil;
@@ -47,7 +46,7 @@ boolean isFotoProfilIdxValid(int i, int j);
 int getLastIdxRow(FotoProfil m);
 int getLastIdxCol(FotoProfil m);
 boolean isIdxEff(FotoProfil m, int i, int j);
-ElType getElmtDiagonal(FotoProfil m, int i);
+char getElmtDiagonal(FotoProfil m, int i);
 void copyFotoProfil(FotoProfil mIn, FotoProfil *mOut);
 void readFotoProfil(FotoProfil *m, int nRow, int nCol);
 void displayFotoProfil(FotoProfil m);
@@ -55,8 +54,8 @@ FotoProfil addFotoProfil(FotoProfil m1, FotoProfil m2);
 FotoProfil subtractFotoProfil(FotoProfil m1, FotoProfil m2);
 FotoProfil multiplyFotoProfil(FotoProfil m1, FotoProfil m2);
 FotoProfil multiplyFotoProfilWithMod(FotoProfil m1, FotoProfil m2, int mod);
-FotoProfil multiplyByConst(FotoProfil m, ElType x);
-void pMultiplyByConst(FotoProfil *m, ElType k);
+FotoProfil multiplyByConst(FotoProfil m, char x);
+void pMultiplyByConst(FotoProfil *m, char k);
 boolean isFotoProfilEqual(FotoProfil m1, FotoProfil m2);
 boolean isFotoProfilNotEqual(FotoProfil m1, FotoProfil m2);
 boolean isFotoProfilSizeEqual(FotoProfil m1, FotoProfil m2);

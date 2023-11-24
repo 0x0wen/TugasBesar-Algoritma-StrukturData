@@ -12,10 +12,10 @@ typedef struct
   DATETIME waktu;
 } KicauanSambungan;
 
-#define PESAN_KICAUAN_SAMBUNGAN(k) (k).IDUtas
+#define PESAN_KICAUAN_SAMBUNGAN(k) (k).pesan
 #define AUTHOR_KICAUAN_SAMBUNGAN(k) (k).author
-#define KONTEN_KICAUAN_SAMBUNGAN(k) (k).konten
-#define SUKA_KICAUAN_SAMBUNGAN(k) (k).jumlahSuka
+#define KONTEN_KICAUAN_SAMBUNGAN(k) (k).pesan
+// #define SUKA_KICAUAN_SAMBUNGAN(k) (k).jumlahSuka
 #define WAKTU_KICAUAN_SAMBUNGAN(k) (k).waktu
 /* Definisi elemen dan koleksi objek */
 

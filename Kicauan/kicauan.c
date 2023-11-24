@@ -1,6 +1,4 @@
-#include "kicauan.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../global.h"
 
 Kicauan createKicauan(int id, Sentence text, Sentence author){
 
@@ -15,7 +13,7 @@ Kicauan createKicauan(int id, Sentence text, Sentence author){
     return newKicau;
 }
 
-void printDetilKicauan(Kicauan k){   
+void printDetilKicau(Kicauan k){   
     printf("| ID = %d\n", k.IDKicau);
     printf("| "); printSentence(k.Author); printf("\n");
     printf("| "); TulisDATETIME(k.DateTime); printf("\n");

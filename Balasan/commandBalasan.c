@@ -1,5 +1,4 @@
-#include "commandBalasan.h"
-#include <stdio.h>
+#include "../global.h"
 // Command Balasan
 void BALAS(int IDKicau, int IDBalasan)
 {

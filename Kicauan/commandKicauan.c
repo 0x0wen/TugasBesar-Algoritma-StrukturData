@@ -1,4 +1,3 @@
-#include "commandKicauan.h"
 #include "../global.h"
 
 /*** Prosedur Kicauan yang berkaitan dengan spek ***/

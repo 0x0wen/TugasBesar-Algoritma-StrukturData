@@ -53,9 +53,9 @@ typedef struct
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 
-void DAFTAR();
-void MASUK();
-void KELUAR();
-void TUTUP_PROGRAM();
+// void DAFTAR();
+// void MASUK();
+// void KELUAR();
+// void TUTUP_PROGRAM();
 
 #endif

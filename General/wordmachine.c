@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include "wordmachine.h"
+#include "../global.h"
 
 /* State Mesin Word */
 boolean EndWord;

@@ -1,6 +1,4 @@
-#include "commandUtas.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../global.h"
 void CREATE_UTAS(int IDKicau)
 {
     Word currentWord;
@@ -25,7 +23,7 @@ void CREATE_UTAS(int IDKicau)
         {
             printf("Masukkan kicauan: \n");
             printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)");
-        } while (isWordEqualStr(&currentWord, "YA"));
+        } while (isWordEqualStr(currentWord, "YA"));
         printf("Utas selesai!\n");
     }
 }

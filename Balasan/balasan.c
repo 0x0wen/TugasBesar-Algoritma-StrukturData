@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include "balasan.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../global.h"
 
 addressTree createBalasan(Balasan data)
 {

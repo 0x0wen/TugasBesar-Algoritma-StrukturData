@@ -1,10 +1,7 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include "sentenceMachine.h"
+#include "../global.h"
 
 /* State Mesin Word */
-boolean EndWord;
+boolean EndSentence;
 Sentence currentSentence;
 
 void startSentence()
@@ -12,12 +9,12 @@ void startSentence()
     START();
     if (currentChar == MARK)
     {
-        EndWord = true;
+        EndSentence = true;
     }
     else
     {
         CopyWord();
-        EndWord = false;
+        EndSentence = false;
     }
 }
 

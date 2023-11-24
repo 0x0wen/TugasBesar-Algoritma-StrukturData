@@ -1,4 +1,4 @@
-#include "commandTeman.h"
+#include "../global.h"
 
 void DAFTAR_TEMAN(){
 

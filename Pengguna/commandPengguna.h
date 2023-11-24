@@ -5,9 +5,12 @@
 #include "../FotoProfil/fotoProfil.h"
 #include "pengguna.h"
 #include "tabPengguna.h"
-#include "../global.h"
 
 /* PROFIL */
+void DAFTAR();
+void MASUK();
+void KELUAR();
+void TUTUP_PROGRAM();
 void GANTI_PROFIL();
 void LIHAT_PROFIL();
 void ATUR_JENIS_AKUN();

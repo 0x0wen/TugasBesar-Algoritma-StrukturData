@@ -1,6 +1,4 @@
-#include "tabPengguna.h"
-#include "pengguna.h"
-#include <stdio.h>
+#include "../global.h"
 
 void createTabPengguna(TabPengguna *T)
 {

@@ -4,7 +4,6 @@
 #include "../General/boolean.h"
 #include "../General/wordmachine.h"
 #include "../General/charmachine.h"
-#include <stdio.h>
 
 #define IDX_UNDEF -1
 #define MaxPermintaan 20

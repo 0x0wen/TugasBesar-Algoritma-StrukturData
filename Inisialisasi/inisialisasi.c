@@ -1,22 +1,40 @@
-#include <stdio.h>
-#include "../General/wordmachinefile.h"
-#include "../Pengguna/pengguna.h"
-#include "../General/sentenceMachine.h"
 #include "../global.h"
-#include "../muatsimpan/simpan.h"
-#include "../muatsimpan/newMuat.h"
+// Word writefilename(Word input1, Word input2)
+// {
+//     Word output;
+//     int i;
+//     for (i = 0; i < input1.Length; i++)
+//     {
+//         output.TabWord[i] = input1.TabWord[i];
+//     }
+//     for (i = 0; i < input2.Length; i++)
+//     {
+//         output.TabWord[input1.Length + i] = input2.TabWord[i];
+//     }
+//     output.TabWord[input1.Length + input2.Length] = '\0';
+//     output.Length = input1.Length + input2.Length;
 
+//     return output;
+// }
 
-void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas)
+// int compareCharArrays(const char *array1, const char *array2)
+// {
+//     int result = strcmp(array1, array2);
+//     return result;
+// }
+// #include "../General/sentenceMachine.h"
+#include "../global.h"
+
+void inisialisasi()
 {
-    printf("/$$$$$$$                      /$$       /$$           ");
-    printf("| $$__  $$                    | $$      |__/          ");
-    printf("| $$  \ $$ /$$   /$$  /$$$$$$ | $$$$$$$  /$$  /$$$$$$ ");
-    printf("| $$$$$$$ | $$  | $$ /$$__  $$| $$__  $$| $$ /$$__  $$");
-    printf("| $$__  $$| $$  | $$| $$  \__/| $$  \ $$| $$| $$  \__/");
-    printf("| $$  \ $$| $$  | $$| $$      | $$  | $$| $$| $$      ");
-    printf("| $$$$$$$/|  $$$$$$/| $$      | $$$$$$$/| $$| $$      ");
-    printf("|_______/  \______/ |__/      |_______/ |__/|__/      ");
+    printf("/$$$$$$$                      /$$       /$$           \n");
+    printf("| $$__  $$                    | $$      |__/          \n");
+    printf("| $$  \\ $$ /$$   /$$  /$$$$$$ | $$$$$$$  /$$  /$$$$$$ \n");
+    printf("| $$$$$$$ | $$  | $$ /$$__  $$| $$__  $$| $$ /$$__  $$\n");
+    printf("| $$__  $$| $$  | $$| $$  \\__/| $$  \\ $$| $$| $$  \\__/\n");
+    printf("| $$  \\ $$| $$  | $$| $$      | $$  | $$| $$| $$      \n");
+    printf("| $$$$$$$/|  $$$$$$/| $$      | $$$$$$$/| $$| $$      \n");
+    printf("|_______/  \\______/ |__/      |_______/ |__/|__/      \n");
     printf("\n");
     printf("Selamat datang di BurBir.\n");
     printf("\n");
@@ -25,54 +43,34 @@ void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicau
     printf("\n");
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
 
-    Word config,locFile;
-    writeWord(&locFile,"muatsimpan/Data/", 16);
-    InputWord(&config);
-    Word inputFolder = writefilename(locFile,config);
-    writeWord(&locFile,"/pengguna.config", 16);
-    Word inputFile = writefilename(inputFolder,locFile);
-    FILE* tempFile = fopen(inputFile.TabWord, "r");
-    if (tempFile == NULL)
-    {
-        printf("Name file tidak ada.\n");
-    }
-    else
-    {
-        printf("Name file ada.\n");
-        muatPenggunaNew(inputFile, datauser,matrikstemen);
+    // Word config, locFile;
+    // writeWord(&locFile, "/pengguna.config", 16);
+    // InputWord(&config);
+    // Word inputFile = writefilename(config, locFile);
 
-        writeWord(&locFile,"/kicauan.config", 15);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatKicauanNew(inputFile,tabkicauan);
+    // FILE *tempFile = fopen(inputFile.TabWord, "r");
+    // if (tempFile == NULL)
+    // {
+    //     printf("Name file tidak ada.\n");
+    // }
+    // else
+    // {
+    //     printf("Name file ada.\n");
+    //     muatPenggunaNew(inputFile,&dataPengguna);
 
-        printf("Mohon tunggu...\n");
+    //     writeWord(&locFile,"/kicauan.config", 15);
+    //     inputFile = writefilename(inputFolder,locFile);
+    //     tempFile = fopen(inputFile.TabWord, "r");
+    //     muatKicauanNew(inputFile,&dataKicau);
 
-        writeWord(&locFile,"/balasan.config", 15);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatBalasanNew(inputFile,*datauser);
+    //     writeWord(&locFile,"/balasan.config", 15);
+    //     inputFile = writefilename(inputFolder,locFile);
+    //     tempFile = fopen(inputFile.TabWord, "r");
+    //     muatBalasanNew(inputFile,dataPengguna);
 
-        printf("1...\n");
-
-        writeWord(&locFile,"/draf.config", 12);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatDrafNew(inputFile,*datauser);
-
-        printf("2...\n");
-
-        writeWord(&locFile,"/utas.config", 12);
-        inputFile = writefilename(inputFolder,locFile);
-        tempFile = fopen(inputFile.TabWord, "r");
-        muatUtasNew(inputFile,datautas);
-
-        printf("3...\n");
-        printf("Pemuatan selesai!\n");
-
-        printf("\n");
-        printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
-    }
+    //     printf("\n");
+    //     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
+    // }
 
     statusProgram = true;
 }

@@ -1,8 +1,4 @@
-#include "listDinamis.h"
-#include "boolean.h"
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
+#include "../global.h"
 
 void deleteVal(ListDin *l, int val){
     int idx = indexOf(*l, val);

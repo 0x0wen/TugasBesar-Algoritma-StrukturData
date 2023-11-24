@@ -1,10 +1,4 @@
-#include "commandPengguna.h"
-#include <stdio.h>
-#include "tabPengguna.h"
 #include "../global.h"
-#include "../Teman/tabTeman.h"
-#include "../General/wordmachine.h"
-#include "../General/sentenceMachine.h"
 
 /* PENGGUNA  */
 void DAFTAR() {

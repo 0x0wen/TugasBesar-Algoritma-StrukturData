@@ -37,7 +37,7 @@ void createTabPengguna(TabPengguna *T);
 boolean isTabPenggunaEmpty();
 boolean isTabPenggunaFull();
 void printTabPengguna();
-int indexOfTabPengguna(Pengguna val);
+int indexOfTabPengguna(TabPengguna T, Pengguna val);
 void insertFirstTabPengguna(Pengguna val);
 void insertAtTabPengguna(Pengguna val, int idx);
 void insertLastTabPengguna(TabPengguna *T, Pengguna val);

@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <math.h>
-
-#include "datetime.h"
-#include "time_adt.h"
+#include "../global.h"
 
 void CreateDATETIME(DATETIME *D, int DD, int MM, int YYYY, int hh, int mm, int ss)
 {
@@ -38,10 +34,4 @@ DATETIME getDATETIME(){
                        (*ptr).tm_sec);
 
     return d;
-}
-
-int main(){
-
-    DATETIME now = getDATETIME();
-    TulisDATETIME(now);
 }
