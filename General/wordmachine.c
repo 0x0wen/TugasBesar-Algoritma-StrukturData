@@ -21,7 +21,6 @@ void STARTWORD()
     IgnoreBlanks();
     if (currentChar == MARK)
     {
-        printf("yes");
         EndWord = true;
     }
     else
@@ -209,13 +208,13 @@ boolean isOnlyBlank(Word w)
 boolean isWordEqualStr(Word w, char *str)
 {
     int n = w.Length;
-    int strLength = LengthStr(str);
+    // int strLength = LengthStr(str);
 
-    // Jika panjang Word tidak sama dengan panjang String, return false
-    if (n != strLength)
-    {
-        return false;
-    }
+    // // Jika panjang Word tidak sama dengan panjang String, return false
+    // if (n != strLength)
+    // {
+    //     return false;
+    // }
 
     // Bandingkan setiap karakter
     for (int i = 0; i < n; ++i)

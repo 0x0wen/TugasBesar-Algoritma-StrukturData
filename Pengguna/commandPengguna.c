@@ -29,6 +29,7 @@ void DAFTAR()
         PRIVASI_PENGGUNA(newUser) = false;
         CreateListDin(&DAFTAR_UTAS(newUser), 10);
         CreateListDin(&DAFTAR_KICAUAN(newUser), 10);
+        create_PQR(&(newUser.daftarPermintaanTeman));
         insertLastTabPengguna(&dataPengguna, newUser);
 
         printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
@@ -70,14 +71,14 @@ void MASUK()
         } while (!checkPassword(dataPengguna, Password, Length));
 
         penggunaSekarang = *searchPenggunaByName(&dataPengguna, Username);
-        printf("Pengguna "); printSentence(penggunaSekarang.nama); printf(" berhasil login!\n");
+        printf("\nPengguna "); printSentence(penggunaSekarang.nama); printf(" berhasil login!\n");
         statusLogin = true;
     }
 }
 
 void KELUAR()
 {
-    if (statusLogin)
+    if (!statusLogin)
     {
         printf("Anda belum login! Masuk terlebih dahulu\nuntuk menikmati layanan BurBir.\n");
     }

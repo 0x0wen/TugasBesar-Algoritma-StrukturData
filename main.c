@@ -18,26 +18,26 @@ int main()
 
   inisialisasi();
 
-  while (!statusLogin)
+  while (statusProgram)
   {
-    printf(">> ");
+    while (!statusLogin)
+      {
+        printf("\n𝑴𝒂𝒔𝒖𝒌/𝑫𝒂𝒇𝒕𝒂𝒓 𝒖𝒏𝒕𝒖𝒌 𝒎𝒆𝒍𝒂𝒏𝒋𝒖𝒕𝒌𝒂𝒏\n");
+        printf("\n>> ");
+        STARTWORD();
+
+        // if (isWordEqualStr(currentWord, "MUAT")) 
+        //   muat();
+        // if (isWordEqualStr(currentWord, "SIMPAN")) 
+        //   simpan();
+        if (isWordEqualStr(currentWord, "DAFTAR"))
+          DAFTAR();
+        if (isWordEqualStr(currentWord, "MASUK"))
+          MASUK();
+      }
+      
+    printf("\n>> ");
     STARTWORD();
-
-    // if (isWordEqualStr(currentWord, "MUAT")) 
-    //   muat();
-    // if (isWordEqualStr(currentWord, "SIMPAN")) 
-    //   simpan();
-    if (isWordEqualStr(currentWord, "DAFTAR"))
-      DAFTAR();
-    else if (isWordEqualStr(currentWord, "MASUK"))
-      MASUK();
-  }
-
-  while (statusLogin && statusProgram)
-  {
-    printf(">> ");
-    STARTWORD();
-
     
     // if (isWordEqualStr(currentWord, "SIMPAN")) 
     //   simpan();
@@ -144,6 +144,10 @@ int main()
       int IDUtas = wordToInteger(currentWord);
       CETAK_UTAS(IDUtas);
     }
+
+    printf("\nTekan ; kemudian Enter untuk melanjutkan...\n");
+    STARTWORD();
+    system("clear");
   }
 
   if (statusProgram)
