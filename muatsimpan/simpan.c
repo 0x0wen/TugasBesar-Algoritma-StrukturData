@@ -1,4 +1,6 @@
 #include "../global.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 
 Word writefilename(Word input1, Word input2){
@@ -146,7 +148,7 @@ void simpanUtas(Word inputfile,TabUtas datautas){
         int banyakUtas = lengthTabKicauanSambungan(datautas.buffer[i].dataKicauanSambungan);
         fprintf(file, "%d\n",banyakUtas);//banyak utas
         for(int j = 0; j < banyakUtas; j++){
-            fprintf(file, "%s\n",datautas.buffer[i].dataKicauanSambungan->info.pesan.TabWord);//teks
+            fprintf(file, "%s\n",datautas.buffer[i].dataKicauanSambungan->info.konten.TabWord);//teks
             fprintf(file, "%s\n",datautas.buffer[i].dataKicauanSambungan->info.author.TabWord);//penulis
             DATETIME time = datautas.buffer[i].dataKicauanSambungan->info.waktu;
             TIME jam = time.T;

@@ -37,7 +37,7 @@ void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicau
         printf("Maaf sedang ada masalah pada pemuatan.\n");
 
 
-        simpan(*datauser,*matrikstemen,*tabkicauan,*datautas);
+        // simpan(*datauser,*matrikstemen,*tabkicauan,*datautas);
         // writeWord(&locFile,"/kicauan.config", 15);
         // inputFile = writefilename(inputFolder,locFile);
         // tempFile = fopen(inputFile.TabWord, "r");

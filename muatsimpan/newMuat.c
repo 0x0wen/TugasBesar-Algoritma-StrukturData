@@ -180,43 +180,42 @@ void muatBalasanNew(Word inputFile,TabPengguna *tabuser){
     if(jumlahKicauan!=0){
         ADVFILE();
         CopyWordFile();
-        int id= atoi(currentWordFile.TabWord);
+        //int id= atoi(currentWordFile.TabWord);
 
         ADVFILE();
         CopyWordFile();
         int banyakBalasan = atoi(currentWordFile.TabWord);
 
         for(int i = 0; i < banyakBalasan; i++){
-            Balasan data;
-            addressTree balas = createBalasan(data);
+            // Balasan data;
             
-            ADVFILE();
-            CopyWordFile3();
-            int idparent = atoi(currentWordFile.TabWord);
-            if(idparent>=0){
-                balas->data.IDParent = idparent;
-            }else{
-                balas->data.IDParent = id;
-            }
+            // ADVFILE();
+            // CopyWordFile3();
+            // int idparent = atoi(currentWordFile.TabWord);
+            // if(idparent>=0){
+            //     data.IDParent = idparent;
+            // }else{
+            //     .data.IDParent = id;
+            // }
 
-            ADVFILE();
-            CopyWordFile3();
-            int idbalas = atoi(currentWordFile.TabWord);
-            balas->data.IDBalasan = idbalas;
+            // ADVFILE();
+            // CopyWordFile3();
+            // int idbalas = atoi(currentWordFile.TabWord);
+            // data.IDBalasan = idbalas;
 
-            ADVFILE();
-            Sentence teks = CopySentenceFile();
-            balas->data.konten = teks;
+            // ADVFILE();
+            // Sentence teks = CopySentenceFile();
+            // data.konten = teks;
             
-            ADVFILE();
-            Sentence author = CopySentenceFile();
-            balas->data.author = author;
+            // ADVFILE();
+            // Sentence author = CopySentenceFile();
+            // data.author = author;
 
-            Pengguna *temp = searchPenggunaByName(tabuser,author);
-            balas->data.IDPengguna = (temp)->id;
+            // Pengguna *temp = searchPenggunaByName(tabuser,author);
+            // data.IDPengguna = (temp)->id;
             
-            DATETIME dateTime = muatDateTime();
-            balas->data.waktu = dateTime;
+            // DATETIME dateTime = muatDateTime();
+            // balas->data.waktu = dateTime;
         }
     }
     StopWordFile(inputFile.TabWord);
@@ -295,10 +294,10 @@ void muatUtasNew(Word inputFile, TabUtas *dataUtas){
 
             for(int i = 0; i < banyakUtas; i++){
                 KicauanSambungan sambungan;
-                Address kicauannew= newKicauanSambungan(sambungan);
+                Address kicauannew= newKicauanSambunganNode(sambungan);
                 ADVFILE();
                 Sentence teks = CopySentenceFile();
-                kicauannew->info.pesan = teks;
+                kicauannew->info.konten = teks;
 
                 ADVFILE();
                 Sentence author = CopySentenceFile();
