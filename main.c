@@ -20,6 +20,7 @@ int main()
 
   while (!statusLogin)
   {
+    printf("\n𝑴𝒂𝒔𝒖𝒌/𝑫𝒂𝒇𝒕𝒂𝒓 𝒖𝒏𝒕𝒖𝒌 𝒎𝒆𝒍𝒂𝒏𝒋𝒖𝒕𝒌𝒂𝒏\n");
     printf(">> ");
     STARTWORD();
 
@@ -33,9 +34,10 @@ int main()
       MASUK();
   }
 
+  printf("\n<<────────────────── 𝙎𝙚𝙡𝙖𝙢𝙖𝙩 𝘽𝙚𝙧𝙟𝙚𝙡𝙖𝙟𝙖𝙝 ──────────────────>>\n");
   while (statusLogin && statusProgram)
   {
-    printf(">> ");
+    printf("\n>> ");
     STARTWORD();
 
     
@@ -144,6 +146,10 @@ int main()
       int IDUtas = wordToInteger(currentWord);
       CETAK_UTAS(IDUtas);
     }
+
+    printf("\nTekan ; kemudian Enter untuk melanjutkan...\n");
+    STARTWORD();
+    system("clear");
   }
 
   if (statusProgram)
