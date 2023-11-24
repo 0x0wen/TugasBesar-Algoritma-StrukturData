@@ -37,6 +37,7 @@ void createTabPengguna(TabPengguna *T);
 int lengthTabPengguna(TabPengguna T);
 boolean isTabPenggunaEmpty(TabPengguna T);
 boolean isTabPenggunaFull(TabPengguna T);
+void insertLastTabPengguna(TabPengguna *T, Pengguna val);
 int indexOfTabPengguna(TabPengguna T, Pengguna val);
 boolean checkUsernameExist(TabPengguna T, Sentence username, int numUsers);
 boolean checkPassword(TabPengguna T, Sentence password, int numUsers);
