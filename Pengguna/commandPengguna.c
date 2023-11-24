@@ -30,6 +30,22 @@ void DAFTAR()
         CreateListDin(&DAFTAR_UTAS(newUser), 10);
         CreateListDin(&DAFTAR_KICAUAN(newUser), 10);
         create_PQR(&(newUser.daftarPermintaanTeman));
+
+        FotoProfil FP;
+        createFotoProfil(5, 10, &FP);
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (j % 2 != 0) {
+                    ELMT(FP, i, j) = '*';
+                } else {
+                    ELMT(FP, i, j) = 'R';
+                }
+            }
+        }
+
+        FOTO_PENGGUNA(newUser) = FP;
+
         insertLastTabPengguna(&dataPengguna, newUser);
 
         printf("Pengguna telah berhasil terdaftar. Masuk\nuntuk menikmati fitur-fitur BurBir.\n");
@@ -134,7 +150,7 @@ void GANTI_PROFIL()
         Sentence Bio;
         while (!IsValidBio)
         {
-            printf("Masukkan Bio Akun:\n");
+            printf("\nMasukkan Bio Akun:\n");
             InputSentence(&Bio);
 
             if (currentWord.Length <= 135)
@@ -175,24 +191,24 @@ void GANTI_PROFIL()
         HP_PENGGUNA(penggunaSekarang) = currentWord;
         printf("\n");
 
-        Sentence weton[5] = {{"Pahing", 6}, {"Kliwon", 6}, {"Wage", 6}, {"Legi", 4}, {"Pon", 3}}; // deklarasi Weton
+        Word weton[5] = {{"Pahing", 6}, {"Kliwon", 6}, {"Wage", 6}, {"Legi", 4}, {"Pon", 3}}; // deklarasi Weton
 
         /* Mengganti weton pengguna */
-        Sentence Weton;
+        Word Weton;
         boolean IsValidWeton = false;
         while (!IsValidWeton)
         {
             printf("Masukkan Weton:\n");
-            InputSentence(&Weton);
+            InputWord(&Weton);
 
-            if (isSentenceOnlyBlank(Weton))
+            if (isOnlyBlank(Weton))
             {
                 IsValidWeton = true;
             }
 
             for (int i = 0; i < 4; i++)
             {
-                if (IsSentenceEqual(Weton, weton[i]))
+                if (IsWordEqual(Weton, weton[i]))
                 {
                     IsValidWeton = true;
                 }
@@ -204,9 +220,9 @@ void GANTI_PROFIL()
             }
         }
 
-        WETON_PENGGUNA(penggunaSekarang) = currentWord;
+        WETON_PENGGUNA(penggunaSekarang) = Weton;
 
-        printf("Profil anda sudah berhasil diperbarui!\n");
+        printf("\nProfil anda sudah berhasil diperbarui!\n");
     }
 }
 
@@ -219,6 +235,7 @@ void LIHAT_PROFIL()
     else
     {
         Sentence Nama;
+        printf("Masukkan nama pengguna yang ingin dilihat profilnya: ");
         InputSentence(&Nama);
 
         if (IsSentenceEqual(Nama, NAMA_PENGGUNA(penggunaSekarang)))
@@ -262,7 +279,7 @@ void ATUR_JENIS_AKUN()
         boolean isPrivate = PRIVASI_PENGGUNA(penggunaSekarang);
         Word TIDAK = {"TIDAK", 5};
 
-        printf("Saat ini, akun Anda adalah akun");
+        printf("Saat ini, akun Anda adalah akun ");
         if (isPrivate)
         {
             printf("Privat.\n");
@@ -276,29 +293,29 @@ void ATUR_JENIS_AKUN()
 
         if (isPrivate)
         {
-            printf("Ingin mengubah ke akun Publik?");
-            printf("\n");
-            printf("(YA/TIDAK)");
+            printf("Ingin mengubah ke akun Publik?\n");
+            printf("\n(YA/TIDAK)\n");
+            printf(">> ");
 
-            InputWord(&Action);
+            InputWord(&Action); printf("\n");
 
             if (IsWordEqual(Action, TIDAK))
             {
-                printf("Perubahan akun dibatalkan.");
+                printf("Perubahan akun dibatalkan.\n");
             }
             else
             {
                 PRIVASI_PENGGUNA(penggunaSekarang) = false;
-                printf("Akun anda sudah diubah menjadi akun Publik.");
+                printf("Akun anda sudah diubah menjadi akun Publik.\n");
             }
         }
         else
         {
-            printf("Ingin mengubah ke akun Privat?");
-            printf("\n");
-            printf("(YA/TIDAK)");
+            printf("Ingin mengubah ke akun Privat?\n");
+            printf("\n(YA/TIDAK) ");
+            printf(">> ");
 
-            InputWord(&Action);
+            InputWord(&Action); printf("\n");
 
             if (IsWordEqual(Action, TIDAK))
             {
@@ -331,7 +348,7 @@ void UBAH_FOTO_PROFIL()
 
         FOTO_PENGGUNA(penggunaSekarang) = FP;
 
-        printf("\nFoto profil anda sudah berhasil diganti!\n\n");
+        printf("\nFoto profil anda sudah berhasil diganti!\n");
         DISPLAY_FOTO_PROFIL(penggunaSekarang);
     }
 }
@@ -343,19 +360,15 @@ void DISPLAY_FOTO_PROFIL(Pengguna p)
 
 void DISPLAY_PROFIL(Pengguna P)
 {
-    printf("|  Nama: ");
+    printf("\n|  Nama: ");
     printSentence(NAMA_PENGGUNA(P));
-    printf("\n");
-    printf("|  Bio Akun: ");
+    printf("\n|  Bio Akun: ");
     printSentence(BIO_PENGGUNA(P));
-    printf("\n");
-    printf("|  No HP: ");
+    printf("\n|  No HP: ");
     printWord(HP_PENGGUNA(P));
-    printf("\n");
-    printf("|  Weton: ");
+    printf("\n|  Weton: ");
     printWord(WETON_PENGGUNA(P));
-    printf("\n");
-    printf("Foto profil akun :");
+    printf("\n\nFoto profil akun :\n");
     displayFotoProfil(FOTO_PENGGUNA(P));
     printf("\n");
 }

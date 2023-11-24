@@ -49,7 +49,7 @@ void LIHAT_DRAF(){
         printf("\nApakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)\n");
         Word action; InputWordWithBlank(&action);
 
-        Word Ubah = {"UBAH", 6};
+        Word Ubah = {"UBAH", 4};
         Word Hapus = {"HAPUS", 5};
         Word Terbit = {"TERBIT", 6};
         Word Kembali = {"KEMBALI", 7};

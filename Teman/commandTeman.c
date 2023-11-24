@@ -53,12 +53,12 @@ void HAPUS_TEMAN(){
         if(!isFriend(matrixTeman, id_user, id_teman)){
             printf("\n"); printSentence(nama_teman); printf(" bukan teman Anda");
         } else {
-            printf("\nApakah anda yakin ingin menghapus Bob dari daftar teman anda?(YA/TIDAK)\n");
+            printf("\nApakah anda yakin ingin menghapus "), printSentence(nama_teman), printf(" dari daftar teman anda?(YA/TIDAK)\n");
 
             Word Action; InputWord(&Action);
 
-            Word Ya = {"Ya", 2};
-            Word Tidak = {"Tidak", 5};
+            Word Ya = {"YA", 2};
+            Word Tidak = {"TIDAK", 5};
 
             if (IsWordEqual(Ya, Action)){
                 deleteFriend(&matrixTeman, id_user, id_teman);
