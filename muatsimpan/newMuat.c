@@ -2,6 +2,8 @@
 #include "..\General\wordmachinefile.h"
 #include "..\General\wordmachine.h"
 #include "..\global.h"
+#include "simpan.h"
+#include "newMuat.h"
 
 DATETIME muatDateTime(){
     ADVFILE();
@@ -308,8 +310,57 @@ void muatUtasNew(Word inputFile, TabUtas *dataUtas){
                 kicauanSambungan.waktu = dateTime;
                 insertLastTabKicauanSambungan(&tabsambungan,kicauanSambungan);
             }
+            utas.dataKicauanSambungan = tabsambungan;
+            utas.IDUtas = k;
             insertLastTabUtas(dataUtas,utas);
         }
     }
     StopWordFile(inputFile.TabWord);
+}
+
+void muat(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas){
+    printf("Masukkan nama folder yang hendak dimuat.\n");
+    Word config,locFile;
+    writeWord(&locFile,"muatsimpan/Data/", 16);
+    InputWord(&config);
+    Word inputFolder = writefilename(locFile,config);
+    writeWord(&locFile,"/pengguna.config", 16);
+    Word inputFile = writefilename(inputFolder,locFile);
+    FILE* tempFile = fopen(inputFile.TabWord, "r");
+    if (tempFile == NULL) {
+        printf("Tidak ada folder yang dimaksud!\n");
+    }else{
+        printf("Anda akan melakukan pemuatan dari Folder2.\n");
+
+        muatPenggunaNew(inputFile, datauser,matrikstemen);
+
+        writeWord(&locFile,"/kicauan.config", 15);
+        inputFile = writefilename(inputFolder,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        muatKicauanNew(inputFile,tabkicauan);
+
+        printf("Mohon tunggu...\n");
+
+        writeWord(&locFile,"/balasan.config", 15);
+        inputFile = writefilename(inputFolder,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        muatBalasanNew(inputFile,*datauser);
+
+        printf("1...\n");
+
+        writeWord(&locFile,"/draf.config", 12);
+        inputFile = writefilename(inputFolder,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        muatDrafNew(inputFile,*datauser);
+
+        printf("2...\n");
+
+        writeWord(&locFile,"/utas.config", 12);
+        inputFile = writefilename(inputFolder,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        muatUtasNew(inputFile,datautas);
+
+        printf("3...\n");
+        printf("Pemuatan selesai!\n");
+    }
 }

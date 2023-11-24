@@ -1,36 +1,13 @@
 #include <stdio.h>
-#include "../General/wordmachinefile.c"
+#include "../General/wordmachinefile.h"
 #include "../Pengguna/pengguna.h"
 #include "../General/sentenceMachine.h"
 #include "../global.h"
+#include "../muatsimpan/simpan.h"
+#include "../muatsimpan/newMuat.h"
 
-Word writefilename(Word input1, Word input2)
-{
-    Word output;
-    int i;
-    for (i = 0; i < input1.Length; i++)
-    {
-        output.TabWord[i] = input1.TabWord[i];
-    }
-    for (i = 0; i < input2.Length; i++)
-    {
-        output.TabWord[input1.Length + i] = input2.TabWord[i];
-    }
-    output.TabWord[input1.Length + input2.Length] = '\0';
-    output.Length = input1.Length + input2.Length;
 
-    return output;
-}
-
-int compareCharArrays(const char *array1, const char *array2)
-{
-    int result = strcmp(array1, array2);
-    return result;
-}
-#include "../General/sentenceMachine.h"
-#include "../global.h"
-
-void inisialisasi()
+void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas)
 {
     printf("/$$$$$$$                      /$$       /$$           ");
     printf("| $$__  $$                    | $$      |__/          ");
@@ -48,12 +25,13 @@ void inisialisasi()
     printf("\n");
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
 
-    Word config, locFile;
-    writeWord(&locFile, "/pengguna.config", 16);
+    Word config,locFile;
+    writeWord(&locFile,"muatsimpan/Data/", 16);
     InputWord(&config);
-    Word inputFile = writefilename(config, locFile);
-
-    FILE *tempFile = fopen(inputFile.TabWord, "r");
+    Word inputFolder = writefilename(locFile,config);
+    writeWord(&locFile,"/pengguna.config", 16);
+    Word inputFile = writefilename(inputFolder,locFile);
+    FILE* tempFile = fopen(inputFile.TabWord, "r");
     if (tempFile == NULL)
     {
         printf("Name file tidak ada.\n");
@@ -61,17 +39,36 @@ void inisialisasi()
     else
     {
         printf("Name file ada.\n");
-        muatPenggunaNew(inputFile,&dataPengguna);
+        muatPenggunaNew(inputFile, datauser,matrikstemen);
 
         writeWord(&locFile,"/kicauan.config", 15);
         inputFile = writefilename(inputFolder,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
-        muatKicauanNew(inputFile,&dataKicau);
+        muatKicauanNew(inputFile,tabkicauan);
+
+        printf("Mohon tunggu...\n");
 
         writeWord(&locFile,"/balasan.config", 15);
         inputFile = writefilename(inputFolder,locFile);
         tempFile = fopen(inputFile.TabWord, "r");
-        muatBalasanNew(inputFile,dataPengguna);
+        muatBalasanNew(inputFile,*datauser);
+
+        printf("1...\n");
+
+        writeWord(&locFile,"/draf.config", 12);
+        inputFile = writefilename(inputFolder,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        muatDrafNew(inputFile,*datauser);
+
+        printf("2...\n");
+
+        writeWord(&locFile,"/utas.config", 12);
+        inputFile = writefilename(inputFolder,locFile);
+        tempFile = fopen(inputFile.TabWord, "r");
+        muatUtasNew(inputFile,datautas);
+
+        printf("3...\n");
+        printf("Pemuatan selesai!\n");
 
         printf("\n");
         printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");

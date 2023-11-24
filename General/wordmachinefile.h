@@ -36,6 +36,10 @@ void CopyWordFile();
 
 Word CopyWordFile2();
 
+Word CopyWordFile3();
+
+Sentence CopySentenceFile();
+
 void StopWordFile();
 /* Memberhentikan pembacaan Mesin Kata. Pita tidak bisa lagi dibaca
    I.S. : Mesin Kata sedang dijalankan

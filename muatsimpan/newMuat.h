@@ -10,4 +10,5 @@ void muatBalasanNew(Word inputFile,TabPengguna tabuser);
 void muatDrafNew(Word inputFile,TabPengguna tabuser);
 void muatUtasNew(Word inputFile, TabUtas *dataUtas);
 
+void muat(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas);
 #endif

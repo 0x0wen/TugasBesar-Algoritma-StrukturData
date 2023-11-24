@@ -1,9 +1,8 @@
 #ifndef INISIALISASI_HEADER_H
 #define INISIALISASI_HEADER_H
 
-#include "../General/wordmachine.h"
+#include "../global.h"
 
-Word writefilename(Word input1, Word input2);
-void inisialisasi();
+void inisialisasi(TabPengguna* datauser, AdjacencyMatrix* matrikstemen, TabKicauan* tabkicauan, TabUtas* datautas);
 
 #endif
