@@ -40,29 +40,29 @@ typedef struct
 #define ELMT_LIST_DIN(l, i) (l).buffer[i]
 #define CAPACITY_LIST_DIN(l) (l).capacity
 
-void CreateListDin(ListDin *l, int capacity);
-void dealocateList(ListDin *l);
-int listLength(ListDin l);
-int getFirstIdx(ListDin l);
-int getLastIdx(ListDin l);
-boolean isIdxValid(ListDin l, int i);
-boolean isEmpty(ListDin l);
-boolean isFull(ListDin l);
-void readList(ListDin *l);
-void printList(ListDin l);
-ListDin plusMinusList(ListDin l1, ListDin l2, boolean plus);
-boolean isListEqual(ListDin l1, ListDin l2);
-int indexOf(ListDin l, int val);
-void extremeValues(ListDin l, int *max, int *min);
-void copyList(ListDin lIn, ListDin *lOut);
-int sumList(ListDin l);
-int countVal(ListDin l, int val);
-void sort(ListDin *l, boolean asc);
-void insertLast(ListDin *l, int val);
-void deleteLast(ListDin *l, int *val);
-void deleteVal(ListDin *l, int val);
-void expandList(ListDin *l, int num);
-void shrinkList(ListDin *l, int num);
-void compressList(ListDin *l);
+void CreateListDinListDin(ListDin *l, int capacity);
+void dealocateListDin(ListDin *l);
+int listLengthListDin(ListDin l);
+int getFirstIdxListDin(ListDin l);
+int getLastIdxListDin(ListDin l);
+boolean isIdxValidListDin(ListDin l, int i);
+boolean isEmptyListDin(ListDin l);
+boolean isFullListDin(ListDin l);
+void readListDin(ListDin *l);
+void printListDin(ListDin l);
+ListDin plusMinusListDin(ListDin l1, ListDin l2, boolean plus);
+boolean isListEqualListDin(ListDin l1, ListDin l2);
+int indexOfListDin(ListDin l, int val);
+void extremeValuesListDin(ListDin l, int *max, int *min);
+void copyListDin(ListDin lIn, ListDin *lOut);
+int sumListDin(ListDin l);
+int countValListDin(ListDin l, int val);
+void sortListDin(ListDin *l, boolean asc);
+void insertLastListDin(ListDin *l, int val);
+void deleteLastListDin(ListDin *l, int *val);
+void deleteValListDin(ListDin *l, int val);
+void expandListDin(ListDin *l, int num);
+void shrinkListDin(ListDin *l, int num);
+void compressListDin(ListDin *l);
 
 #endif
