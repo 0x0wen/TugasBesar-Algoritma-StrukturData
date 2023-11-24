@@ -5,7 +5,7 @@ void DAFTAR() {
     Sentence Username, Password;
     int Length = dataPengguna.length;
 
-    if (statusProgram) {
+    if (statusLogin) {
       printf("Anda sudah masuk. Keluar terlebih dahulu\nuntuk melakukan daftar.\n");
     } else {
         do {
@@ -24,6 +24,7 @@ void DAFTAR() {
 
         NAMA_PENGGUNA(newUser) = Username;
         PASSWORD_PENGGUNA(newUser) = Password;
+        CreateListDin(&newUser.daftarKicauan, 10);
 
         insertLastTabPengguna(&dataPengguna, newUser);
 
@@ -58,7 +59,7 @@ void MASUK() {
         } while (!checkPassword(dataPengguna, Password, Length));
 
         penggunaSekarang = *searchPenggunaByName(&dataPengguna, Username);
-
+        printf("Pengguna "); printSentence(penggunaSekarang.nama); printf(" berhasil login!\n");
         statusLogin = true;
     }
     
